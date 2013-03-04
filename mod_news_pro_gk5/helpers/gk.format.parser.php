@@ -52,7 +52,9 @@ class NSP_GK5_Article_Format {
 		}
 		// Image
 		$viewClass = 'NSP_GK5_'.$config['source_name'].'_View';
-		$image_src = $viewClass::image($config, $data, true);
+		// PHP 5.3:
+		//$image_src = $viewClass::image($config, $data, true);
+		$image_src = call_user_func(array($viewClass, 'image'), $config, $data, true);
 		// Author data
 		$author_email = $data['author_email'];
 		$author_name = $data['author'];
