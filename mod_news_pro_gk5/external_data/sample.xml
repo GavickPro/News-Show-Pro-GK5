@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<articles>
+	<article>
+		<url>http://www.gavick.com</url>
+		<title>Lorem ipsum</title>
+		<text><![CDATA[Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla.]]></text>
+		<date>0</date>
+		<date_publish>0</date_publish>
+		<author>Admin</author>
+		<catname>Test</catname>
+		<category_url></category_url>
+		<hits>100</hits>
+		<email>blank@gavick.com</email>
+		<rating_sum>10</rating_sum>
+		<rating_count>2</rating_count>
+		<image></image>
+	</article>
+</articles>

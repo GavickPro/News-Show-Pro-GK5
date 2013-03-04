@@ -1,0 +1,9 @@
+{
+	"name": "News_Gallery",
+	"full_name": "NEWS_GALLERY",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

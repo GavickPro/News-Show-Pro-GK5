@@ -1,0 +1,13 @@
+Title: {TITLE}<br />
+Text: {TEXT}<br />
+URL: {URL}<br />
+IMAGE SRC: {IMAGE_SRC}<br />
+AUTHOR NAME: {AUTHOR_NAME}<br />
+AUTHOR EMAIL: {AUTHOR_EMAIL}<br />
+CATEGORY: {CATEGORY}<br />
+CATEGORY URL: {CATEGORY_URL}<br />
+HITS: {HITS}<br />
+DATE: {DATE}<br />
+RATING: {RATING}<br />
+
+Translation test: {{JACTION_ADMIN}}<br />

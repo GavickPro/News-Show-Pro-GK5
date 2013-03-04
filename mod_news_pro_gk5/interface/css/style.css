@@ -1,0 +1,351 @@
+/**
+* Main CSS file
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
+* @version $Revision: GK5 1.0 $
+**/
+
+.nsp { 
+	position: relative; 
+}
+.nspMain { 
+	overflow: hidden; 
+}
+
+/* Pagination */
+.nspBotInterface,
+.nspTopInterface { 
+	clear: both; 
+	float: right;
+	margin: 5px 0;
+	overflow: hidden; 
+}
+
+/* 
+	Interface - for different looking Top and Bottom interface use the following classes:  
+	.nspTopInterface
+	.nspBotInterface (e.g.: .nspTopInterface .nspPagination li ...)
+*/
+.nspPagination { 
+	float: left;
+	list-style-type: none!important; 
+	margin: 5px 0 0 0!important; 
+	padding: 0!important; 
+}
+.nspPagination li { 
+	background: #ccc;
+	-webkit-border-radius: 50%;
+	   -moz-border-radius: 50%;
+	        border-radius: 50%;
+	cursor:pointer; 
+	float:left; 
+	height: 14px; 
+	margin: 5px 4px 0 0!important; 
+	text-indent:-999em; 
+	width: 14px; 
+}
+.nspPagination li:hover,
+.nspPagination li.active { 
+	background-color: #999;
+}
+.nspNext,
+.nspPrev { 
+	background: url('../images/nsp_interface.png') no-repeat -24px 0; 
+	cursor: pointer;
+	float: left; 
+	height: 24px; 
+	margin: 0 0 0 4px;
+	text-indent: -999em;
+	width: 24px;
+}
+.nspPrev {
+	background-position: 0 0;
+}
+.nspNext:hover,
+.nspPrev:hover { 
+	background-position: -24px -24px;
+}
+.nspPrev:hover {
+	background-position: 0 -24px;
+}
+
+/* Articles layout */
+.nspArts { 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden; 
+	padding: 3px;
+}
+.nspArtPage { 
+	float: left; 
+}
+.nspArt { 
+	-webkit-box-sizing: border-box; 
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box; 
+	float:left; 
+}
+.nspArt div { 
+	overflow: hidden; 
+}
+.nspArt h4.nspHeader { 
+	font-size: 24px;
+	margin: 0;
+	padding: 10px 0 15px 0;
+}
+.nspArt h4.nspHeader a { 
+	text-decoration: none;
+}
+.nspArt h4.nspHeader a:hover { }
+.nspArt img.nspImage { 
+	border: none;
+	display: block;
+}
+.nspArt .nspImageWrapper {
+	display: block;
+}
+.nspArt p.nspText { 
+	display: block!important;
+	margin: 0;
+	padding: 0!important;
+}
+.nspArt p.nspText a { }
+.nspArt p.nspText a:hover { }
+.nspArt p.nspInfo { 
+	display: block!important;
+	font-size: 90%; 
+}
+.nspArt p.nspInfo a { }
+.nspArt p.nspInfo a:hover { }
+.nspArt .tleft { 
+	text-align: left; 
+}
+.nspArt .tright { 
+	text-align: right; 
+}
+.nspArt .tcenter { 
+	text-align: center;
+}
+.nspArt .tjustify { 
+	text-align: justify; 
+}
+.nspArt .fleft { 
+	float: left; 
+}
+.nspArt .fright { 
+	float: right; 
+}
+.nspArt .fnone { 
+	clear: both; 
+	float: none;
+	width: 100%; 
+}
+.readon.left,
+.readon.right,
+.readon.center { 
+	clear: both; 
+}
+.readon.left { 
+	float: left; 
+}
+.readon.right { 
+	float: right; 
+}
+.readon.center { 
+	display: inline; 
+	float: none; 
+}
+.nspAvatar { }
+
+/* Links layout */
+.nspLinks { 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 3px;
+}
+.nspList { 
+	float: left; 
+}
+.nspLinks ul { 
+	list-style-type: none!important; 
+	padding: 0!important; 
+}
+.nspLinks .nspLinkScroll1 ul li { 
+	background: #fff;
+	border-top: 1px solid #eee;
+	margin: 0!important;
+	padding: 10px 0;
+}
+.nspLinks .nspLinkScroll1 ul li:first-child {
+	border-top: none;
+}
+.nspLinks ul li:hover { }
+.nspLinks ul li h4 { }
+.nspLinks ul li h4 a { 
+	text-decoration: none; 
+}
+.nspLinks ul li h4 a:hover { }
+.nspLinks ul li p { }
+
+/* positioning */
+.nspArts.left { 
+	float: right; 
+}
+.nspLinksWrap.left { 
+	float: left;
+}
+.nspArts.right { 
+	float: left; 
+}
+.nspLinksWrap.right { 
+	float: right; 
+}
+
+/* make element unvisible */
+.nspMain .unvisible {  
+	left: -9999px;  
+	position: absolute; 
+	top: auto; 
+}
+
+/* Responsive layout */
+.gkResponsive img.nspImage,
+img.nspImage.gkResponsive { 
+	height: auto;
+	width: 100%!important; 
+}
+.nspArt img.nspImage { 
+	max-width: 100%; 
+}
+.nspArtScroll1,
+.nspLinkScroll1 { 
+	width: 100%; 
+}
+.nspPages1 { width: 100%; }
+.nspPages2 { width: 200%; }
+.nspPages3 { width: 300%; }
+.nspPages4 { width: 400%; }
+.nspPages5 { width: 500%; }
+.nspPages6 { width: 600%; }
+.nspPages7 { width: 700%; }
+.nspPages8 { width: 800%; }
+.nspPages9 { width: 900%; }
+.nspPages10 { width: 1000%; }
+.nspCol1 { width: 100%; }
+.nspCol2 { width: 50%; }
+.nspCol3 { width: 33.3%; }
+.nspCol4 { width: 25%; }
+.nspCol5 { width: 20%; }
+.nspCol6 { width: 16.66%; }
+.nspCol7 { width: 14.285%; }
+.nspCol8 { width: 12.5%; }
+.nspCol9 { width: 11.1%; }
+.nspCol10 { width: 10%; }
+.nspCol11 { width: 9.09%; }
+.nspCol12 { width: 8.33%; }
+.nspCol13 { width: 7.69%; }
+.nspCol14 { width: 7.14%; }
+.nspCol15 { width: 6.66%; }
+.nspCol16 { width: 6.25%; }
+.nspCol17 { width: 5.88%; }
+.nspCol18 { width: 5.55%; }
+.nspCol19 { width: 5.26%; }
+.nspCol20 { width: 5%; }
+
+/* Animation */
+.nspList,
+.nspArtPage { 
+	opacity: 0; 
+	-webkit-transition: opacity 0.5s ease-out; 
+	   -moz-transition: opacity 0.5s ease-out; 
+	    -ms-transition: opacity 0.5s ease-out; 
+      	 -o-transition: opacity 0.5s ease-out; 
+	        transition: opacity 0.5s ease-out;
+}
+.nspList.active,
+.nspArtPage.active { 
+	opacity: 1; 
+}
+
+/* Suffix neutral */
+.neutral {
+	color: #999;
+	font-size: 13px;
+}
+.neutral a {
+	color: #333;
+	text-decoration: none;
+}
+.neutral a:active,
+.neutral a:focus,
+.neutral a:hover {
+	color: #777;
+}
+.neutral .nspHeader{
+	font-size: 18px;
+	font-weight: 400;
+}
+.neutral .nspInfo a {
+	padding-right: 5px;
+}
+.neutral .readon {
+	background: #333;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+	color: #fff;
+	padding: 6px 10px;
+}
+.neutral .readon:active,
+.neutral .readon:focus,
+.neutral .readon:hover {
+	background: #999;
+	color: #fff;
+}
+.neutral .nspLinks ul li h4 {
+	font-size: 15px;
+	margin: 0 0 10px 0;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+	.nspArts,
+	.nspLinksWrap {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		overflow: hidden;
+		padding: 0 32px;
+		position: relative;
+	}
+	
+	.nspPrev,
+	.nspNext {
+		left: 0;
+		position: absolute;
+		top: 20%;
+		z-index: 101;
+	}
+	
+	.nspNext {
+		left: auto;
+		right: 0;
+	}
+	
+	.nspPagination {
+		display: none;
+	}
+}
+
+@media (max-width: 600px) {
+	.nspArt {
+		width: 100%;
+	}
+}
+
+/* EOF */

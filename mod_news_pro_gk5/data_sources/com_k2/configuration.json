@@ -1,0 +1,45 @@
+{
+	"data_source": "K2_CONTENT_TITLE",
+	"source": "com_k2",
+	"sources": [
+		{
+			"name": "ALL_COM_K2_ARTICLES",
+			"value": "k2_all"
+		},
+		{
+			"name": "COM_K2_ARTICLES",
+			"value": "k2_articles"
+		},
+		{
+			"name": "COM_K2_CATEGORIES",
+			"value": "k2_categories"
+		},
+		{
+			"name": "COM_K2_TAGS",
+			"value": "k2_tags"
+		}
+	],
+	"supported_options": {
+		"sort_values": {
+			"MOD_NEWS_PRO_GK5_DATE": "created",
+			"MOD_NEWS_PRO_GK5_TITLE": "title",
+			"MOD_NEWS_PRO_GK5_ORDER": "ordering",
+			"MOD_NEWS_PRO_GK5_RANDOM": "random",
+			"MOD_NEWS_PRO_GK5_HITS": "hits"
+		},
+		"offset": true,
+		"news_since": true,
+		"news_featured": true,
+		"only_featured": true,
+		"news_unauthorized": true,
+		"time_offset": true 
+	},
+	"supported_elements": {
+		"header": true,
+		"image": true,
+		"text": true,
+		"readmore": true,
+		"info": true,
+		"info2": true
+	}
+}
