@@ -12,6 +12,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');//import the necessary class definition for formfield
+if(!defined('DS')){ define('DS',DIRECTORY_SEPARATOR); }
+
 class JFormFieldK2Tags extends JFormFieldList {
     public $type = 'K2Tags';
     
@@ -30,7 +32,13 @@ class JFormFieldK2Tags extends JFormFieldList {
 		// Initialize JavaScript field attributes.
 		$attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
 		// Get the field options.
-		$options = (array) $this->getOptions();
+		// Ignore warnings because component may not be installed
+		$path = JPath::clean(JPATH_BASE.DS.'components'.DS.'com_k2');
+		if (! file_exists($path)) {
+			// do nothing because K2 is not installed
+		} else {
+			$options = (array) $this->getOptions();
+		}
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ((string) $this->element['readonly'] == 'true') {
 			$html[] = JHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
@@ -41,7 +49,7 @@ class JFormFieldK2Tags extends JFormFieldList {
 		    if($options[0]!=''){
 				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
-               return '<select id="jform_params_k2_tags" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">K2 is not installed or any K2 tags are available.</strong>';
+               return '<select id="jform_params_k2_tags" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field hide-k2">  K2 is not installed or any K2 tags are available.</strong>';
             }
 		}
 		

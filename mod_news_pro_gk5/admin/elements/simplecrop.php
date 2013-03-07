@@ -22,15 +22,15 @@ class JFormFieldSimpleCrop extends JFormField {
         // render the element
 		return '<div id="simple_crop">
 			<div>
-				<div id="simple_crop_top_wrap"><input type="text" id="simple_crop_top" value="0" />%</div>
+				<div id="simple_crop_top_wrap" class="input-prepend"><input type="text" id="simple_crop_top" value="0" /><span class="add-on">%</span></div>
 				<div id="simple_crop_main_wrap">
-					<div id="simple_crop_left_wrap"><input type="text" id="simple_crop_left" value="0" />%</div>
+					<div id="simple_crop_left_wrap" class="input-prepend"><input type="text" id="simple_crop_left" value="0" /><span class="add-on">%</span></div>
 					<div id="simple_crop_bg">
 						<div id="simple_crop_crop"></div>
 					</div>
-					<div id="simple_crop_right_wrap"><input type="text" id="simple_crop_right" value="0" />%</div>	
+					<div id="simple_crop_right_wrap" class="input-prepend"><input type="text" id="simple_crop_right" value="0" /><span class="add-on">%</span></div>	
 				</div>
-				<div id="simple_crop_bottom_wrap"><input type="text" id="simple_crop_bottom" value="0" />%</div>
+				<div id="simple_crop_bottom_wrap" class="input-prepend"><input type="text" id="simple_crop_bottom" value="0" /><span class="add-on">%</span></div>
 			</div>
 		</div>';	 
 	}

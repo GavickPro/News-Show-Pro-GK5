@@ -13,7 +13,9 @@ background: transparent;
 ::selection {
 	background: transparent;
 }
-
+select[multiple], select[size] {
+	max-height: 150px;
+}
 #jform_params_about_us-lbl,
 #jform_params___field1-lbl,
 label[id^=jform_params_gk_line_],
@@ -21,11 +23,9 @@ label[id^=jform_params_gk_line_],
 #jform_params_checkout-lbl {
 	display: none;
 }
-
-#jform_params_news_since_img {
-	margin-top: 8px;
+.form-horizontal .controls {
+	display: block!important;
 }
-
 .switcher-on,
 .switcher-off {
 	width: 94px;
@@ -44,6 +44,15 @@ span.unit {
 	line-height: 34px;
 }
 
+.controls .close {
+	float: left;
+	opacity: 1;
+}
+input.input-pixels,
+input.input-minutes,
+input.input-ms {
+	display: inline-block!important;
+}
 span.unit.times {
 	display: block;
 	float: left;
@@ -123,58 +132,28 @@ span.readonly p.license {
 	border: none !important;
 }
 
-div.panel > h3 {
-	height: 43px;
-	background: transparent;
-	background-image: linear-gradient(to bottom, #FFFFFF, #f9f9f9) !important;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #d8d8d8;
-	border-style: solid;
-	border-width: 1px;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-	-ms-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-	-o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	-moz-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	-webkit-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	-ms-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	-o-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	cursor: pointer;
-	line-height: 43px;
-	margin-bottom: 5px !important;
+div.control-group > div.controls input {
+	max-width: 200px;
 }
-
-div.panel > h3 a {
-	color: #333;
-	display: block;
+div.control-group > div.controls input.input-minutes {
+	max-width: 145px;
 }
-
-div.panel > h3 a:hover,
-div.panel h3.pane-toggler-down a {
-	color: #ef6b09
+div.control-group > div.controls input.input-percents {
+	max-width: 175px;
 }
-
-div.panel h3.pane-toggler-down {
-	border-bottom: 3px solid #ef6b09 !important
+div.control-group > div.controls input.input-ms {
+	max-width: 170px
 }
-
-.pane-toggler span {
-	background: transparent url('interface.png') no-repeat 5px -126px !important;
+div.control-group > div.controls select {
+	max-width: 215px
 }
-
-.pane-toggler-down span {
-	background: transparent url('interface.png') no-repeat 5px -176px !important;
+div.control-group > div.controls #jform_params_img_width,
+div.control-group > div.controls #jform_params_img_height {
+	max-width: 66px;
 }
-
-.pane-sliders .content {
-	margin: 4px auto;
-	width: 99%;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
+div.control-group > div.controls input#jform_params_news_since {
+	max-width: 160px
 }
-
 .gkHelpLink {
 	float: right !important;
 	width: 22px;
@@ -360,19 +339,18 @@ span.gk_update_link a:hover {
 /* Crop CSS rules */
 
 #simple_crop { 
-	width: 321px; 
-	float: left;
+	width: 400px; 
+	margin: 0 auto;
 }
 #simple_crop_top_wrap,
 #simple_crop_bottom_wrap,
 #simple_crop_left_wrap,
 #simple_crop_right_wrap { 
 	width: 46px; 
-	line-height: 36px;
 }
 #simple_crop_top_wrap,
 #simple_crop_bottom_wrap { 
-	margin: 0 auto; 
+	margin: 5px 0 5px 140px
 }
 #simple_crop_left_wrap,
 #simple_crop_right_wrap { 
@@ -380,7 +358,7 @@ span.gk_update_link a:hover {
 	margin-top: 90px; 
 }
 #simple_crop_left_wrap { 
-	margin-right: 10px; 
+	margin-right: 30px; 
 }
 #simple_crop_right_wrap { 
 	margin-left: 10px; 
@@ -391,7 +369,6 @@ span.gk_update_link a:hover {
 #simple_crop_right { 
 	font-size: 12px; 
 	width: 24px; 
-	margin-right:2px;
 }
 #simple_crop_main_wrap { 
 	clear: both; 
@@ -437,45 +414,8 @@ span.gk_update_link a:hover {
 	overflow: hidden;
 }
 
-#config_manager_form > div {
-	clear: both;
-	overflow: hidden;
-	padding: 2px 0;
-}
-
-#config_manager_form span {
-	float: left;
-	line-height: 36px;
-	margin-right: 10px;
-	margin-left: -3px;
-}
-
 #config_manager_form input[type="text"] {
 	text-align: right;
-}
-
-#config_manager_form > div.gk_ok {
-	text-align: center;
-	font-weight: bold;
-	background: #5a5;
-	margin: 10px;
-	color: #fff;
-	padding: 8px 0;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-}
-
-#config_manager_form > div.gk_error {
-	text-align: center;
-	font-weight: bold;
-	background: #a55;
-	margin: 10px;
-	color: #fff;
-	padding: 8px 0;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
 }
 
 #config_manager_form label {
@@ -505,46 +445,8 @@ span.gk_update_link a:hover {
 	overflow:hidden;
 	padding:10px 20px
 }
-
-#config_manager_form > div {
-	clear: both;
-	overflow: hidden;
-	padding: 2px 0
-}
-
-#config_manager_form > div.gk_error {
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	background: #a55;
-	border-radius: 4px;
-	color: #fff;
-	font-weight: 700;
-	margin: 10px;
-	padding: 8px 0;
-	text-align: center
-}
-
-#config_manager_form > div.gk_ok {
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	background: #5a5;
-	border-radius: 4px;
-	color: #fff;
-	font-weight: 700;
-	margin: 10px;
-	padding: 8px 0;
-	text-align: center
-}
-
 #config_manager_form label {
 	margin: 11px 0 0
-}
-
-#config_manager_form span {
-	float: left;
-	line-height: 36px;
-	margin-left: -3px;
-	margin-right: 10px
 }
 
 #gk_module_updates {
@@ -593,10 +495,6 @@ fieldset.panelform select[multiple=multiple] {
 	height: 150px
 }
 
-#jform_params_news_since_img {
-	margin-top: 8px
-}
-
 #jform_params_simple_crop_editor-lbl {
 	display: block;
 	max-width: 100%!important;
@@ -608,73 +506,6 @@ fieldset.panelform select[multiple=multiple] {
 	height: 120px;
 	width: 90%
 }
-
-#simple_crop {
-	clear: both;
-	float: none;
-	margin: 0 auto;
-	width: 321px
-}
-
-#simple_crop_crop {
-	background: #fff;
-	border: 1px solid #ddd;
-	filter: alpha(opacity=50);
-	height: 200px;
-	opacity: 0.5;
-	width: 200px
-}
-
-#simple_crop_left_wrap {
-	margin-right: 10px
-}
-
-#simple_crop_left_wrap,
-#simple_crop_right_wrap {
-	float: left;
-	margin-top: 90px
-}
-
-#simple_crop_main_wrap {
-	clear: both;
-	overflow: hidden
-}
-
-#simple_crop_right_wrap {
-	margin-left: 10px
-}
-
-#simple_crop_top,
-#simple_crop_bottom,
-#simple_crop_left,
-#simple_crop_right {
-	font-size: 12px;
-	margin-right: 2px;
-	width: 24px
-}
-
-#simple_crop_top_wrap,
-#simple_crop_bottom_wrap {
-	margin: 0 auto
-}
-
-#simple_crop_top_wrap,
-#simple_crop_bottom_wrap,
-#simple_crop_left_wrap,
-#simple_crop_right_wrap {
-	line-height: 36px;
-	width: 46px
-}
-
-#tools_for_pages_input,
-#google_analytics_input,
-#menu_override_input,
-#suffix_override_input,
-#suffix_override_select,
-#layout_override_input {
-	width: 80px
-}
-
 .fltrt ul.adminformlist li {
 	border-bottom: 1px solid #eee;
 	margin: 0;
@@ -734,7 +565,11 @@ fieldset.panelform select[multiple=multiple] {
 .pane-sliders .panel {
 	border: none!important
 }
-#nsp-gk5-checkout h3 { background: #fb6239; color: #fff; padding: 4px;}
+ul#nsp-gk5-checkout {
+	list-style: none;
+	margin: 0;
+}
+#nsp-gk5-checkout h3 { background: #fb6239; color: #fff; padding: 4px; font-size: 12px;}
 .pane-toggler span {
 	background: transparent url(interface.png) no-repeat 5px -126px!important
 }
@@ -968,3 +803,34 @@ span.unit.times {
 select.gk_switch {
 	display: none!important;
 }
+
+
+
+
+/* Joomla!3.0 fixes */
+select.chzn-done {
+	display: inline-block !important;
+}
+select.chzn-done + div {
+	display: none!important;
+}
+select#jform_params_news_header_order,
+select#jform_params_news_image_order,
+select#jform_params_news_text_order,
+select#jform_params_news_info_order,
+select#jform_params_news_info2_order {
+	display: none!important;
+}
+div#jform_params_news_header_order_chzn,
+div#jform_params_news_image_order_chzn,
+div#jform_params_news_text_order_chzn,
+div#jform_params_news_info_order_chzn,
+div#jform_params_news_info2_order_chzn {
+	display: inline-block!important;
+}
+div.switcher-on + select,
+div.switcher-off + select {
+	display: none!important;
+}
+
+

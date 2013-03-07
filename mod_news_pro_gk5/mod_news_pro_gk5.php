@@ -3,7 +3,7 @@
 /**
 * Main file
 * @package News Show Pro GK5
-* @Copyright (C) 2009-2013 Gavick.com
+* @Copyright (C) 2009-2012 Gavick.com
 * @ All rights reserved
 * @ Joomla! is Free Software
 * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html

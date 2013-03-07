@@ -7,182 +7,150 @@
  * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
  * @version $Revision: GK5 1.0 $
  **/
-window.addEvent("domready",function(){
+jQuery(document).ready(function() {	
 	// initialize the configuration manager
 	var configManager = new NSPGK5ConfigManager();
-	// sliding options
-	var modblock = $$('div[id^="module-sliders"]')[0];
-	var baseW = modblock.getSize().x;
-	var minW = 640;
 	
-	modblock.getParent().setStyle('position','relative');
+	if(jQuery('#jform_params_links_position').val() == 'bottom') jQuery('#jform_params_links_width').parent().parent().css('display','none');
+	else jQuery('#jform_params_links_width').parent().parent().css('display','');	
+	jQuery('#jform_params_links_position').change( function(){
+		if(jQuery('#jform_params_links_position').val() == 'bottom') jQuery('#jform_params_links_width').parent().parent().css('display','none');
+		else jQuery('#jform_params_links_width').parent().parent().css('display','');	
+	});
+	jQuery('#jform_params_links_position').blur( function(){
+		if(jQuery('#jform_params_links_position').val() == 'bottom') jQuery('#jform_params_links_width').parent().parent().css('display','none');
+		else jQuery('#jform_params_links_width').parent().parent().css('display','');
+	});
 	
-	if(baseW < minW) {
-		modblock.setStyles({
-			"position": "absolute",
-			"background": "white",
-			"width": baseW + "px",
-			"padding": "5px",
-			"border-radius": "3px",
-			"-webkit-box-shadow": "-8px 0 15px #aaa",
-			"-moz-box-shadow": "-8px 0 15px #aaa",
-			"box-shadow": "-8px 0 15px #aaa",
-			"-webkit-box-sizing": "border-box",
-			"-moz-box-sizing": "border-box",
-			"-ms-box-sizing": "border-box",
-			"box-sizing": "border-box"
-		});
-		
-		var WidthFX = new Fx.Morph(modblock, {duration: 150});
-		var mouseOver = false;
 	
-		modblock.addEvent('mouseenter', function() {
-			mouseOver = true;
 
-			WidthFX.start({
-				'width': minW,
-				'margin-left': (-1 * (minW - baseW))
+
+	/*jQuery('.text-limit').each(function(i, el){
+		el = jQuery(el);
+		var name = el.attr('id') + '_type';
+		var parent = el.parent();
+		jQuery(name).append(el);	
+        parent.remove();
+	});*/
+	/*jQuery('.float').each(function(i, el){
+		el = jQuery(el);
+		var destination = el.parent().prev().find('select');
+		var parent = el.parent();
+		destination.after(el);
+		parent.remove();	
+	});*/
+	
+	/*jQuery('.enabler').each(function(i, el){
+		el = jQuery(el);
+		var destination = el.parent().prev().find('select');
+		var parent = el.parent();
+		destination.after(el);
+		parent.remove();	
+	});*/
+	
+	jQuery('.gk_switch').each(function(i, el){
+			el = jQuery(el);
+			el.css('display','none');
+			var style = (el.val() == 1) ? 'on' : 'off';
+			var switcher = new jQuery('<div>',{'class' : 'switcher-'+style});
+			el.before(switcher);
+			switcher.click( function(){
+				if(el.val() == 1){
+					switcher.attr('class','switcher-off');
+					el.val(0);
+				} else {
+					switcher.attr('class','switcher-on');
+					el.val(1);
+				}
 			});
 		});
-
-		modblock.addEvent('mouseleave', function() {
-			mouseOver = false;
-			(function() {
-				if(!mouseOver) {
-					WidthFX.start({
-						'width': baseW,
-						'margin-left': 0
-					});
-				}
-			}).delay(750);
-		});
-	}
 	
-	// fix the Joomla! behaviour
-	$$('.panel h3.title').each(function(panel) {
-		panel.addEvent('click', function(){
-			if(panel.hasClass('pane-toggler')) {
-				(function(){ 
-					panel.getParent().getElement('.pane-slider').setStyle('height', 'auto'); 
-				}).delay(750);
-
-				(function() {
-					var myFx = new Fx.Scroll(window, { duration: 150 }).toElement(panel);
-				}).delay(250);
-			}
-		});
-	});
-	//
-	//
-	//
-	if(document.id('jform_params_links_position').value == 'bottom') document.id('jform_params_links_width').getParent().setStyle('display','none');
-	else document.id('jform_params_links_width').getParent().setStyle('display','');	
-	document.id('jform_params_links_position').addEvent('change', function(){
-		if(document.id('jform_params_links_position').value == 'bottom') document.id('jform_params_links_width').getParent().setStyle('display','none');
-		else document.id('jform_params_links_width').getParent().setStyle('display','');	
-	});
-	document.id('jform_params_links_position').addEvent('blur', function(){
-		if(document.id('jform_params_links_position').value == 'bottom') document.id('jform_params_links_width').getParent().setStyle('display','none');
-		else document.id('jform_params_links_width').getParent().setStyle('display','');
-	});
+	var link = new jQuery('<a>', { 'class' : 'gkHelpLink', 'href' : 'http://www.gavick.com/news-show-pro-gk5.html', 'target' : '_blank' });
+	jQuery('div.accordion-group').eq(jQuery('div.accordion-group').length-2).find('.accordion-heading').append(link);
+	link.click( function(e) { e.preventDefault(); e.stopPropagation(); });
 	
-	$$('.input-pixels').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">px</span>"});
-	$$('.input-percents').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">%</span>"});
-	$$('.input-minutes').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">minutes</span>"});
-	$$('.input-ms').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">ms</span>"});
-	$$('.input-times').each(function(el){ el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit times\">&times;</span>"});
 	
-	$$('.text-limit').each(function(el){
-		var name = el.get('id') + '_type';
-		var parent = el.getParent();
-		el.inject(document.id(name),'before');		
-        parent.dispose();
-	});
-	$$('.float').each(function(el){
-		var destination = el.getParent().getPrevious().getElement('select');
-		var parent = el.getParent();
-        el.inject(destination, 'after');
-		parent.dispose();	
-	});
-	$$('.enabler').each(function(el){
-		var destination = el.getParent().getPrevious().getElement('select');
-		var parent = el.getParent();
-		el.inject(destination, 'after');
-		parent.dispose();	
-	});
-	$$('.gk_switch').each(function(el){
-		el.setStyle('display','none');
-		var style = (el.value == 1) ? 'on' : 'off';
-		var switcher = new Element('div',{'class' : 'switcher-'+style});
-		switcher.inject(el, 'after');
-		switcher.addEvent("click", function(){
-			if(el.value == 1){
-				switcher.setProperty('class','switcher-off');
-				el.value = 0;
-			} else {
-				switcher.setProperty('class','switcher-on');
-				el.value = 1;
-			}
-		});
-	});
-	
-	var link = new Element('a', { 'class' : 'gkHelpLink', 'href' : 'http://www.gavick.com/news-show-pro-gk5.html', 'target' : '_blank' })
-	link.inject($$('div.panel')[$$('div.panel').length-1].getElement('h3'), 'bottom');
-	link.addEvent('click', function(e) { e.stopPropagation(); });
 	//
 	new DataSources();
 	new PortalModes();
 	new ImageCrop();
 	new ArticleLayout();
 	
+	
 	// option to hide article format related fields
-	var article_format = document.id('jform_params_use_own_article_format').get('value');
+	var article_format = jQuery('#jform_params_use_own_article_format').val();
 		
 	if(article_format == 1) {
-		document.id('jform_params_article_format').getParent().setStyle('display', 'block');
-		$$('.article-format-hide').each(function(el, i) {
-			el.getParent().setStyle('display', 'none');
+		jQuery('#jform_params_article_format').parent().parent().css('display', 'block');
+		jQuery('.article-format-hide').each(function(i, el) {
+			jQuery(el).parent().parent().css('display', 'none');
 		});
 	} else {
-		document.id('jform_params_article_format').getParent().setStyle('display', 'none');
-		$$('.article-format-hide').each(function(el, i) {
-			el.getParent().setStyle('display', 'block');
+		jQuery('#jform_params_article_format').parent().parent().css('display', 'none');
+		jQuery('.article-format-hide').each(function(i, el) {
+			jQuery(el).parent().parent().css('display', 'block');
 		});
 	}
-
-	document.id('jform_params_use_own_article_format').getNext('div').addEvent('click', function() {
-		var article_format = document.id('jform_params_use_own_article_format').get('value');
+	
+	jQuery('#jform_params_use_own_article_format').prev('div').click(function() {
+		var article_format = jQuery('#jform_params_use_own_article_format').val();
 		
 		if(article_format == 1) {
-			document.id('jform_params_article_format').getParent().setStyle('display', 'block');
-			$$('.article-format-hide').each(function(el, i) {
-				el.getParent().setStyle('display', 'none');
+			jQuery('#jform_params_article_format').parent().parent().css('display', 'block');
+			jQuery('.article-format-hide').each(function(i,el) {
+				jQuery(el).parent().parent().css('display', 'none');
 			});
 		} else {
-			document.id('jform_params_article_format').getParent().setStyle('display', 'none');
-			$$('.article-format-hide').each(function(el, i) {
-				el.getParent().setStyle('display', 'block');
+			jQuery('#jform_params_article_format').parent().parent().css('display', 'none');
+			jQuery('.article-format-hide').each(function(i,el) {
+				jQuery(el).parent().parent().css('display', 'block');
 			});
 		}	
 	});
 	
 	// option to hide js engine related fiels
-	var used_js_engine = document.id('jform_params_engine_mode').get('value');
+	var used_js_engine = jQuery('#jform_params_engine_mode').val();
 			
-	document.id('jform_params_animation_function').getParent().setStyle('display', (used_js_engine == 'mootools') ? 'block' : 'none');
-
-	document.id('jform_params_engine_mode').addEvents({
-		'change': function() {
-			var used_js_engine = document.id('jform_params_engine_mode').get('value');
-			document.id('jform_params_animation_function').getParent().setStyle('display', (used_js_engine == 'mootools') ? 'block' : 'none');
-		},
-		'blur': function() {
-			var used_js_engine = document.id('jform_params_engine_mode').get('value');
-			document.id('jform_params_animation_function').getParent().setStyle('display', (used_js_engine == 'mootools') ? 'block' : 'none');
-		},
-		'focus': function() {
-			var used_js_engine = document.id('jform_params_engine_mode').get('value');
-			document.id('jform_params_animation_function').getParent().setStyle('display', (used_js_engine == 'mootools') ? 'block' : 'none');
-		}
+	jQuery('#jform_params_animation_function').parent().parent().css('display', (used_js_engine == 'mootools') ? 'block' : 'none');
+	
+	jQuery('#jform_params_engine_mode').change( function() {
+			var used_js_engine = jQuery('#jform_params_engine_mode').val();
+			jQuery('#jform_params_animation_function').parent().parent().css('display', (used_js_engine == 'mootools') ? 'block' : 'none');
 	});
-});
+	
+	jQuery('#jform_params_engine_mode').blur( function() {
+			var used_js_engine = jQuery('#jform_params_engine_mode').val();
+			jQuery('#jform_params_animation_function').parent().parent().css('display', (used_js_engine == 'mootools') ? 'block' : 'none');
+	});
+	jQuery('#jform_params_engine_mode').focus( function() {
+			var used_js_engine = jQuery('#jform_params_engine_mode').val();
+			jQuery('#jform_params_animation_function').parent().parent().css('display', (used_js_engine == 'mootools') ? 'block' : 'none');
+	});
+	
+	jQuery('#config_manager_form').parent().css('margin-left', 0);
+	jQuery('.gkFormLine.hasText').each(function (i, el) {
+		jQuery(el).parent().css('margin-left', '20px');
+	});
+	
+	jQuery('.input-pixels').each(function(i, el){jQuery(el).parent().html("<div class=\"input-prepend\">" + jQuery(el).parent().html() + "<span class=\"add-on\">px</span></div>")});
+	jQuery('.input-minutes').each(function(i, el){jQuery(el).parent().html("<div class=\"input-prepend\">" + jQuery(el).parent().html() + "<span class=\"add-on\">minutes</span></div>")});
+	jQuery('.input-percents').each(function(i, el){jQuery(el).parent().html("<div class=\"input-prepend\">" + jQuery(el).parent().html() + "<span class=\"add-on\">%</span></div>")});
+	jQuery('.input-ms').each(function(i, el){jQuery(el).parent().html("<div class=\"input-prepend\">" + jQuery(el).parent().html() + "<span class=\"add-on\">ms</span></div>")});
+	jQuery('.input-times').each(function(i, el){ jQuery(el).parent().find('#jform_params_img_width').after('<span class=\"add-on\">&times;</span>');});
+	
+	
+	jQuery('#jform_params_img_height-lbl').parents().eq(1).css('display', 'none');
+	jQuery('.gk-group-layout').each(function(i, elm) {
+		jQuery(elm).css('display', 'none');
+	});
+	
+	jQuery('.hide-k2').each(function(i, el){
+		el = jQuery(el);
+		console.log(el.parent().html());
+		el.parent().find('.chzn-done').attr('style', 'display: none!important');
+	});
+
+	jQuery('#nsp-gk5-checkout').parent().css('margin-left', '10px');
+	jQuery('#gk_about_us').parent().css('margin-left', '10px');
+	
+	});

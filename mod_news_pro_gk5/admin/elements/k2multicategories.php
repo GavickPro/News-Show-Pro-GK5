@@ -29,18 +29,24 @@ class JFormFieldK2Multicategories extends JFormFieldList {
 		// Initialize JavaScript field attributes.
 		$attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
 		// Get the field options.
-		$options = (array) $this->getOptions();
+		$path = JPath::clean(JPATH_BASE.DS.'components'.DS.'com_k2');
+		if (! file_exists($path)) {
+			// do nothing because K2 is not installed
+		} else {
+			$options = (array) $this->getOptions();
+		}	
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ((string) $this->element['readonly'] == 'true') {
 			$html[] = JHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
 			$html[] = '<input type="hidden" name="'.$this->name.'" value="'.$this->value.'"/>';
 		}
+
 		// Create a regular list.
 		else {
 		    if($options[0]!=''){
 				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
-               return '<select id="jform_params_k2_categories" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">K2 is not installed or any K2 categories are available.</strong>';
+               return '<select id="jform_params_k2_categories" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field hide-k2">  K2 is not installed or any K2 categories are available.</strong>';
             }
 		}
 		

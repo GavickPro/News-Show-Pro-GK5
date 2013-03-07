@@ -126,10 +126,12 @@ class NSP_GK5_com_k2_Model {
 		$db = JFactory::getDBO();
 		$access_con = '';
 		
+		$user = JFactory::getUser();	
 		if($config['news_unauthorized'] == '0') {
-			$access_con = ' AND content.access IN ('. implode(',', JFactory::getUser()->authorisedLevels()) .') ';
+			$access_con = ' AND content.access IN ('. implode(',', $user->getAuthorisedViewLevels()) .') ';
 		}
-		$date = JFactory::getDate("now", $config['time_offset']);
+		$date = JFactory::getDate($config['time_offset'].' hour '.date('Y-m-d', strtotime('now')));
+		//$date = JFactory::getDate("now", $config['time_offset']);
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available

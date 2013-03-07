@@ -1,95 +1,97 @@
 // Image crop class
-var ImageCrop = new Class({	
-	initialize: function() {	
-		//
-		var crops = [];
-		var $this = this;
-		//
-		[document.id('jform_params_simple_crop_top'), document.id('jform_params_simple_crop_bottom'), document.id('jform_params_simple_crop_left'), document.id('jform_params_simple_crop_right')].each(function(elm) {
-			elm.getParent().setStyle('display', 'none');
+function ImageCrop() {
+	this.init();
+}
+
+ImageCrop.prototype.init = function() {
+	//
+	var crops = [];
+	var $this = this;
+	//
+	jQuery.each(['#jform_params_simple_crop_top','#jform_params_simple_crop_bottom','#jform_params_simple_crop_left','#jform_params_simple_crop_right'], function(i, elm) {
+		jQuery(elm).parents().eq(1).css('display', 'none');
+	});
+	//
+	jQuery(['top', 'bottom', 'left', 'right']).each(function(i, item) {
+		jQuery('#simple_crop_' + item).val(jQuery('#jform_params_simple_crop_' + item).val());
+		crops[item] = jQuery('#jform_params_simple_crop_' + item).val();	
+	});
+	//
+	jQuery('#simple_crop_crop').css({
+		'margin-top': crops['top'] + "%",
+		'margin-left': crops['left'] + "%",
+		'margin-right': crops['right'] + "%",
+		'margin-bottom': crops['bottom'] + "%",
+		'height': (200.0 - ( (200.0 * ( crops['top'] * 1 + crops['bottom'] * 1 ) ) / 100.0 ) ) + "px",
+		'width': (200.0 - ( (200.0 * ( crops['left'] * 1 + crops['right'] * 1 ) ) / 100.0 ) ) + "px"  
+	});
+	//
+	jQuery(['top', 'bottom', 'left', 'right']).each(function(i, item) {
+		jQuery('#simple_crop_' + item).change ( function() {	
+			$this.cropEvent(item);
 		});
-		//
-		['top', 'bottom', 'left', 'right'].each(function(item) {
-			document.id('simple_crop_' + item).value = document.id('jform_params_simple_crop_' + item).value;
-			crops[item] = document.id('jform_params_simple_crop_' + item).value;	
+		
+		jQuery('#simple_crop_' + item).blur( function() {	
+			$this.cropEvent(item);
 		});
-		//
-		document.id('simple_crop_crop').setStyles({
-			'margin-top': crops['top'] + "%",
-			'margin-left': crops['left'] + "%",
-			'margin-right': crops['right'] + "%",
-			'margin-bottom': crops['bottom'] + "%",
-			'height': (200.0 - ( (200.0 * ( crops['top'] * 1 + crops['bottom'] * 1 ) ) / 100.0 ) ) + "px",
-			'width': (200.0 - ( (200.0 * ( crops['left'] * 1 + crops['right'] * 1 ) ) / 100.0 ) ) + "px"  
-		});
-		//
-		['top', 'bottom', 'left', 'right'].each(function(item) {
-			document.id('simple_crop_' + item).addEvent('change', function() {	
-				$this.cropEvent(item);
-			});
-			
-			document.id('simple_crop_' + item).addEvent('blur', function() {	
-				$this.cropEvent(item);
-			});
-		});
-		// add the toggling crop options when auto-scale enabled
-		document.id('jform_params_img_auto_scale').getParent().getElement('div').addEvent('click', function() {
-			var value = document.id('jform_params_img_auto_scale').get('value');
-			$this.toggleCropOptions(value);
-			
-			if(value == 1 && document.id('jform_params_img_keep_aspect_ratio').get('value') == 1) {
-				document.id('jform_params_img_keep_aspect_ratio').getParent().getElement('div').fireEvent('click');
-			}
-			
-			if(value == 1 && document.id('jform_params_img_stretch').get('value') == 1) {
-				document.id('jform_params_img_stretch').getParent().getElement('div').fireEvent('click');
-			}
-			
-			document.id('jform_params_img_keep_aspect_ratio').getParent().setStyle('display', value == 1 ? 'none' : 'block');
-			document.id('jform_params_img_stretch').getParent().setStyle('display', value == 1 ? 'none' : 'block');
-		});
-		// toggle crop options at the start
-		var value = document.id('jform_params_img_auto_scale').get('value');
+	});
+	// add the toggling crop options when auto-scale enabled
+	jQuery('#jform_params_img_auto_scale').parent().find('div').click( function() {
+		var value = jQuery('#jform_params_img_auto_scale').val();
 		$this.toggleCropOptions(value);
 		
-		if(value == 1 && document.id('jform_params_img_keep_aspect_ratio').get('value') == 1) {
-			document.id('jform_params_img_keep_aspect_ratio').getParent().getElement('div').fireEvent('click');
+		if(value == 1 && jQuery('#jform_params_img_keep_aspect_ratio').val() == 1) {
+			jQuery('#jform_params_img_keep_aspect_ratio').parent().find('div').trigger('click');
 		}
 		
-		if(value == 1 && document.id('jform_params_img_stretch').get('value') == 1) {
-			document.id('jform_params_img_stretch').getParent().getElement('div').fireEvent('click');
+		if(value == 1 && jQuery('#jform_params_img_stretch').val() == 1) {
+			jQuery('#jform_params_img_stretch').parent().find('div').trigger('click');
 		}
 		
-		document.id('jform_params_img_keep_aspect_ratio').getParent().setStyle('display', value == 1 ? 'none' : 'block');
-		document.id('jform_params_img_stretch').getParent().setStyle('display', value == 1 ? 'none' : 'block');
-		
-		// code to prepare other available fields
-		this.prepareOtherFields();
-	},
+		jQuery('#jform_params_img_keep_aspect_ratio').parent().css('display', value == 1 ? 'none' : 'block');
+		jQuery('#jform_params_img_stretch').parent().css('display', value == 1 ? 'none' : 'block');
+	});
+	// toggle crop options at the start
+	var value = jQuery('#jform_params_img_auto_scale').val();
+	$this.toggleCropOptions(value);
 	
-	cropEvent: function(type) {
-		var reverse = (type == 'top') ? 'bottom' : (type == 'bottom') ? 'top' : (type == 'left') ? 'right' : 'left';
-		var line = (type == 'top' || type == 'bottom') ? 'height' : 'width';
-		var field = document.id('jform_params_simple_crop_' + type);
-		var fieldr = document.id('jform_params_simple_crop_' + reverse);
-		
-		field.value = document.id('simple_crop_' + type).value;
-		document.id('simple_crop_crop').setStyle('margin-' + type, field.value + "%");
-		document.id('simple_crop_crop').setStyle(line, (200.0 - ( (200.0 * ( fieldr.value * 1 + field.value * 1 ) ) / 100.0 ) ) + "px" );
-	},
-	
-	toggleCropOptions: function(state) {
-		// when auto-scale enabled / disabled
-		document.id('simple_crop').getParent().setStyle('display', state == 1 ? 'none' : 'block');
-		document.id('jform_params_crop_rules').getParent().setStyle('display', state == 1 ? 'none' : 'block');
-	},
-	
-	prepareOtherFields: function() {
-		var hfield = document.id('jform_params_img_height');
-		var parent = hfield.getParent();
-		var span = hfield.getParent().getElement('span');
-		hfield.inject(document.id('jform_params_img_width').getParent(), 'bottom');
-		span.inject(hfield, 'after');
-		parent.setStyle('display', 'none');
+	if(value == 1 && jQuery('#jform_params_img_keep_aspect_ratio').val() == 1) {
+		jQuery('#jform_params_img_keep_aspect_ratio').parent().find('div').trigger('click');
 	}
-});
+	
+	if(value == 1 && jQuery('#jform_params_img_stretch').val() == 1) {
+		jQuery('#jform_params_img_stretch').parent().find('div').trigger('click');
+	}
+	
+	jQuery('#jform_params_img_keep_aspect_ratio').parent().css('display', value == 1 ? 'none' : 'block');
+	jQuery('#jform_params_img_stretch').parent().css('display', value == 1 ? 'none' : 'block');
+	
+	// code to prepare other available fields
+	this.prepareOtherFields();
+}
+
+ImageCrop.prototype.cropEvent = function(type) {
+	var reverse = (type == 'top') ? 'bottom' : (type == 'bottom') ? 'top' : (type == 'left') ? 'right' : 'left';
+	var line = (type == 'top' || type == 'bottom') ? 'height' : 'width';
+	var field = jQuery('#jform_params_simple_crop_' + type);
+	var fieldr = jQuery('#jform_params_simple_crop_' + reverse);
+	
+	field.val(jQuery('#simple_crop_' + type).val());
+	jQuery('#simple_crop_crop').css('margin-' + type, field.val() + "%");
+	jQuery('#simple_crop_crop').css(line, (200.0 - ( (200.0 * ( fieldr.val() * 1 + field.val() * 1 ) ) / 100.0 ) ) + "px" );	
+}
+
+ImageCrop.prototype.toggleCropOptions = function(state) {
+	// when auto-scale enabled / disabled
+	jQuery('#simple_crop').parents().eq(1).css('display', state == 1 ? 'none' : 'block');
+	jQuery('#jform_params_crop_rules').parents().eq(1).css('display', state == 1 ? 'none' : 'block');
+}
+
+ImageCrop.prototype.prepareOtherFields = function() {
+	var hfield = jQuery('#jform_params_img_height');
+	var parent = hfield.parent();
+	var span = hfield.parent().find('span');
+	jQuery('#jform_params_img_width').parent().append(hfield);
+	hfield.after(span);
+	parent.css('display', 'none');
+}

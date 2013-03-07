@@ -18,7 +18,7 @@ class JFormFieldAbout extends JFormField {
 	protected $type = 'About';
 
 	protected function getInput() {
-		return '<div id="gk_about_us">' . JText::_('MOD_NEWS_PRO_GK5_ABOUT_US_CONTENT') . '</div>';
+		return '<div id="gk_about_us">' . JText::_('MOD_NEWS_PRO_GK5_ABOUT_US_CONTENT') . '</div></div>';
 	}
 }
 

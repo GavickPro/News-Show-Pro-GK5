@@ -1,154 +1,165 @@
 // class used with data sources
-var DataSources = new Class({
-	// array of the configuration
-	configs: null,
-	datasources: null,
-	previous_data_source: '',
+function DataSources() {
+	this.configs = null;
+	this.datasources = null;
+	this.previous_data_source = '';
 	
-	initialize: function() {
-		// binding
-		var $this = this;
-		// set the array of configuration
-		this.configs = [];
-		this.datasources = [];
-		// get the data sources configuration
-		document.getElements('.gk-json-config').each(function(item, i) {
-			var name = item.getProperty('id').replace('gk-json-config-', '');
-			$this.configs[name] = JSON.decode(item.innerHTML);
-			$this.datasources.push(name);
-		});
-		// hide hidden fields
-		document.getElements('.gk-hidden-field').each(function(field, i) {
-			field.getParent().setStyle('display', 'none');
-		});
-		
-		// init
-		this.changeValue();
-		
-		// add events
-		document.id('jform_params_data_source').addEvents({
-			'change': function() { $this.changeValue() },		
-			'focus': function() { $this.changeValue() },
-			'blut': function() { $this.changeValue() }
-		});
-	},
+	this.init();
+}
+
+DataSources.prototype.init = function() {
+	// binding
+	var $this = this;
+	// set the array of configuration
+	this.configs = [];
+	this.datasources = [];
+	// get the data sources configuration
+	jQuery('.gk-json-config').each(function(i, item) {
+		var name = jQuery(item).attr('id').replace('gk-json-config-', '');
+		$this.configs[name] = JSON.decode(item.innerHTML);
+		$this.datasources.push(name);
+	});
+	// hide hidden fields
+	jQuery('.gk-hidden-field').each(function(i, field) {
+		jQuery(field).parent().parent().css('display', 'none');
+	});
 	
-	changeValue: function() {
-		// binding
-		var $this = this;
-		// get the data source value ..
-		var data_source_value = document.id('jform_params_data_source').get('value');
-		// get the name of data source
-		var option_field = document.id('jform_params_data_source').getElement('option[value="'+data_source_value+'"]');
-		var data_source_name = option_field.getProperty('data-source');
-		// hide tabs with settings for unused data sources
-		$this.datasources.each(function(obj) {
-			obj = $this.configs[obj];
-			
-			if(obj.source != data_source_name && document.id(obj.tab)) {
-				document.id(obj.tab).getParent().setStyle('display', 'none');	
-			} else if(document.id(obj.tab)) {
-				document.id(obj.tab).getParent().setStyle('display', 'block');
-			}
-		});	
-		// hide previously showed field (if exists)
-		if(document.getElement('.gk-used-option')) {
-			if(document.getElement('.gk-used-option').getProperty('id') != 'jform_params_' + data_source_value) {
-				document.getElement('.gk-used-option').getParent().setStyle('display', 'none');
-				document.getElement('.gk-used-option').removeClass('gk-used-option');
-			}
-		}
-		// show the field connected with the selected option
-		if(document.id('jform_params_' + data_source_value)) {
-			document.id('jform_params_' + data_source_value).addClass('gk-used-option');
-			document.id('jform_params_' + data_source_value).getParent().setStyle('display', 'block');
-		}
+	// init
+	this.changeValue();
+	// add events
+	jQuery('#jform_params_data_source').change( function() { $this.changeValue() });
+	jQuery('#jform_params_data_source').focus( function() { $this.changeValue() });
+	jQuery('#jform_params_data_source').blur( function() { $this.changeValue() });
+
+}
+
+DataSources.prototype.changeValue = function() {
+	// binding
+	var $this = this;
+	// get the data source value ..
+	var data_source_value = jQuery('#jform_params_data_source').val();
+	// get the name of data source
+	var option_field = jQuery('#jform_params_data_source').find('option[value="'+data_source_value+'"]');
+	var data_source_name = option_field.attr('data-source');
+	// hide tabs with settings for unused data sources
+	jQuery($this.datasources).each(function(i, obj) {
+		obj = $this.configs[obj];
 		
-		// change some fields only if the data source was changed
-		if(this.previous_data_source != data_source_value) {
-			//
-			this.previous_data_source = data_source_value;
-			//
-			if(data_source_value != '' && data_source_value != null) {
-				// .. and show the proper fields ..
-				var option_field = document.id('jform_params_data_source').getElement('option[value="'+data_source_value+'"]');
-				var data_source = option_field.getProperty('data-source');
-				document.id('jform_params_source_name').set('value', data_source);
-				// read the config for the specific data source
-				['offset', 'news_since', 'news_featured', 'only_featured', 'news_unauthorized', 'time_offset'].each(function(key) {
-					if($this.configs[data_source].supported_options[key]) {
-						document.id('jform_params_' + key).getParent().setStyle('display', 'block');
+		if(obj.source != data_source_name && jQuery(obj.tab)) {
+			jQuery(obj.tab).parent().parent().css('display', 'none');	
+		} else if(jQuery(obj.tab)) {
+			jQuery(obj.tab).parent().parent().css('display', 'block');
+		}
+	});	
+	// hide previously showed field (if exists)
+	if(jQuery('.gk-used-option')) {
+		if(jQuery('.gk-used-option').attr('id') != 'jform_params_' + data_source_value) {
+			if(jQuery('.gk-used-option').parent().hasClass('input-append')) {
+				jQuery('.gk-used-option').parents().eq(2).css('display', 'none');
+			}
+			jQuery('.gk-used-option').parent().parent().css('display', 'none');
+			jQuery('.gk-used-option').removeClass('gk-used-option');
+		}
+	}
+	// show the field connected with the selected option
+	if(jQuery('#jform_params_' + data_source_value)) {
+		jQuery('#jform_params_' + data_source_value).addClass('gk-used-option');
+		jQuery('#jform_params_' + data_source_value).parent().parent().css('display', 'block');
+	}
+	
+	// change some fields only if the data source was changed
+	if(this.previous_data_source != data_source_value) {
+		//
+		this.previous_data_source = data_source_value;
+		//
+		if(data_source_value != '' && data_source_value != null) {
+			// .. and show the proper fields ..
+			var option_field = jQuery('#jform_params_data_source').find('option[value="'+data_source_value+'"]');
+			var data_source = jQuery(option_field).attr('data-source');
+			jQuery('#jform_params_source_name').val(data_source);
+			// read the config for the specific data source
+			jQuery(['offset', 'news_since', 'news_featured', 'only_featured', 'news_unauthorized', 'time_offset']).each(function(i, key) {
+				if($this.configs[data_source].supported_options[key]) {
+					if(jQuery('#jform_params_' + key).parent().hasClass('input-append')) {
+						jQuery('#jform_params_' + key).parents().eq(2).css('display', 'block');
 					} else {
-						document.id('jform_params_' + key).getParent().setStyle('display', 'none');
-					}
-				});
-				// .. add the proper options to data sorting fields
-				var news_sort = document.id('jform_params_news_sort_value');
-				news_sort.empty();
-				var news_sort_value = news_sort.getProperty('data-value');
-				
-				if($this.configs[data_source].supported_options.sort_values != false) {
-					news_sort.getParent().setStyle('display', 'block');
-					document.id('jform_params_news_sort_order').getParent().setStyle('display', 'block');
-					
-					for(val in $this.configs[data_source].supported_options.sort_values) {
-						var opt = new Element('option', {
-							'value': $this.configs[data_source].supported_options.sort_values[val],
-							'text': val
-						});
-						
-						if(news_sort_value == $this.configs[data_source].supported_options.sort_values[val]) {
-							opt.setProperty('selected', 'selected');
-						}
-						
-						opt.inject(news_sort, 'bottom');
+						jQuery('#jform_params_' + key).parent().parent().css('display', 'block');
 					}
 				} else {
-					news_sort.getParent().setStyle('display', 'none');
-					document.id('jform_params_news_sort_order').getParent().setStyle('display', 'none');
+					if(jQuery('#jform_params_' + key).parent().hasClass('input-append')) {
+						jQuery('#jform_params_' + key).parents().eq(2).css('display', 'none');
+					} else {
+						jQuery('#jform_params_' + key).parent().parent().css('display', 'none');
+					}
 				}
-				// .. hide/show proper areas available in the specific data source
-				['header', 'image', 'text', 'info'].each(function(key) {
-					var toggler = document.getElement('div[data-section-toggle="' + key + '"]');
+			});
+			// .. add the proper options to data sorting fields
+			var news_sort = jQuery('#jform_params_news_sort_value');
+			news_sort.empty();
+			var news_sort_value = news_sort.attr('data-value');
+			
+			if($this.configs[data_source].supported_options.sort_values != false) {
+				news_sort.parent().parent().css('display', 'block');
+				jQuery('#jform_params_news_sort_order').parent().parent().css('display', 'block');
+				
+				for(val in $this.configs[data_source].supported_options.sort_values) {
+					var opt = new jQuery('<option>', {
+						'value': $this.configs[data_source].supported_options.sort_values[val],
+						'text': val
+					});
 					
-					if($this.configs[data_source].supported_elements[key]) {
-						toggler.getParent().setStyle('display', 'block');
-					} else {
-						toggler.getParent().setStyle('display', 'none');
+					if(news_sort_value == $this.configs[data_source].supported_options.sort_values[val]) {
+						opt.attr('selected', 'selected');
 					}
-					
-					if(toggler.hasClass('open')) {
-						toggler.fire('click');
-					}
-				});
-				// .. and also elements available in the layout:
-				['header', 'image', 'text', 'info', 'info2', 'readmore'].each(function(key) {
-					var element = document.id('jform_params_news_'+key+'_enabled').getParent();
-					
-					if($this.configs[data_source].supported_elements[key]) {
-						element.setStyle('display', 'block');
-					} else {
-						element.setStyle('display', 'none');
-					}
-				});
+					news_sort.append(opt);
+				}
+			} else {
+				news_sort.parent().parent().css('display', 'none');
+				jQuery('#jform_params_news_sort_order').parent().parent().css('display', 'none');
 			}
-			// check the data source value
-			var portal_mode_value = document.id('jform_params_module_mode').get('value');
-			// if the portal mode is used
-			if(portal_mode_value != 'normal') {
-				var portal_mode_config = JSON.decode(document.id('gk-json-config-pm-'+portal_mode_value).innerHTML);
-				// search for the data source name
-				var isSupported = false;
-				portal_mode_config.support.each(function(source) {
-					if(source == data_source) {
-						isSupported = true;
-					}
-				});
-				//
-				if(!isSupported) {
-					alert('Specific data source is not supported by selected Portal Mode. Please change the data source or portal mode');
+			// .. hide/show proper areas available in the specific data source
+			jQuery(['header', 'image', 'text', 'info']).each(function(i, key) {
+				var toggler = jQuery('div[data-section-toggle="' + key + '"]');
+				
+				if($this.configs[data_source].supported_elements[key]) {
+					jQuery(toggler).parent().parent().css('display', 'block');
+				} else {
+					jQuery(toggler).parent().parent().css('display', 'none');
 				}
+				
+				if(toggler.hasClass('open')) {
+					jQuery(toggler).trigger('click');
+				}
+			});
+			// .. and also elements available in the layout:
+			jQuery(['header', 'image', 'text', 'info', 'info2', 'readmore']).each(function(i, key) {
+				var element = jQuery('#jform_params_news_'+key+'_enabled').parent(); // maybe second parent
+				
+				if($this.configs[data_source].supported_elements[key]) {
+					element.css('display', 'block');
+				} else {
+					element.css('display', 'none');
+				}
+			});
+		}
+		
+		// check the data source value
+		var portal_mode_value = jQuery('#jform_params_module_mode').val();
+		// if the portal mode is used
+		if(portal_mode_value != 'normal') {
+			var portal_mode_config = JSON.decode(jQuery('#gk-json-config-pm-'+portal_mode_value).html());
+			console.log(portal_mode_config);
+			// search for the data source name
+			var isSupported = false;
+			jQuery(portal_mode_config.support).each(function(i, source) {
+				if(source == data_source) {
+					isSupported = true;
+				}
+			});
+			//
+			if(!isSupported) {
+				alert('Specific data source is not supported by selected Portal Mode. Please change the data source or portal mode');
 			}
 		}
 	}
-});
+}

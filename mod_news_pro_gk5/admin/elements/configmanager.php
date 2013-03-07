@@ -38,12 +38,12 @@ class JFormFieldConfigManager extends JFormField {
 					$result = $db->query();
 					// check the result
 					if($result) {
-						$msg = '<div class="gk_ok">'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_LOADED_AND_SAVED').'</div>';
+						$msg = '<div class="alert alert-success"> <button type="button" class="close" data-dismiss="alert">&times;</button>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_LOADED_AND_SAVED').'</div>';
 					} else {
-						$msg = '<div class="gk_error">'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_SQL_ERROR').'</div>';
+						$msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_SQL_ERROR').'</div>';
 					}
 				} else {
-					$msg = '<div class="gk_error">'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_SELECTED_FILE_DOESNT_EXIST').'</div>';
+					$msg = '<div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_SELECTED_FILE_DOESNT_EXIST').'</div>';
 				}	
 			} else if($task == 'save') {
 				if($file == '') {
@@ -99,12 +99,12 @@ class JFormFieldConfigManager extends JFormField {
 		$file_delete = JHtml::_('select.genericlist', $options, 'name', '', 'value', 'text', 'default', 'config_manager_delete_filename');
 		// return the standard formfield output
 		$html = '';
-		$html .= '<div id="config_manager_form">';
+		$html .= '<div id="config_manager_form" class="well">';
 		$html .= $msg;
-		$html .= '<div><label>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_LOAD').'</label>'.$file_select.'<button id="config_manager_load">'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_LOAD_BTN').'</button></div>';
-		$html .= '<div><label>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_SAVE').'</label><input type="text" id="config_manager_save_filename" /><span>.json</span><button id="config_manager_save">'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_SAVE_BTN').'</button></div>';
-		$html .= '<div><label>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_DELETE').'</label>'.$file_delete.'<button id="config_manager_delete">'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_DELETE_BTN').'</button></div>';
-		$html .= '<div><label>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_DIRECTORY').'</label><span>'.$base_path.'</span></div>';
+		$html .= '<div><p><label>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_LOAD').'</label>'.$file_select.'<button id="config_manager_load" class="btn"><i class="icon-download"></i>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_LOAD_BTN').'</button></p></div>';
+		$html .= '<div class="input-append"><p><label>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_SAVE').'</label><input type="text" id="config_manager_save_filename" class="input-medium" /><span class="add-on">.json</span><button id="config_manager_save" class="btn"><i class="icon-upload"></i> '.JText::_('MOD_NEWS_PRO_GK5_CONFIG_SAVE_BTN').'</button></p></div>';
+		$html .= '<div><p><label>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_DELETE').'</label>'.$file_delete.'<button id="config_manager_delete" class="btn"><i class="icon-remove"></i>'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_DELETE_BTN').'</button></p></div>';
+		$html .= '<div><p><span class="label label-warning">'.JText::_('MOD_NEWS_PRO_GK5_CONFIG_DIRECTORY').'</span> <span>'.$base_path.'</span></p></div>';
 		$html .= '</div>';
 		// finish the output
 		return $html;
