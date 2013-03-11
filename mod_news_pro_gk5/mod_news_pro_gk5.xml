@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
-	<creationDate>04/03/2013</creationDate>
+	<creationDate>11/03/2013</creationDate>
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2013 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavick.com</authorUrl>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<description>
 	<![CDATA[
 		<style type='text/css'>
