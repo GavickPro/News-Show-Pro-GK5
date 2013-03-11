@@ -16,7 +16,7 @@ class JFormFieldConfigManager extends JFormField {
 		$mod_id = $uri->getVar('id', 'none');
 		$task = $uri->getVar('gk_module_task', 'none');
 		$file = $uri->getVar('gk_module_file', 'none');
-		$base_path = str_replace('admin/elements', '', dirname(__FILE__)).'config/';
+		$base_path = str_replace('admin'.DS.'elements', '', dirname(__FILE__)).'config'.DS;
 		// helping variables
 		$msg = '';
 		// if the URL contains proper variables
