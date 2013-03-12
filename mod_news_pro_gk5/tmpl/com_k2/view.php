@@ -176,8 +176,14 @@ class NSP_GK5_com_k2_View {
 	        $info_category = ($config['category_link'] == 1) ? '<a href="'. urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item['cid'].':'.urlencode($item['cat_alias'])))) .'" >'.$item['catname'].'</a>' : $item['catname'];
 	        $info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
 	       	//
-	        if(!(!isset($item['comments']) || $item['comments'] == 0)) {
-	            $info_comments = JText::_('MOD_NEWS_PRO_GK5_COMMENTS').' ('.(isset($item['comments']) ? $item['comments'] : '0' ) . ')';
+	        if(isset($item['comments'])) { 
+	        	if($item['comments'] == 1) {
+	            	$info_comments = JText::_('MOD_NEWS_PRO_GK5_1COMMENT');
+	            } else if($item['comments'] > 1 && $item['comments'] < 5) {
+	            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MORECOMMENTS');
+	            } else if($item['comments'] >= 5) {
+	            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MUCHMORECOMMENTS');
+	            }
 	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
