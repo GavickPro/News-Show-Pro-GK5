@@ -177,7 +177,9 @@ var NSP5 = new Class({
 			var links_pos_start = 0;
 			var links_time_start = 0;
 			links_wrap.addEvent('touchstart', function(e) {
-				e.preventDefault();
+				if(e.target.get('tag') != 'a') {
+					e.preventDefault();
+				}
 				
 				if(e.changedTouches.length > 0) {
 					links_pos_start = e.changedTouches[0].pageX;
