@@ -154,7 +154,10 @@ NSP5.prototype = {
 			var arts_time_start = 0;
 
 			arts_wrap.bind('touchstart', function(e) {
-				e.preventDefault();
+				if(jQuery(e.target)[0].tagName != 'a' && jQuery(e.target)[0].tagName != 'A') {
+					e.preventDefault();
+				}
+				
 				var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
 	
 				if(touches.length > 0) {
