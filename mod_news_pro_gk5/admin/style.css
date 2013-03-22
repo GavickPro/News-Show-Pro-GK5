@@ -26,8 +26,8 @@ label[id^=jform_params_gk_line_],
 	margin-top: 8px;
 }
 
-.switcher-on,
-.switcher-off {
+.nspgk5-panel .switcher-on,
+.nspgk5-panel .switcher-off {
 	width: 94px;
 	height: 27px;
 	background: transparent url('switcher.png') no-repeat 0 0;
@@ -36,22 +36,22 @@ label[id^=jform_params_gk_line_],
 	margin-top: 3px;
 }
 
-.switcher-off {
+.nspgk5-panel .switcher-off {
 	background-position: -94px 0;
 }
 
-span.unit {
+.nspgk5-panel span.unit {
 	line-height: 34px;
 }
 
-span.unit.times {
+.nspgk5-panel span.unit.times {
 	display: block;
 	float: left;
 	font-size: 12px;
 	margin-right: 5px;
 }
 
-span.readonly {
+.nspgk5-panel span.readonly {
 	padding: 20px;
 	font-family: Arial;
 	font-size: 13px !important;
@@ -61,7 +61,7 @@ span.readonly {
 	line-height: 24px;
 }
 
-span.readonly h1 {
+.nspgk5-panel span.readonly h1 {
 	clear: both;
 	font-family: Georgia, sans-serif;
 	font-size: 38px;
@@ -72,33 +72,33 @@ span.readonly h1 {
 	font-weight: normal;
 }
 
-span.readonly p {
+.nspgk5-panel span.readonly p {
 	margin: 0 26px 10px
 }
 
-span.readonly p a {
+.nspgk5-panel span.readonly p a {
 	color: #ef6b09
 }
 
-span.readonly p.homepage {
+.nspgk5-panel span.readonly p.homepage {
 	margin-top: 30px
 }
 
-span.readonly p.license {
+.nspgk5-panel span.readonly p.license {
 	border-top: 1px solid #eee;
 	font-size: 11px;
 	margin: 30px 26px 0;
 	padding: 6px 0;
 } /* lines */
 
-.gkFormLine {
+.nspgk5-panel .gkFormLine {
 	clear: both;
 	display: block;
 	height: 21px;
 	margin: 0 -10px!important;
 }
 
-.gkFormLine.hasText {
+.nspgk5-panel .gkFormLine.hasText {
 	background: transparent url('interface.png') no-repeat 5px -229px;
 	border-top: 10px solid #fff;
 	border-bottom: 5px solid #fff;
@@ -110,20 +110,21 @@ span.readonly p.license {
 	cursor: pointer;
 }
 
-.gkFormLine.hasText.open {
+.nspgk5-panel .gkFormLine.hasText.open {
 	background-position: 5px -287px
 }
 
-.gkFormLine.hasText span {
+.nspgk5-panel .gkFormLine.hasText span {
 	padding: 3px;
 	background: #fff;
 } /* togglers */
 
-.pane-sliders .panel {
+.pane-sliders .nspgk5-panel {
 	border: none !important;
 }
 
-div.panel > h3 {
+.nspgk5-panel > h3,
+.non-nspgk5-panel > h3 {
 	height: 43px;
 	background: transparent;
 	background-image: linear-gradient(to bottom, #FFFFFF, #f9f9f9) !important;
@@ -145,29 +146,20 @@ div.panel > h3 {
 	margin-bottom: 5px !important;
 }
 
-div.panel > h3 a {
+.nspgk5-panel > h3 a,
+.non-nspgk5-panel > h3 a {
 	color: #333;
 	display: block;
 }
 
-div.panel > h3 a:hover,
-div.panel h3.pane-toggler-down a {
+.nspgk5-panel > h3 a:hover,
+.nspgk5-panel h3.pane-toggler-down a,
+.non-nspgk5-panel > h3 a:hover,
+.non-nspgk5-panel > h3.pane-toggler-down a {
 	color: #ef6b09
 }
 
-div.panel h3.pane-toggler-down {
-	border-bottom: 3px solid #ef6b09 !important
-}
-
-.pane-toggler span {
-	background: transparent url('interface.png') no-repeat 5px -126px !important;
-}
-
-.pane-toggler-down span {
-	background: transparent url('interface.png') no-repeat 5px -176px !important;
-}
-
-.pane-sliders .content {
+.pane-sliders .nspgk5-panel .content {
 	margin: 4px auto;
 	width: 99%;
 	-moz-border-radius: 3px;
@@ -175,7 +167,7 @@ div.panel h3.pane-toggler-down {
 	border-radius: 3px;
 }
 
-.gkHelpLink {
+.nspgk5-panel .gkHelpLink {
 	float: right !important;
 	width: 22px;
 	height: 22px;
@@ -184,15 +176,15 @@ div.panel h3.pane-toggler-down {
 	background: transparent url('interface.png') repeat-x 0 100%;
 }
 
-.gkHelpLink:hover {
+.nspgk5-panel .gkHelpLink:hover {
 	background-position: 0 -48px;
 } /* form elements in the container */
 
-#jform_params_k2_tags {
+.nspgk5-panel #jform_params_k2_tags {
 	height: 150px
 }
 
-.panel fieldset.panelform > ul > li > label {
+.nspgk5-panel fieldset.panelform > ul > li > label {
 	color: #444;
 	font-size: 11px;
 	font-weight: bold;
@@ -204,15 +196,15 @@ div.panel h3.pane-toggler-down {
 	min-width: 30%!important;
 }
 
-.panel fieldset.panelform > ul > li fieldset {
+.nspgk5-panel fieldset.panelform > ul > li fieldset {
 	line-height: 28px;
 }
 
-fieldset.panelform input[type=radio] {
+.nspgk5-panel fieldset.panelform input[type=radio] {
 	margin-top: 11px;
 }
 
-fieldset.panelform input {
+.nspgk5-panel fieldset.panelform input {
 	height: 16px;
 	color: #555;
 	line-height: 16px;
@@ -222,20 +214,20 @@ fieldset.panelform input {
 	-webkit-border-radius: 2px;
 }
 
-fieldset.panelform input.small {
+.nspgk5-panel fieldset.panelform input.small {
 	width: 40px;
 }
 
-fieldset.panelform input.tright {
+.nspgk5-panel fieldset.panelform input.tright {
 	text-align: right;
 }
 
-fieldset.panelform input[type=button] {
+.nspgk5-panel fieldset.panelform input[type=button] {
 	height: 26px;
 	line-height: 26px;
 }
 
-fieldset.panelform select {
+.nspgk5-panel fieldset.panelform select {
 	height: 26px;
 	color: #555;
 	line-height: 24px;
@@ -246,47 +238,47 @@ fieldset.panelform select {
 	-webkit-border-radius: 2px;
 }
 
-fieldset.panelform select.position {
+.nspgk5-panel fieldset.panelform select.position {
 	width: 80px!important;
 }
 
-fieldset.panelform textarea {
+.nspgk5-panel fieldset.panelform textarea {
 	padding: 4px;
 	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 }
 
-fieldset.panelform select[multiple=multiple] {
+.nspgk5-panel fieldset.panelform select[multiple=multiple] {
 	height: 150px;
 } /* lists */
 
-#tools_for_pages_input,
-#google_analytics_input,
-#menu_override_input,
-#suffix_override_input,
-#suffix_override_select,
-#layout_override_input {
+.nspgk5-panel #tools_for_pages_input,
+.nspgk5-panel #google_analytics_input,
+.nspgk5-panel #menu_override_input,
+.nspgk5-panel #suffix_override_input,
+.nspgk5-panel #suffix_override_select,
+.nspgk5-panel #layout_override_input {
 	width: 80px;
 }
 
-.fltrt ul.adminformlist li {
+.fltrt .nspgk5-panel ul.adminformlist li {
 	overflow: hidden;
 	border-bottom: 1px solid #eee;
 	padding: 1px 10px;
 	margin: 0;
 }
 
-.tools_for_pages_remove_rule,
-.google_analytics_remove_rule,
-.menu_override_remove_rule,
-.suffix_override_remove_rule,
-.module_override_remove_rule,
-.layout_override_remove_rule {
+.nspgk5-panel .tools_for_pages_remove_rule,
+.nspgk5-panel .google_analytics_remove_rule,
+.nspgk5-panel .menu_override_remove_rule,
+.nspgk5-panel .suffix_override_remove_rule,
+.nspgk5-panel .module_override_remove_rule,
+.nspgk5-panel .layout_override_remove_rule {
 	float: right;
 }
 
-fieldset.panelform .label {
+.nspgk5-panel fieldset.panelform .label {
 	font-size: 11px;
 	font-weight: bold;
 	width: auto;
@@ -294,117 +286,61 @@ fieldset.panelform .label {
 	line-height: 34px;
 }
 
-fieldset.panelform .desc {
+.nspgk5-panel fieldset.panelform .desc {
 	font-size: 11px;
 	font-weight: normal;
 	width: auto;
 	padding: 10px;
-} /* Updates */
-
-#gk_module_updates {
-	margin: 20px -10px 0;
-	border-right: 1px solid #eee
 }
-
-#gk_module_updates li {
-	margin: 0;
-	padding: 0;
-	border: none;
-	line-height: 34px;
-	color: #555;
-	border-top: 1px solid #eee
-}
-
-#gk_module_updates li span strong {
-	padding: 0 12px 0 0
-}
-
-#gk_module_updates li span {
-	display: block;
-	float: left;
-	height: 34px;
-	line-height: 34px;
-	padding: 0 0 0 20px;
-	border-left: 1px solid #eee
-}
-
-span.gk_update_version {
-	width: 110px;
-	background: #fff9f6;
-}
-
-span.gk_update_data {
-	width: 150px;
-	background: #f9f9f9;
-}
-
-span.gk_update_link a {
-	padding: 4px 12px;
-	-moz-border-radius: 26px;
-	background: #d75307;
-	text-transform: uppercase;
-	font: bold 10px Arial, Helvetica, sans-serif;
-	color: #fff;
-	line-height: 34px;
-}
-
-span.gk_update_link a:hover {
-	background: #222;
-	text-decoration: none;
-}
-
-#gk_module_updates p {
-	color: #555
-} 
 
 /* Crop CSS rules */
 
-#simple_crop { 
+.nspgk5-panel #simple_crop { 
 	width: 321px; 
 	float: left;
 }
-#simple_crop_top_wrap,
-#simple_crop_bottom_wrap,
-#simple_crop_left_wrap,
-#simple_crop_right_wrap { 
+.nspgk5-panel #simple_crop_top_wrap,
+.nspgk5-panel #simple_crop_bottom_wrap,
+.nspgk5-panel #simple_crop_left_wrap,
+.nspgk5-panel #simple_crop_right_wrap { 
 	width: 46px; 
 	line-height: 36px;
 }
-#simple_crop_top_wrap,
-#simple_crop_bottom_wrap { 
+.nspgk5-panel #simple_crop_top_wrap,
+.nspgk5-panel #simple_crop_bottom_wrap { 
 	margin: 0 auto; 
 }
-#simple_crop_left_wrap,
-#simple_crop_right_wrap { 
+.nspgk5-panel #simple_crop_left_wrap,
+.nspgk5-panel #simple_crop_right_wrap { 
 	float: left; 
 	margin-top: 90px; 
 }
-#simple_crop_left_wrap { 
+.nspgk5-panel #simple_crop_left_wrap { 
 	margin-right: 10px; 
 }
-#simple_crop_right_wrap { 
+.nspgk5-panel #simple_crop_right_wrap { 
 	margin-left: 10px; 
 }
-#simple_crop_top,
-#simple_crop_bottom,
-#simple_crop_left,
-#simple_crop_right { 
+.nspgk5-panel #simple_crop_top,
+.nspgk5-panel #simple_crop_bottom,
+.nspgk5-panel #simple_crop_left,
+.nspgk5-panel #simple_crop_right { 
 	font-size: 12px; 
 	width: 24px; 
 	margin-right:2px;
 }
-#simple_crop_main_wrap { 
+.nspgk5-panel #simple_crop_main_wrap { 
 	clear: both; 
 	overflow: hidden; 
 }
-#simple_crop_bg { 
+.nspgk5-panel #simple_crop_bg { 
 	width: 202px; 
 	height: 202px; 
 	border: 3px solid #eee; 
 	background: url('cropbg.jpg') no-repeat; 
 	float:left; 
 }
-#simple_crop_crop { 
+.nspgk5-panel #simple_crop_crop { 
 	width: 200px; 
 	height: 200px; 
 	border: 1px solid #ddd; 
@@ -417,18 +353,18 @@ span.gk_update_link a:hover {
 	-o-transition: all .3s ease-out;
 	transition: all .3s ease-out;
 }
-#paramscrop_rules { 
+.nspgk5-panel #paramscrop_rules { 
 	width: 90%; 
 	height: 120px; 
 }
 
 /* Config manager */
 
-#jform_params_config_manager-lbl {
+.nspgk5-panel #jform_params_config_manager-lbl {
 	display: none;
 }
 
-#config_manager_form {
+.nspgk5-panel #config_manager_form {
 	clear: both;
 	color: #555;
 	margin: 16px 0;
@@ -437,24 +373,24 @@ span.gk_update_link a:hover {
 	overflow: hidden;
 }
 
-#config_manager_form > div {
+.nspgk5-panel #config_manager_form > div {
 	clear: both;
 	overflow: hidden;
 	padding: 2px 0;
 }
 
-#config_manager_form span {
+.nspgk5-panel #config_manager_form span {
 	float: left;
 	line-height: 36px;
 	margin-right: 10px;
 	margin-left: -3px;
 }
 
-#config_manager_form input[type="text"] {
+.nspgk5-panel #config_manager_form input[type="text"] {
 	text-align: right;
 }
 
-#config_manager_form > div.gk_ok {
+.nspgk5-panel #config_manager_form > div.gk_ok {
 	text-align: center;
 	font-weight: bold;
 	background: #5a5;
@@ -466,7 +402,7 @@ span.gk_update_link a:hover {
 	border-radius: 4px;
 }
 
-#config_manager_form > div.gk_error {
+.nspgk5-panel #config_manager_form > div.gk_error {
 	text-align: center;
 	font-weight: bold;
 	background: #a55;
@@ -478,26 +414,26 @@ span.gk_update_link a:hover {
 	border-radius: 4px;
 }
 
-#config_manager_form label {
+.nspgk5-panel #config_manager_form label {
 	margin: 11px 0 0 0;
 } 
 
 /* GK5 - new rules */
 
-.gk-json-config,
-.gk-json-config-pm {
+.nspgk5-panel .gk-json-config,
+.nspgk5-panel .gk-json-config-pm {
 	display: none;
 }
 
-.input-percents,
-.input-pixels,
-.input-minutes,
-.input-ms,
-.input-times {
+.nspgk5-panel .input-percents,
+.nspgk5-panel .input-pixels,
+.nspgk5-panel .input-minutes,
+.nspgk5-panel .input-ms,
+.nspgk5-panel .input-times {
 	text-align: right;
 }
 
-#config_manager_form {
+.nspgk5-panel #config_manager_form {
 	background:#f9f9f9;
 	clear:both;
 	color:#555;
@@ -506,13 +442,13 @@ span.gk_update_link a:hover {
 	padding:10px 20px
 }
 
-#config_manager_form > div {
+.nspgk5-panel #config_manager_form > div {
 	clear: both;
 	overflow: hidden;
 	padding: 2px 0
 }
 
-#config_manager_form > div.gk_error {
+.nspgk5-panel #config_manager_form > div.gk_error {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	background: #a55;
@@ -524,7 +460,7 @@ span.gk_update_link a:hover {
 	text-align: center
 }
 
-#config_manager_form > div.gk_ok {
+.nspgk5-panel #config_manager_form > div.gk_ok {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	background: #5a5;
@@ -536,87 +472,56 @@ span.gk_update_link a:hover {
 	text-align: center
 }
 
-#config_manager_form label {
+.nspgk5-panel #config_manager_form label {
 	margin: 11px 0 0
 }
 
-#config_manager_form span {
+.nspgk5-panel #config_manager_form span {
 	float: left;
 	line-height: 36px;
 	margin-left: -3px;
 	margin-right: 10px
 }
 
-#gk_module_updates {
-	border-right: 1px solid #eee;
-	margin: 20px -10px 0
-}
-
-#gk_module_updates li {
-	border: none;
-	border-top: 1px solid #eee;
-	color: #555;
-	line-height: 34px;
-	margin: 0;
-	padding: 0
-}
-
-#gk_module_updates li span {
-	border-left: 1px solid #eee;
-	display: block;
-	float: left;
-	height: 34px;
-	line-height: 34px;
-	padding: 0 0 0 20px
-}
-
-#gk_module_updates li span strong {
-	padding: 0 12px 0 0
-}
-
-#gk_module_updates p {
-	color: #555
-}
-
-#jform_params_about_us-lbl,
-#jform_params___field1-lbl,
-label[id^=jform_params_gk_line_],
-#jform_params_source_name,
-#jform_params_checkout-lbl,
-#jform_params_config_manager-lbl,
-.gk-json-config {
+.nspgk5-panel #jform_params_about_us-lbl,
+.nspgk5-panel #jform_params___field1-lbl,
+.nspgk5-panel label[id^=jform_params_gk_line_],
+.nspgk5-panel #jform_params_source_name,
+.nspgk5-panel #jform_params_checkout-lbl,
+.nspgk5-panel #jform_params_config_manager-lbl,
+.nspgk5-panel .gk-json-config {
 	display: none
 }
 
-#jform_params_k2_tags,
-fieldset.panelform select[multiple=multiple] {
+.nspgk5-panel #jform_params_k2_tags,
+.nspgk5-panel fieldset.panelform select[multiple=multiple] {
 	height: 150px
 }
 
-#jform_params_news_since_img {
+.nspgk5-panel #jform_params_news_since_img {
 	margin-top: 8px
 }
 
-#jform_params_simple_crop_editor-lbl {
+.nspgk5-panel #jform_params_simple_crop_editor-lbl {
 	display: block;
 	max-width: 100%!important;
 	text-align: center;
 	width: 100%!important
 }
 
-#paramscrop_rules {
+.nspgk5-panel #paramscrop_rules {
 	height: 120px;
 	width: 90%
 }
 
-#simple_crop {
+.nspgk5-panel #simple_crop {
 	clear: both;
 	float: none;
 	margin: 0 auto;
 	width: 321px
 }
 
-#simple_crop_crop {
+.nspgk5-panel #simple_crop_crop {
 	background: #fff;
 	border: 1px solid #ddd;
 	filter: alpha(opacity=50);
@@ -625,71 +530,71 @@ fieldset.panelform select[multiple=multiple] {
 	width: 200px
 }
 
-#simple_crop_left_wrap {
+.nspgk5-panel #simple_crop_left_wrap {
 	margin-right: 10px
 }
 
-#simple_crop_left_wrap,
-#simple_crop_right_wrap {
+.nspgk5-panel #simple_crop_left_wrap,
+.nspgk5-panel #simple_crop_right_wrap {
 	float: left;
 	margin-top: 90px
 }
 
-#simple_crop_main_wrap {
+.nspgk5-panel #simple_crop_main_wrap {
 	clear: both;
 	overflow: hidden
 }
 
-#simple_crop_right_wrap {
+.nspgk5-panel #simple_crop_right_wrap {
 	margin-left: 10px
 }
 
-#simple_crop_top,
-#simple_crop_bottom,
-#simple_crop_left,
-#simple_crop_right {
+.nspgk5-panel #simple_crop_top,
+.nspgk5-panel #simple_crop_bottom,
+.nspgk5-panel #simple_crop_left,
+.nspgk5-panel #simple_crop_right {
 	font-size: 12px;
 	margin-right: 2px;
 	width: 24px
 }
 
-#simple_crop_top_wrap,
-#simple_crop_bottom_wrap {
+.nspgk5-panel #simple_crop_top_wrap,
+.nspgk5-panel #simple_crop_bottom_wrap {
 	margin: 0 auto
 }
 
-#simple_crop_top_wrap,
-#simple_crop_bottom_wrap,
-#simple_crop_left_wrap,
-#simple_crop_right_wrap {
+.nspgk5-panel #simple_crop_top_wrap,
+.nspgk5-panel #simple_crop_bottom_wrap,
+.nspgk5-panel #simple_crop_left_wrap,
+.nspgk5-panel #simple_crop_right_wrap {
 	line-height: 36px;
 	width: 46px
 }
 
-#tools_for_pages_input,
-#google_analytics_input,
-#menu_override_input,
-#suffix_override_input,
-#suffix_override_select,
-#layout_override_input {
+.nspgk5-panel #tools_for_pages_input,
+.nspgk5-panel #google_analytics_input,
+.nspgk5-panel #menu_override_input,
+.nspgk5-panel #suffix_override_input,
+.nspgk5-panel #suffix_override_select,
+.nspgk5-panel #layout_override_input {
 	width: 80px
 }
 
-.fltrt ul.adminformlist li {
+.fltrt .nspgk5-panel ul.adminformlist li {
 	border-bottom: 1px solid #eee;
 	margin: 0;
 	overflow: hidden;
 	padding: 1px 10px
 }
 
-.gkFormLine {
+.nspgk5-panel .gkFormLine {
 	clear: both;
 	display: block;
 	height: 21px;
 	margin: 0 -10px!important
 }
 
-.gkFormLine.hasText {
+.nspgk5-panel .gkFormLine.hasText {
 	background: transparent url(interface.png) no-repeat 5px -229px;
 	border-bottom: 5px solid #fff;
 	border-top: 10px solid #fff;
@@ -701,16 +606,16 @@ fieldset.panelform select[multiple=multiple] {
 	padding-left: 28px
 }
 
-.gkFormLine.hasText span {
+.nspgk5-panel .gkFormLine.hasText span {
 	background: #fff;
 	padding: 3px
 }
 
-.gkFormLine.hasText.open {
+.nspgk5-panel .gkFormLine.hasText.open {
 	background-position: 5px -287px
 }
 
-.gkHelpLink {
+.nspgk5-panel .gkHelpLink {
 	background: transparent url(interface.png) repeat-x 0 -70px;
 	cursor: pointer;
 	float: right!important;
@@ -719,11 +624,11 @@ fieldset.panelform select[multiple=multiple] {
 	width: 22px
 }
 
-.gkHelpLink:hover {
+.nspgk5-panel .gkHelpLink:hover {
 	background-position: 0 -48px
 }
 
-.pane-sliders .content {
+.pane-sliders .nspgk5-panel .content {
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
@@ -731,19 +636,24 @@ fieldset.panelform select[multiple=multiple] {
 	width: 99%
 }
 
-.pane-sliders .panel {
+.pane-sliders .nspgk5-panel,
+.pane-sliders .non-nspgk5-panel {
 	border: none!important
 }
-#nsp-gk5-checkout h3 { background: #fb6239; color: #fff; padding: 4px;}
-.pane-toggler span {
+.nspgk5-panel #nsp-gk5-checkout h3 { 
+	background: #fb6239; color: #fff; padding: 4px;
+}
+.nspgk5-panel .pane-toggler span,
+.non-nspgk5-panel > .pane-toggler span {
 	background: transparent url(interface.png) no-repeat 5px -126px!important
 }
 
-.pane-toggler-down span {
+.nspgk5-panel .pane-toggler-down span,
+.non-nspgk5-panel > .pane-toggler-down span {
 	background: transparent url(interface.png) no-repeat 5px -176px!important
 }
 
-.panel fieldset.panelform > ul > li > label {
+.nspgk5-panel fieldset.panelform > ul > li > label {
 	color: #444;
 	font-size: 11px;
 	font-weight: 700;
@@ -755,12 +665,12 @@ fieldset.panelform select[multiple=multiple] {
 	text-align: right
 }
 
-.panel fieldset.panelform > ul > li fieldset {
+.nspgk5-panel fieldset.panelform > ul > li fieldset {
 	line-height: 28px
 }
 
-.switcher-on,
-.switcher-off {
+.nspgk5-panel .switcher-on,
+.nspgk5-panel .switcher-off {
 	background: transparent url(switcher.png) no-repeat 0 0;
 	cursor: pointer;
 	float: left;
@@ -769,62 +679,32 @@ fieldset.panelform select[multiple=multiple] {
 	width: 94px
 }
 
-.switcher-off {
+.nspgk5-panel .switcher-off {
 	background-position: -94px 0
 }
 
-.tools_for_pages_remove_rule,
-.google_analytics_remove_rule,
-.menu_override_remove_rule,
-.suffix_override_remove_rule,
-.module_override_remove_rule,
-.layout_override_remove_rule {
+.nspgk5-panel .tools_for_pages_remove_rule,
+.nspgk5-panel .google_analytics_remove_rule,
+.nspgk5-panel .menu_override_remove_rule,
+.nspgk5-panel .suffix_override_remove_rule,
+.nspgk5-panel .module_override_remove_rule,
+.nspgk5-panel .layout_override_remove_rule {
 	float: right
 }
 
-::-moz-selection, ::selection {
-background:transparent
-}
-
-div.panel > h3 {
-	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
-	-moz-text-shadow: 0 1px 1px rgba(255,255,255,0.75);
-	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
-	-ms-text-shadow: 0 1px 1px rgba(255,255,255,0.75);
-	-o-box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
-	-o-text-shadow: 0 1px 1px rgba(255,255,255,0.75);
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
-	-webkit-text-shadow: 0 1px 1px rgba(255,255,255,0.75);
-	background: transparent;
-	background-image: linear-gradient(tobottom, #FFFFFF, #f9f9f9)!important;
-	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) #d8d8d8;
-	border-style: solid;
-	border-width: 1px;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
-	cursor: pointer;
-	height: 43px;
-	line-height: 43px;
-	margin-bottom: 5px!important;
-	text-shadow: 0 1px 1px rgba(255,255,255,0.75)
-}
-
-div.panel > h3 a {
-	color: #333;
-	display: block
-}
-
-div.panel h3.pane-toggler-down {
+.nspgk5-panel h3.pane-toggler-down,
+.non-nspgk5-panel > h3.pane-toggler-down {
 	border-bottom: 3px solid #ef6b09!important
 }
 
-fieldset.panelform .desc {
+.nspgk5-panel fieldset.panelform .desc {
 	font-size: 11px;
 	font-weight: 400;
 	padding: 10px;
 	width: auto
 }
 
-fieldset.panelform .label {
+.nspgk5-panel fieldset.panelform .label {
 	font-size: 11px;
 	font-weight: 700;
 	line-height: 34px;
@@ -832,7 +712,7 @@ fieldset.panelform .label {
 	width: auto
 }
 
-fieldset.panelform input {
+.nspgk5-panel fieldset.panelform input {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
@@ -842,30 +722,30 @@ fieldset.panelform input {
 	padding: 4px
 }
 
-fieldset.panelform input.small {
+.nspgk5-panel fieldset.panelform input.small {
 	width: 40px
 }
 
-fieldset.panelform input.tright,
-#config_manager_form input[type="text"],
-.input-percents,
-.input-pixels,
-.input-minutes,
-.input-ms,
-.input-times {
+.nspgk5-panel fieldset.panelform input.tright,
+.nspgk5-panel #config_manager_form input[type="text"],
+.nspgk5-panel .input-percents,
+.nspgk5-panel .input-pixels,
+.nspgk5-panel .input-minutes,
+.nspgk5-panel .input-ms,
+.nspgk5-panel .input-times {
 	text-align: right
 }
 
-fieldset.panelform input[type=button] {
+.nspgk5-panel fieldset.panelform input[type=button] {
 	height: 26px;
 	line-height: 26px
 }
 
-fieldset.panelform input[type=radio] {
+.nspgk5-panel fieldset.panelform input[type=radio] {
 	margin-top: 11px
 }
 
-fieldset.panelform select {
+.nspgk5-panel fieldset.panelform select {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
@@ -876,23 +756,23 @@ fieldset.panelform select {
 	padding: 4px
 }
 
-fieldset.panelform select.position {
+.nspgk5-panel fieldset.panelform select.position {
 	width: 80px!important
 }
 
-fieldset.panelform textarea {
+.nspgk5-panel fieldset.panelform textarea {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
 	padding: 4px
 }
 
-span.gk_update_data {
+.nspgk5-panel span.gk_update_data {
 	background: #f9f9f9;
 	width: 150px
 }
 
-span.gk_update_link a {
+.nspgk5-panel span.gk_update_link a {
 	-moz-border-radius: 26px;
 	background: #d75307;
 	color: #fff;
@@ -902,17 +782,17 @@ span.gk_update_link a {
 	text-transform: uppercase
 }
 
-span.gk_update_link a:hover {
+.nspgk5-panel span.gk_update_link a:hover {
 	background: #222;
 	text-decoration: none
 }
 
-span.gk_update_version {
+.nspgk5-panel span.gk_update_version {
 	background: #fff9f6;
 	width: 110px
 }
 
-span.readonly {
+.nspgk5-panel span.readonly {
 	color: #4d4d4d;
 	font-family: Arial;
 	font-size: 13px!important;
@@ -922,7 +802,7 @@ span.readonly {
 	text-align: justify
 }
 
-span.readonly h1 {
+.nspgk5-panel span.readonly h1 {
 	border-bottom: 1px solid #eee;
 	clear: both;
 	color: #333;
@@ -933,38 +813,38 @@ span.readonly h1 {
 	padding: 0 0 24px 10px
 }
 
-span.readonly p {
+.nspgk5-panel span.readonly p {
 	margin: 0 26px 10px
 }
 
-span.readonly p a,
-div.panel > h3 a:hover,
-div.panel h3.pane-toggler-down a {
+.nspgk5-panel span.readonly p a,
+.nspgk5-panel div.panel > h3 a:hover,
+.nspgk5-panel div.panel h3.pane-toggler-down a {
 	color: #ef6b09
 }
 
-span.readonly p.homepage {
+.nspgk5-panel span.readonly p.homepage {
 	margin-top: 30px
 }
 
-span.readonly p.license {
+.nspgk5-panel span.readonly p.license {
 	border-top: 1px solid #eee;
 	font-size: 11px;
 	margin: 30px 26px 0;
 	padding: 6px 0
 }
 
-span.unit {
+.nspgk5-panel span.unit {
 	line-height: 34px
 }
 
-span.unit.times {
+.nspgk5-panel span.unit.times {
 	display: block;
 	float: left;
 	font-size: 12px;
 	margin-right: 5px
 }
 
-select.gk_switch {
+.nspgk5-panel select.gk_switch {
 	display: none!important;
 }
