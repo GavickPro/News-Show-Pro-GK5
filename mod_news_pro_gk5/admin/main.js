@@ -185,4 +185,13 @@ window.addEvent("domready",function(){
 			document.id('jform_params_animation_function').getParent().setStyle('display', (used_js_engine == 'mootools') ? 'block' : 'none');
 		}
 	});
+	
+	// AMM fix
+	document.getElements('#module-sliders .panel').each(function(el, i) {
+		if(el.getParent().getProperty('id') == 'module-sliders' && el.getElement('h3').getProperty('id') != 'assignment-options' && el.getElement('h3').getProperty('id') != 'permissions') {
+			el.addClass('nspgk5-panel');
+		} else if(el.getParent().getProperty('id') == 'module-sliders'){
+			el.addClass('non-nspgk5-panel');
+		}
+	});
 });
