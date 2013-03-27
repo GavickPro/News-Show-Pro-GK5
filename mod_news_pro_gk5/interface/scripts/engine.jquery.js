@@ -12,7 +12,7 @@ jQuery.noConflict();
 
 jQuery(window).load(function(){
 	jQuery(document).find('.nspMain').each(function(i, module) {	
-		if(!module.hasClass('activated')) {	
+		if(!jQuery(module).hasClass('activated')) {	
 			new NSP5(module);
 		}
 	});
@@ -53,8 +53,7 @@ NSP5.prototype = {
 		this.module = jQuery(module);
 		this.module.addClass('activated');
 		// rest of the fields
-		this.config = JSON.decode(this.module.attr('data-config'));
-		this.config['animation_function'] = eval(this.config['animation_function']);
+		this.config = jQuery.parseJSON(this.module.attr('data-config').replace(/'/g,"\""));
 		this.arts = this.module.find('.nspArt');
 		this.arts_pages = this.module.find('.nspArtPage');
 		this.arts_per_page = this.config['news_column'] * this.config['news_rows'];
