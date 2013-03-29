@@ -149,35 +149,48 @@ NSP5.prototype = {
 		// Touch events for the articles
 		var arts_wrap = this.module.find('.nspArts');
 		if(arts_wrap) {		
-			var arts_pos_start = 0;
+			var arts_pos_start_x = 0;
+			var arts_pos_start_y = 0;
 			var arts_time_start = 0;
-
+			var arts_swipe = false;
+			
 			arts_wrap.bind('touchstart', function(e) {
-				if(jQuery(e.target)[0].tagName != 'a' && jQuery(e.target)[0].tagName != 'A') {
-					e.preventDefault();
-				}
-				
+				arts_swipe = true;
 				var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
 	
 				if(touches.length > 0) {
-					arts_pos_start = touches[0].pageX;
+					arts_pos_start_x = touches[0].pageX;
+					arts_pos_start_y = touches[0].pageY;
 					arts_time_start = new Date().getTime();
 				}
 			});
 			
-			arts_wrap.bind('touchend', function(e) {
-				e.preventDefault();
+			arts_wrap.bind('touchmove', function(e) {
 				var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
 				
-				if(touches.length > 0) {									
+				if(touches.length > 0 && arts_swipe) {
 					if(
-						Math.abs(touches[0].pageX - arts_pos_start) >= $this.swipe_min_move && 
+						Math.abs(touches[0].pageX - arts_pos_start_x) > Math.abs(touches[0].pageY - arts_pos_start_y)
+					) {
+						e.preventDefault();
+					} else {
+						arts_swipe = false;
+					}
+				}
+			});
+						
+			arts_wrap.bind('touchend', function(e) {
+				var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+				
+				if(touches.length > 0 && arts_swipe) {									
+					if(
+						Math.abs(touches[0].pageX - arts_pos_start_x) >= $this.swipe_min_move && 
 						new Date().getTime() - arts_time_start <= $this.swipe_max_time
 					) {					
-						if(touches[0].pageX - arts_pos_start < 0) {
-							$this.arts_anim('next');
-						} else {
+						if(touches[0].pageX - arts_pos_start_x > 0) {
 							$this.arts_anim('prev');
+						} else {
+							$this.arts_anim('next');
 						}
 					}
 				}
@@ -186,35 +199,48 @@ NSP5.prototype = {
 		// Touch events for the links
 		var links_wrap = this.module.find('.nspLinksWrap');
 		if(links_wrap) {	
-			var links_pos_start = 0;
+			var links_pos_start_x = 0;
+			var links_pos_start_y = 0;
 			var links_time_start = 0;
+			var links_swipe = false;
 			
 			links_wrap.bind('touchstart', function(e) {
-				if(jQuery(e.target)[0].tagName != 'a' && jQuery(e.target)[0].tagName != 'A') {
-					e.preventDefault();
-				}
-				
+				links_swipe = true;
 				var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
 	
 				if(touches.length > 0) {
-					links_pos_start = touches[0].pageX;
+					links_pos_start_x = touches[0].pageX;
+					links_pos_start_y = touches[0].pageY;
 					links_time_start = new Date().getTime();
 				}
 			});
 			
-			links_wrap.bind('touchend', function(e) {
-				e.preventDefault();
+			links_wrap.bind('touchmove', function(e) {
 				var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
 				
-				if(touches.length > 0) {									
+				if(touches.length > 0 && links_swipe) {
 					if(
-						Math.abs(touches[0].pageX - links_pos_start) >= $this.swipe_min_move && 
+						Math.abs(touches[0].pageX - links_pos_start_x) > Math.abs(touches[0].pageY - links_pos_start_y)
+					) {
+						e.preventDefault();
+					} else {
+						links_swipe = false;
+					}
+				}
+			});
+						
+			links_wrap.bind('touchend', function(e) {
+				var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+				
+				if(touches.length > 0 && links_swipe) {									
+					if(
+						Math.abs(touches[0].pageX - links_pos_start_x) >= $this.swipe_min_move && 
 						new Date().getTime() - links_time_start <= $this.swipe_max_time
 					) {					
-						if(touches[0].pageX - links_pos_start < 0) {
-							$this.lists_anim('next');
-						} else {
+						if(touches[0].pageX - links_pos_start_x > 0) {
 							$this.lists_anim('prev');
+						} else {
+							$this.lists_anim('next');
 						}
 					}
 				}
