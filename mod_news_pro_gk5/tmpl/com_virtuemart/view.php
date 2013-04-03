@@ -261,27 +261,27 @@ class NSP_GK5_com_virtuemart_View {
         if($config['vm_show_price_type'] == 'base') {
             if($config['vm_show_price_with_tax'] == 1) {
                 if($config['vm_display_type'] == 'text_price') {
-                	$news_price.= $currency->createPriceDiv('basePriceWithTax','MOD_NEWS_PRO_GK4_PRODUCT_BASEPRICE_WITHTAX',$product->prices);
+                	$news_price.= $currency->createPriceDiv('basePriceWithTax','MOD_NEWS_PRO_GK5_PRODUCT_BASEPRICE_WITHTAX',$product->prices);
                 } else {
                 	$news_price.= $currency->createPriceDiv('basePriceWithTax','',$product->prices);
                 }
             }
             
             if($config['vm_display_type'] == 'text_price') {
-            	$news_price .= $currency->createPriceDiv('priceWithoutTax','MOD_NEWS_PRO_GK4_PRODUCT_BASEPRICE_WITHOUTTAX',$product->prices);
+            	$news_price .= $currency->createPriceDiv('priceWithoutTax','MOD_NEWS_PRO_GK5_PRODUCT_BASEPRICE_WITHOUTTAX',$product->prices);
             } else {
             	$news_price .= $currency->createPriceDiv('priceWithoutTax','',$product->prices);
             }
         } elseif ($config['vm_show_price_type'] == 'sale') {
             if($config['vm_show_price_with_tax'] == 1) {
            	    if($config['vm_display_type'] == 'text_price') {
-           	    	$news_price .= $currency->createPriceDiv('salesPrice','MOD_NEWS_PRO_GK4_PRODUCT_SALESPRICE',$product->prices);
+           	    	$news_price .= $currency->createPriceDiv('salesPrice','MOD_NEWS_PRO_GK5_PRODUCT_SALESPRICE',$product->prices);
            	    } else {
            	    	$news_price .= $currency->createPriceDiv('salesPrice','',$product->prices);
            	    }
             } else {
                  if($config['vm_display_type'] == 'text_price') {
-                 	$news_price.= $currency->createPriceDiv('priceWithoutTax','MOD_NEWS_PRO_GK4_PRODUCT_SALESPRICE_WITHOUT_TAX',$product->prices);
+                 	$news_price.= $currency->createPriceDiv('priceWithoutTax','MOD_NEWS_PRO_GK5_PRODUCT_SALESPRICE_WITHOUT_TAX',$product->prices);
                  } else {
                  	$news_price .= $currency->createPriceDiv('priceWithoutTax','',$product->prices);
                  }
@@ -293,7 +293,7 @@ class NSP_GK5_com_virtuemart_View {
             $code .= '<div class="addtocart-bar">';
             $code .= '<span class="quantity-box" style="display: none"><input type="text" class="quantity-input" name="quantity[]" value="1" /></span>';
             
-            $button_lbl = JText::_('MOD_NEWS_PRO_GK4_COM_VIRTUEMART_CART_ADD_TO');
+            $button_lbl = JText::_('MOD_NEWS_PRO_GK5_COM_VIRTUEMART_CART_ADD_TO');
 			$button_cls = '';
             $stockhandle = VmConfig::get('stockhandle','none');
             
@@ -312,13 +312,13 @@ class NSP_GK5_com_virtuemart_View {
 		} 
        	// display discount
         if($config['vm_show_discount_amount'] == 1) {
-            $disc_amount = $currency->createPriceDiv('discountAmount','MOD_NEWS_PRO_GK4_PRODUCT_DISCOUNT_AMOUNT',$product->prices);
+            $disc_amount = $currency->createPriceDiv('discountAmount','MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT',$product->prices);
             $disc_amount = strip_tags($disc_amount, '<div>');
             $news_price.= $disc_amount;
         }
 		// display tax
         if($config['vm_show_tax'] == 1) {
-          	$taxAmount = $currency->createPriceDiv('taxAmount','MOD_NEWS_PRO_GK4_PRODUCT_TAX_AMOUNT',$product->prices);
+          	$taxAmount = $currency->createPriceDiv('taxAmount','MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT',$product->prices);
           	$taxAmount = strip_tags($taxAmount, '<div>');
           	$news_price .= $taxAmount;  
         }
