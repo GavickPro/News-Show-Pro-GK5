@@ -33,8 +33,8 @@ class NSP_GK5_News_Gallery {
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			if($this->get_image($i)) {
-				echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]->title).'" class="gkImage show '.(($i+1 <= $this->parent->config['portal_mode_news_gallery_cols']) ? ' active' : ''). '">';
-				echo '<img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]->title).'" />';
+				echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'" class="gkImage show '.(($i+1 <= $this->parent->config['portal_mode_news_gallery_cols']) ? ' active' : ''). '">';
+				echo '<img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]['title']).'" />';
 				echo '</a>';
 				// increase the amount
 				$amount++;
