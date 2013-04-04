@@ -37,6 +37,7 @@ class NSP_GK5_com_virtuemart_View {
 			}
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
+			$itemid = $config['vm_itemid'];
 			$link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid;
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
@@ -322,7 +323,7 @@ class NSP_GK5_com_virtuemart_View {
           	$taxAmount = strip_tags($taxAmount, '<div>');
           	$news_price .= $taxAmount;  
         }
-  		// restults
+  		// results
         return ($news_price != '') ? $news_price : '';
 	}
 }
