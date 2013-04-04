@@ -387,10 +387,9 @@
                         <option value="0">MOD_NEWS_PRO_GK5_DATE_CREATE</option>
                         <option value="1">MOD_NEWS_PRO_GK5_DATE_PUBLISH</option>
                 </field> 
-				<field name="username" type="list" class="inputbox gk-group-info" default="0" label="MOD_NEWS_PRO_GK5_AUTHORNAME" description="">
+				<field name="username" type="list" class="inputbox gk-group-info" default="0" label="MOD_NEWS_PRO_GK5_AUTHORNAME" description="MOD_NEWS_PRO_GK5_AUTHORNAME_DESC">
                         <option value="users.name">MOD_NEWS_PRO_GK5_NAME</option>
                         <option value="users.username">MOD_NEWS_PRO_GK5_USERNAME</option>
-                        <option value="content.created_by_alias">MOD_NEWS_PRO_GK5_ALIAS</option>
                 </field>  
 			    <field name="user_avatar" type="list" class="gk_switch gk-group-info" default="1" label="MOD_NEWS_PRO_GK5_USER_AVATAR" description="MOD_NEWS_PRO_GK5_USER_AVATAR_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>

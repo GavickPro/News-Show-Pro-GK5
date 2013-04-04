@@ -213,7 +213,8 @@ class NSP_GK5_com_k2_Model {
 			categories.name AS catname, 
 			categories.alias AS cat_alias,
 			users.email AS author_email,
-			'.$config['username'].' AS author,
+			content.created_by_alias AS author_alias,
+			'.$config['username'].' AS author_username,
 			content.created_by AS author_id,
 			content_rating.rating_sum AS rating_sum,
 			content_rating.rating_count AS rating_count		
