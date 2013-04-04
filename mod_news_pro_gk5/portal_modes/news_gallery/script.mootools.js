@@ -55,9 +55,7 @@ var gkPortalModeNewsGalleryInit = function(module) {
 			});
 			overlay.setProperty('class', 'gkImgOverlay active');
 		});
-	});
-	
-	module.getElements('.gkImage').each(function(img) {
+		
 		img.addEvent('mouseleave', function() {
 			module.setProperty('data-stop', 0);
 			var overlay = img.getElement('.gkImgOverlay');
