@@ -1,6 +1,6 @@
 <?php
 
-class NSP_GK5_News_Gallery {
+class NSP_GK5_News_Blocks {
 	// necessary class fields
 	private $parent;
 	private $mode;
@@ -8,44 +8,59 @@ class NSP_GK5_News_Gallery {
 	function __construct($parent) {
 		$this->parent = $parent;
 		// detect the supported Data Sources
-		
-		
 		if(stripos($this->parent->config['data_source'], 'com_content_') !== FALSE) {
 			$this->mode = 'com_content';
 		} else if(stripos($this->parent->config['data_source'], 'k2_') !== FALSE) { 
 			$this->mode = 'com_k2';
+		} else if(stripos($this->parent->config['data_source'], 'com_virtuemart_') !== FALSE) { 
+			$this->mode = 'com_virtuemart';
 		} else {
 			$this->mode = false;
 		}
 	}
 	// static function which returns amount of articles to render - VERY IMPORTANT!!
 	static function amount_of_articles($parent) {
-		return $parent->config['portal_mode_news_gallery_amount'];
+		return $parent->config['portal_mode_news_blocks_cols'] * $parent->config['portal_mode_news_blocks_rows'];
 	}
 	// output generator	
-	function output() {
-		// amount
-		$amount = 0;	
+	function output() {	
 		// main wrapper
-		echo '<div class="gkNspPM gkNspPM-NewsGallery'.(($this->parent->config['portal_mode_news_gallery_autoanimation'] == 1) ? ' gkAutoAnimation' : '').'" data-cols="'.$this->parent->config['portal_mode_news_gallery_cols'].'" data-autoanim-time="'.$this->parent->config['portal_mode_news_gallery_autoanimation_time'].'">';
-		// images wrapper
-		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_news_gallery_cols'].'">';
+		echo '<div class="gkNspPM gkNspPM-NewsBlocks" data-cols="'.$this->parent->config['portal_mode_news_blocks_cols'].'">';
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
+			$title_parts = explode(' ', trim($this->parent->content[$i]['title']));
+			$title_part_one = '';
+			$title_part_two = '';
+			//
+			if(count($title_parts) > 0) {
+				$title_part_one = $title_parts[0];
+				$title_parts[0] = '';
+				$title_part_two = implode(' ', $title_parts);
+			}
+			// calculate the inverse class
+			$inverse_class = '';
+			$row = floor($i / $this->parent->config['portal_mode_news_blocks_cols']) + 1;
+			$offset = 0;
+			//
+			if($row % 2 == 0) {
+				$offset = 1;
+			}
+			//
+			if(($i % $this->parent->config['portal_mode_news_blocks_cols']) % 2 == $offset) {
+				$inverse_class = ' class="inverse"';
+			}
+			// output the HTML code
+			echo '<figure'.$inverse_class.'>';
 			if($this->get_image($i)) {
-				echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'" class="gkImage show '.(($i+1 <= $this->parent->config['portal_mode_news_gallery_cols']) ? ' active' : ''). '">';
 				echo '<img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]['title']).'" />';
-				echo '</a>';
-				// increase the amount
-				$amount++;
-			}		
-		}
-		// closing images wrapper
-		echo '</div>';
-		// pagination buttons
-		if($amount > $this->parent->config['portal_mode_news_gallery_cols']) {
-			echo '<a href="#prev" class="gkPrevBtn">&laquo;</a>';
-			echo '<a href="#next" class="gkNextBtn">&raquo;</a>';
+			}
+			echo '<figcaption>';
+			echo '<h3><strong>'.$title_part_one.'</strong>'.$title_part_two.'</h3>';
+			echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'">';
+			echo JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_BLOCKS_MORE');
+			echo '</a>';
+			echo '</figcaption>';
+			echo '</figure>';
 		}
 		// closing main wrapper
 		echo '</div>';

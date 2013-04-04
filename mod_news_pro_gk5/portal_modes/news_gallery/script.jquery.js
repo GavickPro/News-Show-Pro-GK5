@@ -10,6 +10,7 @@ jQuery(document).ready(function() {
 });
 
 var gkPortalModeNewsGalleryInit = function(module) {
+	module = jQuery(module);
 	// set the basic module variables
 	module.attr('data-current', 1);
 	module.attr('data-blank', 0);

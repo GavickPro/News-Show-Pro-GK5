@@ -287,12 +287,12 @@ class NSP_GK5_com_virtuemart_Model {
 		}
 		// third query
 		$query3 = $db->getQuery(true);
-		$query3->select('`m`.`file_url` AS `image`, `content`.`virtuemart_product_id` AS `id`');
+		$query3->select('`m`.`file_url` AS `image`, `pm`.`ordering` AS `ordering`, `content`.`virtuemart_product_id` AS `id`');
 		$query3->from('#__virtuemart_products AS content');
 		$query3->leftJoin('#__virtuemart_product_medias AS `pm` ON `pm`.`virtuemart_product_id` = `content`.`virtuemart_product_id`');
 		$query3->leftJoin('#__virtuemart_medias AS `m` ON `m`.`virtuemart_media_id` = `pm`.`virtuemart_media_id`');
 		$query3->where($sql_where2);
-		$query3->order('`pm`.`ordering` ASC');
+		$query3->order('`content`.`virtuemart_product_id` ASC, `pm`.`ordering` DESC');
 		$db->setQuery((string) $query3);
 	    $pimages = $db->loadAssocList();
 	    $images = array();
