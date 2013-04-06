@@ -59,6 +59,8 @@ class NSP_GK5_Product_Gallery {
 			echo '<a href="#prev" class="gkPrevBtn">&laquo;</a>';
 			echo '<a href="#next" class="gkNextBtn">&raquo;</a>';
 		}
+		// IE8 fix
+		echo '<!--[if IE 8]><div class="ie8clear"></div><![endif]-->';
 		// closing main wrapper
 		echo '</div>';
 	}

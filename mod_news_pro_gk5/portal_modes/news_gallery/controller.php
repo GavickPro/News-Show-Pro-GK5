@@ -40,6 +40,8 @@ class NSP_GK5_News_Gallery {
 				$amount++;
 			}		
 		}
+		// IE8 fix
+		echo '<!--[if IE 8]><div class="ie8clear"></div><![endif]-->';
 		// closing images wrapper
 		echo '</div>';
 		// pagination buttons
