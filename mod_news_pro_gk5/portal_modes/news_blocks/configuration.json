@@ -1,0 +1,10 @@
+{
+	"name": "News_Blocks",
+	"full_name": "NEWS_BLOCKS",
+	"support": [
+		"com_content", 
+		"com_k2",
+		"com_virtuemart"
+	],
+	"thumbnails": true
+}

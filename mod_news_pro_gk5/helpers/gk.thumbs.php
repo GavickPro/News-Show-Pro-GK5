@@ -171,13 +171,18 @@ class NSP_GK5_Thumbs {
 					$img_content = curl_exec($curl);
 					// closing connection
 					curl_close($curl);
-					// save the downloaded image
-					$fp = fopen(JPATH_ROOT . DS . 'modules' . DS . 'mod_news_pro_gk5' . DS . 'cache' . DS . 'downloaded' . DS . $imgname, 'x');
-					fwrite($fp, $img_content);
-					fclose($fp);
-					// change the path to the downloaded file	
-					$path = 'modules' . DS . 'mod_news_pro_gk5' . DS . 'cache' . DS . 'downloaded' . DS . $imgname;
-					$downloaded = true;
+					// check the results (curl_exec return FALSE on failure) and its length
+					if($img_content !== FALSE && strlen($img_content) > 0) {
+						// save the downloaded image
+						$fp = fopen(JPATH_ROOT . DS . 'modules' . DS . 'mod_news_pro_gk5' . DS . 'cache' . DS . 'downloaded' . DS . $imgname, 'x');
+						fwrite($fp, $img_content);
+						fclose($fp);
+						// change the path to the downloaded file	
+						$path = 'modules' . DS . 'mod_news_pro_gk5' . DS . 'cache' . DS . 'downloaded' . DS . $imgname;
+						$downloaded = true;
+					} else {
+						return false;
+					}
 				} else {
 					return false;
 				} 

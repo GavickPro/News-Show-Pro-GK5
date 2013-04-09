@@ -1,23 +1,15 @@
 {
-	"data_source": "K2_CONTENT_TITLE",
-	"source": "com_k2",
-	"tab": "NSP_DATA_SOURCE_COM_K2-options",
+	"data_source": "COM_VIRTUEMART_TITLE",
+	"source": "com_virtuemart",
+	"tab": "NSP_DATA_SOURCE_COM_VIRTUEMART-options",
 	"sources": [
 		{
-			"name": "ALL_COM_K2_ARTICLES",
-			"value": "k2_all"
+			"name": "COM_VIRTUEMART_PRODUCTS",
+			"value": "com_virtuemart_products"
 		},
 		{
-			"name": "COM_K2_ARTICLES",
-			"value": "k2_articles"
-		},
-		{
-			"name": "COM_K2_CATEGORIES",
-			"value": "k2_categories"
-		},
-		{
-			"name": "COM_K2_TAGS",
-			"value": "k2_tags"
+			"name": "COM_VIRTUEMART_CATEGORIES",
+			"value": "com_virtuemart_categories"
 		}
 	],
 	"supported_options": {
@@ -26,7 +18,7 @@
 			"MOD_NEWS_PRO_GK5_TITLE": "title",
 			"MOD_NEWS_PRO_GK5_ORDER": "ordering",
 			"MOD_NEWS_PRO_GK5_RANDOM": "random",
-			"MOD_NEWS_PRO_GK5_HITS": "hits"
+			"MOD_NEWS_PRO_GK5_HITS": "hits"	
 		},
 		"offset": true,
 		"news_since": true,
