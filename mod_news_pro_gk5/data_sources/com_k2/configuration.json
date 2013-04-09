@@ -1,6 +1,7 @@
 {
 	"data_source": "K2_CONTENT_TITLE",
 	"source": "com_k2",
+	"tab": "NSP_DATA_SOURCE_COM_K2-options",
 	"sources": [
 		{
 			"name": "ALL_COM_K2_ARTICLES",

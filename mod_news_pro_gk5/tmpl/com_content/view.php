@@ -176,12 +176,31 @@ class NSP_GK5_com_content_View {
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
 	        $info_rate = ($item['rating_count'] > 0) ? '<span class="nspRate">' . JText::_('MOD_NEWS_PRO_GK5_NSP_RATE') .' '. number_format($item['rating_sum'] / $item['rating_count'], 2) . '</span>': '';
+	        $info_comments = '';
+	        
+	        if($config['com_content_comments_source'] != 'none') {
+		    	$info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
+		        //
+		        if(isset($item['comments'])) { 
+		        	if($item['comments'] == 1) {
+		            	$info_comments = JText::_('MOD_NEWS_PRO_GK5_1COMMENT');
+		            } else if($item['comments'] > 1 && $item['comments'] < 5) {
+		            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MORECOMMENTS');
+		            } else if($item['comments'] >= 5) {
+		            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MUCHMORECOMMENTS');
+		            }
+		        }
+	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
 	        $news_info = str_replace('%HITS', $info_hits, $news_info);
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
+	        // only if comments used
+	       	if($config['com_content_comments_source'] != 'none') {
+	        	$news_info = str_replace('%COMMENTS', $info_comments, $news_info);
+	        }
 	    } else {
 	    	return '';
 	    }

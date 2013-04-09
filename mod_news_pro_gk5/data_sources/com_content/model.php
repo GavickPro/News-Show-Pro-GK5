@@ -240,8 +240,85 @@ class NSP_GK5_com_content_Model {
 				$content[$pos] = array_merge($content[$pos], (array) $item);
 			}
 		}
+		// load comments
+		$content = NSP_GK5_com_content_Model::getComments($content, $config);
 		// the content array
 		return $content; 
+	}
+	// method to get comments amount
+	static function getComments($content, $config) {
+		// 
+		$db = JFactory::getDBO();
+		$counters_tab = array();
+		// 
+		if(count($content) > 0 && $config['com_content_comments_source'] != 'none') {
+			// initializing variables
+			$sql_where = '';
+			//
+			for($i = 0; $i < count($content); $i++ ) {	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['iid'] : ' content.id = '.$content[$i]['iid'];
+			}
+			// check the comments source
+			if($config['com_content_comments_source'] == 'jcomments') {
+				// creating SQL query
+				$query_news = '
+				SELECT 
+					content.id AS id,
+					COUNT(comments.object_id) AS count			
+				FROM 
+					#__content AS content 
+					LEFT JOIN 
+						#__jcomments AS comments
+						ON comments.object_id = content.id 		
+				WHERE 
+					comments.published = 1
+					AND 
+					( '.$sql_where.' )
+					AND
+					comments.object_group = \'com_content\'  
+				GROUP BY 
+					comments.object_id
+				;';
+			} elseif($config['com_content_comments_source'] == 'komento') {
+				// creating SQL query
+				$query_news = '
+				SELECT 
+					content.id AS id,
+					COUNT(comments.cid) AS count			
+				FROM 
+					#__content AS content 
+					LEFT JOIN 
+						#__komento_comments AS comments
+						ON comments.cid = content.id 		
+				WHERE 
+					comments.published = 1
+					AND 
+					( '.$sql_where.' )
+					AND
+					comments.component = \'com_content\'  
+				GROUP BY 
+					comments.cid
+				;';
+			}
+			// run SQL query
+			$db->setQuery($query_news);
+			// when exist some results
+			if($counters = $db->loadObjectList()) {
+				// generating tables of news data
+				foreach($counters as $item) {						
+					$counters_tab[$item->id] = $item->count;
+				}
+			}
+		}
+		//
+		for($i = 0; $i < count($content); $i++ ) {	
+			if(isset($counters_tab[$content[$i]['iid']])) {
+				$content[$i]['comments'] = $counters_tab[$content[$i]['iid']];
+			}
+		}
+		
+		return $content;
 	}
 }
 

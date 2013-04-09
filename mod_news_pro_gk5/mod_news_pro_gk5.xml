@@ -162,6 +162,20 @@
 	                    <option value="full">MOD_NEWS_PRO_GK5_FULL_IMAGE</option>
 	                    <option value="first">MOD_NEWS_PRO_GK5_FIRST_IMAGE</option>
 	            </field>
+	            
+	            <field name="com_content_comments_source" type="list" default="none" label="MOD_NEWS_PRO_GK5_COM_CONTENT_COMMENTS_SOURCE" description="MOD_NEWS_PRO_GK5_COM_CONTENT_COMMENTS_SOURCE_DESC">
+	                    <option value="none">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_NONE</option>
+	                    <option value="jcomments">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_JCOMMENTS</option>
+	                    <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
+	            </field>
+            </fieldset>
+            
+            <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_K2">
+                <field name="k2_comments_source" type="list" default="k2" label="MOD_NEWS_PRO_GK5_K2_COMMENTS_SOURCE" description="MOD_NEWS_PRO_GK5_K2_COMMENTS_SOURCE_DESC">
+                        <option value="k2">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_K2</option>
+                        <option value="jcomments">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_JCOMMENTS</option>
+                        <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
+                </field>
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_VIRTUEMART">
