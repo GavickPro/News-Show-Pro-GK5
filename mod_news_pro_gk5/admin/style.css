@@ -6,13 +6,6 @@
 * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html 
 * @version $Revision: GK5 1.0 $ **/ 
 
-::-moz-selection {
-background: transparent;
-}
-
-::selection {
-	background: transparent;
-}
 select[multiple], select[size] {
 	max-height: 150px;
 }

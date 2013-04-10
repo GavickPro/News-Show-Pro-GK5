@@ -43,20 +43,22 @@ PortalModes.prototype.changeValue = function() {
 			jQuery('#jform_params_use_own_article_format-lbl').parent().parent().css('display', 'none');
 			jQuery('#jform_params_article_format-lbl').parent().parent().css('display', 'none');
 			// hide unnecessary tabs
-			jQuery('a[href="#collapse7"]').parents().eq(2).css('display', 'none');
-			jQuery('a[href="#collapse5"]').parents().eq(2).css('display', 'none');
-			jQuery('a[href="#collapse4"]').parents().eq(2).css('display', 'none');
+			jQuery('#Joomla_Content_Additional_Settings').parents().eq(2).css('display', 'none');
+			jQuery('#Links_layout').parents().eq(2).css('display', 'none');
+			jQuery('#Article_layout').parents().eq(2).css('display', 'none');
 			// hide thumbnails tab if not used
 			if($this.configs[portal_mode_value].thumbnails == false) {
-				jQuery('a[href="#collapse6"]').parents().eq(2).css('display', 'none');	
+				jQuery('#Thumbnails').parents().eq(2).css('display', 'none');	
 			}
 			// hide all Portal Mode Tabs
 			$this.hideAllPMTabs();
 			// show the specific one
-			console.log($this.configs[portal_mode_value].full_name);
 			if($this.configs[portal_mode_value].full_name == 'NEWS_GALLERY') {
-				console.log('here');
-				jQuery('a[href="#collapse3"]').parents().eq(2).css('display', 'block');
+				jQuery('#News_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+			} else if($this.configs[portal_mode_value].full_name == 'PRODUCT_GALLERY') {
+				jQuery('#Product_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+			} else if($this.configs[portal_mode_value].full_name == 'NEWS_BLOCKS') {
+				jQuery('#News_Blocks_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 			}
 			// check the data source value
 			var data_source_value = jQuery('#jform_params_data_source').val();
@@ -77,10 +79,10 @@ PortalModes.prototype.changeValue = function() {
 			jQuery('#jform_params_use_own_article_format-lbl').parents().eq(2).css('display', 'block');
 			jQuery('#jform_params_article_format-lbl').parents().eq(2).css('display', 'block');
 			// show necessary tabs
-			jQuery('a[href="#collapse7"]').parents().eq(2).css('display', 'block');
-			jQuery('a[href="#collapse5"]').parents().eq(2).css('display', 'block');
-			jQuery('a[href="#collapse4"]').parents().eq(2).css('display', 'block');
-			jQuery('a[href="#collapse6"]').parents().eq(2).css('display', 'block');
+			jQuery('#Joomla_Content_Additional_Settings').parents().eq(2).css('display', 'block');
+			jQuery('#Links_layout').parents().eq(2).css('display', 'block');
+			jQuery('#Article_layout').parents().eq(2).css('display', 'block');
+			jQuery('#Thumbnails').parents().eq(2).css('display', 'block');
 			// hide all Portal Mode Tabs
 			$this.hideAllPMTabs();
 		}
@@ -88,6 +90,8 @@ PortalModes.prototype.changeValue = function() {
 }
 
 PortalModes.prototype.hideAllPMTabs = function() {
-	jQuery('a[href="#collapse3"]').parents().eq(2).css('display', 'none');
+	jQuery('#News_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+	jQuery('#Product_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+	jQuery('#News_Blocks_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 }
 

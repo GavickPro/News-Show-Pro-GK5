@@ -23,7 +23,10 @@ jQuery(document).ready(function() {
 	});
 	
 	
-
+	jQuery('#moduleOptions a[href^="#collapse"]').each(function(i, el) {
+		jQuery(el).attr('id', jQuery(el).html().replace(/ /g,'_').replace('!', ''));
+		console.log(jQuery(el).html());
+	});
 
 	/*jQuery('.text-limit').each(function(i, el){
 		el = jQuery(el);

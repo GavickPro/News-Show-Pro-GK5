@@ -189,7 +189,8 @@ class NSP_GK5_com_content_Model {
 			content.access AS access,
 			categories.title AS catname, 
 			users.email AS author_email,
-			'.$config['username'].' AS author,
+			content.created_by_alias AS author_alias,
+			'.$config['username'].' AS author_username,
 			content_rating.rating_sum AS rating_sum,
 			content_rating.rating_count AS rating_count,
 			CASE WHEN CHAR_LENGTH(content.alias) 
