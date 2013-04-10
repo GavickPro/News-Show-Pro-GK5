@@ -187,6 +187,22 @@ class NSP_GK5_com_k2_View {
 	            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MUCHMORECOMMENTS');
 	            }
 	        }
+	        //
+	        $info_tags = '';
+	        if(isset($item['tags']) && count($item['tags']) > 0) {
+	        	$i = 0;
+	        	foreach($item['tags'] as $tag) {
+	        		$link = urldecode(JRoute::_(K2HelperRoute::getTagRoute($tag)));
+	        	
+	        		if($i == 0) {
+	        			$info_tags .= '<a href="' . $link . '">' . $tag . '</a>';
+	        		} else {
+	        			$info_tags .= ', <a href="' . $link . '">' . $tag . '</a>';
+	        		}
+	        		//
+	        		$i++;
+	        	}
+	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
@@ -194,6 +210,7 @@ class NSP_GK5_com_k2_View {
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
 	        $news_info = str_replace('%COMMENTS', $info_comments, $news_info);
+	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
 	    } else {
 	    	return '';
 	    }

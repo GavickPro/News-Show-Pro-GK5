@@ -260,6 +260,8 @@ class NSP_GK5_com_k2_Model {
 		}
 		// load comments
 		$content = NSP_GK5_com_k2_Model::getComments($content, $config);
+		// load tags
+		$content = NSP_GK5_com_k2_Model::getTags($content, $config);
 		// the content array
 		return $content; 
 	}
@@ -350,6 +352,62 @@ class NSP_GK5_com_k2_Model {
 		for($i = 0; $i < count($content); $i++ ) {	
 			if(isset($counters_tab[$content[$i]['id']])) {
 				$content[$i]['comments'] = $counters_tab[$content[$i]['id']];
+			}
+		}
+		
+		return $content;
+	}	
+	//
+	static function getTags($content, $config) {
+		// 
+		$db = JFactory::getDBO();
+		$counters_tab = array();
+		// 
+		if(count($content) > 0) {
+			// initializing variables
+			$sql_where = '';
+			//
+			for($i = 0; $i < count($content); $i++ ) {	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['id'] : ' content.id = '.$content[$i]['id'];
+			}
+			// creating SQL query
+			$query_news = '
+			SELECT 
+				content.id AS id,
+				tags.name AS tag		
+			FROM 
+				#__k2_items AS content 
+				LEFT JOIN 
+					#__k2_tags_xref AS xref
+					ON xref.itemID = content.id
+				LEFT JOIN
+					#__k2_tags AS tags
+					ON xref.tagID = tags.id 		
+			WHERE 
+				tags.published
+				AND ( '.$sql_where.' ) 
+			ORDER BY
+				content.id ASC
+			;';
+			// run SQL query
+			$db->setQuery($query_news);
+			// when exist some results
+			if($counters = $db->loadObjectList()) {
+				// generating tables of news data
+				foreach($counters as $item) {			
+					if(isset($counters_tab[$item->id])) {			
+						array_push($counters_tab[$item->id], $item->tag);
+					} else {
+						$counters_tab[$item->id] = array($item->tag);
+					}
+				}
+			}
+		}
+		//
+		for($i = 0; $i < count($content); $i++ ) {	
+			if(isset($counters_tab[$content[$i]['id']])) {
+				$content[$i]['tags'] = $counters_tab[$content[$i]['id']];
 			}
 		}
 		
