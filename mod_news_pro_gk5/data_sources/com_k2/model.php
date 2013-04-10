@@ -259,9 +259,13 @@ class NSP_GK5_com_k2_Model {
 			}
 		}
 		// load comments
-		$content = NSP_GK5_com_k2_Model::getComments($content, $config);
+		if(stripos($config['info_format'], '%COMMENTS') !== FALSE || stripos($config['info2_format'], '%COMMENTS') !== FALSE) {
+			$content = NSP_GK5_com_k2_Model::getComments($content, $config);
+		}
 		// load tags
-		$content = NSP_GK5_com_k2_Model::getTags($content, $config);
+		if(stripos($config['info_format'], '%TAGS') !== FALSE || stripos($config['info2_format'], '%TAGS') !== FALSE) {
+			$content = NSP_GK5_com_k2_Model::getTags($content, $config);
+		}
 		// the content array
 		return $content; 
 	}

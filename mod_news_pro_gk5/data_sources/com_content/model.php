@@ -248,7 +248,9 @@ class NSP_GK5_com_content_Model {
 			}
 		}
 		// load comments
-		$content = NSP_GK5_com_content_Model::getComments($content, $config);
+		if(stripos($config['info_format'], '%COMMENTS') !== FALSE || stripos($config['info2_format'], '%COMMENTS') !== FALSE) {
+			$content = NSP_GK5_com_content_Model::getComments($content, $config);
+		}
 		// the content array
 		return $content; 
 	}
