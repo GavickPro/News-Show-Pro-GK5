@@ -75,7 +75,7 @@ var DataSources = new Class({
 				var data_source = option_field.getProperty('data-source');
 				document.id('jform_params_source_name').set('value', data_source);
 				// read the config for the specific data source
-				['offset', 'news_since', 'news_featured', 'only_featured', 'news_unauthorized', 'time_offset'].each(function(key) {
+				['offset', 'news_since', 'news_in', 'news_featured', 'only_featured', 'news_unauthorized', 'time_offset'].each(function(key) {
 					if($this.configs[data_source].supported_options[key]) {
 						document.id('jform_params_' + key).getParent().setStyle('display', 'block');
 					} else {

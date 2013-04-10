@@ -143,7 +143,14 @@ class NSP_GK5_com_k2_Model {
 		}
 		
 		$since_con = '';
-		if($config['news_since'] !== '') $since_con = ' AND content.created >= ' . $db->Quote($config['news_since']);
+		//
+		if($config['news_since'] !== '') {
+			$since_con = ' AND content.created >= ' . $db->Quote($config['news_since']);
+		}
+		//
+		if($config['news_since'] == '' && $config['news_in'] !== '') {
+			$since_con = ' AND content.created >= ' . $db->Quote(strftime('%Y-%m-%d 00:00:00', time() - ($config['news_in'] * 24 * 60 * 60)));
+		}
 		// Ordering string
 		$order_options = '';
 		// When sort value is random

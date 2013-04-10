@@ -12,6 +12,7 @@
 		"sort_values": false,
 		"offset": false,
 		"news_since": false,
+		"news_in": false,
 		"news_featured": false,
 		"only_featured": false,
 		"news_unauthorized": false,
