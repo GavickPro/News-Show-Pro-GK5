@@ -26,7 +26,6 @@ class NSP_GK5_Helper {
 	var $config = null; // configuration array
 	var $content = array(); // array with generated content
 	var $module_id = 0; // module id used in JavaScript
-	var $k2store_params = 0; // params of K2Store component
 	var $source = null;
 	
 	// module initialization
@@ -68,14 +67,7 @@ class NSP_GK5_Helper {
 		if($this->config['news_text_enabled']  == 0) $this->config['news_content_text_pos'] = 'disabled';
 		if($this->config['news_info_enabled'] == 0) $this->config['news_content_info_pos'] = 'disabled';
 		if($this->config['news_info2_enabled'] == 0) $this->config['news_content_info2_pos'] = 'disabled';
-		if($this->config['news_readmore_enabled'] == 0) $this->config['news_content_readmore_pos'] = 'disabled';
-        if($this->config['news_rs_store_enabled'] == 0) $this->config['news_rs_store_enabled'] = 'disabled';
-  	
-		// read K2Store params
-		if($this->config['k2store_support'] && file_exists(JPATH_ROOT.DS.'components'.DS.'com_k2store')) {
-            $this->k2store_params = JComponentHelper::getParams('com_k2store');
-        }
-		
+		if($this->config['news_readmore_enabled'] == 0) $this->config['news_content_readmore_pos'] = 'disabled';		
 		// override old string-based rules with the more readable array structures
 		$this->config['crop_rules'] = NSP_GK5_Utils::parseCropRules($this->config);
 	}
