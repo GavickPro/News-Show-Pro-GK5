@@ -108,7 +108,7 @@ class NSP_GK5_com_content_Model {
 		if($config['news_unauthorized'] == '0') {
 			$access_con = ' AND content.access IN ('. implode(',', $user->getAuthorisedViewLevels()) .') ';
 		}
-		$date = JFactory::getDate($config['time_offset'].' hour '.date('Y-m-d', strtotime('now')));
+		$date = JFactory::getDate($config['time_offset'].' hour '.date('Y-m-d H:i:s', strtotime('now')));
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available
