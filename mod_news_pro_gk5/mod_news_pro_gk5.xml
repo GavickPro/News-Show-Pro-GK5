@@ -171,6 +171,11 @@
 	                    <option value="jcomments">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_JCOMMENTS</option>
 	                    <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
 	            </field>
+	            
+	            <field name="hide_current_com_content_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_COM_CONTENT_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_COM_CONTENT_ARTICLE_DESC">
+	                <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+	                <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+	            </field> 
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_K2">
@@ -179,6 +184,11 @@
                         <option value="jcomments">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_JCOMMENTS</option>
                         <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
                 </field>
+                
+                <field name="hide_current_k2_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE_DESC">
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field> 
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_VIRTUEMART">

@@ -129,6 +129,24 @@ class NSP_GK5_com_content_Model {
 		if($config['news_since'] == '' && $config['news_in'] !== '') {
 			$since_con = ' AND content.created >= ' . $db->Quote(strftime('%Y-%m-%d 00:00:00', time() - ($config['news_in'] * 24 * 60 * 60)));
 		}
+		// current article hiding
+		$current_con = '';
+		
+		if(
+			$config['hide_current_com_content_article'] == '1' && 
+			JRequest::getCmd('option') == 'com_content' &&
+			JRequest::getCmd('view') == 'article' &&
+			JRequest::getVar('id') != ''
+		) {
+			$id = JRequest::getVar('id');
+			// filter the alias from ID
+			if(stripos($id, ':') !== FALSE) {
+				$id = explode(':', $id);
+				$id = $id[0];
+			}
+			// create the condition
+			$current_con = ' AND (content.id != '.$id.') ';
+		}
 		// Ordering string
 		$order_options = '';
 		// When sort value is random
@@ -168,6 +186,7 @@ class NSP_GK5_com_content_Model {
 			'.$lang_filter.'
 			'.$frontpage_con.' 
 			'.$since_con.'
+			'.$current_con.'
 		ORDER BY 
 			'.$order_options.'
 		LIMIT
