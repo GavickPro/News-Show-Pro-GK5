@@ -78,7 +78,7 @@ DataSources.prototype.changeValue = function() {
 			var data_source = jQuery(option_field).attr('data-source');
 			jQuery('#jform_params_source_name').val(data_source);
 			// read the config for the specific data source
-			jQuery(['offset', 'news_since', 'news_featured', 'only_featured', 'news_unauthorized', 'time_offset']).each(function(i, key) {
+			jQuery(['offset', 'news_since', 'news_in', 'news_featured', 'only_featured', 'news_unauthorized', 'time_offset']).each(function(i, key) {
 				if($this.configs[data_source].supported_options[key]) {
 					if(jQuery('#jform_params_' + key).parent().hasClass('input-append')) {
 						jQuery('#jform_params_' + key).parents().eq(2).css('display', 'block');

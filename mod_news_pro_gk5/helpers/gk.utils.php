@@ -13,7 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 class NSP_GK5_Utils {
 	// Method to cut text with specified limit value and type (characters/words)
-	function cutText($text, $config, $field, $at_end = FALSE) {
+	static function cutText($text, $config, $field, $at_end = FALSE) {
 		$limit_value = $config[$field];
 		$limit_type = $config[$field . '_type'];
 		//
@@ -71,11 +71,11 @@ class NSP_GK5_Utils {
 		return $text;
 	}
 	// Method to get Gravatar avatar
-	function avatarURL($email, $size){
+	static function avatarURL($email, $size){
 		return 'http://www.gravatar.com/avatar/'.md5($email).'?s='.$size.'&amp;default='.urlencode(JURI::root().'modules/mod_news_pro_gk5/interface/images/avatar.png');
 	}
 	//
-	function parseCropRules($config) {
+	static function parseCropRules($config) {
 		// parse the crop rules
 		$temp_crop_rules = explode(';', $config['crop_rules']);
 		$final_crop_rules = array();
@@ -124,7 +124,7 @@ class NSP_GK5_Utils {
 		return $final_crop_rules;
 	}
 	// Method to cut the HTML string
-	function cutHTML($text, $limit, $type){
+	static function cutHTML($text, $limit, $type){
 		$output = new cutHTMLString($text, $limit, $type);
 		return $output->cutText();
 	}

@@ -122,7 +122,13 @@ class NSP_GK5_com_content_Model {
 		}
 		
 		$since_con = '';
-		if($config['news_since'] !== '') $since_con = ' AND content.created >= ' . $db->Quote($config['news_since']);
+		if($config['news_since'] !== '') {
+			$since_con = ' AND content.created >= ' . $db->Quote($config['news_since']);
+		}
+		//
+		if($config['news_since'] == '' && $config['news_in'] !== '') {
+			$since_con = ' AND content.created >= ' . $db->Quote(strftime('%Y-%m-%d 00:00:00', time() - ($config['news_in'] * 24 * 60 * 60)));
+		}
 		// Ordering string
 		$order_options = '';
 		// When sort value is random
@@ -241,8 +247,66 @@ class NSP_GK5_com_content_Model {
 				$content[$pos] = array_merge($content[$pos], (array) $item);
 			}
 		}
+		// load comments
+		$content = NSP_GK5_com_content_Model::getComments($content, $config);
 		// the content array
 		return $content; 
+	}
+	
+	// method to get comments amount
+	static function getComments($content, $config) {
+		// 
+		$db = JFactory::getDBO();
+		$counters_tab = array();
+		// 
+		if(count($content) > 0 && $config['com_content_comments_source'] != 'none') {
+			// initializing variables
+			$sql_where = '';
+			//
+			for($i = 0; $i < count($content); $i++ ) {	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['iid'] : ' content.id = '.$content[$i]['iid'];
+			}
+			
+			if($config['com_content_comments_source'] == 'komento') {
+				// creating SQL query
+				$query_news = '
+				SELECT 
+					content.id AS id,
+					COUNT(comments.cid) AS count			
+				FROM 
+					#__content AS content 
+					LEFT JOIN 
+						#__komento_comments AS comments
+						ON comments.cid = content.id 		
+				WHERE 
+					comments.published = 1
+					AND 
+					( '.$sql_where.' )
+					AND
+					comments.component = \'com_content\'  
+				GROUP BY 
+					comments.cid
+				;';
+			}
+			// run SQL query
+			$db->setQuery($query_news);
+			// when exist some results
+			if($counters = $db->loadObjectList()) {
+				// generating tables of news data
+				foreach($counters as $item) {						
+					$counters_tab[$item->id] = $item->count;
+				}
+			}
+		}
+		//
+		for($i = 0; $i < count($content); $i++ ) {	
+			if(isset($counters_tab[$content[$i]['iid']])) {
+				$content[$i]['comments'] = $counters_tab[$content[$i]['iid']];
+			}
+		}
+
+		return $content;
 	}
 }
 

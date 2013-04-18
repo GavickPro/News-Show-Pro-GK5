@@ -26,7 +26,6 @@ class NSP_GK5_Helper {
 	var $config = null; // configuration array
 	var $content = array(); // array with generated content
 	var $module_id = 0; // module id used in JavaScript
-	var $k2store_params = 0; // params of K2Store component
 	var $source = null;
 	
 	// module initialization
@@ -69,13 +68,7 @@ class NSP_GK5_Helper {
 		if($this->config['news_info_enabled'] == 0) $this->config['news_content_info_pos'] = 'disabled';
 		if($this->config['news_info2_enabled'] == 0) $this->config['news_content_info2_pos'] = 'disabled';
 		if($this->config['news_readmore_enabled'] == 0) $this->config['news_content_readmore_pos'] = 'disabled';
-        if($this->config['news_rs_store_enabled'] == 0) $this->config['news_rs_store_enabled'] = 'disabled';
-  	
-		// read K2Store params
-		if($this->config['k2store_support'] && file_exists(JPATH_ROOT.DS.'components'.DS.'com_k2store')) {
-            $this->k2store_params = JComponentHelper::getParams('com_k2store');
-        }
-		
+  			
 		// override old string-based rules with the more readable array structures
 		$this->config['crop_rules'] = NSP_GK5_Utils::parseCropRules($this->config);
 	}
@@ -210,6 +203,21 @@ class NSP_GK5_Helper {
 			}
 			//
 			require(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'default'));
+		}
+    }
+    // RENDER PORTAL MODE LAYOUT
+	function render_portal_mode($mode) {
+		if(!class_exists('NSP_GK5_'.$mode)) {
+			require_once (dirname(__FILE__).DS.'portal_modes'.DS.strtolower($mode).DS.'controller.php');
+		}
+
+		$class_name = 'NSP_GK5_'.$mode;
+		$renderer = new $class_name($this);
+		$renderer->output();
+	}
+}
+
+// EOFelper::getLayoutPath('mod_news_pro_gk5', 'default'));
 		}
     }
     // RENDER PORTAL MODE LAYOUT

@@ -29,7 +29,7 @@ class JFormFieldPortalModes extends JFormField {
 				// if the JSON file is correct
 				if(json_last_error() === JSON_ERROR_NONE) {
 					// generate the header option
-					$output_options .= '<option value="'.$json_data->name.'" data-tab="'.$json_data->tab.'"'.(($this->value == $json_data->name) ? ' selected="selected"' : '').'>'.JText::_($pre . $json_data->full_name).'</option>'; 
+					$output_options .= '<option value="'.$json_data->name.'" '.(($this->value == $json_data->name) ? ' selected="selected"' : '').'>'.JText::_($pre . $json_data->full_name).'</option>'; 
 					// parse file content and put translations
 					$json_matches = array();
 					preg_match_all('@\"MOD_NEWS_PRO_GK5_.*?\"@mis', $file_content, $json_matches);

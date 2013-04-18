@@ -145,7 +145,14 @@ class NSP_GK5_com_k2_Model {
 		}
 		
 		$since_con = '';
-		if($config['news_since'] !== '') $since_con = ' AND content.created >= ' . $db->Quote($config['news_since']);
+		//
+		if($config['news_since'] !== '') {
+		   $since_con = ' AND content.created >= ' . $db->Quote($config['news_since']);
+		}
+		//
+		if($config['news_since'] == '' && $config['news_in'] !== '') {
+		   $since_con = ' AND content.created >= ' . $db->Quote(strftime('%Y-%m-%d 00:00:00', time() - ($config['news_in'] * 24 * 60 * 60)));
+		}
 		// Ordering string
 		$order_options = '';
 		// When sort value is random
@@ -253,7 +260,14 @@ class NSP_GK5_com_k2_Model {
 				$content[$pos] = array_merge($content[$pos], (array) $item);
 			}
 		}
-		$content = NSP_GK5_com_k2_Model::getComments($content, $config);
+		// load comments
+		if(stripos($config['info_format'], '%COMMENTS') !== FALSE || stripos($config['info2_format'], '%COMMENTS') !== FALSE) {
+			$content = NSP_GK5_com_k2_Model::getComments($content, $config);
+		}
+		// load tags
+		if(stripos($config['info_format'], '%TAGS') !== FALSE || stripos($config['info2_format'], '%TAGS') !== FALSE) {
+			$content = NSP_GK5_com_k2_Model::getTags($content, $config);
+		}
 		// the content array
 		return $content; 
 	}
@@ -271,22 +285,45 @@ class NSP_GK5_com_k2_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['id'] : ' content.id = '.$content[$i]['id'];
 			}
-			// creating SQL query
-			$query_news = '
-			SELECT 
-				content.id AS id,
-				COUNT(comments.itemID) AS count			
-			FROM 
-				#__k2_items AS content 
-				LEFT JOIN 
-					#__k2_comments AS comments
-					ON comments.itemID = content.id 		
-			WHERE 
-				comments.published
-				AND ( '.$sql_where.' ) 
-			GROUP BY 
-				comments.itemID
-			;';
+			// check the comments source
+			if($config['k2_comments_source'] == 'k2') {
+				// creating SQL query
+				$query_news = '
+				SELECT 
+					content.id AS id,
+					COUNT(comments.itemID) AS count			
+				FROM 
+					#__k2_items AS content 
+					LEFT JOIN 
+						#__k2_comments AS comments
+						ON comments.itemID = content.id 		
+				WHERE 
+					comments.published
+					AND ( '.$sql_where.' ) 
+				GROUP BY 
+					comments.itemID
+				;';
+			} elseif($config['k2_comments_source'] == 'komento') {
+				// creating SQL query
+				$query_news = '
+				SELECT 
+					content.id AS id,
+					COUNT(comments.cid) AS count			
+				FROM 
+					#__k2_items AS content 
+					LEFT JOIN 
+						#__komento_comments AS comments
+						ON comments.cid = content.id 		
+				WHERE 
+					comments.published = 1
+					AND 
+					( '.$sql_where.' )
+					AND
+					comments.component = \'com_k2\'  
+				GROUP BY 
+					comments.cid
+				;';
+			}
 			// run SQL query
 			$db->setQuery($query_news);
 			// when exist some results
@@ -303,9 +340,66 @@ class NSP_GK5_com_k2_Model {
 				$content[$i]['comments'] = $counters_tab[$content[$i]['id']];
 			}
 		}
-		
+
 		return $content;
 	}	
+	//
+	static function getTags($content, $config) {
+		// 
+		$db = JFactory::getDBO();
+		$counters_tab = array();
+		// 
+		if(count($content) > 0) {
+			// initializing variables
+			$sql_where = '';
+			//
+			for($i = 0; $i < count($content); $i++ ) {	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['id'] : ' content.id = '.$content[$i]['id'];
+			}
+			// creating SQL query
+			$query_news = '
+			SELECT 
+				content.id AS id,
+				tags.name AS tag		
+			FROM 
+				#__k2_items AS content 
+				LEFT JOIN 
+					#__k2_tags_xref AS xref
+					ON xref.itemID = content.id
+				LEFT JOIN
+					#__k2_tags AS tags
+					ON xref.tagID = tags.id 		
+			WHERE 
+				tags.published
+				AND ( '.$sql_where.' ) 
+			ORDER BY
+				content.id ASC
+			;';
+			// run SQL query
+			$db->setQuery($query_news);
+			// when exist some results
+			if($counters = $db->loadObjectList()) {
+				// generating tables of news data
+				foreach($counters as $item) {			
+					if(isset($counters_tab[$item->id])) {			
+						array_push($counters_tab[$item->id], $item->tag);
+					} else {
+						$counters_tab[$item->id] = array($item->tag);
+					}
+				}
+			}
+		}
+		//
+		for($i = 0; $i < count($content); $i++ ) {	
+			if(isset($counters_tab[$content[$i]['id']])) {
+				$content[$i]['tags'] = $counters_tab[$content[$i]['id']];
+			}
+		}
+
+		return $content;
+	}	
+	
 }
 
 // EOF
