@@ -217,19 +217,4 @@ class NSP_GK5_Helper {
 	}
 }
 
-// EOFelper::getLayoutPath('mod_news_pro_gk5', 'default'));
-		}
-    }
-    // RENDER PORTAL MODE LAYOUT
-	function render_portal_mode($mode) {
-		if(!class_exists('NSP_GK5_'.$mode)) {
-			require_once (dirname(__FILE__).DS.'portal_modes'.DS.strtolower($mode).DS.'controller.php');
-		}
-
-		$class_name = 'NSP_GK5_'.$mode;
-		$renderer = new $class_name($this);
-		$renderer->output();
-	}
-}
-
 // EOF
