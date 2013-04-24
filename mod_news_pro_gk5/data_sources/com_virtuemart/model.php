@@ -145,7 +145,7 @@ class NSP_GK5_com_virtuemart_Model {
 			$since_con = ' AND contentR.created_on >= ' . $db->Quote($config['news_since']);
 		}
 		//
-		if($config['news_since'] == '' && $config['news_in'] !== '') {
+		if($config['news_since'] == '' && $config['news_in'] != '') {
 			$since_con = ' AND contentR.created >= ' . $db->Quote(strftime('%Y-%m-%d 00:00:00', time() - ($config['news_in'] * 24 * 60 * 60)));
 		}
 		// Ordering string
