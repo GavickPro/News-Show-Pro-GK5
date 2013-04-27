@@ -1,0 +1,9 @@
+{
+	"name": "Title_Overlay",
+	"full_name": "TITLE_OVERLAY",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

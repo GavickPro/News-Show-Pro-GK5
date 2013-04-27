@@ -1,0 +1,81 @@
+/* Portal Mode - News Blocks */
+
+.gkNspPM-TitleOverlay > figure {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	overflow: hidden;
+	position: relative;
+	-webkit-perspective: 1200;
+	-moz-perspective: 1200;
+	-ms-perspective: 1200;
+	perspective: 1200;
+}
+
+.gkNspPM-TitleOverlay > figure > img {
+	display: block;
+	height: auto;
+	margin: 0;
+	max-width: 100%;
+}
+
+.gkNspPM-TitleOverlay > figure > figcaption {
+	position: absolute;
+	z-index: 1;
+}
+
+.gkNspPM-TitleOverlay[data-textpos="bottom"] > figure > figcaption {
+	bottom: 0;
+}
+
+.gkNspPM-TitleOverlay[data-textpos="top"] > figure > figcaption {
+	top: 0;
+}
+
+.gkNspPM-TitleOverlay > figure > figcaption h3 {
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 18px;
+	text-transform: uppercase;
+}
+
+.gkNspPM-TitleOverlay > figure > figcaption a {
+	color: #fffefe!important;	
+}
+
+/* Image overlays */
+.gkNspPM-TitleOverlay .gkImgOverlay {
+	background: #29a3e0 url('images/nsp_title_arrow.png') no-repeat center center;
+	cursor: pointer;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	-webkit-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
+	-moz-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
+	-ms-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
+	-o-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
+	transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
+	-webkit-transform-origin: 50% 0;
+	-moz-transform-origin: 50% 0;
+	-ms-transform-origin: 50% 0;
+	-o-transform-origin: 50% 0;
+	transform-origin: 50% 0;
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	width: 100%;
+	z-index: 2;
+}
+
+.gkNspPM-TitleOverlay.hover .gkImgOverlay {
+	opacity: 1.0;
+	-webkit-transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
+	-moz-transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
+	-ms-transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
+	-o-transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
+	transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
+}
