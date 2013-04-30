@@ -1,9 +1,11 @@
-/* Portal Mode - News Blocks */
+/* Portal Mode - Title Overlay */
 
 .gkNspPM-TitleOverlay > figure {
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
+	float: left;
+	max-width: 100%;
 	overflow: hidden;
 	position: relative;
 	-webkit-perspective: 1200;
@@ -17,9 +19,25 @@
 	height: auto;
 	margin: 0;
 	max-width: 100%;
+	-webkit-transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-ms-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+}
+
+.gkNspPM-TitleOverlay > figure:hover > img {
+	-webkit-transform: scale(1.1) rotateZ(-3deg);
+	-moz-transform: scale(1.1) rotateZ(-3deg);
+	-ms-transform: scale(1.1) rotateZ(-3deg);
+	-o-transform: scale(1.1) rotateZ(-3deg);
+	transform: scale(1.1) rotateZ(-3deg);
 }
 
 .gkNspPM-TitleOverlay > figure > figcaption {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
 	position: absolute;
 	z-index: 1;
 }
@@ -30,6 +48,16 @@
 
 .gkNspPM-TitleOverlay[data-textpos="top"] > figure > figcaption {
 	top: 0;
+}
+
+.gkNspPM-TitleOverlay[data-textpos="bottom"] .gkImgOverlay:before {
+	bottom: auto;
+	top: 12px;
+}
+
+.gkNspPM-TitleOverlay[data-textpos="top"] .gkImgOverlay:before {
+	bottom: 12px;
+	top: auto;
 }
 
 .gkNspPM-TitleOverlay > figure > figcaption h3 {
@@ -45,37 +73,24 @@
 
 /* Image overlays */
 .gkNspPM-TitleOverlay .gkImgOverlay {
-	background: #29a3e0 url('images/nsp_title_arrow.png') no-repeat center center;
+	background: #000;
 	cursor: pointer;
 	height: 100%;
-	left: 0;
+	left: -30%;
 	opacity: 0;
 	position: absolute;
 	top: 0;
-	-webkit-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
-	-moz-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
-	-ms-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
-	-o-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
-	transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 100%, 0);
-	-webkit-transform-origin: 50% 0;
-	-moz-transform-origin: 50% 0;
-	-ms-transform-origin: 50% 0;
-	-o-transform-origin: 50% 0;
-	transform-origin: 50% 0;
-	-webkit-transition: all .3s ease-out;
-	-moz-transition: all .3s ease-out;
-	-ms-transition: all .3s ease-out;
-	-o-transition: all .3s ease-out;
-	transition: all .3s ease-out;
+	-webkit-transition: all .2s ease-out;
+	-moz-transition: all .2s ease-out;
+	-ms-transition: all .2s ease-out;
+	-o-transition: all .2s ease-out;
+	transition: all .2s ease-out;
 	width: 100%;
 	z-index: 2;
 }
 
 .gkNspPM-TitleOverlay.hover .gkImgOverlay {
-	opacity: 1.0;
-	-webkit-transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
-	-moz-transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
-	-ms-transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
-	-o-transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
-	transform: rotate3d(1, 0, 0, 0deg) translate3d(0, 0, 0);
+	filter: alpha(opacity=75);
+	opacity: 0.75;
+	left: 0;
 }
