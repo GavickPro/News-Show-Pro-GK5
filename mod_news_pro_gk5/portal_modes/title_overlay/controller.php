@@ -29,11 +29,11 @@ class NSP_GK5_Title_Overlay {
 			// output the HTML code
 			echo '<figure>';
 			if($this->get_image($i)) {
-				echo '<img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]['title']).'" />';
+				echo '<img src="'.strip_tags($this->get_image($i)).'" alt="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'" />';
 			}
 			echo '<figcaption style="padding: '.$this->parent->config['portal_mode_title_overlay_text_padding'].'; background: '.$this->parent->config['portal_mode_title_overlay_text_bg'].'; width: '.$this->parent->config['portal_mode_title_overlay_text_width'].'%;">';
 			echo '<h3>';
-			echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'">'.$this->parent->content[$i]['title'].'</a>';
+			echo '<a href="'.$this->get_link($i).'" title="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'">'.$this->parent->content[$i]['title'].'</a>';
 			echo '</h3>';
 			echo '</figcaption>';
 			echo '</figure>';
