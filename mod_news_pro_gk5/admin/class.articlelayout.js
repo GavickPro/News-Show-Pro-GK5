@@ -7,10 +7,16 @@ var ArticleLayout = new Class({
 	
 	layoutTabs: function() {
 		// add necessary classes
-		['header', 'image', 'text', 'info', 'layout'].each(function(item) {
-			document.getElements('.gk-group-' + item).each(function(el) {
-				el.getParent().addClass('gk-group-' + item).setStyle('display', 'none');
-			});		
+		['pagination', 'header', 'image', 'text', 'info', 'layout'].each(function(item) {
+			if(item == 'pagination') {
+				document.getElements('.gk-group-' + item).each(function(el) {
+					el.getParent().addClass('gk-group-' + item);
+				});	
+			} else {
+				document.getElements('.gk-group-' + item).each(function(el) {
+					el.getParent().addClass('gk-group-' + item).setStyle('display', 'none');
+				});	
+			}	
 		});
 		// add the toggle effect
 		document.getElements('.gkFormLine').each(function(elm, i) {
