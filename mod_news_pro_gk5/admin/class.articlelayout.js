@@ -7,7 +7,7 @@ var ArticleLayout = new Class({
 	
 	layoutTabs: function() {
 		// add necessary classes
-		['pagination', 'header', 'image', 'text', 'info', 'layout'].each(function(item) {
+		['header', 'image', 'text', 'info', 'layout'].each(function(item) {
 			document.getElements('.gk-group-' + item).each(function(el) {
 				el.getParent().addClass('gk-group-' + item).setStyle('display', 'none');
 			});		
@@ -15,7 +15,12 @@ var ArticleLayout = new Class({
 		// add the toggle effect
 		document.getElements('.gkFormLine').each(function(elm, i) {
 			if(elm.getProperty('data-section-toggle') != '') {
-				elm.addClass('closed');
+				if(i == 0 || i == 5) {
+					elm.addClass('open');
+				} else {
+					elm.addClass('closed');
+				}
+				
 				elm.addEvent('click', function() {
 					var classToToggle = '.gk-group-' + elm.getProperty('data-section-toggle');
 					if(document.getElement(classToToggle).getStyle('display') == 'none') {
