@@ -119,6 +119,17 @@ class NSP_GK5_com_k2_Model {
 			// getting tag
 			$sql_where .= ' t.id = '. $config['k2_tags'];
 		}
+		// Overwrite SQL query when user specified authors
+		if($config['data_source'] == 'k2_authors' && $config['k2_authors'] != ''){
+			// initializing variables
+			$sql_where = '';
+			$ids = explode(',', $config['k2_authors']);
+			//
+			for($i = 0; $i < count($ids); $i++ ){	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.created_by = '.$ids[$i] : ' content.created_by = '.$ids[$i];
+			}
+		}
 		// Arrays for content
 		$content = array();
 		$news_amount = 0;

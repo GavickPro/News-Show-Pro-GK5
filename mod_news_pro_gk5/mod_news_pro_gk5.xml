@@ -86,7 +86,9 @@
             	
                 <field name="k2_categories" type="k2multicategories" extension="k2multicategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_K2CATEGORIES" description="MOD_NEWS_PRO_GK5_K2CATEGORIES_DESC" />
                 
-                <field name="k2_tags" type="k2tags" class="gk-hidden-field" extension="k2tags" default="" size="25" label="MOD_NEWS_PRO_GK5_K2TAGS" description="MOD_NEWS_PRO_GK5_K2TAGS_DESC" />
+                <field name="k2_tags" type="k2tags" class="gk-hidden-field" extension="k2tags" default="" size="25" label="MOD_NEWS_PRO_GK5_K2_TAGS" description="MOD_NEWS_PRO_GK5_K2_TAGS_DESC" />
+                
+                <field name="k2_authors" type="k2authors" class="gk-hidden-field" extension="k2authors" default="" size="25" label="MOD_NEWS_PRO_GK5_K2_AUTHORS" description="MOD_NEWS_PRO_GK5_K2_AUTHORS_DESC" />
 	        	
 	        	<field name="k2_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_K2ITEMS" description="MOD_NEWS_PRO_GK5_K2ITEMS_DESC" />
 	
