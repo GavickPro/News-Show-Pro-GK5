@@ -59,6 +59,8 @@ PortalModes.prototype.changeValue = function() {
 				jQuery('#Product_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 			} else if($this.configs[portal_mode_value].full_name == 'NEWS_BLOCKS') {
 				jQuery('#News_Blocks_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+			} else if($this.configs[portal_mode_value].full_name == 'TITLE_OVERLAY') {
+				jQuery('#Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 			}
 			// check the data source value
 			var data_source_value = jQuery('#jform_params_data_source').val();
@@ -93,5 +95,6 @@ PortalModes.prototype.hideAllPMTabs = function() {
 	jQuery('#News_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 	jQuery('#Product_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 	jQuery('#News_Blocks_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+	jQuery('#Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 }
 
