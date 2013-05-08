@@ -188,6 +188,10 @@ class NSP_GK5_com_k2_View {
 	            }
 	        }
 	        //
+	        $link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));
+	        //
+	        $info_comments = '<a href="'.$link.'">'.$info_comments.'</a>';
+	        //
 	        $info_tags = '';
 	        if(isset($item['tags']) && count($item['tags']) > 0) {
 	        	$i = 0;

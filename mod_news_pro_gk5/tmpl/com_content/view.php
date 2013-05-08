@@ -179,6 +179,8 @@ class NSP_GK5_com_content_View {
 	        $info_comments = '';
 	        
 	        if($config['com_content_comments_source'] != 'none') {
+		    	$link = ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login'); 
+		    	
 		    	$info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
 		        //
 		        if(isset($item['comments'])) { 
@@ -190,6 +192,8 @@ class NSP_GK5_com_content_View {
 		            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MUCHMORECOMMENTS');
 		            }
 		        }
+		        
+		        $info_comments = '<a href="'.$link.'">'.$info_comments.'</a>';
 	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
