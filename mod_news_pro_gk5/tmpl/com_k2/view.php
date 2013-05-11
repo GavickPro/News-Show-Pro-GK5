@@ -121,9 +121,9 @@ class NSP_GK5_com_k2_View {
 					//
 					if($config['news_image_link'] == 1) {
 						$link = urldecode( JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))) );	
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 					} else {
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
+						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
 					}
 				} else {
 					return '';
@@ -172,7 +172,12 @@ class NSP_GK5_com_k2_View {
 	        //
 	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
 	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
-	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
+	        //
+	        $info_date = '';
+	        $date_arr = explode(' ', JHTML::_('date', $item['date'], $config['date_format']));	
+	        $date_arr[0] = '<span>' . $date_arr[0] . '</span>';		
+	        $info_date = $date_arr[0] . $date_arr[1];
+	        //
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
 	        $info_rate = ($item['rating_count'] > 0) ? '<span class="nspRate">' . JText::_('MOD_NEWS_PRO_GK5_NSP_RATE') .' '. number_format($item['rating_sum'] / $item['rating_count'], 2) . '</span>': '';
 	        $info_category = ($config['category_link'] == 1) ? '<a href="'. urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item['cid'].':'.urlencode($item['cat_alias'])))) .'" >'.$item['catname'].'</a>' : $item['catname'];
@@ -187,10 +192,6 @@ class NSP_GK5_com_k2_View {
 	            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MUCHMORECOMMENTS');
 	            }
 	        }
-	        //
-	        $link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));
-	        //
-	        $info_comments = '<a href="'.$link.'">'.$info_comments.'</a>';
 	        //
 	        $info_tags = '';
 	        if(isset($item['tags']) && count($item['tags']) > 0) {
