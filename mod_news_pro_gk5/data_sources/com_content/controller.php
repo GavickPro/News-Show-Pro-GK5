@@ -53,7 +53,6 @@ class NSP_GK5_com_content_Controller {
 					$generated_content = ''; // initialize variable
 					//
 					for($j = 1; $j < 10; $j++) {
-						if($config['news_header_order'] == $j) $generated_content .= $news_header;
 						//
 						if(
 							$config['wrap_content'] == 1 && 
@@ -64,6 +63,7 @@ class NSP_GK5_com_content_Controller {
 							}
 						}
 						//
+						if($config['news_header_order'] == $j) $generated_content .= $news_header;
 						if($config['news_image_order'] == $j)  $generated_content .= $news_image;
 						if($config['news_text_order'] == $j)   $generated_content .= $news_text;
 						if($config['news_info_order'] == $j)   $generated_content .= $news_info;
