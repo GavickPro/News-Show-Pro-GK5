@@ -237,3 +237,46 @@
 	line-height: 12px;
 	text-align: center
 }
+
+/* Mobile devices */
+@media (max-width: 1030px) {
+	.gkNspPM-ProductGallery .gkAddToCart,
+	.gkNspPM-ProductGallery .gkImagesWrapper > div {
+		padding: 0 15px;
+	}
+	
+	.gkNspPM-ProductGallery .gkAddToCart input.addtocart-button {
+		text-align: right;
+	}
+	
+	.gkNspPM-ProductGallery .gkImage .gkImgOverlay {
+		height: 100px;
+		margin: -50px 0 0 -50px;
+		width: 100px;
+	}
+	
+	.gkNspPM-ProductGallery .gkImage .gkImgOverlay div.PricebasePriceWithTax {
+		margin-top: 28px;
+	}
+}
+
+@media (max-width: 820px) {
+	.gkNspPM-ProductGallery .gkImagesWrapper.gkImagesCols3 > div,
+	.gkNspPM-ProductGallery .gkImagesWrapper.gkImagesCols4 > div,
+	.gkNspPM-ProductGallery .gkImagesWrapper.gkImagesCols5 > div,
+	.gkNspPM-ProductGallery .gkImagesWrapper.gkImagesCols6 > div,
+	.gkNspPM-ProductGallery .gkImagesWrapper.gkImagesCols7 > div,
+	.gkNspPM-ProductGallery .gkImagesWrapper.gkImagesCols8 > div {
+		width: 50%!important;
+	}
+}
+
+@media (max-width: 580px) {
+	.gkNspPM-ProductGallery.gkPagination {
+		padding: 0;
+	}
+	
+	.gkNspPM-ProductGallery.gkPagination > a {
+		display: none;
+	}
+}
