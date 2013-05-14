@@ -1,15 +1,15 @@
 jQuery(document).ready(function() {
-	jQuery(document).find('.gkNspPM-NewsBlocks').each(function(i, module) {
+	jQuery(document).find('.gkNspPM-TitleOverlay').each(function(i, module) {
 		module = jQuery(module);
 		
 		if(!module.hasClass('active')) {
 			module.addClass('active');
-			gkPortalModeNewsBlocksInit(module);
+			gkPortalModeTitleOverlayInit(module);
 		}
 	});
 });
 
-var gkPortalModeNewsBlocksInit = function(module) {
+var gkPortalModeTitleOverlayInit = function(module) {
 	module = jQuery(module);
 	// add the basic events
 	module.find('figure').each(function(i, figure) {
@@ -19,6 +19,14 @@ var gkPortalModeNewsBlocksInit = function(module) {
 		overlay.click(function() {
 			window.location.href = jQuery(figure.find('a').first()).attr('href');
 		});
+	});
+	
+	module.mouseenter(function() {
+		module.addClass('hover');
+	});
+	
+	module.mouseleave(function() {
+		module.removeClass('hover');
 	});
 };
 
