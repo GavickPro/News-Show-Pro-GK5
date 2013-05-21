@@ -342,7 +342,11 @@
                         <option value="left">MOD_NEWS_PRO_GK5_FLEFT</option>
                         <option value="right">MOD_NEWS_PRO_GK5_FRIGHT</option>
                 </field>
-                <field name="news_image_link" type="list" class="gk_switch last-in-group gk-group-image" default="1" label="MOD_NEWS_PRO_GK5_IMAGE_LINK" description="">
+                <field name="news_image_link" type="list" class="gk_switch gk-group-image" default="1" label="MOD_NEWS_PRO_GK5_IMAGE_LINK" description="">
+                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                <field name="news_image_modal" type="list" class="gk_switch last-in-group gk-group-image" default="0" label="MOD_NEWS_PRO_GK5_IMAGE_MODAL" description="MOD_NEWS_PRO_GK5_IMAGE_MODAL_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
