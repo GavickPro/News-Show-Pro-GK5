@@ -34,9 +34,6 @@ class NSP_GK5_com_k2_View {
 	// article text generator
 	static function text($config, $item, $readmore) {
 		if($config['news_content_text_pos'] != 'disabled') {
-			if($config['clean_xhtml'] == 1) {
-				$item['text'] = strip_tags($item['text']);
-			}
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
 			$link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));

@@ -31,9 +31,6 @@ class NSP_GK5_json_file_View {
 	// article text generator
 	static function text($config, $item, $readmore) {
 		if($config['news_content_text_pos'] != 'disabled') {
-			if($config['clean_xhtml'] == 1) {
-				$item['text'] = strip_tags($item['text']);
-			}
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
 			$link = $item['url'];
