@@ -17,7 +17,7 @@ class NSP_GK5_com_virtuemart_View {
 			$itemid = $config['vm_itemid'];
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
-			$output = str_replace('"', "&quot;", $item['title']);
+			$output = str_replace('"', "&quot;", $output);
 	        $link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid;
 			//
 			if($config['news_header_link'] == 1) {

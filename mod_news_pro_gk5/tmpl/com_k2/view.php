@@ -19,7 +19,7 @@ class NSP_GK5_com_k2_View {
 		if($config['news_content_header_pos'] != 'disabled') {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
-			$output = str_replace('"', "&quot;", $item['title']);
+			$output = str_replace('"', "&quot;", $output);
 	        $link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));
 			//
 			if($config['news_header_link'] == 1) {

@@ -16,7 +16,7 @@ class NSP_GK5_xml_file_View {
 		if($config['news_content_header_pos'] != 'disabled') {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
-			$output = str_replace('"', "&quot;", $item['title']);
+			$output = str_replace('"', "&quot;", $output);
 	        $link = $item['url'];
 			//
 			if($config['news_header_link'] == 1) {
