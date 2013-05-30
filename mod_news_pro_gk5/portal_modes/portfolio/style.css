@@ -56,6 +56,14 @@
 	display: block;
 }
 
+.gkNspPM-Portfolio.noInitialAnim .gkImagesWrapper > a {
+	-webkit-transform: scale(1.0);
+	-moz-transform: scale(1.0);
+	-ms-transform: scale(1.0);
+	-o-transform: scale(1.0);
+	transform: scale(1.0);
+}
+
 .gkNspPM-Portfolio .gkImagesWrapper > a.show {
 	-webkit-transform: scale(1.0);
 	-moz-transform: scale(1.0);
