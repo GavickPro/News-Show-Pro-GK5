@@ -1,6 +1,6 @@
 {
-	"name": "News_Gallery",
-	"full_name": "NEWS_GALLERY",
+	"name": "Portfolio",
+	"full_name": "PORTFOLIO",
 	"support": [
 		"com_content", 
 		"com_k2"

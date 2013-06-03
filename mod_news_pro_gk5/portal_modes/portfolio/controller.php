@@ -1,6 +1,6 @@
 <?php
 
-class NSP_GK5_Product_Gallery {
+class NSP_GK5_Portfolio {
 	// necessary class fields
 	private $parent;
 	private $mode;
@@ -18,51 +18,46 @@ class NSP_GK5_Product_Gallery {
 	}
 	// static function which returns amount of articles to render - VERY IMPORTANT!!
 	static function amount_of_articles($parent) {
-		return $parent->config['portal_mode_product_gallery_amount'];
+		return $parent->config['portal_mode_portfolio_cols'] * $parent->config['portal_mode_portfolio_rows'] * $parent->config['portal_mode_portfolio_pages'];
 	}
 	// output generator	
 	function output() {
 		// amount
-		$amount = 0;
-		// count
-		for($i = 0; $i < count($this->parent->content); $i++) {			
-			if($this->get_image($i)) {
-				$amount++;
-			}
-		}
-		// pagination
-		$pagination = 0;
-		
-		if($amount > $this->parent->config['portal_mode_product_gallery_cols'] && $this->parent->config['portal_mode_product_gallery_nav'] == '1') {
-			$pagination = 1;
-		}	
+		$amount = 0;	
 		// main wrapper
-		echo '<div class="gkNspPM gkNspPM-ProductGallery'.(($this->parent->config['portal_mode_product_gallery_autoanimation'] == 1) ? ' gkAutoAnimation' : '') . (($pagination) ? ' gkPagination' : '') . '" data-cols="'.$this->parent->config['portal_mode_product_gallery_cols'].'" data-autoanim-time="'.$this->parent->config['portal_mode_product_gallery_autoanimation_time'].'">';
+		echo '<div class="gkNspPM gkNspPM-Portfolio'.(($parent->config['portal_mode_portfolio_initial_anim'] == '0') ? ' noInitialAnim' : '').'" data-cols="'.$this->parent->config['portal_mode_portfolio_cols'].'" data-rows="'.$this->parent->config['portal_mode_portfolio_rows'].'">';
 		// images wrapper
-		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_product_gallery_cols'].'">';
-		// render images
+		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_portfolio_cols'].' animate_queue">';
+		// JSON data array
+		$jsondata = array();
+		// render images		
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			if($this->get_image($i)) {
-				echo '<div class="gkImage show '.(($i+1 <= $this->parent->config['portal_mode_product_gallery_cols']) ? ' active' : ''). '">';
-				echo '<a href="' . $this->get_link($i) . '"><img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]->title).'" /></a>';
-				echo '<h4><a href="' . $this->get_link($i) . '">' . $this->parent->content[$i]['title'] . '</a></h4>';
-				
-				$store_output = $this->get_store($this->parent->config, $this->parent->content[$i]['id']);
-				echo '<div class="gkPrice">' . $store_output['price'] . '</div>';
-				echo '<div class="gkAddToCart"><a class="addtocart-button" href="' . $this->get_link($i) . '">' . JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE') . '</a></div>';
-				echo '<div class="gkImgOverlay"><div class="gkMoreDetails"><p>' . JText::_('MOD_NEWS_PRO_GK5_NSP_MORE_DETAILS') . '</p></div></div>';
-				echo '</div>';
+				if($amount < ($this->parent->config['portal_mode_portfolio_cols'] * $this->parent->config['portal_mode_portfolio_rows'])) {
+					echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'" class="gkImage animate_queue_element active">';
+					echo '<img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]['title']).'" />';
+					echo '</a>';
+					// increase the amount
+					$amount++;
+				} else {
+					array_push($jsondata, array(
+							'title' => str_replace("'", "\'", strip_tags($this->parent->content[$i]['title'])), 
+							'link' => $this->get_link($i), 
+							'src' => strip_tags($this->get_image($i))
+						)
+					);
+				}
 			}		
 		}
 		// closing images wrapper
 		echo '</div>';
-		// pagination buttons
-		if($amount > $this->parent->config['portal_mode_product_gallery_cols'] && $this->parent->config['portal_mode_product_gallery_nav'] == '1') {
-			echo '<a href="#prev" class="gkPrevBtn">&laquo;</a>';
-			echo '<a href="#next" class="gkNextBtn">&raquo;</a>';
+		if($this->parent->config['portal_mode_portfolio_link'] == '1') {
+			if(count($jsondata) == 0) {
+				echo '<a href="'.$this->parent->config['portal_mode_portfolio_link_url'].'" class="gkLoadMore border bigbutton" data-text="false">'.JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_TEXT2').'</a>';
+			} else {
+				echo '<a href="'.$this->parent->config['portal_mode_portfolio_link_url'].'" class="gkLoadMore border bigbutton" data-text="'.JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_TEXT2').'" data-toload="'.str_replace('"', '\'', json_encode($jsondata)).'" data-max="'.count($jsondata).'">'.JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_TEXT1').'</a>';
+			}
 		}
-		// IE8 fix
-		echo '<!--[if IE 8]><div class="ie8clear"></div><![endif]-->';
 		// closing main wrapper
 		echo '</div>';
 	}
@@ -111,16 +106,6 @@ class NSP_GK5_Product_Gallery {
 				return false;
 			}
 		}
-	}
-	// store generator
-	// function used to show the store details
-	function get_store($config, $id) {
-		
-	    
-	    return array(
-	    	"price" => $news_price,
-	    	"cart" => $news_cart
-	    );
 	}
 }
 
