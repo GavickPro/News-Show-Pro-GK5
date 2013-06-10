@@ -78,7 +78,7 @@ var gkPortalModePortfolioInit = function(module) {
 							
 							// height animation
 							imgWrap.animate({
-								height:  imgWrap.scrollTop(),
+								height:  imgWrap[0].scrollHeight,
 								}, 350, function() {
 								   imgWrap.css('height', 'auto');
 								 });
