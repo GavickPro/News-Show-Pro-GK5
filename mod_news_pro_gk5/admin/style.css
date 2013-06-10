@@ -812,18 +812,19 @@ select#jform_params_news_image_order,
 select#jform_params_news_text_order,
 select#jform_params_news_info_order,
 select#jform_params_news_info2_order {
-	display: none!important;
+	display: inline-block!important;
 }
 div#jform_params_news_header_order_chzn,
 div#jform_params_news_image_order_chzn,
 div#jform_params_news_text_order_chzn,
 div#jform_params_news_info_order_chzn,
 div#jform_params_news_info2_order_chzn {
-	display: inline-block!important;
+	display: none!important;
 }
 div.switcher-on + select,
 div.switcher-off + select {
 	display: none!important;
 }
+
 
 

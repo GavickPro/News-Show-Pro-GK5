@@ -58,20 +58,25 @@ ArticleLayout.prototype.changeOrder = function(current) {
 	var unexisting = [false, false, false, false, false];
 	var searched = 0;
 	
+	
+	
 	var elms = jQuery.map(['header', 'image', 'text', 'info', 'info2'], function(item) {
 		return jQuery('#jform_params_news_' + item + '_order');
 	});
 	
 	jQuery(elms).each(function(i, item) {
+		item = jQuery(item);;
 		unexisting[item.val() - 1] = true;
 	});
 	
+	
 	for(var i = 0; i < 5; i++) {
-		if(unexisting[i] == false) searched = i+1;
+		if(unexisting[i] == false){ searched = i+1;}
 	}
 	
-	elms.each(function(item) {
-		if(item != current && item.val() == current.val()) {
+	jQuery(elms).each(function(i, item) {
+		item = jQuery(item);
+		if((item.selector != current.selector) && (item.val() == current.val())) {			
 			item.val(searched);
 		}
 	});	
