@@ -583,6 +583,38 @@
                 <field name="simple_crop_left" type="text" class="input-percents" default="0" size="5" label="MOD_NEWS_PRO_GK5_SIMPLE_CROP_LEFT" description="MOD_NEWS_PRO_GK5_SIMPLE_CROP_LEFT_DESC"/>
                 <field name="simple_crop_right" type="text" class="input-percents" default="0" size="5" label="MOD_NEWS_PRO_GK5_SIMPLE_CROP_RIGHT" description="MOD_NEWS_PRO_GK5_SIMPLE_CROP_RIGHT_DESC"/>
                 <field name="crop_rules" type="textarea"  default="" label="MOD_NEWS_PRO_GK5_CROP_RULES" description="MOD_NEWS_PRO_GK5_CROP_RULES_DESC" />
+                
+                <field name="gk_line_10" type="line" text="MOD_NEWS_PRO_GK5_LINE_FILTERS" desc="MOD_NEWS_PRO_GK5_LINE_FILTERS_DESC" />
+                
+                <field name="grayscale_filter" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_GRAYSCALE_FILTER" description="MOD_NEWS_PRO_GK5_GRAYSCALE_FILTER_DESC">
+                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                <field name="sepia_filter" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_SEPIA_FILTER" description="MOD_NEWS_PRO_GK5_SEPIA_FILTER_DESC">
+                       <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                       <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field> 
+                <field name="blur_filter" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_BLUR_FILTER" description="MOD_NEWS_PRO_GK5_BLUR_FILTER_DESC">
+                       <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                       <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field> 
+                <field name="brightness_filter" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_BRIGHTNESS_FILTER" description="MOD_NEWS_PRO_GK5_BRIGHTNESS_FILTER_DESC">
+                       <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                       <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field> 
+                <field name="smooth_filter" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_SMOOTH_FILTER" description="MOD_NEWS_PRO_GK5_SMOOTH_FILTER_DESC">
+                       <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                       <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field> 
+                <field name="pixelate_filter" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_PIXELATE_FILTER" description="MOD_NEWS_PRO_GK5_PIXELATE_FILTER_DESC">
+                       <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                       <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field> 
+                <field name="contrast_filter" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_CONTRAST_FILTER" description="MOD_NEWS_PRO_GK5_CONTRAST_FILTER_DESC">
+                       <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                       <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field> 
+                <field name="filter_arg" type="text" default="0" label="MOD_NEWS_PRO_GK5_FILTER_ARG" description="MOD_NEWS_PRO_GK5_FILTER_ARG_DESC" />
             </fieldset>
 
             <fieldset name="NSP_ADDITIONAL_SETTINGS">
