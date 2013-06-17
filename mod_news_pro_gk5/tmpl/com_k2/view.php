@@ -259,7 +259,7 @@ class NSP_GK5_com_k2_View {
 		}
 	}
 	// article link generator
-	static function itemLink($item, $config) {
+	static function itemLink($item, $config = false) {
 		return urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));
 	}
 	// category link generator

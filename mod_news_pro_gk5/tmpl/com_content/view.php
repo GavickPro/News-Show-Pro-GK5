@@ -248,7 +248,7 @@ class NSP_GK5_com_content_View {
 		}
 	}
 	// article link generator
-	static function itemLink($item, $config) {
+	static function itemLink($item, $config = false) {
 		return ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login');
 	}
 	// category link generator

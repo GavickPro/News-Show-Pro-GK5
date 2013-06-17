@@ -207,7 +207,7 @@ class NSP_GK5_json_file_View {
 		}
 	}
 	// article link generator
-	static function itemLink($item, $config) {
+	static function itemLink($item, $config = false) {
 		return $item['url'];
 	}
 	// category link generator
