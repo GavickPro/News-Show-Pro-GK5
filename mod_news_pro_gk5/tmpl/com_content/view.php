@@ -16,8 +16,8 @@ class NSP_GK5_com_content_View {
 		if($config['news_content_header_pos'] != 'disabled') {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
-			$output = str_replace('"', "&quot;", $item['title']);
-	        $link = ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login');
+			$output = str_replace('"', "&quot;", $output);
+	        $link = NSP_GK5_com_content_View::itemLink($item);
 			//
 			if($config['news_header_link'] == 1) {
 				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</a></h4>';	
@@ -33,7 +33,7 @@ class NSP_GK5_com_content_View {
 		if($config['news_content_text_pos'] != 'disabled') {
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
-			$link = ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login');
+			$link = NSP_GK5_com_content_View::itemLink($item);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
 			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
@@ -52,7 +52,7 @@ class NSP_GK5_com_content_View {
 		if($config['news_content_image_pos'] != 'disabled' || $pm) {
 			$item['title'] = str_replace('"', "&quot;", $item['title']);
 		    $IMG_SOURCE = '';
-			$IMG_LINK = ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login');	
+			$IMG_LINK = NSP_GK5_com_content_View::itemLink($item);	
 			//
 			$images = json_decode($item['images']);
 			$uri = JURI::getInstance();
@@ -140,7 +140,7 @@ class NSP_GK5_com_content_View {
 		//
 		if($config['news_content_readmore_pos'] != 'disabled') {
 			$class = ' f'.$config['news_content_readmore_pos'];
-			$link = ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login'); 
+			$link = NSP_GK5_com_content_View::itemLink($item); 
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
 				return '<a class="readon inline" href="'.$link.'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
@@ -172,7 +172,7 @@ class NSP_GK5_com_content_View {
 		) {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'. JRoute::_(ContentHelperRoute::getCategoryRoute($item['cid'])) .'" >'.$item['catname'].'</a>' : $item['catname'];	        
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'. NSP_GK5_com_content_View::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];	        
 	        //
 	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
 	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'. NSP_GK5_Utils::avatarURL($item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
@@ -182,7 +182,7 @@ class NSP_GK5_com_content_View {
 	        $info_comments = '';
 	        
 	        if($config['com_content_comments_source'] != 'none') {
-		    	$link = ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login'); 
+		    	$link = NSP_GK5_com_content_View::itemLink($item); 
 		    	
 		    	$info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
 		        //
@@ -235,7 +235,7 @@ class NSP_GK5_com_content_View {
 				$title = htmlspecialchars($item['title']);
 				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
-				$link = ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login');
+				$link = NSP_GK5_com_content_View::itemLink($item);
 			
 				if(JString::strlen($title) > 0) {
 					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
@@ -246,6 +246,14 @@ class NSP_GK5_com_content_View {
 		} else {
 			return '';
 		}
+	}
+	// article link generator
+	static function itemLink($item, $config) {
+		return ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login');
+	}
+	// category link generator
+	static function categoryLink($item) {
+		return JRoute::_(ContentHelperRoute::getCategoryRoute($item['cid']));
 	}
 }
 
