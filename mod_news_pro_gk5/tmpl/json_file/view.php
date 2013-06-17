@@ -189,7 +189,7 @@ class NSP_GK5_json_file_View {
 			
 			if($config['list_title_limit'] > 0) {
 				$title = htmlspecialchars($item['title']);
-				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
+				$title = NSP_GK5_Utils::cutText($title, $config, 'list_title_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
 				$link = $item['url'];
 			

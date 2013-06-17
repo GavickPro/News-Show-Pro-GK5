@@ -236,7 +236,7 @@ class NSP_GK5_com_k2_View {
 			
 			if($config['list_title_limit'] > 0) {
 				$title = htmlspecialchars($item['title']);
-				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
+				$title = NSP_GK5_Utils::cutText($title, $config, 'list_title_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
 				$link = urldecode( JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))) );
 			
