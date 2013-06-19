@@ -57,11 +57,13 @@ class NSP_GK5_com_k2_View {
 			$item['title'] = str_replace('"', "&quot;", $item['title']);
 			$uri = JURI::getInstance();
 			//
-			if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_L.jpg')){  
-				$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_L.jpg';
-	        }elseif(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_S.jpg')){  
-				$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_S.jpg';
-			} else {
+			if(!$config['k2_image_size']) {
+				$config['k2_image_size'] = 'Generic';
+			}
+			//
+			if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg')){  
+				$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg';
+	        } else {
 				// set image to first in article content
 				if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
 					$imgStartPos = JString::strpos($item['text'], 'src="');

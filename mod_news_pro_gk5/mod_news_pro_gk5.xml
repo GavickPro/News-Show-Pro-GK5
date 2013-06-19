@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
-	<creationDate>11/04/2013</creationDate>
+	<creationDate>21/05/2013</creationDate>
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2013 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
@@ -190,6 +190,15 @@
                 <field name="hide_current_k2_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE_DESC">
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                     <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field> 
+                
+                <field name="k2_image_size" type="list" default="Generic" label="MOD_NEWS_PRO_GK5_K2_IMAGE_SIZE" description="MOD_NEWS_PRO_GK5_K2_IMAGE_SIZE_DESC">
+                    <option value="Generic">Generic</option>
+                    <option value="XL">XL</option>
+                    <option value="L">L</option>
+                    <option value="M">M</option>
+                    <option value="S">S</option>
+                    <option value="XS">XS</option>
                 </field> 
             </fieldset>
             
