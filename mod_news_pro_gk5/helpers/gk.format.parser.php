@@ -3,11 +3,11 @@
 /**
 * Article format parser class
 * @package News Show Pro GK5
-* @Copyright (C) 2009-2013 Gavick.com
+* @Copyright (C) 2009-2012 Gavick.com
 * @ All rights reserved
 * @ Joomla! is Free Software
 * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
-* @version $Revision: GK5 1.2 $
+* @version $Revision: GK5 1.0 $
 **/
 
 // no direct access
