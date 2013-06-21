@@ -43,7 +43,7 @@
 	cursor:pointer; 
 	float:left; 
 	height: 14px; 
-	margin: 5px 4px 0 0!important; 
+	margin: 1px 4px 0 0!important; 
 	text-indent:-999em; 
 	width: 14px; 
 }
@@ -224,6 +224,7 @@ img.nspImage.gkResponsive {
 }
 .nspArtScroll1,
 .nspLinkScroll1 { 
+	clear: both;
 	width: 100%; 
 }
 .nspPages1 { width: 100%; }

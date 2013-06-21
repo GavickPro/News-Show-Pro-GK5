@@ -44,11 +44,7 @@ class NSP_GK5_Article_Format {
 		if(isset($data['url'])) { 
 			$url = $data['url'];
 		} else {
-			if($data['id'] !== 0) {
-				$url = JRoute::_(ContentHelperRoute::getArticleRoute($data['id'], $data['cid']));
-			} else {
-				$url = JRoute::_('index.php?option=com_user&view=login');
-			}
+			$url = call_user_func(array($viewClass, 'itemLink'), $data, $config);
 		}
 		// Image
 		$viewClass = 'NSP_GK5_'.$config['source_name'].'_View';
@@ -64,11 +60,7 @@ class NSP_GK5_Article_Format {
 		if(isset($data['caturl'])) {
 			$category_url = $data['caturl'];
 		} else {
-			if($data['id'] !== 0) {
-				$category_url = JRoute::_(ContentHelperRoute::getCategoryRoute($data['cid']));
-			} else {
-				$category_url = JRoute::_('index.php?option=com_user&view=login');
-			}
+			$url = call_user_func(array($viewClass, 'categoryLink'), $data);
 		}
 		// Other data
 		$hits = $data['hits'];

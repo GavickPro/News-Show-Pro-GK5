@@ -14,11 +14,14 @@ class NSP_GK5_com_virtuemart_View {
 	// header generator
 	static function header($config, $item) {
 		if($config['news_content_header_pos'] != 'disabled') {
-			$itemid = $config['vm_itemid'];
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
 			$output = str_replace('"', "&quot;", $output);
+<<<<<<< HEAD
 	        $link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid;
+=======
+	        $link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
+>>>>>>> v.1.2
 			//
 			if($config['news_header_link'] == 1) {
 				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</a></h4>';	
@@ -32,13 +35,9 @@ class NSP_GK5_com_virtuemart_View {
 	// article text generator
 	static function text($config, $item, $readmore) {
 		if($config['news_content_text_pos'] != 'disabled') {
-			if($config['clean_xhtml'] == 1) {
-				$item['text'] = strip_tags($item['text']);
-			}
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
-			$itemid = $config['vm_itemid'];
-			$link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid;
+			$link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
 			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
@@ -55,10 +54,11 @@ class NSP_GK5_com_virtuemart_View {
 	// article image generator
 	static function image($config, $item, $only_url = false, $pm = false){		
 		if($config['news_content_image_pos'] != 'disabled' || $pm) {			
-			$itemid = $config['vm_itemid'];
 			$news_title = str_replace('"', "&quot;", $item['title']);
 			$IMG_SOURCE = $item['image'];
-			$IMG_LINK = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$news_id.'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid;
+			$IMG_LINK = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
+			//
+			$full_size_img = $IMG_SOURCE;
 			//
 			if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
 				// try to override standard image
@@ -106,7 +106,12 @@ class NSP_GK5_com_virtuemart_View {
 					//
 					//
 					if($config['news_image_link'] == 1) {
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+						if($config['news_image_modal'] == 1) {
+							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+						} else {
+							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							
+						}
 					} else {
 						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
 					}
@@ -124,11 +129,10 @@ class NSP_GK5_com_virtuemart_View {
 		if($config['news_content_readmore_pos'] != 'disabled') {
 			$class = ' f'.$config['news_content_readmore_pos'];
 			//
-            $itemid = $config['vm_itemid'];
 			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a <a class="readon inline"  href="index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid.'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
+				return '<a <a class="readon inline"  href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
 			} else {
-				return '<a class="readon '.$class.'" href="index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid.'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
+				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
 			}
 		} else {
 			return '';
@@ -154,7 +158,7 @@ class NSP_GK5_com_virtuemart_View {
 			($config['news_content_info2_pos'] != 'disabled' && $num == 2)
 		) {
 			$news_info = '<p class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </p>';
-	        $info_category = ($config['category_link'] == 1) ? '<a href="index.php?option=com_virtuemart&amp;view=category&amp;virtuemart_category_id='.$item['cid'].'" >'.$item['cat_name'].'</a>' : $news_catname;
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_virtuemart_View::categoryLink($item).'" >'.$item['cat_name'].'</a>' : $news_catname;
 	        //          
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        //          
@@ -163,7 +167,7 @@ class NSP_GK5_com_virtuemart_View {
             } else {
                 $comments_amount = JText::_('MOD_NEWS_PRO_GK5_COMMENTS').' ('.(isset($item['comments']) ? $item['comments'] : '0' ) . ')';
             }
-	        $info_comments = '<a class="nspComments" href="index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid.'#reviewform">'.$comments_amount.'</a>';
+	        $info_comments = '<a class="nspComments" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'#reviewform">'.$comments_amount.'</a>';
 	        $info_manufacturer = JText::_('MOD_NEWS_PRO_GK5_MANUFACTURER').$item['manufacturer'];
 	        // Replace the following phrases:
 	        // %COMMENTS %DATE %CATEGORY %MANUFACTURER %STORE
@@ -199,8 +203,7 @@ class NSP_GK5_com_virtuemart_View {
 				$title = htmlspecialchars($item['title']);
 				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
-				$itemid = $config['vm_itemid'];
-				$link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid;
+				$link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
 			
 				if(JString::strlen($title) > 0) {
 					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
@@ -325,6 +328,16 @@ class NSP_GK5_com_virtuemart_View {
         }
   		// results
         return ($news_price != '') ? $news_price : '';
+	}
+	// article link generator
+	static function itemLink($item, $config) {
+		$itemid = $config['vm_itemid'];
+		$link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid;
+		return $link;
+	}
+	// category link generator
+	static function categoryLink($item) {
+		return 'index.php?option=com_virtuemart&amp;view=category&amp;virtuemart_category_id='.$item['cid'];
 	}
 }
 

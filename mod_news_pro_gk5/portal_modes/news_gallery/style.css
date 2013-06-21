@@ -132,3 +132,19 @@
 	filter: alpha(opacity=100);
 	opacity: 1;
 }
+
+/* Mobile devices */
+@media (max-width: 1030px) {
+	.gkNspPM-NewsGallery {
+		padding: 24px 32px;
+	}
+}
+
+@media (max-width: 820px) {
+	.gkNspPM-NewsGallery .gkImagesWrapper > a { 
+		padding: 0 3px;
+	}
+	.gkNspPM-NewsGallery .gkImagesWrapper > a img {
+		padding: 3px;
+	}
+}

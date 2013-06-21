@@ -119,6 +119,17 @@ class NSP_GK5_com_k2_Model {
 			// getting tag
 			$sql_where .= ' t.id = '. $config['k2_tags'];
 		}
+		// Overwrite SQL query when user specified authors
+		if($config['data_source'] == 'k2_authors' && $config['k2_authors'] != ''){
+			// initializing variables
+			$sql_where = '';
+			$ids = explode(',', $config['k2_authors']);
+			//
+			for($i = 0; $i < count($ids); $i++ ){	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.created_by = '.$ids[$i] : ' content.created_by = '.$ids[$i];
+			}
+		}
 		// Arrays for content
 		$content = array();
 		$news_amount = 0;
@@ -150,6 +161,24 @@ class NSP_GK5_com_k2_Model {
 		//
 		if($config['news_since'] == '' && $config['news_in'] != '') {
 			$since_con = ' AND content.created >= ' . $db->Quote(strftime('%Y-%m-%d 00:00:00', time() - ($config['news_in'] * 24 * 60 * 60)));
+		}
+		// current article hiding
+		$current_con = '';
+		
+		if(
+			$config['hide_current_k2_article'] == '1' && 
+			JRequest::getCmd('option') == 'com_k2' &&
+			JRequest::getCmd('view') == 'item' &&
+			JRequest::getVar('id') != ''
+		) {
+			$id = JRequest::getVar('id');
+			// filter the alias from ID
+			if(stripos($id, ':') !== FALSE) {
+				$id = explode(':', $id);
+				$id = $id[0];
+			}
+			// create the condition
+			$current_con = ' AND (content.id != '.$id.') ';
 		}
 		// Ordering string
 		$order_options = '';
@@ -191,6 +220,7 @@ class NSP_GK5_com_k2_Model {
 			'.$lang_filter.'
 			'.$frontpage_con.' 
 			'.$since_con.'
+			'.$current_con.'
 		ORDER BY 
 			'.$order_options.'
 		LIMIT

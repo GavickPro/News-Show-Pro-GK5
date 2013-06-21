@@ -10,7 +10,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class NSP_GK5_xml_file_View {
+class NSP_GK5_rss_View {
 	// header generator
 	static function header($config, $item) {
 		if($config['news_content_header_pos'] != 'disabled') {
@@ -55,8 +55,16 @@ class NSP_GK5_xml_file_View {
 			$IMG_LINK = $item['url'];	
 			//
 			$uri = JURI::getInstance();
-			// get image from Joomla! Images and Links settings
-			$IMG_SOURCE = $item['image'];
+			// get image from the text
+			if(preg_match('/\<img.*src=.*?\>/', $item['text'])){
+				$imgStartPos = JString::strpos($item['text'], 'src="');
+				if($imgStartPos) {
+					$imgEndPos = JString::strpos($item['text'], '"', $imgStartPos + 5);
+				}	
+				if($imgStartPos > 0) {
+					$IMG_SOURCE = JString::substr($item['text'], ($imgStartPos + 5), ($imgEndPos - ($imgStartPos + 5)));
+				}
+			}
 			//
 			$full_size_img = $IMG_SOURCE;
 			//
@@ -70,8 +78,7 @@ class NSP_GK5_xml_file_View {
 						$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/'.$img_file[1];
 					} elseif($config['create_thumbs'] == 1) {
 						jimport('joomla.filesystem.file');
-						
-						if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS.'default'.DS.'default'.$config['module_id'].'.png')) {
+				  	if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS.'default'.DS.'default'.$config['module_id'].'.png')) {
 							$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/default/default'.$config['module_id'].'.png';
 						}
 					} else {
@@ -80,7 +87,6 @@ class NSP_GK5_xml_file_View {
 				}	
 			} elseif($config['create_thumbs'] == 1) {
 				jimport('joomla.filesystem.file');
-				
 				if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS.'default'.DS.'default'.$config['module_id'].'.png')) {
 					$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/default/default'.$config['module_id'].'.png';			
 				}
@@ -156,17 +162,11 @@ class NSP_GK5_xml_file_View {
 		) {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'. $item["category_url"] .'" >'.$item['catname'].'</a>' : $item['catname'];	        
-	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'. NSP_GK5_Utils::avatarURL($item['author_email'], $config['avatar_size']).'" alt="'.htmlspecialchars($item['author']).' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$item['author'].'</span>' : $item['author'];
-	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
-	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
-	        $info_rate = ($item['rating_count'] > 0) ? '<span class="nspRate">' . JText::_('MOD_NEWS_PRO_GK5_NSP_RATE') .' '. number_format($item['rating_sum'] / $item['rating_count'], 2) . '</span>': '';
+	        $info_category = $item['catname'];
+	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);
 	        // 
-	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
-	        $news_info = str_replace('%HITS', $info_hits, $news_info);
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
-	        $news_info = str_replace('%RATE', $info_rate, $news_info);
 	    } else {
 	    	return '';
 	    }
@@ -192,7 +192,7 @@ class NSP_GK5_xml_file_View {
 			
 			if($config['list_title_limit'] > 0) {
 				$title = htmlspecialchars($item['title']);
-				$title = NSP_GK5_Utils::cutText($title, $config, 'list_title_limit', '&hellip;');
+				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
 				$link = $item['url'];
 			
@@ -212,7 +212,7 @@ class NSP_GK5_xml_file_View {
 	}
 	// category link generator
 	static function categoryLink($item) {
-		return $item["category_url"];
+		return '';
 	}
 }
 

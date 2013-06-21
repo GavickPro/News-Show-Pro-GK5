@@ -249,9 +249,7 @@ label[id^=jform_params_gk_line_],
 	-webkit-border-radius: 2px;
 }
 
-.nspgk5-panel fieldset.panelform select[multiple=multiple] {
-	height: 150px;
-} /* lists */
+/* lists */
 
 .nspgk5-panel #tools_for_pages_input,
 .nspgk5-panel #google_analytics_input,
@@ -494,6 +492,7 @@ label[id^=jform_params_gk_line_],
 }
 
 .nspgk5-panel #jform_params_k2_tags,
+.nspgk5-panel #jform_params_k2_authors,
 .nspgk5-panel fieldset.panelform select[multiple=multiple] {
 	height: 150px
 }
@@ -847,4 +846,17 @@ label[id^=jform_params_gk_line_],
 
 .nspgk5-panel select.gk_switch {
 	display: none!important;
+}
+
+/* Color visualisation */
+.gk-color-vis {
+	background: transparent;
+	border: 2px solid #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	float: left;
+	height: 24px;
+	margin: 4px 0 0 0;
+	width: 24px;
 }

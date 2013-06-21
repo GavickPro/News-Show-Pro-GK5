@@ -18,6 +18,10 @@
 		{
 			"name": "COM_K2_TAGS",
 			"value": "k2_tags"
+		},
+		{
+			"name": "COM_K2_AUTHORS",
+			"value": "k2_authors"
 		}
 	],
 	"supported_options": {
