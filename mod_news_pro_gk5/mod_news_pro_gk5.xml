@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
-	<creationDate>21/06/2013</creationDate>
+	<creationDate>01/07/2013</creationDate>
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2013 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavick.com</authorUrl>
-	<version>1.2</version>
+	<version>1.2.1</version>
 	<description>
 	<![CDATA[
 		<style type='text/css'>
@@ -19,7 +19,7 @@
 			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
 		</style>
 		<span class='readonly'>
-			<h1>News Show Pro GK5 <small>ver. 1.2</small></h1>
+			<h1>News Show Pro GK5 <small>ver. 1.2.1</small></h1>
 			<p>GK5 is new generation of our extensions dedicated to Joomla 2.5+.</p>
 			<p>Basing on experiences gathered, we created probably the best tool to present articles for Joomla! Huge amount of options and possibilities of formatting causes News Show Pro GK5 is a complex tool in making www pages content attractive. News Show Pro is appropriate while preparing simple structures with an individual article, the same as, complex arrangements including few articles and a list of links.</p> 
 			<p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
@@ -258,6 +258,11 @@
 				<field name="portal_mode_news_gallery_amount" type="text" default="10" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_AMOUNT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_AMOUNT_DESC" />
 				
 				<field name="portal_mode_news_gallery_cols" type="text" default="3" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_COLS_DESC" />
+				
+				<field name="portal_mode_news_gallery_pagination_type" type="list" default="arrows" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_PAGINATION_TYPE" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_PAGINATION_TYPE_DESC">
+					<option value="arrows">MOD_NEWS_PRO_GK5_ARROWS</option>
+					<option value="pagination">MOD_NEWS_PRO_GK5_PAGINATION</option>
+				</field>
 				
 				<field name="portal_mode_news_gallery_autoanimation" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_AUTOANIMATION" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_AUTOANIMATION_DESC">
 				        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
