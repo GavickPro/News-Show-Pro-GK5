@@ -38,8 +38,11 @@ var gkPortalModeNewsGalleryInit = function(module) {
 			el = jQuery(el);
 			el.click(function(e) {
 				e.preventDefault();
-				module.attr('data-blank', 1);
-				gkPortalModeNewsGalleryAnim(module, i+1);
+				
+				if(i+1 != module.attr('data-current') * 1.0) {
+					module.attr('data-blank', 1);
+					gkPortalModeNewsGalleryAnim(module, i+1);
+				}
 			});
 		});
 	}

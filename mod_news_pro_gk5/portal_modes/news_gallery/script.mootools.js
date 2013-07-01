@@ -34,8 +34,11 @@ var gkPortalModeNewsGalleryInit = function(module) {
 		module.getElements('.gkPagination li').each(function(el, i) {
 			el.addEvent('click', function(e) {
 				e.preventDefault();
-				module.setProperty('data-blank', 1);
-				gkPortalModeNewsGalleryAnim(module, i+1);
+				
+				if(i+1 != module.getProperty('data-current') * 1.0) {
+					module.setProperty('data-blank', 1);
+					gkPortalModeNewsGalleryAnim(module, i+1);
+				}
 			});
 		});
 	}
