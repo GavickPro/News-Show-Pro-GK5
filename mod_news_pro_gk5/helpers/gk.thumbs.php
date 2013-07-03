@@ -250,6 +250,41 @@ class NSP_GK5_Thumbs {
 					$base_y = 0;
 					// copy image	
 					imagecopyresampled($imageBG, $imageSource, $base_x, $base_y, 0, 0, $imageSourceNWidth, $imageSourceNHeight, $imageSourceWidth, $imageSourceHeight);
+					
+					
+					//
+					// applying filters
+					//
+					
+					// grayscale
+					if($config['grayscale_filter'] || $config['sepia_filter']) {
+					  imagefilter($imageBG, IMG_FILTER_GRAYSCALE); 
+					}
+					// sepia
+					if($config['sepia_filter']) {
+					  imagefilter($imageBG, IMG_FILTER_COLORIZE, 90, 60, 40); 
+					}
+					// blur
+					if($config['blur_filter']) {
+					  imagefilter($imageBG, IMG_FILTER_GAUSSIAN_BLUR, $config['filter_arg']); 
+					}
+					// brightness
+					if($config['brightness_filter']) {
+					  imagefilter($imageBG, IMG_FILTER_BRIGHTNESS, $config['filter_arg']); 
+					}
+					// smooth
+					if($config['smooth_filter']) {
+					  imagefilter($imageBG, IMG_FILTER_SMOOTH, $config['filter_arg']); 
+					}
+					// pixelate
+					if($config['pixelate_filter']) {
+					  imagefilter($imageBG, IMG_FILTER_PIXELATE, $config['filter_arg'], true); 
+					}
+					// contrast
+					if($config['contrast_filter']) {
+					  imagefilter($imageBG, IMG_FILTER_CONTRAST, $config['filter_arg']); 
+					}
+					
 					// save image depends from MIME type	
 					if($imageData['mime'] == 'image/jpeg' || $imageData['mime'] == 'image/pjpeg' || $imageData['mime'] == 'image/jpg') imagejpeg($imageBG,$cache_dir.$filename, $config['img_quality']);
 					elseif($imageData['mime'] == 'image/gif') imagegif($imageBG, $cache_dir.$filename); 

@@ -16,7 +16,7 @@ class NSP_GK5_xml_file_View {
 		if($config['news_content_header_pos'] != 'disabled') {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
-			$output = str_replace('"', "&quot;", $item['title']);
+			$output = str_replace('"', "&quot;", $output);
 	        $link = $item['url'];
 			//
 			if($config['news_header_link'] == 1) {
@@ -189,7 +189,7 @@ class NSP_GK5_xml_file_View {
 			
 			if($config['list_title_limit'] > 0) {
 				$title = htmlspecialchars($item['title']);
-				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
+				$title = NSP_GK5_Utils::cutText($title, $config, 'list_title_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
 				$link = $item['url'];
 			
@@ -202,6 +202,14 @@ class NSP_GK5_xml_file_View {
 		} else {
 			return '';
 		}
+	}
+	// article link generator
+	static function itemLink($item, $config = false) {
+	    return $item['url'];
+	}
+	// category link generator
+	static function categoryLink($item) {
+	    return $item["category_url"];
 	}
 }
 

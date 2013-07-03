@@ -38,13 +38,16 @@ class NSP_GK5_Utils {
 				if(count($temp) > $limit_value){
 					for($i=0; $i<$limit_value; $i++) $cutted[$i] = $temp[$i];
 					$cutted = implode(' ', $cutted);
-					$text = $cutted.$at_end;
+					$cutted = rtrim($cutted, '\'"!,.');
+					$text = $cutted . $at_end;
 				}
 			} elseif($limit_type == 'words' && $limit_value == 0) {
 				return '';
 			} else {
 				if(JString::strlen($text) > $limit_value){
-					$text = JString::substr(strip_tags($text), 0, $limit_value) . $at_end;
+					$cutted = JString::substr(strip_tags($text, $allowed_html), 0, $limit_value);
+					$cutted = rtrim($cutted, '\'"!,.');
+					$text = $cutted . $at_end;
 				}
 			}
 		} else {

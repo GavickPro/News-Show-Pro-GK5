@@ -43,7 +43,7 @@
 	cursor:pointer; 
 	float:left; 
 	height: 14px; 
-	margin: 5px 4px 0 0!important; 
+	margin: 1px 4px 0 0!important; 
 	text-indent:-999em; 
 	width: 14px; 
 }
@@ -223,7 +223,8 @@ img.nspImage.gkResponsive {
 	max-width: 100%; 
 }
 .nspArtScroll1,
-.nspLinkScroll1 { 
+.nspLinkScroll1 {
+	clear: both; 
 	width: 100%; 
 }
 .nspPages1 { width: 100%; }
@@ -260,7 +261,7 @@ img.nspImage.gkResponsive {
 /* Animation */
 .nspList,
 .nspArtPage { 
-	opacity: 0; 
+	opacity: 0; filter: alpha(opacity=0);
 	-webkit-transition: opacity 0.5s ease-out; 
 	   -moz-transition: opacity 0.5s ease-out; 
 	    -ms-transition: opacity 0.5s ease-out; 
@@ -269,7 +270,7 @@ img.nspImage.gkResponsive {
 }
 .nspList.active,
 .nspArtPage.active { 
-	opacity: 1; 
+	opacity: 1; filter: alpha(opacity=100);
 }
 
 /* Suffix neutral */

@@ -27,7 +27,7 @@ class NSP_GK5_News_Gallery {
 		// amount
 		$amount = 0;	
 		// main wrapper
-		echo '<div class="gkNspPM gkNspPM-NewsGallery'.(($this->parent->config['portal_mode_news_gallery_autoanimation'] == 1) ? ' gkAutoAnimation' : '').'" data-cols="'.$this->parent->config['portal_mode_news_gallery_cols'].'" data-autoanim-time="'.$this->parent->config['portal_mode_news_gallery_autoanimation_time'].'">';
+		echo '<div class="gkNspPM gkNspPM-NewsGallery'.(($this->parent->config['portal_mode_news_gallery_autoanimation'] == 1) ? ' gkAutoAnimation' : '') . (($this->parent->config['portal_mode_news_gallery_pagination_type'] == 'arrows') ? ' gkArrows' : '').'" data-cols="'.$this->parent->config['portal_mode_news_gallery_cols'].'" data-autoanim-time="'.$this->parent->config['portal_mode_news_gallery_autoanimation_time'].'">';
 		// images wrapper
 		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_news_gallery_cols'].'">';
 		// render images
@@ -40,14 +40,24 @@ class NSP_GK5_News_Gallery {
 				$amount++;
 			}		
 		}
-		// IE8 fix
-		echo '<!--[if IE 8]><div class="ie8clear"></div><![endif]-->';
 		// closing images wrapper
 		echo '</div>';
 		// pagination buttons
 		if($amount > $this->parent->config['portal_mode_news_gallery_cols']) {
-			echo '<a href="#prev" class="gkPrevBtn">&laquo;</a>';
-			echo '<a href="#next" class="gkNextBtn">&raquo;</a>';
+			if($this->parent->config['portal_mode_news_gallery_pagination_type'] == 'arrows') {
+				echo '<a href="#prev" class="gkPrevBtn">&laquo;</a>';
+				echo '<a href="#next" class="gkNextBtn">&raquo;</a>';
+			} else {
+				echo '<ul class="gkPagination">';
+			  
+				$pages = ceil($amount / $this->parent->config['portal_mode_news_gallery_cols']);
+			  
+				for($i = 0; $i < $pages; $i++) :
+					echo '<li'.(($i == 0) ? ' class="active"' : '').'>'.($i+1).'</li>';
+				endfor;
+			  
+				echo '</ul>';
+			}	
 		}
 		// closing main wrapper
 		echo '</div>';

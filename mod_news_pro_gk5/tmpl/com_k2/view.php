@@ -19,8 +19,8 @@ class NSP_GK5_com_k2_View {
 		if($config['news_content_header_pos'] != 'disabled') {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
-			$output = str_replace('"', "&quot;", $item['title']);
-	        $link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));
+			$output = str_replace('"', "&quot;", $output);
+			$link = NSP_GK5_com_k2_View::itemLink($item);
 			//
 			if($config['news_header_link'] == 1) {
 				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</a></h4>';	
@@ -39,7 +39,7 @@ class NSP_GK5_com_k2_View {
 			}
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
-			$link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));
+			$link = NSP_GK5_com_k2_View::itemLink($item);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
 			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
@@ -60,10 +60,13 @@ class NSP_GK5_com_k2_View {
 			$item['title'] = str_replace('"', "&quot;", $item['title']);
 			$uri = JURI::getInstance();
 			//
-			if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_L.jpg')){  
-				$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_L.jpg';
-	        }elseif(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_S.jpg')){  
-				$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_S.jpg';
+			if(!$config['k2_image_size']) {
+			  $config['k2_image_size'] = 'Generic';
+			}
+			//
+			if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg'))
+			{  
+				$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg';
 			} else {
 				// set image to first in article content
 				if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
@@ -120,7 +123,7 @@ class NSP_GK5_com_k2_View {
 					if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
 					//
 					if($config['news_image_link'] == 1) {
-						$link = urldecode( JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))) );
+						$link = NSP_GK5_com_k2_View::itemLink($item);
 						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
 					} else {
 						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
@@ -138,7 +141,7 @@ class NSP_GK5_com_k2_View {
 		//
 		if($config['news_content_readmore_pos'] != 'disabled') {
 			$class = ' f'.$config['news_content_readmore_pos'];
-			$link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));
+			$link = NSP_GK5_com_k2_View::itemLink($item);
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
 				return '<a class="readon inline" href="'.$link.'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
@@ -175,7 +178,7 @@ class NSP_GK5_com_k2_View {
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);				
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
 	        $info_rate = ($item['rating_count'] > 0) ? '<span class="nspRate">' . JText::_('MOD_NEWS_PRO_GK5_NSP_RATE') .' '. number_format($item['rating_sum'] / $item['rating_count'], 2) . '</span>': '';
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'. urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item['cid'].':'.urlencode($item['cat_alias'])))) .'" >'.$item['catname'].'</a>' : $item['catname'];
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_k2_View::categoryLink($item).'" >'.$item['catname'].'</a>' : $item['catname'];
 	        $info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
 	       	//
 	        if(isset($item['comments'])) { 
@@ -236,9 +239,9 @@ class NSP_GK5_com_k2_View {
 			
 			if($config['list_title_limit'] > 0) {
 				$title = htmlspecialchars($item['title']);
-				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
+				$title = NSP_GK5_Utils::cutText($title, $config, 'list_title_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
-				$link = urldecode( JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))) );
+				$link = NSP_GK5_com_k2_View::itemLink($item);
 			
 				if(JString::strlen($title) > 0) {
 					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
@@ -249,6 +252,15 @@ class NSP_GK5_com_k2_View {
 		} else {
 			return '';
 		}
+	}
+	
+	// article link generator
+	static function itemLink($item, $config = false) {
+	    return urldecode(JRoute::_(K2HelperRoute::getItemRoute($item['id'].':'.urlencode($item['alias']), $item['cid'].':'.urlencode($item['cat_alias']))));
+	}
+	// category link generator
+	static function categoryLink($item) {
+	    return urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item['cid'].':'.urlencode($item['cat_alias']))));
 	}
 }
 
