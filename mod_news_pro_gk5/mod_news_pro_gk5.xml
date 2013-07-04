@@ -90,6 +90,8 @@
 	        	
 	        	<field name="k2_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_K2ITEMS" description="MOD_NEWS_PRO_GK5_K2ITEMS_DESC" />
 	
+				<field name="rss_feed" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_RSS_FEED_URL" description="MOD_NEWS_PRO_GK5_RSS_FEED_URL_DESC" />
+	
 				<field name="json_file" type="filelist" default="" label="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE" description="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE_DESC" directory="modules/mod_news_pro_gk5/external_data" filter="(\.json)$" stripext="" hide_default="hide_default" class="gk-hidden-field" />
 				
 				<field name="xml_file" type="filelist" default="" label="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE" description="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE_DESC" directory="modules/mod_news_pro_gk5/external_data" filter="(\.xml)$" stripext="" hide_default="hide_default" class="gk-hidden-field" />
@@ -184,7 +186,10 @@
             	    <option value="XS">XS</option>
             	</field> 
            	</fieldset>
-            
+           	
+           	<fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_RSS">
+           		<field name="rss_cache_time" type="text" default="60" size="10" label="MOD_NEWS_PRO_GK5_RSS_CACHE_TIME" description="MOD_NEWS_PRO_GK5_RSS_CACHE_TIME_DESC" />
+           	</fieldset>
             <!-- Data sources fieldsets END -->
 			
 			<!-- Portal Modes fieldsets START -->
