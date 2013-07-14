@@ -25,9 +25,9 @@ class NSP_GK5_Utils {
 		if (file_exists($cck_path)) {
 			if(JComponentHelper::isEnabled('com_cck', true)){
 				// Force parsing plugin if SEBLOD is used
-				if($this->config['parse_plugins'] == FALSE) {
+				// NEEDS TO BE COMMENTED OUT COZ THERE IS NO $this! if($this->config['parse_plugins'] == FALSE) {
 					 $text = JHtml::_('content.prepare', $text);
-				}
+				// }
 				$text = trim(substr(strip_tags( $text,"<br /><br><strong></strong><p></p><i></i><b></b><span></span><ul></ul><li></li><blockquote></blockquote>"),0));
 			}
 		}
