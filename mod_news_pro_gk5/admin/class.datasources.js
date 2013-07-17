@@ -29,7 +29,7 @@ var DataSources = new Class({
 		document.id('jform_params_data_source').addEvents({
 			'change': function() { $this.changeValue() },		
 			'focus': function() { $this.changeValue() },
-			'blut': function() { $this.changeValue() }
+			'blur': function() { $this.changeValue() }
 		});
 	},
 	
