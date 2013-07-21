@@ -224,8 +224,10 @@ class NSP_GK5_com_k2_Model {
 		ORDER BY 
 			'.$order_options.'
 		LIMIT
-			'.($config['offset']).','.($amount + (int)$config['offset']).';
+			'.($config['offset']).','.$amount.';
 		';
+		
+		echo $query_news;
 		// run SQL query
 		$db->setQuery($query_news);
 		// when exist some results

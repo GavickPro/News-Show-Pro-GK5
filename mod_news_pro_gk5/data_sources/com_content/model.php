@@ -190,7 +190,7 @@ class NSP_GK5_com_content_Model {
 		ORDER BY 
 			'.$order_options.'
 		LIMIT
-			'.($config['offset']).','.($amount + (int)$config['offset']).';
+			'.($config['offset']).','.$amount.';
 		';
 		// run SQL query
 		$db->setQuery($query_news);
