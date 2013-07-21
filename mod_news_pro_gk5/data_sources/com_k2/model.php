@@ -226,8 +226,6 @@ class NSP_GK5_com_k2_Model {
 		LIMIT
 			'.($config['offset']).','.$amount.';
 		';
-		
-		echo $query_news;
 		// run SQL query
 		$db->setQuery($query_news);
 		// when exist some results
