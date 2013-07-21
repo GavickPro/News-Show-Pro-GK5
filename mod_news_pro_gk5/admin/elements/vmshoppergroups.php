@@ -72,7 +72,7 @@ class JFormFieldVMShoppergroups extends JFormFieldList {
         // generating the query
         $tables = $db->getTableList();
         $dbprefix = $db->getPrefix();        
-        if(in_array($dbprefix . '_virtuemart_shoppergroups', $tables)) {            
+        if(in_array($dbprefix . 'virtuemart_shoppergroups', $tables)) {            
             $db->setQuery("SELECT sg.shopper_group_name AS name, sg.virtuemart_shoppergroup_id AS id FROM #__virtuemart_shoppergroups AS sg ORDER BY sg.shopper_group_name ASC");
             $results = $db->loadObjectList();
         } else {

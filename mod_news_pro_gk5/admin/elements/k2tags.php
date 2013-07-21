@@ -66,7 +66,7 @@ class JFormFieldK2Tags extends JFormFieldList {
         // generating the query
         $tables = $db->getTableList();
         $dbprefix = $db->getPrefix();        
-        if(in_array($dbprefix . '_k2_tags', $tables)) {
+        if(in_array($dbprefix . 'k2_tags', $tables)) {
             $db->setQuery("SELECT t.name AS name, t.id AS id FROM #__k2_tags AS t WHERE published = 1 ORDER BY t.name ASC"); 
             $results = $db->loadObjectList();
         } else {

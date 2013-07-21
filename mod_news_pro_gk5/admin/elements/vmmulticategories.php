@@ -87,7 +87,7 @@ class JFormFieldVMMulticategories extends JFormFieldList {
         // generating the query
         $tables = $db->getTableList();
         $dbprefix = $db->getPrefix();        
-        if(in_array($dbprefix . '_virtuemart_category_categories', $tables)) {            
+        if(in_array($dbprefix . 'virtuemart_category_categories', $tables)) {            
             $db->setQuery("SELECT c.category_name AS name, c.virtuemart_category_id AS id, x.category_parent_id AS parent FROM #__virtuemart_categories_".$lang." AS c LEFT JOIN #__virtuemart_category_categories AS x ON x.category_child_id = c.virtuemart_category_id LEFT JOIN #__virtuemart_categories AS cr ON cr.virtuemart_category_id = c.virtuemart_category_id WHERE cr.published = '1' ORDER BY c.category_name, x.category_parent_id ASC");
             $results = $db->loadObjectList();
         } else {

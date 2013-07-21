@@ -67,7 +67,7 @@ class JFormFieldK2Authors extends JFormFieldList {
 		// generating query
 		$tables = $db->getTableList();
 		$dbprefix = $db->getPrefix();        
-		if(in_array($dbprefix . '_k2_items', $tables)) {
+		if(in_array($dbprefix . 'k2_items', $tables)) {
 		    $db->setQuery("SELECT created_by FROM  `#__k2_items` GROUP BY created_by;");   
 		    $results = $db->loadObjectList();
 		} else {
