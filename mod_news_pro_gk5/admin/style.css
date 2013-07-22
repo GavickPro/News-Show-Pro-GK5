@@ -860,3 +860,16 @@ label[id^=jform_params_gk_line_],
 	margin: 4px 0 0 0;
 	width: 24px;
 }
+
+/* Social media */
+#gk-social {
+	margin-top: 10px;
+}
+
+#gk-social > span:first-child {
+	display: inline-block;
+	font-size: 12px;
+	line-height: 1.6;
+	margin-right: 20px;
+	vertical-align: top;	
+}
