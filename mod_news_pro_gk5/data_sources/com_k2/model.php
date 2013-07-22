@@ -140,7 +140,9 @@ class NSP_GK5_com_k2_Model {
 		if($config['news_unauthorized'] == '0') {
 			$access_con = ' AND content.access IN ('. implode(',', JFactory::getUser()->authorisedLevels()) .') ';
 		}
-		$date = JFactory::getDate("now", $config['time_offset']);
+		$app = JFactory::getApplication();
+		$timezone = $app->getCfg('offset') + $config['time_offset'];
+		$date = JFactory::getDate("now", $timezone);
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available
