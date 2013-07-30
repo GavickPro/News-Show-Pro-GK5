@@ -325,6 +325,23 @@
 				<field type="text" name="portal_mode_title_overlay_text_width" default="100" class="input-percents" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TITLE_OVERLAY_TEXT_WIDTH" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_TITLE_OVERLAY_TEXT_WIDTH_DESC" />
 			</fieldset>
 			
+			<fieldset name="NSP_PORTAL_MODE_CENTERED_TITLE_OVERLAY">
+				<field type="text" name="portal_mode_centered_title_overlay_text_bg" default="" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_CENTERED_TITLE_OVERLAY_TEXT_BG" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_CENTERED_TITLE_OVERLAY_TEXT_BG_DESC" />
+				
+				<field name="portal_mode_centered_title_limit_type" class="short" type="radio" default="chars" label="MOD_NEWS_PRO_GK5_TITLE_LIMIT_TYPE" description="">
+				        <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
+				        <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
+				</field>
+				
+				<field name="portal_mode_centered_title_limit" class="short text-limit" type="text" default="40" size="5" label="MOD_NEWS_PRO_GK5_TITLE_MAX_AMOUNT" description=""/>
+				
+				<field name="portal_mode_centered_text_limit_type" class="short" type="radio" default="words" label="MOD_NEWS_PRO_GK5_LIST_TEXT_LIMIT_TYPE" description="">
+				        <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
+				        <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
+				</field>
+				<field name="portal_mode_centered_text_limit" class="short text-limit" type="text" default="30" size="5" label="MOD_NEWS_PRO_GK5_LIST_TEXT_MAX_AMOUNT" description=""/>
+			</fieldset>
+			
 			<fieldset name="NSP_PORTAL_MODE_PORTFOLIO">
 				<field name="portal_mode_portfolio_initial_anim" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_INITIAL_ANIM" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_INITIAL_ANIM_DESC">
 				        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
