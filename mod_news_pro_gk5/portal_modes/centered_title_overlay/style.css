@@ -108,10 +108,22 @@
 }
 
 /* Mobile devices */
-@media (max-width: 1030px) {
-
+@media (max-width: 820px) {
+	.gkNspPM-CenteredTitleOverlay h3 {
+		font-size: 16px;
+	}
+	
+	.gkNspPM-CenteredTitleOverlay p {
+		font-size: 11px;
+	}
 }
 
 @media (max-width: 580px) {
-
+	.gkNspPM-CenteredTitleOverlay h3 {
+		font-size: 24px;
+	}
+	
+	.gkNspPM-CenteredTitleOverlay p {
+		font-size: 13px;
+	}
 }
