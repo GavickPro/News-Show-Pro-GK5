@@ -1,0 +1,8 @@
+{
+	"name": "Product_Gallery_2",
+	"full_name": "PRODUCT_GALLERY_2",
+	"support": [
+		"com_virtuemart"
+	],
+	"thumbnails": true
+}

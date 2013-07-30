@@ -290,6 +290,17 @@
 				<field name="portal_mode_product_gallery_autoanimation_time" type="text" default="5000" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_AUTOANIMATION_TIME" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_AUTOANIMATION_TIME_DESC" />
 			</fieldset>
 			
+			<fieldset name="NSP_PORTAL_MODE_PRODUCT_GALLERY_2">
+				<field name="portal_mode_product_gallery_2_rows" type="text" default="2" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_ROWS_DESC" />
+				
+				<field name="portal_mode_product_gallery_2_cols" type="text" default="4" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_COLS_DESC" />
+				
+				<field name="portal_mode_product_gallery_2_button" type="list" default="cart" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_BUTTON" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_BUTTON_DESC">
+				        <option value="cart">MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_CART</option>
+				        <option value="readon">MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_READON</option>
+				</field>
+			</fieldset>
+			
 			<fieldset name="NSP_PORTAL_MODE_NEWS_BLOCKS">				
 				<field name="portal_mode_news_blocks_cols" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_BLOCKS_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_BLOCKS_COLS_DESC">
 					<option value="1">1</option>
