@@ -69,10 +69,15 @@ class JFormFieldVMShoppergroups extends JFormFieldList {
         // Initialize JavaScript field attributes.
         $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
         $db = JFactory::getDBO();
-        // generating query
-		$db->setQuery("SELECT sg.shopper_group_name AS name, sg.virtuemart_shoppergroup_id AS id FROM #__virtuemart_shoppergroups AS sg ORDER BY sg.shopper_group_name ASC");
- 		// getting results
-   		$results = $db->loadObjectList();
+        // generating the query
+        $tables = $db->getTableList();
+        $dbprefix = $db->getPrefix();        
+        if(in_array($dbprefix . 'virtuemart_shoppergroups', $tables)) {            
+            $db->setQuery("SELECT sg.shopper_group_name AS name, sg.virtuemart_shoppergroup_id AS id FROM #__virtuemart_shoppergroups AS sg ORDER BY sg.shopper_group_name ASC");
+            $results = $db->loadObjectList();
+        } else {
+            $results = array();
+        }
    		
 		if(count($results)){
   	     	// iterating

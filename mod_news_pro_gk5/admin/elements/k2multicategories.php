@@ -62,9 +62,14 @@ class JFormFieldK2Multicategories extends JFormFieldList {
         $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
         $db = JFactory::getDBO();
         // generating query
-		$db->setQuery("SELECT c.name AS name, c.id AS id, c.parent AS parent FROM #__k2_categories AS c WHERE published = 1 AND trash = 0 ORDER BY c.name, c.parent ASC");
- 		// getting results
-   		$results = $db->loadObjectList();
+        $tables = $db->getTableList();
+        $dbprefix = $db->getPrefix();        
+        if(in_array($dbprefix . 'k2_categories', $tables)) {
+            $db->setQuery("SELECT c.name AS name, c.id AS id, c.parent AS parent FROM #__k2_categories AS c WHERE published = 1 AND trash = 0 ORDER BY c.name, c.parent ASC");   
+            $results = $db->loadObjectList();
+        } else {
+            $results = array();
+        }
    		
 		if(count($results)){
   	     	// iterating

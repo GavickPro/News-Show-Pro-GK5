@@ -126,7 +126,9 @@ class NSP_GK5_com_virtuemart_Model {
 		//if($config['news_unauthorized'] == '0') {
 		//	$access_con = ' AND content.access IN ('. implode(',', JFactory::getUser()->authorisedLevels()) .') ';
 		//}
-		$date = JFactory::getDate("now", $config['time_offset']);
+		$app = JFactory::getApplication();
+		$timezone = $app->getCfg('offset') + $config['time_offset'];
+		$date = JFactory::getDate("now", $timezone);
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available
@@ -134,9 +136,9 @@ class NSP_GK5_com_virtuemart_Model {
 		$frontpage_con = '';
 		
 		if($config['only_featured'] == 0 && $config['news_featured'] == 0) {
-		 	$frontpage_con = ' AND contentR.product_special = \'0\' ';
+		 	$frontpage_con = ' AND contentR.product_special = 0 ';
 		} else if($config['only_featured'] == 1) {
-			$frontpage_con = ' AND contentR.product_specia = \'1\' ';
+			$frontpage_con = ' AND contentR.product_special = 1 ';
 		}
 		
 		$since_con = '';
@@ -221,9 +223,9 @@ class NSP_GK5_com_virtuemart_Model {
                 sgroup.virtuemart_shoppergroup_id = psgroup.virtuemart_shoppergroup_id
 		WHERE
             contentR.product_parent_id = 0
-            AND contentR.published = \'1\'  
+            AND contentR.published = 1  
 			AND ( '.$sql_where.' ) 
-			'.$featured_con.' 
+			'.$frontpage_con.' 
 			'.$since_con.'
 			'.$shopper_group_con.'
 			'.$out_of_stock_con.'

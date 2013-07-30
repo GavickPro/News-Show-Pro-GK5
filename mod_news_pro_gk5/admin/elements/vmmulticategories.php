@@ -51,7 +51,7 @@ class JFormFieldVMMulticategories extends JFormFieldList {
 	        	$siteLang = JFactory::getLanguage()->getTag();
 	        	$lang = strtolower(strtr($siteLang,'-','_'));
 	        
-               	return '<select id="jform_params_vm_categories" style="display:none"></select><strong style="line-height: 2.6em">VirtueMart is not installed or any VirtueMart categories are available (current language: ' . $lang . ').</strong>';
+               	return '<select id="jform_params_vm_categories" style="display:none" class="gk-hidden-field"></select><strong style="line-height: 2.6em">VirtueMart is not installed or any VirtueMart categories are available (current language: ' . $lang . ').</strong>';
             }
 		}
 
@@ -84,10 +84,15 @@ class JFormFieldVMMulticategories extends JFormFieldList {
 		$siteLang = JFactory::getLanguage()->getTag();
 		$lang = strtolower(strtr($siteLang,'-','_'));
 
-        // generating query
-        $db->setQuery("SELECT c.category_name AS name, c.virtuemart_category_id AS id, x.category_parent_id AS parent FROM #__virtuemart_categories_".$lang." AS c LEFT JOIN #__virtuemart_category_categories AS x ON x.category_child_id = c.virtuemart_category_id LEFT JOIN #__virtuemart_categories AS cr ON cr.virtuemart_category_id = c.virtuemart_category_id WHERE cr.published = '1' ORDER BY c.category_name, x.category_parent_id ASC");
- 		// getting results
-   		$results = $db->loadObjectList();
+        // generating the query
+        $tables = $db->getTableList();
+        $dbprefix = $db->getPrefix();        
+        if(in_array($dbprefix . 'virtuemart_category_categories', $tables)) {            
+            $db->setQuery("SELECT c.category_name AS name, c.virtuemart_category_id AS id, x.category_parent_id AS parent FROM #__virtuemart_categories_".$lang." AS c LEFT JOIN #__virtuemart_category_categories AS x ON x.category_child_id = c.virtuemart_category_id LEFT JOIN #__virtuemart_categories AS cr ON cr.virtuemart_category_id = c.virtuemart_category_id WHERE cr.published = '1' ORDER BY c.category_name, x.category_parent_id ASC");
+            $results = $db->loadObjectList();
+        } else {
+            $results = array();
+        }
    		
 		if(count($results)){
   	     	// iterating

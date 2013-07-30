@@ -63,8 +63,17 @@ class JFormFieldK2Authors extends JFormFieldList {
         // Initialize JavaScript field attributes.
         $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
         $db = JFactory::getDBO();
-		$db->setQuery("SELECT created_by FROM  `#__k2_items` GROUP BY created_by;");
-   		$results = $db->loadObjectList();
+		
+		// generating query
+		$tables = $db->getTableList();
+		$dbprefix = $db->getPrefix();        
+		if(in_array($dbprefix . 'k2_items', $tables)) {
+		    $db->setQuery("SELECT created_by FROM  `#__k2_items` GROUP BY created_by;");   
+		    $results = $db->loadObjectList();
+		} else {
+		    $results = array();
+		}
+		
         $authors = array();
         $authors_arr = array();
 		if(count($results)) {
