@@ -41,7 +41,7 @@ class NSP_GK5_Centered_Title_Overlay {
 			// output the HTML code - main wrapper
 			echo '<figure class="gkNspPM gkNspPM-CenteredTitleOverlay">';
 			if($this->get_image($i)) {
-				echo '<img src="'.strip_tags($this->get_image($i)).'" alt="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'" />';
+				echo '<a href="'.$this->get_link($i).'"><img src="'.strip_tags($this->get_image($i)).'" alt="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'" /></a>';
 			}
 			echo '<figcaption>';
 			echo '<div><div>';

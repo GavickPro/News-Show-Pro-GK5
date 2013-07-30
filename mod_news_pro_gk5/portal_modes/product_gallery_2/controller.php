@@ -44,7 +44,7 @@ class NSP_GK5_Product_Gallery_2 {
 					echo '<div class="gkAddToCart">' . $store_output['cart'] . '</div>';
 				} else {
 					echo '<div class="gkAddToCart">';
-					echo '<a href="' . $link . '" class="gkReadon">' . JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_READON_TEXT') . '</a>';
+					echo '<a href="' . $link . '" class="readon">' . JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_READON_TEXT') . '</a>';
 					echo '</div>';
 				}
 				echo '</div>';
