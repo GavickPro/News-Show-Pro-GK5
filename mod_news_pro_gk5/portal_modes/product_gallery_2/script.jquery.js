@@ -4,11 +4,6 @@ jQuery(document).ready(function() {
 		
 		if(!module.hasClass('active')) {
 			module.addClass('active');
-			gkPortalModeProductGallery2Init(module);
 		}
 	});
 });
-
-var gkPortalModeProductGallery2Init = function(module) {
-	module = jQuery(module);
-};

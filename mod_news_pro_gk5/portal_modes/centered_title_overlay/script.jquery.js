@@ -5,11 +5,9 @@ jQuery(window).load(function() {
 		jQuery(document).find('.gkNspPM-CenteredTitleOverlay').each(function(i, module) {
 			module = jQuery(module);
 			
-			setTimeout(function() {
-				if(!module.hasClass('active')) {
-					module.addClass('active');
-				}
-			}, i * 150);
+			if(!module.hasClass('active')) {
+				module.addClass('active');
+			}
 		});
 	}, 1000);
 });

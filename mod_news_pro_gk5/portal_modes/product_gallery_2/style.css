@@ -188,7 +188,12 @@
 	}
 }
 
-@media (max-width: 320px) {
+@media (max-width: 580px) {
+	.gkNspPM-ProductGallery2 {
+		margin: 0 auto;
+		max-width: 320px;
+	}
+	
 	.gkNspPM-ProductGallery2[data-cols="1"] > div,
 	.gkNspPM-ProductGallery2[data-cols="2"] > div,
 	.gkNspPM-ProductGallery2[data-cols="3"] > div,

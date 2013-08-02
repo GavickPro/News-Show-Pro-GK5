@@ -125,6 +125,11 @@
 }
 
 @media (max-width: 580px) {
+	.gkNspPM-CenteredTitleOverlay,
+	.gkNspPM-CenteredTitleOverlay img {
+		width: 100%;
+	}
+	
 	.gkNspPM-CenteredTitleOverlay h3 {
 		font-size: 24px;
 	}
