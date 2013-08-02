@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
-	<creationDate>05/07/2013</creationDate>
+	<creationDate>02/08/2013</creationDate>
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2013 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavick.com</authorUrl>
-	<version>1.2</version>
+	<version>1.2.2</version>
 	<description>
 	<![CDATA[
 		<style type='text/css'>
@@ -19,7 +19,7 @@
 			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
 		</style>
 		<span class='readonly'>
-			<h1>News Show Pro GK5 <small>ver. 1.2</small></h1>
+			<h1>News Show Pro GK5 <small>ver. 1.2.2</small></h1>
 			<p>GK5 is new generation of our extensions dedicated to Joomla 2.5+.</p>
 			<p>Basing on experiences gathered, we created probably the best tool to present articles for Joomla! Huge amount of options and possibilities of formatting causes News Show Pro GK5 is a complex tool in making www pages content attractive. News Show Pro is appropriate while preparing simple structures with an individual article, the same as, complex arrangements including few articles and a list of links.</p> 
 			<p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
@@ -86,8 +86,10 @@
             	
                 <field name="k2_categories" type="k2multicategories" extension="k2multicategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_K2CATEGORIES" description="MOD_NEWS_PRO_GK5_K2CATEGORIES_DESC" />
                 
-                <field name="k2_tags" type="k2tags" class="gk-hidden-field" extension="k2tags" default="" size="25" label="MOD_NEWS_PRO_GK5_K2TAGS" description="MOD_NEWS_PRO_GK5_K2TAGS_DESC" />
-	        	
+                <field name="k2_tags" type="k2tags" class="gk-hidden-field" extension="k2tags" default="" size="25" label="MOD_NEWS_PRO_GK5_K2_TAGS" description="MOD_NEWS_PRO_GK5_K2_TAGS_DESC" />
+                                
+                <field name="k2_authors" type="k2authors" class="gk-hidden-field" extension="k2authors" default="" size="25" label="MOD_NEWS_PRO_GK5_K2_AUTHORS" description="MOD_NEWS_PRO_GK5_K2_AUTHORS_DESC" />
+                	        	  	
 	        	<field name="k2_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_K2ITEMS" description="MOD_NEWS_PRO_GK5_K2ITEMS_DESC" />
 	
 				<field name="rss_feed" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_RSS_FEED_URL" description="MOD_NEWS_PRO_GK5_RSS_FEED_URL_DESC" />
@@ -169,22 +171,33 @@
 	            	<option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
 	            </field>
 	            
+	            <field name="hide_current_com_content_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_COM_CONTENT_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_COM_CONTENT_ARTICLE_DESC">
+	                <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+	                <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+	            </field>
+	            
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_K2">
+           		
            		<field name="k2_comments_source" type="list" default="k2" label="MOD_NEWS_PRO_GK5_K2_COMMENTS_SOURCE" description="MOD_NEWS_PRO_GK5_K2_COMMENTS_SOURCE_DESC">
            			<option value="k2">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_K2</option>
             		<option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
             	</field>
             	
-            	<field name="k2_image_size" type="list" default="Generic" label="MOD_NEWS_PRO_GK5_K2_IMAGE_SIZE" description="MOD_NEWS_PRO_GK5_K2_IMAGE_SIZE_DESC">
-            	    <option value="Generic">Generic</option>
-            	    <option value="XL">XL</option>
-            	    <option value="L">L</option>
-            	    <option value="M">M</option>
-            	    <option value="S">S</option>
-            	    <option value="XS">XS</option>
-            	</field> 
+            	<field name="hide_current_k2_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE_DESC">
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field> 
+                
+                <field name="k2_image_size" type="list" default="Generic" label="MOD_NEWS_PRO_GK5_K2_IMAGE_SIZE" description="MOD_NEWS_PRO_GK5_K2_IMAGE_SIZE_DESC">
+                    <option value="Generic">Generic</option>
+                    <option value="XL">XL</option>
+                    <option value="L">L</option>
+                    <option value="M">M</option>
+                    <option value="S">S</option>
+                    <option value="XS">XS</option>
+                </field>  
            	</fieldset>
            	
            	<fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_RSS">
@@ -230,6 +243,16 @@
 				<field name="portal_mode_product_gallery_autoanimation_time" type="text" default="5000" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_AUTOANIMATION_TIME" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_AUTOANIMATION_TIME_DESC" />
 			</fieldset>
 			
+			<fieldset name="NSP_PORTAL_MODE_PRODUCT_GALLERY_2">
+				<field name="portal_mode_product_gallery_2_rows" type="text" default="2" class="input-small" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_ROWS_DESC" />
+				
+				<field name="portal_mode_product_gallery_2_cols" type="text" default="4" size="5" class="input-small" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_COLS_DESC" />
+				
+				<!-- <field name="portal_mode_product_gallery_2_button" type="list" default="cart" class="input-small" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_BUTTON" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_BUTTON_DESC">
+				        <option value="readon">MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_READON</option>
+				</field>-->
+			</fieldset>
+			
 			<fieldset name="NSP_PORTAL_MODE_NEWS_BLOCKS">				
 				<field name="portal_mode_news_blocks_cols" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_BLOCKS_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_BLOCKS_COLS_DESC">
 					<option value="1">1</option>
@@ -263,6 +286,23 @@
 				<field type="text" name="portal_mode_title_overlay_text_bg" class="input-medium" default="transparent" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TITLE_OVERLAY_TEXT_BG" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_TITLE_OVERLAY_TEXT_BG_DESC" />
 
 				<field type="text" name="portal_mode_title_overlay_text_width" default="100" class="input-percents" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TITLE_OVERLAY_TEXT_WIDTH" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_TITLE_OVERLAY_TEXT_WIDTH_DESC" />
+			</fieldset>
+			
+			<fieldset name="NSP_PORTAL_MODE_CENTERED_TITLE_OVERLAY">
+				<field type="text" name="portal_mode_centered_title_overlay_text_bg" default="" class="input-small gk-color" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_CENTERED_TITLE_OVERLAY_TEXT_BG" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_CENTERED_TITLE_OVERLAY_TEXT_BG_DESC" />
+				
+				<field name="portal_mode_centered_title_limit_type" type="radio" class="btn-group" default="chars" label="MOD_NEWS_PRO_GK5_TITLE_LIMIT_TYPE" description="">
+				        <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
+				        <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
+				</field>
+				
+				<field name="portal_mode_centered_title_limit" class="input-small text-limit" type="text" default="40" size="5" label="MOD_NEWS_PRO_GK5_TITLE_MAX_AMOUNT" description=""/>
+				
+				<field name="portal_mode_centered_text_limit_type" type="radio" class="btn-group" default="words" label="MOD_NEWS_PRO_GK5_LIST_TEXT_LIMIT_TYPE" description="">
+				        <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
+				        <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
+				</field>
+				<field name="portal_mode_centered_text_limit" class="input-small text-limit" type="text" default="30" size="5" label="MOD_NEWS_PRO_GK5_LIST_TEXT_MAX_AMOUNT" description=""/>
 			</fieldset>
 			
 			<fieldset name="NSP_PORTAL_MODE_PORTFOLIO">
@@ -336,10 +376,18 @@
                         <option value="left">MOD_NEWS_PRO_GK5_FLEFT</option>
                         <option value="right">MOD_NEWS_PRO_GK5_FRIGHT</option>
                 </field>
+                
                 <field name="news_image_link" type="list" class="gk_switch last-in-group gk-group-image" default="1" label="MOD_NEWS_PRO_GK5_IMAGE_LINK" description="">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
+                
+                <field name="news_image_modal" type="list" class="gk_switch last-in-group gk-group-image" default="0" label="MOD_NEWS_PRO_GK5_IMAGE_MODAL" description="MOD_NEWS_PRO_GK5_IMAGE_MODAL_DESC">
+	                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+	                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+	            </field>
+	            
+	            
                 <field name="gk_line_4" type="line" text="MOD_NEWS_PRO_GK5_LINE_TEXT_LAYOUT" desc="MOD_NEWS_PRO_GK5_LINE_TEXT_LAYOUT_DESC" toggle="text" />
                 <field name="news_content_text_pos" type="list" default="left" label="MOD_NEWS_PRO_GK5_TEXT_POS" description="" class="gk-group-text">
 						<option value="left">MOD_NEWS_PRO_GK5_TLEFT</option>
@@ -366,6 +414,7 @@
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
+                <field name="allowed_tags" type="text" default="" size="20" label="MOD_NEWS_PRO_GK5_ALLOWED_TAGS" description="MOD_NEWS_PRO_GK5_ALLOWED_TAGS_DESC" class="gk-group-text" />
                 <field name="more_text_value" type="text" default="..." size="5" label="MOD_NEWS_PRO_GK5_MORE_TEXT_VALUE" description="MOD_NEWS_PRO_GK5_MORE_TEXT_VALUE_DESC" class="gk-group-text" />
                 <field name="parse_plugins" type="list" class="gk_switch gk-group-text" default="0" label="MOD_NEWS_PRO_GK5_PARSE" description="MOD_NEWS_PRO_GK5_PARSE_DESC">
                 		<option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
@@ -490,17 +539,17 @@
             </fieldset>
 
             <fieldset name="NSP_LINKS_LAYOUT">
-                <field name="news_short_pages" type="text" default="3" size="5" label="MOD_NEWS_PRO_GK5_NEWS_SHORT_PAGES_AMOUNT" description="MOD_NEWS_PRO_GK5_NEWS_SHORT_PAGES_AMOUNT_DESC"/>
-				<field name="links_amount" type="text" default="3" size="5" label="MOD_NEWS_PRO_GK5_LINKSAMOUNT" description="MOD_NEWS_PRO_GK5_LINKSAMOUNT_DESC"/>
-				<field name="links_columns_amount" type="text" default="1" size="5" label="MOD_NEWS_PRO_GK5_LINKSCOLAMOUNT" description="MOD_NEWS_PRO_GK5_LINKSCOLAMOUNT_DESC"/>
+                <field name="news_short_pages" type="text" default="3" size="5" class="input-small" label="MOD_NEWS_PRO_GK5_NEWS_SHORT_PAGES_AMOUNT" description="MOD_NEWS_PRO_GK5_NEWS_SHORT_PAGES_AMOUNT_DESC"/>
+				<field name="links_amount" type="text" default="3" size="5" class="input-small" label="MOD_NEWS_PRO_GK5_LINKSAMOUNT" description="MOD_NEWS_PRO_GK5_LINKSAMOUNT_DESC"/>
+				<field name="links_columns_amount" type="text" default="1" class="input-small" size="5" label="MOD_NEWS_PRO_GK5_LINKSCOLAMOUNT" description="MOD_NEWS_PRO_GK5_LINKSCOLAMOUNT_DESC"/>
 	    		<field name="bottom_interface_style" type="list" default="arrows_with_pagination" label="MOD_NEWS_PRO_GK5_BOTTOM_INTERFACE_STYLE" description="">
 	    		    <option value="none">MOD_NEWS_PRO_GK5_NONE</option>
 	    		    <option value="arrows">MOD_NEWS_PRO_GK5_ARROWS</option>
 	    		    <option value="pagination">MOD_NEWS_PRO_GK5_PAGINATION</option>
 	    			<option value="arrows_with_pagination">MOD_NEWS_PRO_GK5_ARROWS_WITH_PAGINATION</option>
 	    		</field>
-		    	<field name="links_margin" type="text" default="0" label="MOD_NEWS_PRO_GK5_LINKS_MARGIN" description="MOD_NEWS_PRO_GK5_LINKS_MARGIN_DESC" />
-		    	<field name="links_position" type="list" default="bottom" label="MOD_NEWS_PRO_GK5_LINKS_POSITION" description="MOD_NEWS_PRO_GK5_LINKS_POSITION_DESC">
+		    	<field name="links_margin" type="text" default="0" class="input-small" label="MOD_NEWS_PRO_GK5_LINKS_MARGIN" description="MOD_NEWS_PRO_GK5_LINKS_MARGIN_DESC" />
+		    	<field name="links_position" type="list" class="input-small" default="bottom" label="MOD_NEWS_PRO_GK5_LINKS_POSITION" description="MOD_NEWS_PRO_GK5_LINKS_POSITION_DESC">
 		            <option value="bottom">MOD_NEWS_PRO_GK5_BOTTOM</option>
 		            <option value="left">MOD_NEWS_PRO_GK5_LEFT</option>
 		            <option value="right">MOD_NEWS_PRO_GK5_RIGHT</option>
@@ -510,12 +559,12 @@
                         <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
                         <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
                 </field>
-                <field name="list_title_limit" class="short text-limit" type="text" default="20" size="5" label="MOD_NEWS_PRO_GK5_LIST_TITLE_MAX_AMOUNT" description=""/>
+                <field name="list_title_limit" class="input-small text-limit" type="text" default="20" size="5" label="MOD_NEWS_PRO_GK5_LIST_TITLE_MAX_AMOUNT" description=""/>
                 <field name="list_text_limit_type" type="radio" class="btn-group" default="words" label="MOD_NEWS_PRO_GK5_LIST_TEXT_LIMIT_TYPE" description="">
                         <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
                         <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
                 </field>
-                <field name="list_text_limit" class="short text-limit" type="text" default="30" size="5" label="MOD_NEWS_PRO_GK5_LIST_TEXT_MAX_AMOUNT" description=""/>
+                <field name="list_text_limit" class="text-limit input-small"  type="text" default="30" size="5" label="MOD_NEWS_PRO_GK5_LIST_TEXT_MAX_AMOUNT" description=""/>
             </fieldset>    
 
             <fieldset name="NSP_THUMBNAILS">   
@@ -529,7 +578,7 @@
                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                </field>
                          
-                <field name="memory_limit" type="list" default="128M" label="MOD_NEWS_PRO_GK5_MEMORY_LIMIT" description="MOD_NEWS_PRO_GK5_MEMORY_LIMIT_DESC">
+                <field name="memory_limit" type="list" class="input-small" default="128M" label="MOD_NEWS_PRO_GK5_MEMORY_LIMIT" description="MOD_NEWS_PRO_GK5_MEMORY_LIMIT_DESC">
                 		<option value="16M">16MB</option>
                         <option value="32M">32MB</option>
                         <option value="64M">64MB</option>
@@ -558,14 +607,14 @@
                 </field>
                 <field name="img_width" type="text" default="160" size="5" class="input-times text_area" label="MOD_NEWS_PRO_GK5_IMAGE_W" description="MOD_NEWS_PRO_GK5_IMAGE_W_DESC"/>
 				<field name="img_height" type="text" default="120" size="5" class="input-pixels text_area" label="MOD_NEWS_PRO_GK5_IMAGE_H" description="MOD_NEWS_PRO_GK5_IMAGE_H_DESC"/>
-				<field name="img_margin" type="text" default="6px 14px 0 0" label="MOD_NEWS_PRO_GK5_IMAGE_MARGIN" description="MOD_NEWS_PRO_GK5_IMAGE_MARGIN_DESC"/>
-                <field name="img_bg" type="text" default="#000" size="5" label="MOD_NEWS_PRO_GK5_IMAGE_BG" description="MOD_NEWS_PRO_GK5_IMAGE_BG_DESC"/>   
+				<field name="img_margin" type="text" class="input-medium" default="6px 14px 0 0" label="MOD_NEWS_PRO_GK5_IMAGE_MARGIN" description="MOD_NEWS_PRO_GK5_IMAGE_MARGIN_DESC"/>
+                <field name="img_bg" class="input-medium gk-color" type="text" default="#000" size="5" label="MOD_NEWS_PRO_GK5_IMAGE_BG" description="MOD_NEWS_PRO_GK5_IMAGE_BG_DESC"/>   
 				<field name="img_stretch" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_IMAGE_STRETCH" description="MOD_NEWS_PRO_GK5_IMAGE_STRETCH_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
-				<field name="img_quality" type="text"  class="input-percents text_area" default="95" size="5" label="MOD_NEWS_PRO_GK5_IMAGE_QUALITY" description="MOD_NEWS_PRO_GK5_IMAGE_QUALITY_DESC"/>   
-				<field name="cache_time" type="text" default="30" size="5" class="input-minutes text_area medium" label="MOD_NEWS_PRO_GK5_CACHE_TIME" description="MOD_NEWS_PRO_GK5_CACHE_TIME_DESC"/>   
+				<field name="img_quality" type="text"  class="input-small input-percents text_area" default="95" size="5" label="MOD_NEWS_PRO_GK5_IMAGE_QUALITY" description="MOD_NEWS_PRO_GK5_IMAGE_QUALITY_DESC"/>   
+				<field name="cache_time" type="text" default="30" size="5" class="input-small input-minutes text_area medium" label="MOD_NEWS_PRO_GK5_CACHE_TIME" description="MOD_NEWS_PRO_GK5_CACHE_TIME_DESC"/>   
                 <field name="simple_crop_editor" type="simplecrop" default="" label="MOD_NEWS_PRO_GK5_SIMPLE_CROP" description="MOD_NEWS_PRO_GK5_SIMPLE_CROP_DESC"/>
                 <field name="simple_crop_top" type="text" class="input-percents" default="0" size="5" label="MOD_NEWS_PRO_GK5_SIMPLE_CROP_TOP" description="MOD_NEWS_PRO_GK5_SIMPLE_CROP_TOP_DESC"/>
                 <field name="simple_crop_bottom" type="text" class="input-percents" default="0" size="5" label="MOD_NEWS_PRO_GK5_SIMPLE_CROP_BOTTOM" description="MOD_NEWS_PRO_GK5_SIMPLE_CROP_BOTTOM_DESC"/>
@@ -603,7 +652,7 @@
                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field> 
-                <field name="filter_arg" type="text" default="0" label="MOD_NEWS_PRO_GK5_FILTER_ARG" description="MOD_NEWS_PRO_GK5_FILTER_ARG_DESC" />
+                <field name="filter_arg" type="text" class="input-small" default="0" label="MOD_NEWS_PRO_GK5_FILTER_ARG" description="MOD_NEWS_PRO_GK5_FILTER_ARG_DESC" />
             </fieldset>
 
             <fieldset name="NSP_ADDITIONAL_SETTINGS">
@@ -615,8 +664,8 @@
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>  
-                <field name="animation_speed" class="input-ms text_area medium" type="text" default="400" size="5" label="MOD_NEWS_PRO_GK5_ANIMSPEED" description="MOD_NEWS_PRO_GK5_ANIMSPEED_DESC"/>        
-                <field name="animation_interval" class="input-ms text_area medium last-in-group" type="text" default="5000" size="5" label="MOD_NEWS_PRO_GK5_ANIMINTERVAL" description="MOD_NEWS_PRO_GK5_ANIMINTERVAL_DESC"/>   
+                <field name="animation_speed" class="input-small input-ms text_area" type="text" default="400" size="5" label="MOD_NEWS_PRO_GK5_ANIMSPEED" description="MOD_NEWS_PRO_GK5_ANIMSPEED_DESC"/>        
+                <field name="animation_interval" class="input-small input-ms text_area last-in-group" type="text" default="5000" size="5" label="MOD_NEWS_PRO_GK5_ANIMINTERVAL" description="MOD_NEWS_PRO_GK5_ANIMINTERVAL_DESC"/>   
                 <field name="animation_function" type="list" default="Fx.Transitions.Expo.easeIn" label="MOD_NEWS_PRO_GK5_ANIMATION_FUNCTION" description="MOD_NEWS_PRO_GK5_ANIMATION_FUNCTION_DESC">
                         <option value="Fx.Transitions.linear">linear</option>
                         <option value="Fx.Transitions.Quad.easeIn">Quad.easeIn</option>

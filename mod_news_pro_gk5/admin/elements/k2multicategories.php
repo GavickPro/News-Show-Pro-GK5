@@ -29,13 +29,7 @@ class JFormFieldK2Multicategories extends JFormFieldList {
 		// Initialize JavaScript field attributes.
 		$attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
 		// Get the field options.
-		$path = JPath::clean(JPATH_BASE.DS.'components'.DS.'com_k2');
-		if (! file_exists($path)) {
-			// do nothing because K2 is not installed
-		} else {
-			$options = (array) $this->getOptions();
-		}	
-		// Create a read-only list (no name) with a hidden input to store the value.
+		$options = (array) $this->getOptions();		// Create a read-only list (no name) with a hidden input to store the value.
 		if ((string) $this->element['readonly'] == 'true') {
 			$html[] = JHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
 			$html[] = '<input type="hidden" name="'.$this->name.'" value="'.$this->value.'"/>';
@@ -66,7 +60,7 @@ class JFormFieldK2Multicategories extends JFormFieldList {
         $attr .= $this->multiple ? ' multiple="multiple"' : '';
         // Initialize JavaScript field attributes.
         $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
-        $db = JFactory::getDBO();
+         $db = JFactory::getDBO();
         // generating query
 		$db->setQuery("SELECT c.name AS name, c.id AS id, c.parent AS parent FROM #__k2_categories AS c WHERE published = 1 AND trash = 0 ORDER BY c.name, c.parent ASC");
  		// getting results

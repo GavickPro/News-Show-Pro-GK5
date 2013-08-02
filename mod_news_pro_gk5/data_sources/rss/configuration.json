@@ -1,7 +1,7 @@
 {
 	"data_source": "RSS_TITLE",
 	"source": "rss",
-	"tab": "NSP_DATA_SOURCE_RSS-options",
+	"tab": "RSS_Additional_Settings",
 	"sources": [
 		{
 			"name": "RSS_FEED",

@@ -15,10 +15,12 @@ DataSources.prototype.init = function() {
 	this.datasources = [];
 	// get the data sources configuration
 	jQuery('.gk-json-config').each(function(i, item) {
-		var name = jQuery(item).attr('id').replace('gk-json-config-', '');
-		$this.configs[name] = JSON.decode(item.innerHTML);
+		item = jQuery(item);
+		var name = item.attr('id').replace('gk-json-config-', '');
+		$this.configs[name] = JSON.decode(item.html());
 		$this.datasources.push(name);
 	});
+	
 	// hide hidden fields
 	jQuery('.gk-hidden-field').each(function(i, field) {
 		jQuery(field).parent().parent().css('display', 'none');
@@ -40,15 +42,19 @@ DataSources.prototype.changeValue = function() {
 	var data_source_value = jQuery('#jform_params_data_source').val();
 	// get the name of data source
 	var option_field = jQuery('#jform_params_data_source').find('option[value="'+data_source_value+'"]');
+	
+	
+	
 	var data_source_name = option_field.attr('data-source');
 	// hide tabs with settings for unused data sources
 	jQuery($this.datasources).each(function(i, obj) {
 		obj = $this.configs[obj];
-		
-		if(obj.source != data_source_name && jQuery(obj.tab)) {
-			jQuery(obj.tab).parent().parent().css('display', 'none');	
-		} else if(jQuery(obj.tab)) {
-			jQuery(obj.tab).parent().parent().css('display', 'block');
+		if(obj.source != data_source_name) {
+			jQuery('#'+obj.tab).parents().eq(2).css('display', 'none');	
+			
+		} else  {
+			
+			jQuery('#'+obj.tab).parents().eq(2).css('display', 'block');
 		}
 	});	
 	// hide previously showed field (if exists)
@@ -148,7 +154,6 @@ DataSources.prototype.changeValue = function() {
 		// if the portal mode is used
 		if(portal_mode_value != 'normal') {
 			var portal_mode_config = JSON.decode(jQuery('#gk-json-config-pm-'+portal_mode_value).html());
-			console.log(portal_mode_config);
 			// search for the data source name
 			var isSupported = false;
 			jQuery(portal_mode_config.support).each(function(i, source) {

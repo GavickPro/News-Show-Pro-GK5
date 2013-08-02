@@ -4,6 +4,14 @@ defined('JPATH_BASE') or die;
 
 jimport('joomla.form.formfield');
 
+
+if(!function_exists('json_last_error')) {
+	define('JSON_ERROR_NONE', 1);
+	function json_last_error() {
+		return JSON_ERROR_NONE;
+	}
+}
+
 class JFormFieldDataSource extends JFormField {
 	//
 	protected $type = 'DataSource';

@@ -1,6 +1,6 @@
 <?php
 /**
-* JElementK2Tags - additional element for module XML file
+* JElementK2Authors - additional element for module XML file
 * @package Highlighter GK4
 * @Copyright (C) 2009-2011 Gavick.com
 * @ All rights reserved
@@ -12,8 +12,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');//import the necessary class definition for formfield
-class JFormFieldK2Tags extends JFormFieldList {
-    public $type = 'K2Tags';
+class JFormFieldK2Authors extends JFormFieldList {
+    public $type = 'K2Authors';
     
     protected function getInput() {
 		// Initialize variables.
@@ -41,7 +41,7 @@ class JFormFieldK2Tags extends JFormFieldList {
 		    if($options[0]!=''){
 				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
-               return '<select id="jform_params_k2_tags" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">K2 is not installed or any K2 tags are available.</strong>';
+               return '<select id="jform_params_k2_authors" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">K2 is not installed or any K2 authors are available.</strong>';
             }
 		}
 		
@@ -63,18 +63,29 @@ class JFormFieldK2Tags extends JFormFieldList {
         // Initialize JavaScript field attributes.
         $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
         $db = JFactory::getDBO();
-		$db->setQuery("SELECT t.name AS name, t.id AS id FROM #__k2_tags AS t WHERE published = 1 ORDER BY t.name ASC");
+		$db->setQuery("SELECT created_by FROM  `#__k2_items` GROUP BY created_by;");
    		$results = $db->loadObjectList();
-        $tags=array();
+        $authors = array();
+        $authors_arr = array();
 		if(count($results)) {
-			foreach ($results as $tag) {
-				$tags[] = JHtml::_('select.option', $tag->id, $tag->name);	
+			foreach ($results as $ID) {
+				array_push($authors_arr, $ID->created_by);	
 			}		
-  	     $tags = array_merge(parent::getOptions(), $tags);
-	     return $tags;
-    } else {
-            $tags=array();
-            return $tags;
+			
+			$db->setQuery("SELECT id, name FROM  `#__users` WHERE id IN (".implode(',', $authors_arr).") ORDER BY name ASC;");
+			$res = $db->loadObjectList();
+			
+			if(count($res)) {
+				foreach ($res as $author) {
+					$authors[] = JHtml::_('select.option', $author->id, $author->name);
+  	    			$authors = array_merge(parent::getOptions(), $authors);
+  	    		}
+  	    	}
+  	    	
+	    	return $authors;
+    	} else {
+            $authors = array();
+            return $authors;
 		}
     }
 }

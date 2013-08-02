@@ -6,9 +6,26 @@
 * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html 
 * @version $Revision: GK5 1.0 $ **/ 
 
+::-moz-selection {
+background: transparent;
+}
+
+::selection {
+	background: transparent;
+}
+
+#jform_params_about_us-lbl,
+#jform_params___field1-lbl,
+label[id^=jform_params_gk_line_],
+#jform_params_source_name,
+#jform_params_checkout-lbl {
+	display: none;
+}
+
 select[multiple], select[size] {
 	max-height: 150px;
 }
+
 #jform_params_about_us-lbl,
 #jform_params___field1-lbl,
 label[id^=jform_params_gk_line_],
@@ -142,7 +159,7 @@ div.control-group > div.controls select {
 }
 div.control-group > div.controls #jform_params_img_width,
 div.control-group > div.controls #jform_params_img_height {
-	max-width: 66px;
+	max-width: 40px;
 }
 div.control-group > div.controls input#jform_params_news_since {
 	max-width: 160px
@@ -436,12 +453,18 @@ span.gk_update_link a:hover {
 	color:#555;
 	margin:16px 0;
 	overflow:hidden;
-	padding:10px 20px
+	padding:10px 20px;
+	position: absolute;
+	top: 0;
+	right: 20px;
+	max-width: 510px;
 }
 #config_manager_form label {
 	margin: 11px 0 0
 }
-
+#config_manager_form span {
+	font-size: 12px;
+}
 #gk_module_updates {
 	border-right: 1px solid #eee;
 	margin: 20px -10px 0
@@ -560,7 +583,6 @@ fieldset.panelform select[multiple=multiple] {
 }
 ul#nsp-gk5-checkout {
 	list-style: none;
-	margin: 0;
 }
 #nsp-gk5-checkout h3 { background: #fb6239; color: #fff; padding: 4px; font-size: 12px;}
 .pane-toggler span {
@@ -797,8 +819,40 @@ select.gk_switch {
 	display: none!important;
 }
 
+/* Color visualisation */
+#jform_params_img_bg,
+#jform_params_portal_mode_centered_title_overlay_text_bg {
+	float: left;
+}
+.gk-color-vis {
+	background: transparent;
+	border: 2px solid #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	float: left;
+	height: 24px;
+	margin: 0 0 0 6px;
+	width: 24px;
+}
 
+/* Social media */
+#gk-social {
+	margin-top: 10px;
+}
 
+#gk-social iframe {
+	margin-right: 5px;	
+	min-width: 120px;
+}
+
+#gk-social > span:first-child {
+	display: inline-block;
+	font-size: 12px;
+	line-height: 1.6;
+	margin-right: 20px;
+	vertical-align: top;	
+}
 
 /* Joomla!3.0 fixes */
 select.chzn-done {
@@ -825,6 +879,39 @@ div.switcher-on + select,
 div.switcher-off + select {
 	display: none!important;
 }
+.form-horizontal .control-label {
+	max-width: 170px;
+}
+#config_manager_delete i.icon-remove {
+	margin: 2px 6px 0 0;
+}
+#simple_crop {
+	position: absolute;
+	right: 20px;
+	top:  150px;
+}
+#nsp-gk5-checkout,
+#gk_about_us {
+	max-width: 750px;
+	margin: 0 auto;
+}
+#moduleOptions > .accordion-group:first-child > .collapse.in {
+	min-height: 300px;
+}
+#moduleOptions .accordion-group {
+	max-width: 1050px;
+	margin: 0 auto 2px;
+}
 
-
-
+@media (max-width: 1050px) { 
+	#config_manager_form,
+	#simple_crop {
+		position: relative;
+		top:  auto;
+		right: auto;
+		max-width: 100%;
+	}
+	#moduleOptions > .accordion-group > .collapse.in  {
+		min-height: auto;
+	}
+}

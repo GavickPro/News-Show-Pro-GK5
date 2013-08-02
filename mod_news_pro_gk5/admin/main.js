@@ -25,7 +25,6 @@ jQuery(document).ready(function() {
 	
 	jQuery('#moduleOptions a[href^="#collapse"]').each(function(i, el) {
 		jQuery(el).attr('id', jQuery(el).html().replace(/ /g,'_').replace('!', ''));
-		console.log(jQuery(el).html());
 	});
 
 	/*jQuery('.text-limit').each(function(i, el){
@@ -141,6 +140,24 @@ jQuery(document).ready(function() {
 	jQuery('.input-ms').each(function(i, el){jQuery(el).parent().html("<div class=\"input-prepend\">" + jQuery(el).parent().html() + "<span class=\"add-on\">ms</span></div>")});
 	jQuery('.input-times').each(function(i, el){ jQuery(el).parent().find('#jform_params_img_width').after('<span class=\"add-on\">&times;</span>');});
 	
+	jQuery('.gk-color').each(function(i, el) {
+		var prnt = jQuery(el).parent(); 
+		prnt.html(prnt.html() + "<span class=\"gk-color-vis\"></span>");
+		
+		prnt.find('.gk-color').focus(function() { 
+			prnt.find('.gk-color-vis').css('background-color', prnt.find('.gk-color').attr('value')); 
+		});
+		
+		prnt.find('.gk-color').blur(function() { 
+			prnt.find('.gk-color-vis').css('background-color', prnt.find('.gk-color').attr('value')); 
+		});
+		
+		prnt.find('.gk-color').keyup(function() { 
+			prnt.find('.gk-color-vis').css('background-color', prnt.find('.gk-color').attr('value')); 
+		});
+		
+		prnt.find('.gk-color').trigger('blur');
+	});
 	
 	jQuery('#jform_params_img_height-lbl').parents().eq(1).css('display', 'none');
 	jQuery('.gk-group-layout').each(function(i, elm) {
@@ -149,7 +166,6 @@ jQuery(document).ready(function() {
 	
 	jQuery('.hide-k2').each(function(i, el){
 		el = jQuery(el);
-		console.log(el.parent().html());
 		el.parent().find('.chzn-done').attr('style', 'display: none!important');
 	});
 

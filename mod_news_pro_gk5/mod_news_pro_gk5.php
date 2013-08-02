@@ -23,10 +23,14 @@ if(!class_exists('NSP_GK5_Utils')) require_once (dirname(__FILE__).DS.'helpers'.
 if(!class_exists('NSP_GK5_Article_Format')) require_once(dirname(__FILE__).DS.'helpers'.DS.'gk.format.parser.php');
 // Add MooTools loading for non-Gavick templates
 JHtml::_('behavior.framework', true);
+
 // start the module code
 $helper = new NSP_GK5_Helper();
+
 $helper->init($module, $params);
+
 $helper->getDatas();
+
 $helper->renderLayout();
 
 // EOF
