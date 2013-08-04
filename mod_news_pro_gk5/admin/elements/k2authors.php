@@ -29,8 +29,12 @@ class JFormFieldK2Authors extends JFormFieldList {
 		$attr .= $this->multiple ? ' multiple="multiple"' : '';
 		// Initialize JavaScript field attributes.
 		$attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
-		// Get the field options.
-		$options = (array) $this->getOptions();
+		$path = JPath::clean(JPATH_BASE.DS.'components'.DS.'com_k2');
+		if (! file_exists($path)) {
+			// do nothing because K2 is not installed
+		} else {
+			$options = (array) $this->getOptions();
+		}	
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ((string) $this->element['readonly'] == 'true') {
 			$html[] = JHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
