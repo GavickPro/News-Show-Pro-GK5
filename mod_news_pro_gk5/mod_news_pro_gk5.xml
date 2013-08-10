@@ -91,6 +91,14 @@
                 <field name="k2_authors" type="k2authors" class="gk-hidden-field" extension="k2authors" default="" size="25" label="MOD_NEWS_PRO_GK5_K2_AUTHORS" description="MOD_NEWS_PRO_GK5_K2_AUTHORS_DESC" />
 	        	
 	        	<field name="k2_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_K2ITEMS" description="MOD_NEWS_PRO_GK5_K2ITEMS_DESC" />
+	        	
+	        	<field name="easyblog_categories" type="easyblogmulticategories" extension="easyblogmulticategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_EASYBLOGCATEGORIES" description="MOD_NEWS_PRO_GK5_EASYBLOGCATEGORIES_DESC" />
+	        	
+	        	<field name="easyblog_tags" type="easyblogtags" class="gk-hidden-field" extension="easyblogtags" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOG_TAGS" description="MOD_NEWS_PRO_GK5_EASYBLOG_TAGS_DESC" />
+	        	
+	        	<field name="easyblog_authors" type="easyblogauthors" class="gk-hidden-field" extension="easyblogauthors" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOG_AUTHORS" description="MOD_NEWS_PRO_GK5_EASYBLOG_AUTHORS_DESC" />
+	        	
+	        	<field name="easyblog_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOGITEMS" description="MOD_NEWS_PRO_GK5_EASYBLOGITEMS_DESC" />
 	
 				<field name="rss_feed" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_RSS_FEED_URL" description="MOD_NEWS_PRO_GK5_RSS_FEED_URL_DESC" />
 	
@@ -207,6 +215,18 @@
                     <option value="S">S</option>
                     <option value="XS">XS</option>
                 </field> 
+            </fieldset>
+            
+            <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_EASYBLOG">
+                <field name="easyblog_comments_source" type="list" default="easyblog" label="MOD_NEWS_PRO_GK5_EASYBLOG_COMMENTS_SOURCE" description="MOD_NEWS_PRO_GK5_EASYBLOG_COMMENTS_SOURCE_DESC">
+                        <option value="easyblog">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_EASYBLOG</option>
+                        <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
+                </field>
+                
+                <field name="hide_current_easyblog_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_EASYBLOG_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_EASYBLOG_ARTICLE_DESC">
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field>
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_VIRTUEMART">

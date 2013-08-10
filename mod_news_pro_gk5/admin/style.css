@@ -1,10 +1,12 @@
-/** * Admin CSS file 
+/** 
+* Admin CSS file 
 * @package News Show Pro GK5 
 * @Copyright (C) 2009-2013 Gavick.com 
 * @ All rights reserved 
 * @ Joomla! is Free Software 
 * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html 
-* @version $Revision: GK5 1.0 $ **/ 
+* @version $Revision: GK5 1.0 $ 
+**/ 
 
 ::-moz-selection {
 background: transparent;
@@ -179,10 +181,6 @@ label[id^=jform_params_gk_line_],
 .nspgk5-panel .gkHelpLink:hover {
 	background-position: 0 -48px;
 } /* form elements in the container */
-
-.nspgk5-panel #jform_params_k2_tags {
-	height: 150px
-}
 
 .nspgk5-panel fieldset.panelform > ul > li > label {
 	color: #444;
@@ -493,6 +491,8 @@ label[id^=jform_params_gk_line_],
 
 .nspgk5-panel #jform_params_k2_tags,
 .nspgk5-panel #jform_params_k2_authors,
+.nspgk5-panel #jform_params_easyblog_tags,
+.nspgk5-panel #jform_params_easyblog_authors,
 .nspgk5-panel fieldset.panelform select[multiple=multiple] {
 	height: 150px
 }
