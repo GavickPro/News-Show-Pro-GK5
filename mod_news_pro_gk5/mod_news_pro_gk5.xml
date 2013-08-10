@@ -127,6 +127,11 @@
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
                 
+                <field name="one_article_per_category" type="list" default="0" class="gk_switch gk-hidden-field" label="MOD_NEWS_PRO_GK5_ONE_ARTICLE_PER_CATEGORY" description="MOD_NEWS_PRO_GK5_ONE_ARTICLE_PER_CATEGORY_DESC">
+                		<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                
                 <field name="news_unauthorized" type="list" default="0" class="gk_switch gk-hidden-field" label="MOD_NEWS_PRO_GK5_UNAUTH" description="MOD_NEWS_PRO_GK5_UNAUTH_DESC">
                 		<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
