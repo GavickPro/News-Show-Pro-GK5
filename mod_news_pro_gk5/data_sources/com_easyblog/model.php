@@ -115,7 +115,7 @@ class NSP_GK5_com_easyblog_Model {
 		if($config['data_source'] == 'easyblog_tags' && $config['easyblog_tags'] != ''){
 			// initializing variables
 			$sql_where = '';
-			$tag_join = ' LEFT JOIN #__easyblog_post_tag AS xref ON content.id = xref.post_id LEFT JOIN #__easyblog_tag AS t ON t.id = tx.tag_id ';
+			$tag_join = ' LEFT JOIN #__easyblog_post_tag AS xref ON content.id = xref.post_id LEFT JOIN #__easyblog_tag AS t ON t.id = xref.tag_id ';
 			// getting tag
 			$sql_where .= ' t.id = '. $config['easyblog_tags'];
 		}
