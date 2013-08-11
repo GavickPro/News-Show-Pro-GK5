@@ -227,6 +227,12 @@
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                     <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                 </field>
+                
+                <field name="easyblog_image_size" type="list" default="Generic" label="MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE" description="MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE_DESC">
+                    <option value="original">MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE_ORIGINAL</option>
+                    <option value="thumbnail">MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE_THUMBNAIL</option>
+                    <option value="icon">MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE_ICON</option>
+                </field> 
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_VIRTUEMART">

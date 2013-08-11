@@ -265,7 +265,8 @@ class NSP_GK5_com_easyblog_Model {
 			categories.alias AS cat_alias,
 			users.email AS author_email,
 			'.$config['username'].' AS author_username,
-			content.created_by AS author_id	
+			content.created_by AS author_id,
+			content.image AS image
 		FROM 
 			#__easyblog_post AS content 
 			LEFT JOIN 
