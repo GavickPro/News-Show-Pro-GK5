@@ -67,7 +67,7 @@ class JFormFieldEasyblogAuthors extends JFormFieldList {
 		// generating query
 		$tables = $db->getTableList();
 		$dbprefix = $db->getPrefix();        
-		if(in_array($dbprefix . 'k2_items', $tables)) {
+		if(in_array($dbprefix . 'easyblog_post', $tables)) {
 		    $db->setQuery("SELECT created_by FROM  `#__easyblog_post` GROUP BY created_by;");   
 		    $results = $db->loadObjectList();
 		} else {

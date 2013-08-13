@@ -64,7 +64,7 @@ class JFormFieldEasyblogMulticategories extends JFormFieldList {
         // generating query
         $tables = $db->getTableList();
         $dbprefix = $db->getPrefix();        
-        if(in_array($dbprefix . 'k2_categories', $tables)) {
+        if(in_array($dbprefix . 'easyblog_category', $tables)) {
             $db->setQuery("SELECT c.title AS name, c.id AS id, c.parent_id AS parent FROM #__easyblog_category AS c WHERE published = 1 ORDER BY c.title, c.parent_id ASC");   
             $results = $db->loadObjectList();
         } else {

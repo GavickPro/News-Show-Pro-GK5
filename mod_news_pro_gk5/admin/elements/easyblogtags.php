@@ -66,7 +66,7 @@ class JFormFieldEasyblogTags extends JFormFieldList {
         // generating the query
         $tables = $db->getTableList();
         $dbprefix = $db->getPrefix();        
-        if(in_array($dbprefix . 'k2_tags', $tables)) {
+        if(in_array($dbprefix . 'easyblog_tag', $tables)) {
             $db->setQuery("SELECT t.title AS name, t.id AS id FROM #__easyblog_tag AS t WHERE published = 1 ORDER BY t.title ASC"); 
             $results = $db->loadObjectList();
         } else {
