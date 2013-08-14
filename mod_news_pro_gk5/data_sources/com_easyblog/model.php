@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 class NSP_GK5_com_easyblog_Model {
 	// Method to get sources of articles
 	static function getSources($config) {
-		if($config['data_source'] != 'easyblog_all') {
+		if($config['data_source'] != 'easyblog_all' && $config['data_source'] != 'easyblog_authors') {
 			//
 			$db = JFactory::getDBO();
 			// if source type is section / sections
@@ -23,7 +23,7 @@ class NSP_GK5_com_easyblog_Model {
 			$tag_join= '';
 			//
 			if( $config['data_source'] == 'easyblog_tags' ) {
-				$tag_join = ' LEFT JOIN #__easyblog_post_tag AS xref ON content.id = xref.post_if LEFT JOIN #__easyblog_tags AS t ON t.id = xref.tag_id ';
+				$tag_join = ' LEFT JOIN #__easyblog_post_tag AS xref ON content.id = xref.post_id LEFT JOIN #__easyblog_tag AS t ON t.id = xref.tag_id ';
 			}
 			//
 			if($config['data_source'] == 'easyblog_categories'){

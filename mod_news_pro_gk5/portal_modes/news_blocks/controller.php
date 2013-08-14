@@ -6,6 +6,7 @@ class NSP_GK5_News_Blocks {
 	private $mode;
 	// constructor
 	function __construct($parent) {
+	
 		$this->parent = $parent;
 		// detect the supported Data Sources
 		if(stripos($this->parent->config['data_source'], 'com_content_') !== FALSE) {
@@ -14,6 +15,8 @@ class NSP_GK5_News_Blocks {
 			$this->mode = 'com_k2';
 		} else if(stripos($this->parent->config['data_source'], 'com_virtuemart_') !== FALSE) { 
 			$this->mode = 'com_virtuemart';
+		} else if(stripos($this->parent->config['data_source'], 'easyblog_') !== FALSE) { 
+			$this->mode = 'com_easyblog';
 		} else {
 			$this->mode = false;
 		}
@@ -74,6 +77,11 @@ class NSP_GK5_News_Blocks {
 			require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
 			//
 			return urldecode(JRoute::_(K2HelperRoute::getItemRoute($this->parent->content[$num]['id'].':'.urlencode($this->parent->content[$num]['alias']), $this->parent->content[$num]['cid'].':'.urlencode($this->parent->content[$num]['cat_alias']))));
+		} else if($this->mode == 'com_easyblog') {
+			//
+			require_once (JPATH_SITE.DS.'components'.DS.'com_easyblog'.DS.'helpers'.DS.'router.php');
+			//
+			return urldecode(JRoute::_(EasyBlogRouter::getEntryRoute($this->parent->content[$num]['id'])));
 		} else {
 			return false;
 		}
@@ -96,8 +104,15 @@ class NSP_GK5_News_Blocks {
 			if(!class_exists('NSP_GK5_com_k2_View')) {
 				require_once(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'com_k2/view'));
 			}
-			// generate the K2 image URL only
+			// generate the EasyBlog image URL only
 			$url = NSP_GK5_com_k2_View::image($this->parent->config, $this->parent->content[$num], true, true);
+		} else if($this->mode == 'com_easyblog') {
+			// load necessary EasyBlog View class
+			if(!class_exists('NSP_GK5_com_easyblog_View')) {
+				require_once(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'com_easyblog/view'));
+			}
+			// generate the EasyBlog image URL only
+			$url = NSP_GK5_com_easyblog_View::image($this->parent->config, $this->parent->content[$num], true, true);
 		}
 		// check if the URL exists
 		if($url === FALSE) {
