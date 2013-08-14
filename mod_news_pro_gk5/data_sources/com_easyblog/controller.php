@@ -3,20 +3,21 @@
 /**
  *
  * This Controller is responsible for generating results for the
- * com_content data source
+ * com_easyblog data source
  *
  **/
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class NSP_GK5_xml_file_Controller {
+class NSP_GK5_com_easyblog_Controller {
 	// constructor
 	function initialize($config, $content) {
 		// tables which will be used in generated content
 		$output = array(
 			'arts' => array(),
-			'list' => array()
+			'list' => array(),
+			'featured' => array()
 		);
 		// Generating content 
 		$counter = 0;
@@ -28,17 +29,17 @@ class NSP_GK5_xml_file_Controller {
 		        	$generated_content = NSP_GK5_Article_Format::generateLayout($config, $content[$i]);
 		        } else {
 					// GENERATING HEADER
-					$news_header = NSP_GK5_xml_file_View::header($config, $content[$i]);
+					$news_header = NSP_GK5_com_easyblog_View::header($config, $content[$i]);
 					// GENERATING IMAGE
-					$news_image = NSP_GK5_xml_file_View::image($config, $content[$i]);
+					$news_image = NSP_GK5_com_easyblog_View::image($config, $content[$i]);
 					// GENERATING READMORE
-					$news_readmore = NSP_GK5_xml_file_View::readMore($config, $content[$i]);
+					$news_readmore = NSP_GK5_com_easyblog_View::readMore($config, $content[$i]);
 					// GENERATING TEXT
-					$news_text = NSP_GK5_xml_file_View::text($config, $content[$i], $news_readmore);	
+					$news_text = NSP_GK5_com_easyblog_View::text($config, $content[$i], $news_readmore);	
 					// GENERATE NEWS INFO
-					$news_info = NSP_GK5_xml_file_View::info($config, $content[$i]);
+					$news_info = NSP_GK5_com_easyblog_View::info($config, $content[$i]);
 					// GENERATE NEWS INFO2
-					$news_info2 = NSP_GK5_xml_file_View::info($config, $content[$i], 2);		
+					$news_info2 = NSP_GK5_com_easyblog_View::info($config, $content[$i], 2);		
 		           
 					// PARSING PLUGINS
 					if($config['parse_plugins'] == TRUE) {
@@ -82,8 +83,9 @@ class NSP_GK5_xml_file_Controller {
 				} 
 				// creating table with news content
 				array_push($output['arts'], $generated_content);
+				array_push($output['featured'], $content[$i]['frontpage']);
 			} else { 
-				array_push($output['list'], NSP_GK5_xml_file_View::lists($config, $content[$i], $counter));
+				array_push($output['list'], NSP_GK5_com_easyblog_View::lists($config, $content[$i], $counter));
 				//
 				$counter++;
 			}                    

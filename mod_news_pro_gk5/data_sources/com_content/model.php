@@ -129,6 +129,26 @@ class NSP_GK5_com_content_Model {
 		if($config['news_since'] == '' && $config['news_in'] != '') {
 			$since_con = ' AND content.created >= ' . $db->Quote(strftime('%Y-%m-%d 00:00:00', time() - ($config['news_in'] * 24 * 60 * 60)));
 		}
+		
+		// current article hiding
+		$current_con = '';
+		
+		if(
+			$config['hide_current_com_content_article'] == '1' && 
+			JRequest::getCmd('option') == 'com_content' &&
+			JRequest::getCmd('view') == 'article' &&
+			JRequest::getVar('id') != ''
+		) {
+			$id = JRequest::getVar('id');
+			// filter the alias from ID
+			if(stripos($id, ':') !== FALSE) {
+				$id = explode(':', $id);
+				$id = $id[0];
+			}
+			// create the condition
+			$current_con = ' AND (content.id != '.$id.') ';
+		}
+		
 		// Ordering string
 		$order_options = '';
 		// When sort value is random
@@ -146,17 +166,19 @@ class NSP_GK5_com_content_Model {
 		if($config['data_source'] != 'com_content_all') {
 			$sql_where = ' AND ( ' . $sql_where . ' ) ';
 		}
+		
+		// one article per page - helper variables
+		$article_id_query = 'content.id AS iid';
+		$one_article_query = '';
+		
+		if($config['one_article_per_category']) {
+			$article_id_query = 'MAX(content.id) AS iid, content.catid AS cid';
+			$one_article_query = ' GROUP BY content.catid ';
+		}
 		// creating SQL query			
 		$query_news = '
 		SELECT
-			content.id AS iid,
-			'.($config['use_title_alias'] ? 'content.alias' : 'content.title').' AS title, 
-			content.introtext AS text, 
-			content.created AS date, 
-			content.publish_up AS date_publish,
-			content.hits AS hits,
-			content.images AS images,
-			content.featured AS frontpage				
+			'.$article_id_query.'				
 		FROM 
 			#__content AS content 
 		WHERE 
@@ -168,10 +190,14 @@ class NSP_GK5_com_content_Model {
 			'.$lang_filter.'
 			'.$frontpage_con.' 
 			'.$since_con.'
+			'.$current_con.'
+			
+		'.$one_article_query.'
+		
 		ORDER BY 
 			'.$order_options.'
 		LIMIT
-			'.($config['offset']).','.($amount + (int)$config['offset']).';
+			'.($config['offset']).','.$amount.';
 		';
 		// run SQL query
 		$db->setQuery($query_news);
@@ -192,6 +218,13 @@ class NSP_GK5_com_content_Model {
 		$second_query_news = '
 		SELECT
 			content.id AS iid,
+			'.($config['use_title_alias'] ? 'content.alias' : 'content.title').' AS title, 
+			content.introtext AS text, 
+			content.created AS date, 
+			content.publish_up AS date_publish,
+			content.hits AS hits,
+			content.images AS images,
+			content.featured AS frontpage,
 			content.access AS access,
 			categories.title AS catname, 
 			users.email AS author_email,
@@ -248,7 +281,9 @@ class NSP_GK5_com_content_Model {
 			}
 		}
 		// load comments
-		$content = NSP_GK5_com_content_Model::getComments($content, $config);
+		if(stripos($config['info_format'], '%COMMENTS') !== FALSE || stripos($config['info2_format'], '%COMMENTS') !== FALSE) {
+			$content = NSP_GK5_com_content_Model::getComments($content, $config);
+		}
 		// the content array
 		return $content; 
 	}
