@@ -1,27 +1,27 @@
 {
-	"data_source": "K2_CONTENT_TITLE",
-	"source": "com_k2",
-	"tab": "NSP_DATA_SOURCE_COM_K2-options",
+	"data_source": "EASYBLOG_CONTENT_TITLE",
+	"source": "com_easyblog",
+	"tab": "NSP_DATA_SOURCE_COM_EASYBLOG-options",
 	"sources": [
 		{
-			"name": "ALL_COM_K2_ARTICLES",
-			"value": "k2_all"
+			"name": "ALL_COM_EASYBLOG_ARTICLES",
+			"value": "easyblog_all"
 		},
 		{
-			"name": "COM_K2_ARTICLES",
-			"value": "k2_articles"
+			"name": "COM_EASYBLOG_ARTICLES",
+			"value": "easyblog_articles"
 		},
 		{
-			"name": "COM_K2_CATEGORIES",
-			"value": "k2_categories"
+			"name": "COM_EASYBLOG_CATEGORIES",
+			"value": "easyblog_categories"
 		},
 		{
-			"name": "COM_K2_TAGS",
-			"value": "k2_tags"
+			"name": "COM_EASYBLOG_TAGS",
+			"value": "easyblog_tags"
 		},
 		{
-			"name": "COM_K2_AUTHORS",
-			"value": "k2_authors"
+			"name": "COM_EASYBLOG_AUTHORS",
+			"value": "easyblog_authors"
 		}
 	],
 	"supported_options": {

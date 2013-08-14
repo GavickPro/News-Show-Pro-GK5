@@ -25,6 +25,7 @@
 		"news_in": true,
 		"news_featured": true,
 		"only_featured": true,
+		"one_article_per_category": false,
 		"news_unauthorized": true,
 		"time_offset": true 
 	},

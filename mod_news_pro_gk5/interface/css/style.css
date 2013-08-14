@@ -53,23 +53,50 @@
 }
 .nspNext,
 .nspPrev { 
-	background: url('../images/nsp_interface.png') no-repeat -24px 0; 
+	background: #fff;
+	border: 2px solid #ccc;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	cursor: pointer;
 	float: left; 
 	height: 24px; 
 	margin: 0 0 0 4px;
-	text-indent: -999em;
+	text-indent: -999px;
 	width: 24px;
 }
-.nspPrev {
-	background-position: 0 0;
+.nspPrev:before {
+	border: 10px solid #ccc;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-left: none;
+	content: "";
+	display: block;
+	float: left;
+	margin: 3px 0 0 4px;
+}
+.nspNext:before {
+	border: 10px solid #ccc;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-right: none;
+	content: "";
+	display: block;
+	float: left;
+	margin: 3px 0 0 6px;
 }
 .nspNext:hover,
 .nspPrev:hover { 
-	background-position: -24px -24px;
+	border-color: #999;	
 }
-.nspPrev:hover {
-	background-position: 0 -24px;
+.nspPrev:hover:before {
+	border-right-color: #999;
+}
+.nspNext:hover:before {
+	border-left-color: #999;
 }
 
 /* Articles layout */

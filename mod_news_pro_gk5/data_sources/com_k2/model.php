@@ -199,17 +199,18 @@ class NSP_GK5_com_k2_Model {
 		if($config['data_source'] != 'k2_all') {
 			$sql_where = ' AND ( ' . $sql_where . ' ) ';
 		}
+		// one article per page - helper variables
+		$article_id_query = 'content.id AS id';
+		$one_article_query = '';
+		
+		if($config['one_article_per_category']) {
+			$article_id_query = 'MAX(content.id) AS id, content.catid AS cid';
+			$one_article_query = ' GROUP BY content.catid ';
+		}
 		// creating SQL query			
 		$query_news = '
 		SELECT
-			content.id AS id,
-			content.alias AS alias,
-			'.($config['use_title_alias'] ? 'content.alias' : 'content.title').' AS title, 
-			content.introtext AS text, 
-			content.created AS date, 
-			content.publish_up AS date_publish,
-			content.hits AS hits,
-			content.featured AS frontpage				
+			'.$article_id_query.'				
 		FROM 
 			#__k2_items AS content 
 			'.$tag_join.'
@@ -223,6 +224,9 @@ class NSP_GK5_com_k2_Model {
 			'.$frontpage_con.' 
 			'.$since_con.'
 			'.$current_con.'
+		
+		'.$one_article_query.'	
+		
 		ORDER BY 
 			'.$order_options.'
 		LIMIT
@@ -247,9 +251,18 @@ class NSP_GK5_com_k2_Model {
 		$second_query_news = '
 		SELECT
 			content.id AS id,
+			content.alias AS alias,
+			'.($config['use_title_alias'] ? 'content.alias' : 'content.title').' AS title, 
+			content.introtext AS text, 
+			content.created AS date, 
+			content.publish_up AS date_publish,
+			content.hits AS hits,
+			content.featured AS frontpage,
 			content.access AS access,
 			content.catid AS cid,
+			content.video AS video,
 			categories.name AS catname, 
+			categories.image AS cat_image,
 			categories.alias AS cat_alias,
 			users.email AS author_email,
 			content.created_by_alias AS author_alias,

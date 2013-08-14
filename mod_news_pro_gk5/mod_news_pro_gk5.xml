@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
+<<<<<<< HEAD
 	<creationDate>02/08/2013</creationDate>
+=======
+	<creationDate>11/08/2013</creationDate>
+>>>>>>> v.1.3
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2013 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavick.com</authorUrl>
+<<<<<<< HEAD
 	<version>1.2.2</version>
+=======
+	<version>1.3.0 RC</version>
+>>>>>>> v.1.3
 	<description>
 	<![CDATA[
 		<style type='text/css'>
@@ -19,7 +27,11 @@
 			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
 		</style>
 		<span class='readonly'>
+<<<<<<< HEAD
 			<h1>News Show Pro GK5 <small>ver. 1.2.2</small></h1>
+=======
+			<h1>News Show Pro GK5 <small>ver. 1.3 RC</small></h1>
+>>>>>>> v.1.3
 			<p>GK5 is new generation of our extensions dedicated to Joomla 2.5+.</p>
 			<p>Basing on experiences gathered, we created probably the best tool to present articles for Joomla! Huge amount of options and possibilities of formatting causes News Show Pro GK5 is a complex tool in making www pages content attractive. News Show Pro is appropriate while preparing simple structures with an individual article, the same as, complex arrangements including few articles and a list of links.</p> 
 			<p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
@@ -91,6 +103,14 @@
                 <field name="k2_authors" type="k2authors" class="gk-hidden-field" extension="k2authors" default="" size="25" label="MOD_NEWS_PRO_GK5_K2_AUTHORS" description="MOD_NEWS_PRO_GK5_K2_AUTHORS_DESC" />
 	        	
 	        	<field name="k2_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_K2ITEMS" description="MOD_NEWS_PRO_GK5_K2ITEMS_DESC" />
+	        	
+	        	<field name="easyblog_categories" type="easyblogmulticategories" extension="easyblogmulticategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_EASYBLOGCATEGORIES" description="MOD_NEWS_PRO_GK5_EASYBLOGCATEGORIES_DESC" />
+	        	
+	        	<field name="easyblog_tags" type="easyblogtags" class="gk-hidden-field" extension="easyblogtags" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOG_TAGS" description="MOD_NEWS_PRO_GK5_EASYBLOG_TAGS_DESC" />
+	        	
+	        	<field name="easyblog_authors" type="easyblogauthors" class="gk-hidden-field" extension="easyblogauthors" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOG_AUTHORS" description="MOD_NEWS_PRO_GK5_EASYBLOG_AUTHORS_DESC" />
+	        	
+	        	<field name="easyblog_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOGITEMS" description="MOD_NEWS_PRO_GK5_EASYBLOGITEMS_DESC" />
 	
 				<field name="rss_feed" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_RSS_FEED_URL" description="MOD_NEWS_PRO_GK5_RSS_FEED_URL_DESC" />
 	
@@ -123,6 +143,11 @@
                 </field>
                 
                 <field name="only_featured" type="list" default="0" class="gk_switch gk-hidden-field" label="MOD_NEWS_PRO_GK5_ONLYFRONTPAGE_ONLYFEATURED" description="MOD_NEWS_PRO_GK5_ONLYFRONTPAGE_ONLYFEATURED_DESC">
+                		<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                
+                <field name="one_article_per_category" type="list" default="0" class="gk_switch gk-hidden-field" label="MOD_NEWS_PRO_GK5_ONE_ARTICLE_PER_CATEGORY" description="MOD_NEWS_PRO_GK5_ONE_ARTICLE_PER_CATEGORY_DESC">
                 		<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
@@ -201,6 +226,24 @@
                     <option value="M">M</option>
                     <option value="S">S</option>
                     <option value="XS">XS</option>
+                </field> 
+            </fieldset>
+            
+            <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_EASYBLOG">
+                <field name="easyblog_comments_source" type="list" default="easyblog" label="MOD_NEWS_PRO_GK5_EASYBLOG_COMMENTS_SOURCE" description="MOD_NEWS_PRO_GK5_EASYBLOG_COMMENTS_SOURCE_DESC">
+                        <option value="easyblog">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_EASYBLOG</option>
+                        <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
+                </field>
+                
+                <field name="hide_current_easyblog_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_EASYBLOG_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_EASYBLOG_ARTICLE_DESC">
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field>
+                
+                <field name="easyblog_image_size" type="list" default="Generic" label="MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE" description="MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE_DESC">
+                    <option value="original">MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE_ORIGINAL</option>
+                    <option value="thumbnail">MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE_THUMBNAIL</option>
+                    <option value="icon">MOD_NEWS_PRO_GK5_EASYBLOG_IMAGE_SIZE_ICON</option>
                 </field> 
             </fieldset>
             
