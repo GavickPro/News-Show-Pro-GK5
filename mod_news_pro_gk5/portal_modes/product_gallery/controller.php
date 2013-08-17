@@ -67,7 +67,7 @@ class NSP_GK5_Product_Gallery {
 	// function used to retrieve the item URL
 	function get_link($num) {
 		if($this->mode == 'com_virtuemart') {
-			$itemid = $config['vm_itemid'];
+			$itemid = $this->parent->config['vm_itemid'];
 			$link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$this->parent->content[$num]['id'].'&amp;virtuemart_category_id='.$this->parent->content[$num]['cid'].'&amp;Itemid='.$itemid;
 			
 			return $link;
