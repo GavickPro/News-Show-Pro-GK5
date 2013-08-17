@@ -34,7 +34,7 @@ class NSP_GK5_Product_Gallery_2 {
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			if($this->get_image($i)) {
 				echo '<div class="gkImage">';
-				echo '<a href="' . $this->get_link($i) . '"><img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]->title).'" /></a>';
+				echo '<a href="' . $this->get_link($i) . '"><img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]['title']).'" /></a>';
 				echo '<h4><a href="' . $this->get_link($i) . '">' . $this->parent->content[$i]['title'] . '</a></h4>';
 				
 				$store_output = $this->get_store($this->parent->config, $this->parent->content[$i]['id']);
@@ -56,7 +56,7 @@ class NSP_GK5_Product_Gallery_2 {
 	// function used to retrieve the item URL
 	function get_link($num) {
 		if($this->mode == 'com_virtuemart') {
-			$itemid = $config['vm_itemid'];
+			$itemid = $this->parent->config['vm_itemid'];
 			$link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$this->parent->content[$num]['id'].'&amp;virtuemart_category_id='.$this->parent->content[$num]['cid'].'&amp;Itemid='.$itemid;
 			
 			return $link;
