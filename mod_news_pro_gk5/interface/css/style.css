@@ -266,23 +266,23 @@ img.nspImage.gkResponsive {
 .nspPages10 { width: 1000%; }
 .nspCol1 { width: 100%; }
 .nspCol2 { width: 50%; }
-.nspCol3 { width: 33.3%; }
+.nspCol3 { width: 33.333333%; }
 .nspCol4 { width: 25%; }
 .nspCol5 { width: 20%; }
-.nspCol6 { width: 16.66%; }
-.nspCol7 { width: 14.285%; }
+.nspCol6 { width: 16.666666%; }
+.nspCol7 { width: 14.285714%; }
 .nspCol8 { width: 12.5%; }
-.nspCol9 { width: 11.1%; }
+.nspCol9 { width: 11.111111%; }
 .nspCol10 { width: 10%; }
-.nspCol11 { width: 9.09%; }
-.nspCol12 { width: 8.33%; }
-.nspCol13 { width: 7.69%; }
-.nspCol14 { width: 7.14%; }
-.nspCol15 { width: 6.66%; }
+.nspCol11 { width: 9.090909%; }
+.nspCol12 { width: 8.333333%; }
+.nspCol13 { width: 7.692307%; }
+.nspCol14 { width: 7.142857%; }
+.nspCol15 { width: 6.666666%; }
 .nspCol16 { width: 6.25%; }
-.nspCol17 { width: 5.88%; }
-.nspCol18 { width: 5.55%; }
-.nspCol19 { width: 5.26%; }
+.nspCol17 { width: 5.882352%; }
+.nspCol18 { width: 5.555555%; }
+.nspCol19 { width: 5.263157%; }
 .nspCol20 { width: 5%; }
 
 /* Animation */
