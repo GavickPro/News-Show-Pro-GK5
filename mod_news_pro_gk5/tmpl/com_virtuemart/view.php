@@ -126,9 +126,9 @@ class NSP_GK5_com_virtuemart_View {
 			$class = ' f'.$config['news_content_readmore_pos'];
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a <a class="readon inline"  href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
+				return '<a <a class="readon inline"  href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			} else {
-				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
+				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			}
 		} else {
 			return '';
