@@ -135,9 +135,9 @@ class NSP_GK5_xml_file_View {
 			$link = $item['url']; 
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a class="readon inline" href="'.$link.'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
+				return '<a class="readon inline" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			} else {
-				return '<a class="readon '.$class.'" href="'.$link.'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
+				return '<a class="readon '.$class.'" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			}
 		} else {
 			return '';

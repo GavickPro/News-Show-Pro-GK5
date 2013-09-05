@@ -494,6 +494,7 @@
                 </field>
                 <field name="allowed_tags" type="text" default="" size="20" label="MOD_NEWS_PRO_GK5_ALLOWED_TAGS" description="MOD_NEWS_PRO_GK5_ALLOWED_TAGS_DESC" class="gk-group-text" />
                 <field name="more_text_value" type="text" default="..." size="5" label="MOD_NEWS_PRO_GK5_MORE_TEXT_VALUE" description="MOD_NEWS_PRO_GK5_MORE_TEXT_VALUE_DESC" class="gk-group-text" />
+                <field name="readmore_text" type="text" default="" size="10" label="MOD_NEWS_PRO_GK5_READMORE_TEXT" description="MOD_NEWS_PRO_GK5_READMORE_TEXT_DESC" class="gk-group-text" />
                 <field name="parse_plugins" type="list" class="gk_switch gk-group-text" default="0" label="MOD_NEWS_PRO_GK5_PARSE" description="MOD_NEWS_PRO_GK5_PARSE_DESC">
                 		<option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
