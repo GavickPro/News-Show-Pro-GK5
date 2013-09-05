@@ -433,6 +433,10 @@
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
+                <field name="news_header_first_word" type="list" class="gk_switch gk-group-header" default="0" label="MOD_NEWS_PRO_GK5_HEAD_FIRST_WORD" description="MOD_NEWS_PRO_GK5_HEAD_FIRST_WORD_DESC">
+                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
                 <field name="use_title_alias" type="list" class="gk_switch gk-group-header" default="0" label="MOD_NEWS_PRO_GK5_TITLE_ALIAS" description="">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>

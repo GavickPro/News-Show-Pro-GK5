@@ -17,6 +17,14 @@ class NSP_GK5_com_content_View {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
 			$output = str_replace('"', "&quot;", $output);
+			// first word span wrap
+			if($config['news_header_first_word'] == 1) {
+				$output_temp = explode(' ', $output);
+				$first_word = $output_temp[0];
+				$output_temp[0] = '<span>'.$output_temp[0].'</span>';
+				$output = preg_replace('/' . $first_word . '/mi', $output_temp[0], $output, 1);
+			}
+			
 	        $link = NSP_GK5_com_content_View::itemLink($item);
 			//
 			if($config['news_header_link'] == 1) {
