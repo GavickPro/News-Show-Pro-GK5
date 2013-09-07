@@ -404,6 +404,21 @@
 				<field name="portal_mode_portfolio_link_url" type="text" default="" size="20" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_URL" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_URL_DESC" />
 			</fieldset>
 			
+			<fieldset name="NSP_PORTAL_MODE_GRID_TITLE_OVERLAY">				
+				<field name="portal_mode_grid_title_overlay_text_pos" type="list" default="none" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_POS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_POS_DESC">
+					<option value="none">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_NONE</option>
+					<option value="top">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TOP</option>
+					<option value="bottom">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_BOTTOM</option>
+				</field>
+				
+				<field name="portal_mode_grid_title_overlay_text_color" type="list" default="light" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_COLOR" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_COLOR_DESC">
+					<option value="dark">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_DARK</option>
+					<option value="light">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_LIGHT</option>
+				</field>
+				
+				<field type="text" name="portal_mode_grid_title_overlay_text_padding" default="30px" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_PADDING" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_PADDING_DESC" />
+			</fieldset>
+			
 			<!-- Portal Modes fieldsets END -->
 			
             <fieldset name="NSP_ARTICLE_LAYOUT">
