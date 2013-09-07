@@ -3,7 +3,7 @@
 .gkNspPM-GridTitleOverlay {
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
+			box-sizing: border-box;
 	float: left;
 	height: 100%;
 	overflow: hidden;
@@ -13,33 +13,37 @@
 .gkNspPM-GridTitleOverlay > a {
 	background-size: cover!important;
 	background-position: center center!important;
+	display: block;
+	float: left;
 	height: 100%;
 	position: absolute;
 	text-indent: -9999px;
 	width: 100%;
+	z-index: 1;
 }
 .gkNspPM-GridTitleOverlay > a > span {
 	background: #000;
 	height: 100%;
 	display: block;
+	float: left;
 	left: 0;
 	opacity: 0.3; filter: alpha(opacity=30);
 	position: absolute;
-	-webkit-transition: all .3s ease-out;
-	-moz-transition: all .3s ease-out;
-	-ms-transition: all .3s ease-out;
-	-o-transition: all .3s ease-out;
 	top: 0;
-	transition: all .3s ease-out;
+	-webkit-transition: opacity .3s ease-out;
+	-moz-transition: opacity .3s ease-out;
+	-ms-transition: opacity .3s ease-out;
+	-o-transition: opacity .3s ease-out;
+	transition: opacity .3s ease-out;
 	width: 100%;
-	z-index: 1;
+	z-index: 2;
 }
 .gkNspPM-GridTitleOverlay:hover > a > span {
 	opacity: 0; filter: alpha(opacity=0);
 }
 .gkNspPM-GridTitleOverlay > figcaption {
 	position: absolute;
-	z-index: 2;
+	z-index: 3;
 }
 .gkNspPM-GridTitleOverlay[data-textpos="bottom"] > figcaption {
 	bottom: 0;
