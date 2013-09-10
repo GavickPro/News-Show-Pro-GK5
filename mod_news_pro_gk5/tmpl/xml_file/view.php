@@ -17,6 +17,13 @@ class NSP_GK5_xml_file_View {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
 			$output = str_replace('"', "&quot;", $output);
+			// first word span wrap
+			if($config['news_header_first_word'] == 1) {
+				$output_temp = explode(' ', $output);
+				$first_word = $output_temp[0];
+				$output_temp[0] = '<span>'.$output_temp[0].'</span>';
+				$output = preg_replace('/' . $first_word . '/mi', $output_temp[0], $output, 1);
+			}
 	        $link = $item['url'];
 			//
 			if($config['news_header_link'] == 1) {
@@ -124,9 +131,9 @@ class NSP_GK5_xml_file_View {
 			$link = $item['url']; 
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a class="readon inline" href="'.$link.'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
+				return '<a class="readon inline" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			} else {
-				return '<a class="readon '.$class.'" href="'.$link.'">'.JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE').'</a>';
+				return '<a class="readon '.$class.'" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			}
 		} else {
 			return '';

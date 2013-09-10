@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
-	<creationDate>14/08/2013</creationDate>
+	<creationDate>10/09/2013</creationDate>
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2013 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavick.com</authorUrl>
-	<version>1.3</version>
+	<version>1.3.1</version>
 	<description>
 	<![CDATA[
 		<style type='text/css'>
@@ -19,7 +19,7 @@
 			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
 		</style>
 		<span class='readonly'>
-			<h1>News Show Pro GK5 <small>ver. 1.3</small></h1>
+			<h1>News Show Pro GK5 <small>ver. 1.3.1</small></h1>
 			<p>GK5 is new generation of our extensions dedicated to Joomla 2.5+.</p>
 			<p>Basing on experiences gathered, we created probably the best tool to present articles for Joomla! Huge amount of options and possibilities of formatting causes News Show Pro GK5 is a complex tool in making www pages content attractive. News Show Pro is appropriate while preparing simple structures with an individual article, the same as, complex arrangements including few articles and a list of links.</p> 
 			<p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
@@ -355,6 +355,21 @@
 				<field name="portal_mode_portfolio_link_url" type="text" default="" size="20" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_URL" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_URL_DESC" />
 			</fieldset>
 			
+			<fieldset name="NSP_PORTAL_MODE_GRID_TITLE_OVERLAY">				
+				<field name="portal_mode_grid_title_overlay_text_pos" type="list" default="none" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_POS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_POS_DESC">
+					<option value="none">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_NONE</option>
+					<option value="top">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TOP</option>
+					<option value="bottom">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_BOTTOM</option>
+				</field>
+	
+				<field name="portal_mode_grid_title_overlay_text_color" type="list" default="light" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_COLOR" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_COLOR_DESC">
+					<option value="dark">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_DARK</option>
+					<option value="light">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_LIGHT</option>
+				</field>
+	
+				<field type="text" name="portal_mode_grid_title_overlay_text_padding" default="30px" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_PADDING" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_PADDING_DESC" />
+			</fieldset>
+			
 			<!-- Portal Modes fieldsets END -->
 			
             <fieldset name="NSP_ARTICLE_LAYOUT">
@@ -383,6 +398,10 @@
                 <field name="news_header_link" type="list" class="gk_switch gk-group-header" default="1" label="MOD_NEWS_PRO_GK5_HEAD_LINK" description="">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                <field name="news_header_first_word" type="list" class="gk_switch gk-group-header" default="0" label="MOD_NEWS_PRO_GK5_HEAD_FIRST_WORD" description="MOD_NEWS_PRO_GK5_HEAD_FIRST_WORD_DESC">
+                	<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+	                <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
                 <field name="use_title_alias" type="list" class="gk_switch gk-group-header" default="0" label="MOD_NEWS_PRO_GK5_TITLE_ALIAS" description="">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
@@ -445,6 +464,7 @@
                 </field>
                 <field name="allowed_tags" type="text" default="" size="20" label="MOD_NEWS_PRO_GK5_ALLOWED_TAGS" description="MOD_NEWS_PRO_GK5_ALLOWED_TAGS_DESC" class="gk-group-text" />
                 <field name="more_text_value" type="text" default="..." size="5" label="MOD_NEWS_PRO_GK5_MORE_TEXT_VALUE" description="MOD_NEWS_PRO_GK5_MORE_TEXT_VALUE_DESC" class="gk-group-text" />
+                <field name="readmore_text" type="text" default="" size="10" label="MOD_NEWS_PRO_GK5_READMORE_TEXT" description="MOD_NEWS_PRO_GK5_READMORE_TEXT_DESC" class="gk-group-text" />
                 <field name="parse_plugins" type="list" class="gk_switch gk-group-text" default="0" label="MOD_NEWS_PRO_GK5_PARSE" description="MOD_NEWS_PRO_GK5_PARSE_DESC">
                 		<option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
