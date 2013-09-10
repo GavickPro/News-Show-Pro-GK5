@@ -149,12 +149,15 @@ class NSP_GK5_com_easyblog_Model {
 		$nullDate = $db->getNullDate();
 		// if some data are available
 		// when showing only frontpage articles is disabled
-		$frontpage_con = '';
+		$frontpage_con1 = '';
+		$frontpage_con2 = '';
 		
 		if($config['only_featured'] == 0 && $config['news_featured'] == 0) {
-		 	$frontpage_con = ' AND content.frontpage = 0 ';
+		 	$frontpage_con1 = ' LEFT JOIN #__easyblog_featured as featured ON content.id = featured.content_id ';
+		 	$frontpage_con2 = ' AND (featured.id IS NULL OR (featured.id IS NOT NULL AND (featured.type NOT LIKE "post" OR featured.type IS NULL))) ';
 		} else if($config['only_featured'] == 1) {
-			$frontpage_con = ' AND content.frontpage = 1';
+			$frontpage_con1 = ' LEFT JOIN #__easyblog_featured as featured ON content.id = featured.content_id ';
+			$frontpage_con2 = ' AND featured.id IS NOT NULL AND featured.type LIKE "post"';
 		}
 		
 		$since_con = '';
@@ -216,6 +219,7 @@ class NSP_GK5_com_easyblog_Model {
 		FROM 
 			#__easyblog_post AS content 
 			'.$tag_join.'
+		'.$frontpage_con1.'
 		WHERE 
 			content.published = 1
                 '. $access_con .'   
@@ -226,7 +230,7 @@ class NSP_GK5_com_easyblog_Model {
 			'.$frontpage_con.' 
 			'.$since_con.'
 			'.$current_con.'
-		
+			'.$frontpage_con2.'
 		'.$one_article_query.'	
 		
 		ORDER BY 
