@@ -29,7 +29,7 @@ class NSP_GK5_Product_Gallery_2 {
 			}
 		}
 		// main wrapper
-		echo '<div class="gkNspPM gkNspPM-ProductGallery2" data-cols="'.$this->parent->config['portal_mode_product_gallery_cols'].'">';
+		echo '<div class="gkNspPM gkNspPM-ProductGallery2" data-cols="'.$this->parent->config['portal_mode_product_gallery_2_cols'].'">';
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			if($this->get_image($i)) {
