@@ -178,7 +178,8 @@ class NSP_GK5_com_content_View {
 		) {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //	
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'. NSP_GK5_com_content_View::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];        
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'. NSP_GK5_com_content_View::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];       
+	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']); 
 	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'. NSP_GK5_Utils::avatarURL($item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
