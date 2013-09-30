@@ -214,6 +214,9 @@ class NSP_GK5_com_content_Model {
 		for($i = 0; $i < count($content); $i++) {
 			$second_sql_where .= (($i != 0) ? ' OR ' : '') . ' content.id = ' . $content[$i]['iid'];
 		}
+		if($second_sql_where != '') {
+			$second_sql_where = ' AND ('.$second_sql_where.')';
+		}
 		// second SQL query to get rest of the data and avoid the DISTINCT
 		$second_query_news = '
 		SELECT
@@ -250,6 +253,7 @@ class NSP_GK5_com_content_Model {
 				#__content_rating AS content_rating 
 				ON content_rating.content_id = content.id
 		WHERE 
+			1=1
 			'.$second_sql_where.'
 		ORDER BY 
 			'.$order_options.'
@@ -277,7 +281,9 @@ class NSP_GK5_com_content_Model {
 					}
 				}
 				// merge the new data to the array of items data
-				$content[$pos] = array_merge($content[$pos], (array) $item);
+				if(isset($content[$pos]) && is_array($content[$pos])) {
+					$content[$pos] = array_merge($content[$pos], (array) $item);
+				}
 			}
 		}
 		// load comments
