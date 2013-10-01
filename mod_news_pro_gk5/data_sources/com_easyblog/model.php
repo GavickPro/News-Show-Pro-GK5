@@ -252,6 +252,9 @@ class NSP_GK5_com_easyblog_Model {
 		for($i = 0; $i < count($content); $i++) {
 			$second_sql_where .= (($i != 0) ? ' OR ' : '') . ' content.id = ' . $content[$i]['id'];
 		}
+		if($second_sql_where != '') {
+			$second_sql_where = ' AND ('.$second_sql_where.')';
+		}
 		// second SQL query to get rest of the data and avoid the DISTINCT
 		$second_query_news = '
 		SELECT
@@ -279,6 +282,7 @@ class NSP_GK5_com_easyblog_Model {
 				#__users AS users 
 				ON users.id = content.created_by 			
 		WHERE 
+			1=1
 			'.$second_sql_where.'
 		ORDER BY 
 			'.$order_options.'
@@ -297,7 +301,9 @@ class NSP_GK5_com_easyblog_Model {
 			foreach($news2 as $item) {						
 			    $pos = array_search($item['id'], $content_id);
 				// merge the new data to the array of items data
-				$content[$pos] = array_merge($content[$pos], (array) $item);
+				if(isset($content[$pos]) && is_array($content[$pos])) {
+					$content[$pos] = array_merge($content[$pos], (array) $item);
+				}
 			}
 		}
 		// load comments
