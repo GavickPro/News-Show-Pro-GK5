@@ -7,7 +7,7 @@
 * @ All rights reserved
 * @ Joomla! is Free Software
 * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
-* @version $Revision: GK5 1.2 $
+* @version $Revision: GK5 1.0 $
 **/
 
 // no direct access
@@ -17,7 +17,8 @@ class NSP_GK5_Article_Format {
 	function generateLayout($config, $data) {
 		
 		/*
-			Available variables
+			
+			Available variables:
 			
 			{TITLE} - article title
 			{TEXT} - article text
@@ -28,14 +29,47 @@ class NSP_GK5_Article_Format {
 			{CATEGORY} - article category name
 			{CATEGORY_URL} - article category URL
 			{HITS} - article hits
-			{DATE} - article date
+			{DATE} - article date (gets format from the information block settings)
 			{RATING} - article rating
+			
+			K2 specific variables:
+			
+			{TAGS} - article tag lists
+			{VIDEO_HTML} - HTML of the article video
+			{CATEGORY_IMAGE_SRC} - article category image URL
+			
 		*/
 		
 		//
 		// Get the values
 		//
+
+		// validation the data
+		$validation = array(
+				"url", 
+				"title", 
+				"text", 
+				"author", 
+				"image", 
+				"author_email", 
+				"catname", 
+				"category_url",
+				"hits",
+				"email",
+				"rating_sum",
+				"rating_count",
+				"date",
+				"date_publish"
+		);
+
+		foreach($validation as $validated) {
+			if(!isset($data[$validated])) {
+				$data[$validated] = '';
+			}
+		}
 		
+		// Image
+		$viewClass = 'NSP_GK5_'.$config['source_name'].'_View';
 		// Basic data
 		$title = NSP_GK5_Utils::cutText($data['title'], $config, 'title_limit');
 		$text = NSP_GK5_Utils::cutText($data['text'], $config, 'news_limit');
@@ -46,9 +80,9 @@ class NSP_GK5_Article_Format {
 		} else {
 			$url = call_user_func(array($viewClass, 'itemLink'), $data, $config);
 		}
-		// Image
-		$viewClass = 'NSP_GK5_'.$config['source_name'].'_View';
-		$image_src = $viewClass::image($config, $data, true);
+		// PHP 5.3:
+		//$image_src = $viewClass::image($config, $data, true);
+		$image_src = call_user_func(array($viewClass, 'image'), $config, $data, true);
 		// Author data
 		$author_email = $data['author_email'];
 		$author_name = $data['author'];
@@ -58,12 +92,12 @@ class NSP_GK5_Article_Format {
 		if(isset($data['caturl'])) {
 			$category_url = $data['caturl'];
 		} else {
-			$url = call_user_func(array($viewClass, 'categoryLink'), $data);
+			$category_url = call_user_func(array($viewClass, 'categoryLink'), $data);
 		}
 		// Other data
 		$hits = $data['hits'];
-		$date = $data['date'];
-		$rating = $item['rating_count'] > 0 ? number_format($data['rating_sum'] / $data['rating_count'], 2) : 0;
+		$date = JHTML::_('date', $data['date'], $config['date_format']);
+		$rating = $data['rating_count'] > 0 ? number_format($data['rating_sum'] / $data['rating_count'], 2) : 0;
 		
 		//
 		// Get the layout text
@@ -102,15 +136,59 @@ class NSP_GK5_Article_Format {
 			);
 			// replace values in the format file 
 			$format_file = str_replace($to_replace, $replacement, $format_file);
+			// replacements only for K2
+			if(stripos($config['data_source'], 'k2_') !== FALSE) {
+				// tags list value
+				$tags = '';
+				// if tags exists
+				if(isset($data['tags']) && count($data['tags']) > 0) {
+					$i = 0;
+					foreach($data['tags'] as $tag) {
+						$link = urldecode(JRoute::_(K2HelperRoute::getTagRoute($tag)));
+					
+						if($i == 0) {
+							$tags .= '<a href="' . $link . '">' . $tag . '</a>';
+						} else {
+							$tags .= ', <a href="' . $link . '">' . $tag . '</a>';
+						}
+						//
+						$i++;
+					}
+				}
+				// video HTML value
+				$video_html = $data['video'];
+				// category image URL value
+				$category_image_src = '';
+				// if the category image exists
+				if($data['cat_image'] != '') {
+					$category_image_src = JURI::root() . 'media/k2/categories/' . $data['cat_image'];
+				}
+				// replace values
+				$to_replace = array(
+					'{TAGS}',
+					'{VIDEO_HTML}',
+					'{CATEGORY_IMAGE_SRC}'
+				);
+				// values for the replacement
+				$replacement = array(
+					$tags,
+					$video_html,
+					$category_image_src
+				);
+				// replace values in the format file 
+				$format_file = str_replace($to_replace, $replacement, $format_file);
+			}
 			// parse lang rules
 			$matches = array();
 			preg_match_all('@{{.*?}}@', $format_file, $matches);
-			
+
 			if(count($matches) > 0) {
 				for($i = 0; $i < count($matches); $i++) {
-					$phrase = $matches[$i][0];
-					$phrase = JText::_(str_replace(array('{{', '}}'), '', $phrase));
-					$format_file = str_replace($matches[$i][0], $phrase, $format_file);
+					if(count($matches[$i]) > 0) {
+						$phrase = $matches[$i][0];
+						$phrase = JText::_(str_replace(array('{{', '}}'), '', $phrase));
+						$format_file = str_replace($matches[$i][0], $phrase, $format_file);
+					}
 				}
 			}
 			

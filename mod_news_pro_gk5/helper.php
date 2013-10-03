@@ -68,8 +68,6 @@ class NSP_GK5_Helper {
 		if($this->config['news_info_enabled'] == 0) $this->config['news_content_info_pos'] = 'disabled';
 		if($this->config['news_info2_enabled'] == 0) $this->config['news_content_info2_pos'] = 'disabled';
 		if($this->config['news_readmore_enabled'] == 0) $this->config['news_content_readmore_pos'] = 'disabled';		
-		
-  			
 		// override old string-based rules with the more readable array structures
 		$this->config['crop_rules'] = NSP_GK5_Utils::parseCropRules($this->config);
 	}
@@ -89,22 +87,23 @@ class NSP_GK5_Helper {
 		$db = JFactory::getDBO();
 		// Getting list of categories
 		$model_class = 'NSP_GK5_'.$this->source.'_Model';
-		
-		$categories = $model_class::getSources($this->config);				
+		// PHP 5.3:
+		//$categories = $model_class::getSources($this->config);	
+		$categories = call_user_func(array($model_class, "getSources"), $this->config);			
 		// getting content
-		
 		$amountOfArts = 0;
 		// check if the portal mode is used
 		if($this->config['module_mode'] == 'normal') {
-			
 			$amountOfArts = ($this->config['news_column'] * $this->config['news_rows'] * $this->config['news_full_pages']) + ($this->config['links_amount'] * $this->config['news_short_pages'] * $this->config['links_columns_amount']);
 		} else {
 			$portal_mode_class = 'NSP_GK5_'.$mode;
-			$amountOfArts = $portal_mode_class::amount_of_articles($this);
+			// PHP 5.3:
+			//$amountOfArts = $portal_mode_class::amount_of_articles($this);
+			$amountOfArts = call_user_func(array($portal_mode_class, "amount_of_articles"), $this);
 		}
-		
-		$this->content = $model_class::getArticles($categories, $this->config, $amountOfArts);
-	
+		// PHP 5.3:
+		//$this->content = $model_class::getArticles($categories, $this->config, $amountOfArts);
+		$this->content = call_user_func(array($model_class, "getArticles"), $categories, $this->config, $amountOfArts);
 	}
 	// RENDERING LAYOUT
 	function renderLayout() {	
@@ -161,7 +160,7 @@ class NSP_GK5_Helper {
 			
 			$news_html_tab = $controller_data['arts'];
 			$news_list_tab = $controller_data['list'];
-			$news_featured_tab = $controller_data['featured'];
+			$news_featured_tab = isset($controller_data['featured']) ? $controller_data['featured'] : null;
 			
 			$news_config_json = '{
 				"animation_speed": '.($this->config['animation_speed']).',
