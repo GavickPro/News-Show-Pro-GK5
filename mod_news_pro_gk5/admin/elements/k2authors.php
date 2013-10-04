@@ -38,7 +38,7 @@ class JFormFieldK2Authors extends JFormFieldList {
 		}
 		// Create a regular list.
 		else {
-		    if($options[0]!=''){
+		    if(isset($options[0]) && $options[0] != ''){
 				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
                return '<select id="jform_params_k2_authors" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">K2 is not installed or any K2 authors are available.</strong>';

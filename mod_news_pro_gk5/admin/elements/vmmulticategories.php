@@ -43,7 +43,7 @@ class JFormFieldVMMulticategories extends JFormFieldList {
 		}
 		// Create a regular list.
 		else {
-		    if($options[0]!=''){
+		    if(isset($options[0]) && $options[0] != ''){
 				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
 	        	jimport('joomla.language.helper');

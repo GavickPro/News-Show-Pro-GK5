@@ -37,7 +37,7 @@ class JFormFieldEasyblogMulticategories extends JFormFieldList {
 		}
 		// Create a regular list.
 		else {
-		    if($options[0]!=''){
+		    if(isset($options[0]) && $options[0] != ''){
 				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
                return '<select id="jform_params_easyblog_categories" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">Easy Blog is not installed or any Easy Blog categories are available.</strong>';
