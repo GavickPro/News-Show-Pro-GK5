@@ -178,8 +178,7 @@ class NSP_GK5_com_content_View {
 		) {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //	
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'. NSP_GK5_com_content_View::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];       
-	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']); 
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'. NSP_GK5_com_content_View::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];        
 	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'. NSP_GK5_Utils::avatarURL($item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
@@ -200,11 +199,33 @@ class NSP_GK5_com_content_View {
 	        		}
 	        	}
 	        }
+	        //
+	        $info_tags = '';
+	        
+	        if(isset($item['tags'])) {
+	        	$i = 0;
+	        	// load tag helper class
+	        	JLoader::register('TagsHelperRoute', JPATH_BASE . '/components/com_tags/helpers/route.php'); 
+	        	$route = new TagsHelperRoute;
+	        	//
+	        	foreach($item['tags'] as $tag => $tag_id) {
+	        		$link = JRoute::_(TagsHelperRoute::getTagRoute($tag_id . ':' . $item['id']));
+	        		if($i == 0) {
+	        			$info_tags .= '<a href="' . $link . '">' . $tag . '</a>';
+	        		} else {
+	        			$info_tags .= ', <a href="' . $link . '">' . $tag . '</a>';
+	        		}
+	        		//
+	        		$i++;
+	        	}
+	        }
+	        
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
 	        $news_info = str_replace('%HITS', $info_hits, $news_info);
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
+	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
 	        // only if comments used
 	        if($config['com_content_comments_source'] != 'none') {
 	        	$news_info = str_replace('%COMMENTS', $info_comments, $news_info);

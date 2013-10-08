@@ -20,16 +20,29 @@ class NSP_GK5_com_content_Model {
 			$source = false;
 			$where1 = '';
 			$where2 = '';
+			$tag_join= '';
+			$tag_where = '';
+			
+			//
+			if($config['data_source'] == 'com_content_tags' ) {
+				$tag_join = ' LEFT JOIN #__contentitem_tag_map AS tag_map ON content.id = tag_map.content_item_id LEFT JOIN #__tags AS tag ON tag.id = tag_map.tag_id ';
+				$config['com_content_tags'] = implode(',',$config['com_content_tags']);
+				$tag_where = ' AND tag_map.type_alias = ' . $db->quote('com_content.article');
+			}
 			//
 			if($config['data_source'] == 'com_content_categories'){
 				$source = $config['com_content_categories'];
 				$where1 = ' c.id = ';
 				$where2 = ' OR c.id = ';
+			} if($config['data_source'] == 'com_content_tags'){
+				$source = strpos($config['com_content_tags'],',') !== false ? explode(',', $config['com_content_tags']) : $config['com_content_tags'];
+				$where1 = ' tag.id = ';
+				$where2 = ' OR tag.id = ';	
 			} else {
 				$source = strpos($config['com_content_articles'],',') !== false ? explode(',', $config['com_content_articles']) : $config['com_content_articles'];
 				$where1 = ' content.id = ';
 				$where2 = ' OR content.id = ';	
-			}
+			} 
 			//	
 			$where = ''; // initialize WHERE condition
 			// generating WHERE condition
@@ -46,14 +59,17 @@ class NSP_GK5_com_content_Model {
 				LEFT JOIN 
 					#__content AS content 
 					ON 
-					c.id = content.catid 	
+					c.id = content.catid 
+					'.$tag_join.'	
 				WHERE 
 					( '.$where.' ) 
 					AND 
-					c.extension = '.$db->quote('com_content').'
-					AND 
+					c.extension = '.$db->quote('com_content').
+					$tag_where.
+					' AND 
 					c.published = 1
 		        ';	
+		        
 			// Executing SQL Query
 			$db->setQuery($query_name);
 			// check if some categories was detected
@@ -79,6 +95,9 @@ class NSP_GK5_com_content_Model {
 	static function getArticles($categories, $config, $amount) {	
 		//
 		$sql_where = '';
+		$tag_join = '';
+		$tag_where = '';
+		$db = JFactory::getDBO();
 		//
 		if($categories) {		
 			// getting categories ItemIDs
@@ -97,11 +116,28 @@ class NSP_GK5_com_content_Model {
 				$sql_where .= ($i != 0) ? ' OR content.id = '.$ids[$i] : ' content.id = '.$ids[$i];
 			}
 		}
+		// Overwrite SQL query when user set tags
+		if($config['data_source'] == 'com_content_tags' && $config['com_content_tags'] != ''){
+			// initializing variables
+			$sql_where = '';
+			$config['com_content_tags'] = implode(',',$config['com_content_tags']);
+			$tag_join = ' LEFT JOIN #__contentitem_tag_map AS tag_map ON content.id = tag_map.content_item_id LEFT JOIN #__tags AS tag ON tag.id = tag_map.tag_id ';
+			$tag_where = ' AND tag_map.type_alias = ' . $db->quote('com_content.article');
+			//
+			$ids = explode(',', $config['com_content_tags']);
+			//
+			for($i = 0; $i < count($ids); $i++ ){	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR tag.id = '.$ids[$i] : ' tag.id = '.$ids[$i];
+			}
+			
+			
+		}
+		
 		// Arrays for content
 		$content = array();
 		$news_amount = 0;
 		// Initializing standard Joomla classes and SQL necessary variables
-		$db = JFactory::getDBO();
 		$access_con = '';
 		
 		$user = JFactory::getUser();	
@@ -180,7 +216,8 @@ class NSP_GK5_com_content_Model {
 		SELECT
 			'.$article_id_query.'				
 		FROM 
-			#__content AS content 
+			#__content AS content
+			'.$tag_join.' 
 		WHERE 
 			content.state = 1
                 '. $access_con .'   
@@ -290,10 +327,73 @@ class NSP_GK5_com_content_Model {
 		if(stripos($config['info_format'], '%COMMENTS') !== FALSE || stripos($config['info2_format'], '%COMMENTS') !== FALSE) {
 			$content = NSP_GK5_com_content_Model::getComments($content, $config);
 		}
+		if(stripos($config['info_format'], '%TAGS') !== FALSE || stripos($config['info2_format'], '%TAGS') !== FALSE) {
+			$content = NSP_GK5_com_content_Model::getTags($content, $config);
+		}
 		// the content array
 		return $content; 
 	}
 	
+	//
+	static function getTags($content, $config) {
+		// 
+		$db = JFactory::getDBO();
+		$counters_tab = array();
+		// 
+		if(count($content) > 0) {
+			// initializing variables
+			$sql_where = '';
+			//
+			for($i = 0; $i < count($content); $i++ ) {	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['iid'] : ' content.id = '.$content[$i]['iid'];
+			}
+			// creating SQL query
+			$query_news = '
+			SELECT 
+				content.id AS id,
+				tags.title AS tag,
+				tags.id AS tag_id		
+			FROM 
+				#__content AS content 
+				LEFT JOIN 
+					#__contentitem_tag_map AS tag_map 
+					ON content.id = tag_map.content_item_id
+				LEFT JOIN 
+					#__tags AS tags 
+					ON tags.id = tag_map.tag_id 		
+			WHERE 
+				tags.published
+				AND ( '.$sql_where.' ) 
+			ORDER BY
+				content.id ASC
+			;';
+			// run SQL query
+			$db->setQuery($query_news);
+			// when exist some results
+			if($counters = $db->loadObjectList()) {
+				// generating tables of news data
+				foreach($counters as $item) {			
+					if(isset($counters_tab[$item->id])) {			
+						$counters_tab[$item->id][$item->tag] = $item->tag_id;
+					} else {
+						$counters_tab[$item->id] = array($item->tag => $item->tag_id);
+					}
+				}
+			}
+		}
+		//
+		for($i = 0; $i < count($content); $i++ ) {	
+			if(isset($counters_tab[$content[$i]['iid']])) {
+				$content[$i]['tags'] = $counters_tab[$content[$i]['iid']];
+			}
+		}
+		
+		
+		
+		return $content;
+	}
+
 	// method to get comments amount
 	static function getComments($content, $config) {
 		// 

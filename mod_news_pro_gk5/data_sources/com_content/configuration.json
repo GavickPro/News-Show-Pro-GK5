@@ -14,7 +14,12 @@
 		{
 			"name": "COM_CONTENT_CATEGORIES",
 			"value": "com_content_categories"
+		},
+		{
+			"name": "COM_CONTENT_TAGS",
+			"value": "com_content_tags"
 		}
+			
 	],
 	"supported_options": {
 		"sort_values": {
