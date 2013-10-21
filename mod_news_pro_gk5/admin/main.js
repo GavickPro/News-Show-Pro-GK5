@@ -92,25 +92,6 @@ window.addEvent("domready",function(){
 	$$('.input-ms').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">ms</span>"});
 	$$('.input-times').each(function(el){ el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit times\">&times;</span>"});
 	
-	$$('.gk-color').each(function(el, i) {
-		var prnt = el.getParent(); 
-		prnt.innerHTML = prnt.innerHTML + "<span class=\"gk-color-vis\"></span>";
-		
-		prnt.getElement('.gk-color').addEvent('focus', function() { 
-			prnt.getElement('.gk-color-vis').setStyle('background-color', prnt.getElement('.gk-color').get('value')); 
-		});
-		
-		prnt.getElement('.gk-color').addEvent('blur', function() { 
-			prnt.getElement('.gk-color-vis').setStyle('background-color', prnt.getElement('.gk-color').get('value')); 
-		});
-		
-		prnt.getElement('.gk-color').addEvent('keyup', function() { 
-			prnt.getElement('.gk-color-vis').setStyle('background-color', prnt.getElement('.gk-color').get('value')); 
-		});
-		
-		prnt.getElement('.gk-color').fireEvent('blur');
-	});
-	
 	$$('.text-limit').each(function(el){
 		var name = el.get('id') + '_type';
 		var parent = el.getParent();

@@ -702,7 +702,7 @@
                 <field name="img_width" type="text" default="160" size="5" class="input-times text_area" label="MOD_NEWS_PRO_GK5_IMAGE_W" description="MOD_NEWS_PRO_GK5_IMAGE_W_DESC"/>
 				<field name="img_height" type="text" default="120" size="5" class="input-pixels text_area" label="MOD_NEWS_PRO_GK5_IMAGE_H" description="MOD_NEWS_PRO_GK5_IMAGE_H_DESC"/>
 				<field name="img_margin" type="text" default="6px 14px 0 0" label="MOD_NEWS_PRO_GK5_IMAGE_MARGIN" description="MOD_NEWS_PRO_GK5_IMAGE_MARGIN_DESC"/>
-                <field name="img_bg" type="text" default="#000" size="5" label="MOD_NEWS_PRO_GK5_IMAGE_BG" description="MOD_NEWS_PRO_GK5_IMAGE_BG_DESC" class="gk-color" />   
+                <field name="img_bg" type="color" default="#000" size="8" label="MOD_NEWS_PRO_GK5_IMAGE_BG" description="MOD_NEWS_PRO_GK5_IMAGE_BG_DESC" class="gk-color" />   
 				<field name="img_stretch" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_IMAGE_STRETCH" description="MOD_NEWS_PRO_GK5_IMAGE_STRETCH_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>

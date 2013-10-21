@@ -848,19 +848,6 @@ label[id^=jform_params_gk_line_],
 	display: none!important;
 }
 
-/* Color visualisation */
-.gk-color-vis {
-	background: transparent;
-	border: 2px solid #ddd;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	float: left;
-	height: 24px;
-	margin: 4px 0 0 0;
-	width: 24px;
-}
-
 /* Social media */
 #gk-social {
 	margin-top: 10px;
