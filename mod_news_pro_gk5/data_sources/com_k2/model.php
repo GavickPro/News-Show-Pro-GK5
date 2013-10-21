@@ -123,7 +123,11 @@ class NSP_GK5_com_k2_Model {
 		if($config['data_source'] == 'k2_authors' && $config['k2_authors'] != ''){
 			// initializing variables
 			$sql_where = '';
-			$ids = explode(',', $config['k2_authors']);
+			if(!is_array($config['k2_authors'])) {
+				$ids = explode(',', $config['k2_authors']);
+			} else {
+				$ids = $config['k2_authors'];
+			}
 			//
 			for($i = 0; $i < count($ids); $i++ ){	
 				// linking string with content IDs

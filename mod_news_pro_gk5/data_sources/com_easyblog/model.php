@@ -123,7 +123,12 @@ class NSP_GK5_com_easyblog_Model {
 		if($config['data_source'] == 'easyblog_authors' && $config['easyblog_authors'] != ''){
 			// initializing variables
 			$sql_where = '';
-			$ids = explode(',', $config['easyblog_authors']);
+		
+			if(!is_array($config['easyblog_authors'])) {
+				$ids = explode(',', $config['easyblog_authors']);
+			} else {
+				$ids = $config['easyblog_authors'];
+			}
 			//
 			for($i = 0; $i < count($ids); $i++ ){	
 				// linking string with content IDs
