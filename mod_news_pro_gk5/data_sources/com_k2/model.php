@@ -207,7 +207,10 @@ class NSP_GK5_com_k2_Model {
 		$article_id_query = 'content.id AS id';
 		$one_article_query = '';
 		
-		if($config['one_article_per_category']) {
+		if($config['one_article_per_category'] && $config['data_source'] == 'k2_authors') {
+			$article_id_query = 'MAX(content.id) AS id, content.created_by AS author';
+			$one_article_query = ' GROUP BY content.created_by ';
+		} else {
 			$article_id_query = 'MAX(content.id) AS id, content.catid AS cid';
 			$one_article_query = ' GROUP BY content.catid ';
 		}
