@@ -103,8 +103,12 @@ class NSP_GK5_com_easyblog_Model {
 		// Overwrite SQL query when user set IDs manually
 		if($config['data_source'] == 'easyblog_articles' && $config['easyblog_articles'] != ''){
 			// initializing variables
-			$sql_where = '';
-			$ids = explode(',', $config['easyblog_articles']);
+			$sql_where = '';			
+			if(!is_array($config['easyblog_authors'])) {
+				$ids = explode(',', $config['easyblog_authors']);
+			} else {
+				$ids = $config['easyblog_authors'];
+			}
 			//
 			for($i = 0; $i < count($ids); $i++ ){	
 				// linking string with content IDs
@@ -152,13 +156,17 @@ class NSP_GK5_com_easyblog_Model {
 		
 		// if some data are available
 		// when showing only frontpage articles is disabled
-		$frontpage_con = '';
+		$frontpage_con1 = '';
+		$frontpage_con2 = '';
 		
 		if($config['only_featured'] == 0 && $config['news_featured'] == 0) {
-		 	$frontpage_con = ' AND content.frontpage = 0 ';
+		 	$frontpage_con1 = ' LEFT JOIN #__easyblog_featured as featured ON content.id = featured.content_id ';
+		 	$frontpage_con2 = ' AND (featured.id IS NULL OR (featured.id IS NOT NULL AND (featured.type NOT LIKE "post" OR featured.type IS NULL))) ';
 		} else if($config['only_featured'] == 1) {
-			$frontpage_con = ' AND content.frontpage = 1';
+			$frontpage_con1 = ' LEFT JOIN #__easyblog_featured as featured ON content.id = featured.content_id ';
+			$frontpage_con2 = ' AND featured.id IS NOT NULL AND featured.type LIKE "post"';
 		}
+		
 		
 		$since_con = '';
 		//
@@ -208,7 +216,10 @@ class NSP_GK5_com_easyblog_Model {
 		$article_id_query = 'content.id AS id';
 		$one_article_query = '';
 		
-		if($config['one_article_per_category']) {
+		if($config['one_article_per_category'] && $config['data_source'] == 'easyblog_authors') {
+			$article_id_query = 'MAX(content.id) AS id, content.created_by AS author';
+			$one_article_query = ' GROUP BY content.created_by ';
+		} else {
 			$article_id_query = 'MAX(content.id) AS id, content.category_id AS cid';
 			$one_article_query = ' GROUP BY content.category_id ';
 		}
@@ -219,6 +230,7 @@ class NSP_GK5_com_easyblog_Model {
 		FROM 
 			#__easyblog_post AS content 
 			'.$tag_join.'
+			'.$frontpage_con1.'
 		WHERE 
 			content.published = 1
                 '. $access_con .'   
@@ -229,7 +241,7 @@ class NSP_GK5_com_easyblog_Model {
 			'.$frontpage_con.' 
 			'.$since_con.'
 			'.$current_con.'
-		
+			'.$frontpage_con2.'
 		'.$one_article_query.'	
 		
 		ORDER BY 
@@ -251,9 +263,6 @@ class NSP_GK5_com_easyblog_Model {
 		$second_sql_where = '';
 		for($i = 0; $i < count($content); $i++) {
 			$second_sql_where .= (($i != 0) ? ' OR ' : '') . ' content.id = ' . $content[$i]['id'];
-		}
-		if($second_sql_where != '') {
-			$second_sql_where = ' AND ('.$second_sql_where.')';
 		}
 		// second SQL query to get rest of the data and avoid the DISTINCT
 		$second_query_news = '

@@ -27,7 +27,7 @@ class NSP_GK5_Portfolio {
 		// amount
 		$amount = 0;	
 		// main wrapper
-		echo '<div class="gkNspPM gkNspPM-Portfolio'.(($parent->config['portal_mode_portfolio_initial_anim'] == '0') ? ' noInitialAnim' : '').'" data-cols="'.$this->parent->config['portal_mode_portfolio_cols'].'" data-rows="'.$this->parent->config['portal_mode_portfolio_rows'].'">';
+		echo '<div class="gkNspPM gkNspPM-Portfolio'.(($this->parent->config['portal_mode_portfolio_initial_anim'] == '0') ? ' noInitialAnim' : '').'" data-cols="'.$this->parent->config['portal_mode_portfolio_cols'].'" data-rows="'.$this->parent->config['portal_mode_portfolio_rows'].'">';
 		// images wrapper
 		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_portfolio_cols'].' animate_queue">';
 		// JSON data array

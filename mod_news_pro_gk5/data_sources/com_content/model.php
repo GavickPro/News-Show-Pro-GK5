@@ -34,7 +34,7 @@ class NSP_GK5_com_content_Model {
 				$source = $config['com_content_categories'];
 				$where1 = ' c.id = ';
 				$where2 = ' OR c.id = ';
-			} if($config['data_source'] == 'com_content_tags'){
+			} else if($config['data_source'] == 'com_content_tags'){
 				$source = strpos($config['com_content_tags'],',') !== false ? explode(',', $config['com_content_tags']) : $config['com_content_tags'];
 				$where1 = ' tag.id = ';
 				$where2 = ' OR tag.id = ';	

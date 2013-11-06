@@ -123,7 +123,11 @@ class NSP_GK5_com_k2_Model {
 		if($config['data_source'] == 'k2_authors' && $config['k2_authors'] != ''){
 			// initializing variables
 			$sql_where = '';
-			$ids = explode(',', $config['k2_authors']);
+			if(!is_array($config['k2_authors'])) {
+				$ids = explode(',', $config['k2_authors']);
+			} else {
+				$ids = $config['k2_authors'];
+			}
 			//
 			for($i = 0; $i < count($ids); $i++ ){	
 				// linking string with content IDs
@@ -203,10 +207,14 @@ class NSP_GK5_com_k2_Model {
 		$article_id_query = 'content.id AS id';
 		$one_article_query = '';
 		
-		if($config['one_article_per_category']) {
+		if($config['one_article_per_category'] && $config['data_source'] == 'k2_authors') {
+			$article_id_query = 'MAX(content.id) AS id, content.created_by AS author';
+			$one_article_query = ' GROUP BY content.created_by ';
+		} else {
 			$article_id_query = 'MAX(content.id) AS id, content.catid AS cid';
 			$one_article_query = ' GROUP BY content.catid ';
 		}
+		
 		// creating SQL query			
 		$query_news = '
 		SELECT

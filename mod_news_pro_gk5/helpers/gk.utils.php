@@ -32,14 +32,31 @@ class NSP_GK5_Utils {
 			}
 		}
 		if($config['clean_xhtml'] == 1) {
-			if($limit_type == 'words' && $limit_value > 0){
-				$temp = explode(' ', strip_tags($text));
+			$allowed_html = '';
+			
+			if(strlen(trim($config['allowed_tags'])) > 0) {
+				$allowed_html = explode(',', $config['allowed_tags']);		
+				$allowed_len = count($allowed_html);
+				
+				for($i = 0; $i < $allowed_len; $i++) {
+					$allowed_html[$i] = '<' . $allowed_html[$i] . '>';
+				}
+				
+				$allowed_html = implode('', $allowed_html);
+			}
+			
+			if($limit_type == 'words' && $limit_value > 0){			
+				$temp = explode(' ', strip_tags($text, $allowed_html));
 			
 				if(count($temp) > $limit_value){
-					for($i=0; $i<$limit_value; $i++) $cutted[$i] = $temp[$i];
+					for($i=0; $i<$limit_value; $i++) {
+						$cutted[$i] = $temp[$i];
+					}
 					$cutted = implode(' ', $cutted);
 					$cutted = rtrim($cutted, '\'"!,.');
 					$text = $cutted . $at_end;
+				} else {
+					$text = strip_tags($text, $allowed_html);
 				}
 			} elseif($limit_type == 'words' && $limit_value == 0) {
 				return '';
@@ -48,6 +65,8 @@ class NSP_GK5_Utils {
 					$cutted = JString::substr(strip_tags($text, $allowed_html), 0, $limit_value);
 					$cutted = rtrim($cutted, '\'"!,.');
 					$text = $cutted . $at_end;
+				} else {
+					$text = strip_tags($text, $allowed_html);
 				}
 			}
 		} else {

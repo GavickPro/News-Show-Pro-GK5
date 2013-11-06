@@ -39,9 +39,6 @@ class NSP_GK5_json_file_View {
 	// article text generator
 	static function text($config, $item, $readmore) {
 		if($config['news_content_text_pos'] != 'disabled') {
-			if($config['clean_xhtml'] == 1) {
-				$item['text'] = strip_tags($item['text']);
-			}
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
 			$link = $item['url'];
@@ -68,6 +65,8 @@ class NSP_GK5_json_file_View {
 			$uri = JURI::getInstance();
 			// get image from Joomla! Images and Links settings
 			$IMG_SOURCE = $item['image'];
+			//
+			$full_size_img = $IMG_SOURCE;
 			//
 			if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
 				// try to override standard image
@@ -112,9 +111,13 @@ class NSP_GK5_json_file_View {
 					if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
 					//
 					if($config['news_image_link'] == 1) {
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+						if($config['news_image_modal'] == 1) {
+							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+						} else {
+							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+						}
 					} else {
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
+						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
 					}
 				} else {
 					return '';

@@ -824,17 +824,7 @@ select.gk_switch {
 #jform_params_portal_mode_centered_title_overlay_text_bg {
 	float: left;
 }
-.gk-color-vis {
-	background: transparent;
-	border: 2px solid #ddd;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	float: left;
-	height: 24px;
-	margin: 0 0 0 6px;
-	width: 24px;
-}
+
 
 /* Social media */
 #gk-social {

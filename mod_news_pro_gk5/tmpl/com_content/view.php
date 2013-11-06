@@ -26,7 +26,6 @@ class NSP_GK5_com_content_View {
 			}
 			
 			$link = NSP_GK5_com_content_View::itemLink($item);
-	        $link = ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'])) : JRoute::_('index.php?option=com_users&view=login');
 			//
 			if($config['news_header_link'] == 1) {
 				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</a></h4>';	
@@ -40,9 +39,6 @@ class NSP_GK5_com_content_View {
 	// article text generator
 	static function text($config, $item, $readmore) {
 		if($config['news_content_text_pos'] != 'disabled') {
-			if($config['clean_xhtml'] == 1) {
-				$item['text'] = strip_tags($item['text']);
-			}
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
 			$link = NSP_GK5_com_content_View::itemLink($item);
@@ -85,6 +81,8 @@ class NSP_GK5_com_content_View {
 					}
 				}
 			}
+			//
+			$full_size_img = $IMG_SOURCE;
 			//
 			if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
 				// try to override standard image
@@ -129,9 +127,13 @@ class NSP_GK5_com_content_View {
 					if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
 					//
 					if($config['news_image_link'] == 1) {
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+						if($config['news_image_modal'] == 1) {
+							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$full_size_img .'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img .'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+						} else {
+							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+						}
 					} else {
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
+						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
 					}
 				} else {
 					return '';
@@ -178,7 +180,8 @@ class NSP_GK5_com_content_View {
 		) {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //	
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'. NSP_GK5_com_content_View::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];        
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'. NSP_GK5_com_content_View::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];
+	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);        
 	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'. NSP_GK5_Utils::avatarURL($item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];

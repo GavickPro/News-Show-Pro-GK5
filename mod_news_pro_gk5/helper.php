@@ -160,7 +160,7 @@ class NSP_GK5_Helper {
 			
 			$news_html_tab = $controller_data['arts'];
 			$news_list_tab = $controller_data['list'];
-			$news_featured_tab = isset($controller_data['featured']) ? $controller_data['featured'] : null;
+			$news_featured_tab = $controller_data['featured'];
 			
 			$news_config_json = '{
 				"animation_speed": '.($this->config['animation_speed']).',

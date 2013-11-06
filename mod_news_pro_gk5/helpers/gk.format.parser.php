@@ -44,30 +44,6 @@ class NSP_GK5_Article_Format {
 		// Get the values
 		//
 
-		// validation the data
-		$validation = array(
-				"url", 
-				"title", 
-				"text", 
-				"author", 
-				"image", 
-				"author_email", 
-				"catname", 
-				"category_url",
-				"hits",
-				"email",
-				"rating_sum",
-				"rating_count",
-				"date",
-				"date_publish"
-		);
-
-		foreach($validation as $validated) {
-			if(!isset($data[$validated])) {
-				$data[$validated] = '';
-			}
-		}
-		
 		// Image
 		$viewClass = 'NSP_GK5_'.$config['source_name'].'_View';
 		// Basic data
@@ -92,7 +68,7 @@ class NSP_GK5_Article_Format {
 		if(isset($data['caturl'])) {
 			$category_url = $data['caturl'];
 		} else {
-			$category_url = call_user_func(array($viewClass, 'categoryLink'), $data);
+			$url = call_user_func(array($viewClass, 'categoryLink'), $data);
 		}
 		// Other data
 		$hits = $data['hits'];
@@ -184,11 +160,9 @@ class NSP_GK5_Article_Format {
 
 			if(count($matches) > 0) {
 				for($i = 0; $i < count($matches); $i++) {
-					if(count($matches[$i]) > 0) {
-						$phrase = $matches[$i][0];
-						$phrase = JText::_(str_replace(array('{{', '}}'), '', $phrase));
-						$format_file = str_replace($matches[$i][0], $phrase, $format_file);
-					}
+					$phrase = $matches[$i][0];
+					$phrase = JText::_(str_replace(array('{{', '}}'), '', $phrase));
+					$format_file = str_replace($matches[$i][0], $phrase, $format_file);
 				}
 			}
 			
