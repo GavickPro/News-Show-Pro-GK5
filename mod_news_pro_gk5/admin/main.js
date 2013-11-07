@@ -7,7 +7,7 @@
  * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
  * @version $Revision: GK5 1.0 $
  **/
-jQuery(document).ready(function() {	
+jQuery(window).load(function() {	
 	// initialize the configuration manager
 	var configManager = new NSPGK5ConfigManager();
 	
@@ -21,34 +21,15 @@ jQuery(document).ready(function() {
 		if(jQuery('#jform_params_links_position').val() == 'bottom') jQuery('#jform_params_links_width').parent().parent().css('display','none');
 		else jQuery('#jform_params_links_width').parent().parent().css('display','');
 	});
-	
-	
+	//
+	// check Joomla! version and add suffix
+	if((jQuery('#gk_about_us').data('jversion')).substr(0,3) == '3.2') {
+		jQuery('#module-form').addClass('j32');
+	}
+	//
 	jQuery('#moduleOptions a[href^="#collapse"]').each(function(i, el) {
 		jQuery(el).attr('id', jQuery(el).html().replace(/ /g,'_').replace('!', ''));
 	});
-
-	/*jQuery('.text-limit').each(function(i, el){
-		el = jQuery(el);
-		var name = el.attr('id') + '_type';
-		var parent = el.parent();
-		jQuery(name).append(el);	
-        parent.remove();
-	});*/
-	/*jQuery('.float').each(function(i, el){
-		el = jQuery(el);
-		var destination = el.parent().prev().find('select');
-		var parent = el.parent();
-		destination.after(el);
-		parent.remove();	
-	});*/
-	
-	/*jQuery('.enabler').each(function(i, el){
-		el = jQuery(el);
-		var destination = el.parent().prev().find('select');
-		var parent = el.parent();
-		destination.after(el);
-		parent.remove();	
-	});*/
 	
 	jQuery('.gk_switch').each(function(i, el){
 			el = jQuery(el);
@@ -154,4 +135,4 @@ jQuery(document).ready(function() {
 	jQuery('#nsp-gk5-checkout').parent().css('margin-left', '10px');
 	jQuery('#gk_about_us').parent().css('margin-left', '10px');
 	
-	});
+});

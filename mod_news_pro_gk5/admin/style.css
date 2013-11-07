@@ -866,7 +866,9 @@ div#jform_params_news_image_order_chzn,
 div#jform_params_news_text_order_chzn,
 div#jform_params_news_info_order_chzn,
 div#jform_params_news_info2_order_chzn,
-select#jform_params_com_content_tags{
+select#jform_params_com_content_tags,
+div#jform_params_module_mode_chzn,
+div#jform_params_data_source_chzn {
 	display: none!important;
 }
 div.switcher-on + select,
@@ -909,3 +911,52 @@ div.switcher-off + select {
 		min-height: auto;
 	}
 }
+
+/* Joomla! 3.2.x styles */
+.j32 ul#myTabTabs {
+	width: 20%;
+	float: left;
+	min-width: 150px;
+	border-bottom: 0;
+	border-right: 1px solid #fafafa;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.j32 ul#myTabTabs > li {
+	width: 90%;
+	margin: 2px 0;
+}
+.j32 ul#myTabTabs > li > a {
+	color: #666;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.j32 ul#myTabTabs > li.active > a {
+	color: #fff;
+	background: #59B1F6;
+	border-color: #2587d3;
+}
+.j32 div#myTabContent {
+	float: right;
+	width: 80%;
+}
+.j32 div#myTabContent > div { margin-left: 35px }
+.j32 #general .span3 { width: 100% }
+.j32 #general .span9 { display: none }
+.j32 #jform_menuselect {
+	clear: both;
+	width: 100%;
+	margin: 0;
+}
+.j32 #config_manager_form {
+	position: relative;
+}
+.j32 > .form-inline-header > .control-group {
+	width: 100%;
+}
+.j32 > .form-inline-header > .control-group > .control-label { width: 10%; float: left; padding: 0!important; line-height: 32px }
+.j32 > .form-inline-header > .control-group > .controls { width: 90%; float: left; padding: 0!important }
+.j32 > .form-inline-header > .control-group > .controls > input { max-width: 99%; width: 99%}

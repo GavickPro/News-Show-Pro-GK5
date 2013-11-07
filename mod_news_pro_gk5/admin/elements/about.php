@@ -10,7 +10,7 @@
 **/
 
 defined('JPATH_BASE') or die;
-
+jimport('joomla.version');
 jimport('joomla.form.formfield');
 
 class JFormFieldAbout extends JFormField {
@@ -18,7 +18,10 @@ class JFormFieldAbout extends JFormField {
 	protected $type = 'About';
 
 	protected function getInput() {
-		return '<div id="gk_about_us">' . JText::_('MOD_NEWS_PRO_GK5_ABOUT_US_CONTENT') . '</div></div>';
+		$version = new JVersion;
+		$ver = $version->getShortVersion();
+		
+		return '<div id="gk_about_us" data-jversion="'.$ver.'">'. JText::_('MOD_NEWS_PRO_GK5_ABOUT_US_CONTENT') . '</div></div>';
 	}
 }
 
