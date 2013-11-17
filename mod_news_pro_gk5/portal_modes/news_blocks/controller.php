@@ -1,5 +1,18 @@
 <?php
 
+/**
+* News Blocks Portal Mode
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
+**/
+
+// access restriction
+defined('_JEXEC') or die('Restricted access');
+
 class NSP_GK5_News_Blocks {
 	// necessary class fields
 	private $parent;

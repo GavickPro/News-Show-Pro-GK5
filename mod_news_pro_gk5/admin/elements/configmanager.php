@@ -1,6 +1,18 @@
 <?php
 
-defined('JPATH_BASE') or die;
+/**
+* Config Manager
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
+**/
+
+// access restriction
+defined('_JEXEC') or die('Restricted access');
+
 if(!defined('DS')){ define('DS',DIRECTORY_SEPARATOR); }
 jimport('joomla.form.formfield');
 

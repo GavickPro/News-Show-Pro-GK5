@@ -1,5 +1,18 @@
 <?php
 
+/**
+* Dynamic list field
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.2 $
+**/
+
+// access restriction
+defined('_JEXEC') or die('Restricted access');
+
 defined('JPATH_BASE') or die;
 
 jimport('joomla.form.formfield');
