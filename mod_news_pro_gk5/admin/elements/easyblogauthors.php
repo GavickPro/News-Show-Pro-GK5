@@ -1,14 +1,16 @@
 <?php
 /**
-* JElementEasyblogAuthors - additional element for module XML file
+* Easy Blog Authors list
 * @package News Show Pro GK5
 * @Copyright (C) 2009-2013 Gavick.com
 * @ All rights reserved
 * @ Joomla! is Free Software
-* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
-* @version $Revision: 5.0.0 $
-**/ 
-defined( '_JEXEC' ) or die( 'Restricted access' );
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
+**/
+
+// access restriction
+defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');//import the necessary class definition for formfield

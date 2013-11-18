@@ -1,15 +1,16 @@
 <?php
 /**
-* Asset Element
-* @package News Show Pro GK4
-* @Copyright (C) 2009-2011 Gavick.com
+* Asset element
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
 * @ All rights reserved
 * @ Joomla! is Free Software
-* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
-* @version $Revision: GK4 1.0 $
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
 **/
 
-defined('JPATH_BASE') or die;
+// access restriction
+defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.form.formfield');
 
