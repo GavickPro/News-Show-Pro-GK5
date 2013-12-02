@@ -848,8 +848,12 @@ select.gk_switch {
 select.chzn-done {
 	display: inline-block !important;
 }
-select.chzn-done + div {
+select.chzn-done + div,
+select#jform_position {
 	display: none!important;
+}
+#jform_position_chzn {
+	display: block!important;
 }
 div#jform_params_com_content_tags_chzn {
 	display: inline-block!important;
