@@ -219,7 +219,7 @@ class NSP_GK5_com_easyblog_Model {
 		if($config['one_article_per_category'] && $config['data_source'] == 'easyblog_authors') {
 			$article_id_query = 'MAX(content.id) AS id, content.created_by AS author';
 			$one_article_query = ' GROUP BY content.created_by ';
-		} else {
+		} elseif($config['one_article_per_category']) {
 			$article_id_query = 'MAX(content.id) AS id, content.category_id AS cid';
 			$one_article_query = ' GROUP BY content.category_id ';
 		}
