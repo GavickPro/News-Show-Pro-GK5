@@ -164,7 +164,7 @@ class NSP_GK5_com_virtuemart_View {
 			($config['news_content_info_pos'] != 'disabled' && $num == 1) || 
 			($config['news_content_info2_pos'] != 'disabled' && $num == 2)
 		) {
-			$news_info = '<p class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </p>';
+			$news_info = '<div class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </div>';
 	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_virtuemart_View::categoryLink($item).'" >'.$item['cat_name'].'</a>' : $news_catname;
 	        //          
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
