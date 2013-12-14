@@ -84,7 +84,7 @@
             	
             	<field name="com_content_articles" type="text" default="" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_COM_ARTICLES" size="5" description="MOD_NEWS_PRO_GK5_COM_ARTICLES_DESC" />
             	
-            	<field name="com_content_tags" type="tag" class="" label="MOD_NEWS_PRO_GK5_COM_CONTENT_TAGS" description="MOD_NEWS_PRO_GK5_COM_CONTENT_TAGS_DESC" mode="nested" validate="notequals" field="id" parent="parent" multiple="true"></field>
+            	<field name="com_content_tags" type="tag" class="" label="MOD_NEWS_PRO_GK5_COM_CONTENT_TAGS" description="MOD_NEWS_PRO_GK5_COM_CONTENT_TAGS_DESC" mode="nested" field="id" parent="parent" multiple="true"></field>
             	
                 <field name="k2_categories" type="k2multicategories" extension="k2multicategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_K2CATEGORIES" description="MOD_NEWS_PRO_GK5_K2CATEGORIES_DESC" />
                 
