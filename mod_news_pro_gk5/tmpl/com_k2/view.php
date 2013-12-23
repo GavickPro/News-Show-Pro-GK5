@@ -206,6 +206,20 @@ class NSP_GK5_com_k2_View {
 	            }
 	        }
 	        //
+	        $info_comments_short = '';
+	        
+	        if($config['com_content_comments_source'] != 'none') {
+	        	$link = NSP_GK5_com_content_View::itemLink($item); 
+	        	
+	        	$info_comments_short = 0;
+	            //
+	            if(isset($item['comments'])) { 
+	            	$info_comments_short = $item['comments'];
+	            }
+	            
+	            $info_comments_short = '<a href="'.$link.'">'.$info_comments_short.'</a>';
+	        }
+	        //
 	        $info_tags = '';
 	        if(isset($item['tags']) && count($item['tags']) > 0) {
 	        	$i = 0;
@@ -228,6 +242,7 @@ class NSP_GK5_com_k2_View {
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
 	        $news_info = str_replace('%COMMENTS', $info_comments, $news_info);
+	        $news_info = str_replace('%COMMENTS_SHORT', $info_comments_short, $news_info);
 	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
 	    } else {
 	    	return '';

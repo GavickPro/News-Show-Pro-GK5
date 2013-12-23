@@ -209,6 +209,20 @@ class NSP_GK5_com_content_View {
 		        
 		        $info_comments = '<a href="'.$link.'">'.$info_comments.'</a>';
 	        }
+	        //
+	        $info_comments_short = '';
+	        
+	        if($config['com_content_comments_source'] != 'none') {
+	        	$link = NSP_GK5_com_content_View::itemLink($item); 
+	        	
+	        	$info_comments_short = 0;
+	            //
+	            if(isset($item['comments'])) { 
+	            	$info_comments_short = $item['comments'];
+	            }
+	            
+	            $info_comments_short = '<a href="'.$link.'">'.$info_comments_short.'</a>';
+	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
@@ -218,6 +232,7 @@ class NSP_GK5_com_content_View {
 	        // only if comments used
 	       	if($config['com_content_comments_source'] != 'none') {
 	        	$news_info = str_replace('%COMMENTS', $info_comments, $news_info);
+	        	$news_info = str_replace('%COMMENTS_SHORT', $info_comments_short, $news_info);
 	        }
 	    } else {
 	    	return '';
