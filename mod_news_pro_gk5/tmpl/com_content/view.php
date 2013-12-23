@@ -231,8 +231,8 @@ class NSP_GK5_com_content_View {
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
 	        // only if comments used
 	       	if($config['com_content_comments_source'] != 'none') {
-	        	$news_info = str_replace('%COMMENTS', $info_comments, $news_info);
 	        	$news_info = str_replace('%COMMENTS_SHORT', $info_comments_short, $news_info);
+	        	$news_info = str_replace('%COMMENTS', $info_comments, $news_info);
 	        }
 	    } else {
 	    	return '';
