@@ -128,10 +128,10 @@ PortalModes.prototype.changeValue = function() {
 				jQuery('#Article_layout').parents().eq(2).css('display', 'block');
 				jQuery('#Thumbnails').parents().eq(2).css('display', 'block');
 			} else {
-				jQuery('a[href=#attrib-NSP_DATA_SOURCE_COM_CONTENT]').parent().css('display', 'none');
-				jQuery('a[href=#attrib-NSP_LINKS_LAYOUT]').parent().css('display', 'none');
-				jQuery('a[href=#attrib-NSP_ARTICLE_LAYOUT]').parent().css('display', 'none');
-				jQuery('a[href=#attrib-NSP_THUMBNAILS]').parent().css('display', 'none');
+				jQuery('a[href=#attrib-NSP_DATA_SOURCE_COM_CONTENT]').parent().css('display', 'block');
+				jQuery('a[href=#attrib-NSP_LINKS_LAYOUT]').parent().css('display', 'block');
+				jQuery('a[href=#attrib-NSP_ARTICLE_LAYOUT]').parent().css('display', 'block');
+				jQuery('a[href=#attrib-NSP_THUMBNAILS]').parent().css('display', 'block');
 			}
 			// hide all Portal Mode Tabs
 			$this.hideAllPMTabs();
