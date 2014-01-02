@@ -74,15 +74,15 @@
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE">
-                        <field name="data_source" type="datasource" default="" label="MOD_NEWS_PRO_GK5_DATA_SOURCE" description="MOD_NEWS_PRO_GK5_DATA_SOURCE_DESC" />
-                        
-                        <field name="source_name" type="text" default="com_content" class="gk-hidden-field" label="" description="" />
+                <field name="data_source" type="datasource" default="" label="MOD_NEWS_PRO_GK5_DATA_SOURCE" description="MOD_NEWS_PRO_GK5_DATA_SOURCE_DESC" />
+                
+                <field name="source_name" type="text" default="com_content" class="gk-hidden-field" label="" description="" />
                     
-                    <!-- Data sources fields START -->
-                    
-                    <field name="com_content_categories" type="category" class="gk-hidden-field" extension="com_content" default="" multiple="multiple" label="MOD_NEWS_PRO_GK5_COM_CATEGORIES" description="MOD_NEWS_PRO_GK5_COM_CATEGORIES_DESC" />
-                    
-                    <field name="com_content_articles" type="text" default="" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_COM_ARTICLES" size="5" description="MOD_NEWS_PRO_GK5_COM_ARTICLES_DESC" />
+                <!-- Data sources fields START -->
+                
+                <field name="com_content_categories" type="category" class="gk-hidden-field" extension="com_content" default="" multiple="multiple" label="MOD_NEWS_PRO_GK5_COM_CATEGORIES" description="MOD_NEWS_PRO_GK5_COM_CATEGORIES_DESC" />
+                
+                <field name="com_content_articles" type="text" default="" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_COM_ARTICLES" size="5" description="MOD_NEWS_PRO_GK5_COM_ARTICLES_DESC" />
                     
                 <field name="k2_categories" type="k2multicategories" extension="k2multicategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_K2CATEGORIES" description="MOD_NEWS_PRO_GK5_K2CATEGORIES_DESC" />
                 
@@ -90,21 +90,21 @@
                 
                 <field name="k2_authors" type="k2authors" class="gk-hidden-field" multiple="multiple" extension="k2authors" default="" size="25" label="MOD_NEWS_PRO_GK5_K2_AUTHORS" description="MOD_NEWS_PRO_GK5_K2_AUTHORS_DESC" />
                         
-                        <field name="k2_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_K2ITEMS" description="MOD_NEWS_PRO_GK5_K2ITEMS_DESC" />
-                        
-                        <field name="easyblog_categories" type="easyblogmulticategories" extension="easyblogmulticategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_EASYBLOGCATEGORIES" description="MOD_NEWS_PRO_GK5_EASYBLOGCATEGORIES_DESC" />
-                        
-                        <field name="easyblog_tags" type="easyblogtags" class="gk-hidden-field" extension="easyblogtags" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOG_TAGS" description="MOD_NEWS_PRO_GK5_EASYBLOG_TAGS_DESC" />
-                        
-                        <field name="easyblog_authors" type="easyblogauthors" class="gk-hidden-field" multiple="multiple" extension="easyblogauthors" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOG_AUTHORS" description="MOD_NEWS_PRO_GK5_EASYBLOG_AUTHORS_DESC" />
-                        
-                        <field name="easyblog_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOGITEMS" description="MOD_NEWS_PRO_GK5_EASYBLOGITEMS_DESC" />
-        
-                                <field name="rss_feed" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_RSS_FEED_URL" description="MOD_NEWS_PRO_GK5_RSS_FEED_URL_DESC" />
-        
-                                <field name="json_file" type="filelist" default="" label="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE" description="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE_DESC" directory="modules/mod_news_pro_gk5/external_data" filter="(\.json)$" stripext="" hide_default="hide_default" class="gk-hidden-field" />
-                                
-                                <field name="xml_file" type="filelist" default="" label="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE" description="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE_DESC" directory="modules/mod_news_pro_gk5/external_data" filter="(\.xml)$" stripext="" hide_default="hide_default" class="gk-hidden-field" />
+                <field name="k2_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_K2ITEMS" description="MOD_NEWS_PRO_GK5_K2ITEMS_DESC" />
+                
+                <field name="easyblog_categories" type="easyblogmulticategories" extension="easyblogmulticategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_EASYBLOGCATEGORIES" description="MOD_NEWS_PRO_GK5_EASYBLOGCATEGORIES_DESC" />
+                
+                <field name="easyblog_tags" type="easyblogtags" class="gk-hidden-field" extension="easyblogtags" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOG_TAGS" description="MOD_NEWS_PRO_GK5_EASYBLOG_TAGS_DESC" />
+                
+                <field name="easyblog_authors" type="easyblogauthors" class="gk-hidden-field" multiple="multiple" extension="easyblogauthors" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOG_AUTHORS" description="MOD_NEWS_PRO_GK5_EASYBLOG_AUTHORS_DESC" />
+                
+                <field name="easyblog_articles" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_EASYBLOGITEMS" description="MOD_NEWS_PRO_GK5_EASYBLOGITEMS_DESC" />
+
+                <field name="rss_feed" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_RSS_FEED_URL" description="MOD_NEWS_PRO_GK5_RSS_FEED_URL_DESC" />
+
+                <field name="json_file" type="filelist" default="" label="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE" description="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE_DESC" directory="modules/mod_news_pro_gk5/external_data" filter="(\.json)$" stripext="" hide_default="hide_default" class="gk-hidden-field" />
+                
+                <field name="xml_file" type="filelist" default="" label="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE" description="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE_DESC" directory="modules/mod_news_pro_gk5/external_data" filter="(\.xml)$" stripext="" hide_default="hide_default" class="gk-hidden-field" />
                 
                 <field name="com_virtuemart_products" type="text" default="" size="25" label="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_PRODUCTS" description="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_PRODUCTS_DESC" class="gk-hidden-field" />
                 
@@ -112,7 +112,7 @@
                 
                 <!-- Data sources fields END -->
                 
-                    <field name="news_sort_value" type="gkdynamiclist" default="created" label="MOD_NEWS_PRO_GK5_NEWS_SORT_VALUE" description="MOD_NEWS_PRO_GK5_NEWS_SORT_VALUE_DESC"></field>
+                <field name="news_sort_value" type="gkdynamiclist" default="created" label="MOD_NEWS_PRO_GK5_NEWS_SORT_VALUE" description="MOD_NEWS_PRO_GK5_NEWS_SORT_VALUE_DESC"></field>
                     
                 <field name="news_sort_order" type="list" default="DESC" label="MOD_NEWS_PRO_GK5_NEWS_SORT_ORDER" description="MOD_NEWS_PRO_GK5_NEWS_SORT_ORDER_DESC">
                         <option value="ASC">MOD_NEWS_PRO_GK5_ASC</option>
