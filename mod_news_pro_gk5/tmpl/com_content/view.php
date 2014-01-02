@@ -190,6 +190,14 @@ class NSP_GK5_com_content_View {
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
 	        $info_rate = ($item['rating_count'] > 0) ? '<span class="nspRate">' . JText::_('MOD_NEWS_PRO_GK5_NSP_RATE') .' '. number_format($item['rating_sum'] / $item['rating_count'], 2) . '</span>': '';
+	        
+	        $info_stars = '<span class="nsp-stars">';
+	        $stars_count = floor($item['rating_sum'] / $item['rating_count']);
+	        for($i = 0; $i < 5; $i++) {
+	        	$info_stars .= $i < $stars_count ? '<span class="nsp-star-1"></span>' : '<span class="nsp-star-0"></span>';
+	        }
+	        $info_stars .= '</span>'; 
+	        
 	        $info_comments = '';
 	        
 	        if($config['com_content_comments_source'] != 'none') {
@@ -228,6 +236,7 @@ class NSP_GK5_com_content_View {
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
 	        $news_info = str_replace('%HITS', $info_hits, $news_info);
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
+	        $news_info = str_replace('%STARS', $info_stars, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
 	        // only if comments used
 	       	if($config['com_content_comments_source'] != 'none') {
