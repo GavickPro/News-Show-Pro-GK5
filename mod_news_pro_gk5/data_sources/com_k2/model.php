@@ -191,9 +191,13 @@ class NSP_GK5_com_k2_Model {
 		}
 		// Ordering string
 		$order_options = '';
+		$rating_join = '';
 		// When sort value is random
 		if($config['news_sort_value'] == 'random') {
 			$order_options = ' RAND() '; 
+		}else if($config['news_sort_value'] == 'rating') {
+			$order_options = ' (content_rating.rating_sum / content_rating.rating_count) '.$config['news_sort_order'];
+			$rating_join = 'LEFT JOIN #__k2_rating AS content_rating ON content_rating.itemID = content.id';
 		}else{ // when sort value is different than random
 			$order_options = ' content.'.$config['news_sort_value'].' '.$config['news_sort_order'].' ';
 		}	
@@ -223,6 +227,7 @@ class NSP_GK5_com_k2_Model {
 			'.$article_id_query.'				
 		FROM 
 			#__k2_items AS content 
+			'.$rating_join.'
 			'.$tag_join.'
 		WHERE 
 			content.published = 1 AND content.trash = 0
