@@ -425,8 +425,15 @@
                                 <field type="text" name="portal_mode_highlights_amount" default="7" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_HIGHLIGHTS_AMOUNT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_HIGHLIGHTS_AMOUNT_DESC" />
                                 
                                 <field type="text" name="portal_mode_highlights_date_format" default="" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_HIGHLIGHTS_DATE_FORMAT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_HIGHLIGHTS_DATE_FORMAT_DESC" />
+                                
+                                <field name="portal_mode_highlights_title_limit_type" class="short" type="radio" default="chars" label="NSP_PORTAL_MODE_HIGHLIGHTS_TITLE_LIMIT_TYPE" description="">
+                                        <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
+                                        <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
+                                </field>
+                                
+                                <field type="text" name="portal_mode_highlights_title_limit" class="short text-limit" default="40" label="NSP_PORTAL_MODE_HIGHLIGHTS_TITLE_LIMIT" description="" />
                         </fieldset>
-                        
+                                                
                         <!-- Portal Modes fieldsets END -->
                         
             <fieldset name="NSP_ARTICLE_LAYOUT">

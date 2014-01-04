@@ -42,7 +42,7 @@ class NSP_GK5_Highlights {
 		// render blocks
 		for($i = 0; $i < count($this->parent->content); $i++) {
 			echo '<li>';
-				echo '<h3><a href="'.$this->get_link($i).'" title="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'">'.$this->parent->content[$i]['title'].'</a></h3>';
+				echo '<h3><a href="'.$this->get_link($i).'" title="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'">'.NSP_GK5_Utils::cutText(htmlspecialchars($this->parent->content[$i]['title']), $this->parent->config, 'portal_mode_highlights_title_limit', '&hellip;').'</a></h3>';
 			
 				if($this->parent->config['portal_mode_highlights_date_format'] != '') {
 					echo '<p>' . JHTML::_('date', $this->parent->content[$i]['date'], $this->parent->config['portal_mode_highlights_date_format']) . '</p>';
