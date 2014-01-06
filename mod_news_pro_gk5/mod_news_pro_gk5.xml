@@ -12,6 +12,9 @@
         <![CDATA[
                 <style type='text/css'>
                         span.readonly { padding: 10px; font-family: Arial; font-size:13px !important; font-weight: normal !important; text-align: justify; color: #4d4d4d; line-height: 24px; } 
+                        span.tooltip-content { display: none; }
+                        .tip-text span.readonly { display: none; }
+                        .tip-text span.tooltip-content { display: block; }
                         span.readonly h1 { clear:both; font-family: Georgia, sans-serif; font-size:38px; margin:30px 20px 23px; padding:0px 0px 24px 10px; color:#333; border-bottom: 1px solid #eee; font-weight: normal; } 
                         span.readonly p { margin: 0 26px 10px } 
                         span.readonly p a { color: #ef6b09 } 
@@ -25,6 +28,7 @@
                         <p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
                         <p class='license'>News Show Pro GK5 is released under the <a target="_blank" href="http://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL v2 license.</a></p>
                 </span>
+                <span class='tooltip-content'>Advanced content module for Joomla! 2.5</span>
         ]]>
         </description>
         <files>
