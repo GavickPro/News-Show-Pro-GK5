@@ -149,6 +149,19 @@
 }
 .nspArt p.nspInfo a { }
 .nspArt p.nspInfo a:hover { }
+.nspArt p.nspInfo > .nsp-stars {
+	padding: 0 10px 0 0!important;
+}
+.nspArt .nsp-star-0:before,
+.nspArt .nsp-star-1:before {
+	content: "★";
+	color: #6c6c6c;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+}
+.nspArt .nsp-star-1:before {
+	color: #f7a834;
+}
 .nspArt .tleft { 
 	text-align: left; 
 }

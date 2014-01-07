@@ -50,11 +50,11 @@ PortalModes.prototype.changeValue = function() {
 			jQuery('#jform_params_article_format-lbl').parent().parent().css('display', 'none');
 			// hide unnecessary tabs
 			if(!j32) {
-				jQuery('#Joomla_Content_Additional_Settings').parents().eq(2).css('display', 'none');
+				//jQuery('#Joomla_Content_Additional_Settings').parents().eq(2).css('display', 'none');
 				jQuery('#Links_layout').parents().eq(2).css('display', 'none');
 				jQuery('#Article_layout').parents().eq(2).css('display', 'none');
 			} else {
-				jQuery('a[href=#attrib-NSP_DATA_SOURCE_COM_CONTENT]').parent().css('display', 'none');
+				//jQuery('a[href=#attrib-NSP_DATA_SOURCE_COM_CONTENT]').parent().css('display', 'none');
 				jQuery('a[href=#attrib-NSP_LINKS_LAYOUT]').parent().css('display', 'none');
 				jQuery('a[href=#attrib-NSP_LINKS_LAYOUT]').parent().css('display', 'none');
 			}
@@ -83,6 +83,10 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('#Centered_Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'GRID_TITLE_OVERLAY') {
 					jQuery('#Grid_Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'HIGHLIGHTS') {
+					jQuery('#Highlights_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'VIDEOGALLERY') {
+					jQuery('#Video_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				}
 			} else {
 				if($this.configs[portal_mode_value].full_name == 'NEWS_GALLERY') {
@@ -101,6 +105,10 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'GRID_TITLE_OVERLAY') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_TITLE_OVERLAY]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'HIGHLIGHTS') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_HIGHLIGHTS]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'VIDEOGALLERY') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOGALLERY]').parent().css('display', 'block');
 				}
 			}
 			// check the data source value
@@ -119,16 +127,16 @@ PortalModes.prototype.changeValue = function() {
 			}
 		} else {
 			// show article format fields
-			jQuery('#jform_params_use_own_article_format-lbl').parents().eq(2).css('display', 'block');
-			jQuery('#jform_params_article_format-lbl').parents().eq(2).css('display', 'block');
+			jQuery('#jform_params_use_own_article_format-lbl').parents().eq(1).css('display', 'block');
+			jQuery('#jform_params_article_format-lbl').parents().eq(1).css('display', 'block');
 			// show necessary tabs
 			if(!j32) {
-				jQuery('#Joomla_Content_Additional_Settings').parents().eq(2).css('display', 'block');
+				//jQuery('#Joomla_Content_Additional_Settings').parents().eq(2).css('display', 'block');
 				jQuery('#Links_layout').parents().eq(2).css('display', 'block');
 				jQuery('#Article_layout').parents().eq(2).css('display', 'block');
 				jQuery('#Thumbnails').parents().eq(2).css('display', 'block');
 			} else {
-				jQuery('a[href=#attrib-NSP_DATA_SOURCE_COM_CONTENT]').parent().css('display', 'block');
+				//jQuery('a[href=#attrib-NSP_DATA_SOURCE_COM_CONTENT]').parent().css('display', 'block');
 				jQuery('a[href=#attrib-NSP_LINKS_LAYOUT]').parent().css('display', 'block');
 				jQuery('a[href=#attrib-NSP_ARTICLE_LAYOUT]').parent().css('display', 'block');
 				jQuery('a[href=#attrib-NSP_THUMBNAILS]').parent().css('display', 'block');
@@ -151,6 +159,8 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('#Centered_Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Product_Gallery_II_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Grid_Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#Highlights_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#Video_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 	} else {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_GALLERY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'none');
@@ -160,6 +170,8 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_CENTERED_TITLE_OVERLAY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY_2]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_TITLE_OVERLAY]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_HIGHLIGHTS]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOGALLERY]').parent().css('display', 'none');
 	}
 }
 

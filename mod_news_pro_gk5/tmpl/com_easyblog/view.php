@@ -222,6 +222,15 @@ class NSP_GK5_com_easyblog_View {
 	            }
 	        }
 	        //
+        	$info_comments_short = 0;
+        	$link = NSP_GK5_com_easyblog_View::itemLink($item);
+            //
+            if(isset($item['comments'])) { 
+            	$info_comments_short = $item['comments'];
+            }
+            
+            $info_comments_short = '<a href="'.$link.'">'.$info_comments_short.'</a>';
+	        //
 	        $info_tags = '';
 	        
 	        if(isset($item['tags']) && count($item['tags']) > 0) {
@@ -244,7 +253,8 @@ class NSP_GK5_com_easyblog_View {
 	        $news_info = str_replace('%HITS', $info_hits, $news_info);
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
-	        $news_info = str_replace('%COMMENTS', $info_comments, $news_info);
+	        $news_info = str_replace('%COMMENTS_SHORT', $info_comments_short, $news_info);
+	       	$news_info = str_replace('%COMMENTS', $info_comments, $news_info);
 	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
 	    } else {
 	    	return '';

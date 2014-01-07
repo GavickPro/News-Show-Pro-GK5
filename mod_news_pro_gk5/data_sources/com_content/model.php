@@ -191,10 +191,14 @@ class NSP_GK5_com_content_Model {
 		
 		// Ordering string
 		$order_options = '';
+		$rating_join = '';
 		// When sort value is random
 		if($config['news_sort_value'] == 'random') {
 			$order_options = ' RAND() '; 
-		}else{ // when sort value is different than random
+		} else if($config['news_sort_value'] == 'rating') {
+			$order_options = ' (content_rating.rating_sum / content_rating.rating_count) '.$config['news_sort_order'];
+			$rating_join = 'LEFT JOIN #__content_rating AS content_rating ON content_rating.content_id = content.id';
+		} else{ // when sort value is different than random
 			$order_options = ' content.'.$config['news_sort_value'].' '.$config['news_sort_order'].' ';
 		}	
 		// language filters
@@ -221,7 +225,8 @@ class NSP_GK5_com_content_Model {
 			'.$article_id_query.'				
 		FROM 
 			#__content AS content
-			'.$tag_join.' 
+			'.$rating_join.' 
+			'.$tag_join.'
 		WHERE 
 			content.state = 1
                 '. $access_con .'   

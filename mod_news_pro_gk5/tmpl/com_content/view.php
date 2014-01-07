@@ -190,20 +190,45 @@ class NSP_GK5_com_content_View {
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
 	        $info_rate = ($item['rating_count'] > 0) ? '<span class="nspRate">' . JText::_('MOD_NEWS_PRO_GK5_NSP_RATE') .' '. number_format($item['rating_sum'] / $item['rating_count'], 2) . '</span>': '';
 	        // 
+	        $info_stars = '<span class="nsp-stars">';
+			$stars_count = floor($item['rating_sum'] / $item['rating_count']);
+			for($i = 0; $i < 5; $i++) {
+				$info_stars .= $i < $stars_count ? '<span class="nsp-star-1"></span>' : '<span class="nsp-star-0"></span>';
+			}
+			$info_stars .= '</span>'; 
+	      	//
 	        $info_comments = '';
 	        
 	        if($config['com_content_comments_source'] != 'none') {
-	        	$info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
-	        	//
-	        	if(isset($item['comments'])) { 
-	        		if($item['comments'] == 1) {
-	        			$info_comments = JText::_('MOD_NEWS_PRO_GK5_1COMMENT');
-	        		} else if($item['comments'] > 1 && $item['comments'] < 5) {
-	        			$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MORECOMMENTS');
-	        		} else if($item['comments'] >= 5) {
-	        			$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MUCHMORECOMMENTS');
-	        		}
-	        	}
+		    	$link = NSP_GK5_com_content_View::itemLink($item); 
+		    	
+		    	$info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
+		        //
+		        if(isset($item['comments'])) { 
+		        	if($item['comments'] == 1) {
+		            	$info_comments = JText::_('MOD_NEWS_PRO_GK5_1COMMENT');
+		            } else if($item['comments'] > 1 && $item['comments'] < 5) {
+		            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MORECOMMENTS');
+		            } else if($item['comments'] >= 5) {
+		            	$info_comments = $item['comments'] . ' ' . JText::_('MOD_NEWS_PRO_GK5_MUCHMORECOMMENTS');
+		            }
+		        }
+		        
+		        $info_comments = '<a href="'.$link.'">'.$info_comments.'</a>';
+	        }
+	        //
+	        $info_comments_short = '';
+	        
+	        if($config['com_content_comments_source'] != 'none') {
+	        	$link = NSP_GK5_com_content_View::itemLink($item); 
+	        	
+	        	$info_comments_short = 0;
+	            //
+	            if(isset($item['comments'])) { 
+	            	$info_comments_short = $item['comments'];
+	            }
+	            
+	            $info_comments_short = '<a href="'.$link.'">'.$info_comments_short.'</a>';
 	        }
 	        //
 	        $info_tags = '';
@@ -230,10 +255,12 @@ class NSP_GK5_com_content_View {
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
 	        $news_info = str_replace('%HITS', $info_hits, $news_info);
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
+	        $news_info = str_replace('%STARS', $info_stars, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
 	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
 	        // only if comments used
-	        if($config['com_content_comments_source'] != 'none') {
+	       	if($config['com_content_comments_source'] != 'none') {
+	        	$news_info = str_replace('%COMMENTS_SHORT', $info_comments_short, $news_info);
 	        	$news_info = str_replace('%COMMENTS', $info_comments, $news_info);
 	        }
 	    } else {
