@@ -249,17 +249,19 @@
                               <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                          </field> 
                 
-                <field name="vm_show_price_type" type="list" default="base" label="MOD_NEWS_PRO_GK5_VM_PRICE_TYPE" description="MOD_NEWS_PRO_GK5_VM_PRICE_TYPE_DESC">
+                <field name="vm_show_price_type" type="list" default="salesPrice" label="MOD_NEWS_PRO_GK5_VM_PRICE_TYPE" description="MOD_NEWS_PRO_GK5_VM_PRICE_TYPE_DESC">
                         <option value="none">MOD_NEWS_PRO_GK5_VM_NONE</option>
-                        <option value="base">MOD_NEWS_PRO_GK5_VM_BASE</option>
-                        <option value="sale">MOD_NEWS_PRO_GK5_VM_SALE</option>
+                        <option value="salesPrice">MOD_NEWS_PRO_GK5_VM_SALES_PRICE</option>
+                        <option value="costPrice">MOD_NEWS_PRO_GK5_VM_COST_PRICE</option>
+                        <option value="basePrice">MOD_NEWS_PRO_GK5_VM_BASE_PRICE</option>
+                        <option value="basePriceWithTax">MOD_NEWS_PRO_GK5_VM_BASE_PRICE_WTAX</option>
+                        <option value="discountedPriceWithoutTax">MOD_NEWS_PRO_GK5_VM_DISCOUNT_PRICE_WITHOUT_TAX</option>
                 </field> 
                 
-                <field name="vm_show_price_with_tax" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_SHOW_WITH_PRICE" description="MOD_NEWS_PRO_GK5_VM_SHOW_WITH_PRICE_DESC">
-                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
-                              <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
-                         </field>
-                
+                <field name="vm_currency_position" type="list" default="before" label="MOD_NEWS_PRO_GK5_VM_CURRENCY_POSITION" description="MOD_NEWS_PRO_GK5_VM_CURRENCY_POSITION_DESC">
+                    <option value="before">MOD_NEWS_PRO_GK5_VM_BEFORE_PRICE</option>
+                    <option value="after">MOD_NEWS_PRO_GK5_VM_AFTER_PRICE</option>
+                </field>
                          <field name="vm_add_to_cart" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART" description="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART_DESC">
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                               <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>

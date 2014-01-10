@@ -118,55 +118,90 @@ class NSP_GK5_Product_Gallery {
 	// function used to show the store details
 	function get_store($config, $id) {
 		// if the VM is available
-	    if (!class_exists( 'VmConfig' )) {
-	    	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'config.php');
-	    }
-	    VmConfig::loadConfig();
-	    // Load the language file of com_virtuemart.
-	    JFactory::getLanguage()->load('com_virtuemart');
-	    // load necessary classes
-	    if (!class_exists( 'calculationHelper' )) {
-	    	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'calculationh.php');
-	    }
-	    if (!class_exists( 'CurrencyDisplay' )) {
-	    	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'currencydisplay.php');
-	    }
-	    if (!class_exists( 'VirtueMartModelVendor' )) {
-	    	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'models'.DS.'vendor.php');
-	    }
-	    if (!class_exists( 'VmImage' )) {
-	    	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'image.php');
-	    }
-	    if (!class_exists( 'shopFunctionsF' )) {
-	    	require(JPATH_SITE.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'shopfunctionsf.php');
-	    }
-	    if (!class_exists( 'calculationHelper' )) {
-	    	require(JPATH_COMPONENT_SITE.DS.'helpers'.DS.'cart.php');
-	    }
-	    if (!class_exists( 'VirtueMartModelProduct' )){
-	       JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
-	    }
-	    // load the base
-	    $mainframe = JFactory::getApplication();
-	    $virtuemart_currency_id = $mainframe->getUserStateFromRequest( "virtuemart_currency_id", 'virtuemart_currency_id', JRequest::getInt('virtuemart_currency_id',0) );
-	    $currency = CurrencyDisplay::getInstance( );
-	    
-	    $productModel = new VirtueMartModelProduct();
+        if (!class_exists( 'VmConfig' )) {
+        	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'config.php');
+        }
+        VmConfig::loadConfig();
+        // Load the language file of com_virtuemart.
+        JFactory::getLanguage()->load('com_virtuemart');
+        // load necessary classes
+        if (!class_exists( 'calculationHelper' )) {
+        	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'calculationh.php');
+        }
+        if (!class_exists( 'CurrencyDisplay' )) {
+        	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'currencydisplay.php');
+        }
+        if (!class_exists( 'VirtueMartModelVendor' )) {
+        	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'models'.DS.'vendor.php');
+        }
+        if (!class_exists( 'VmImage' )) {
+        	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'image.php');
+        }
+        if (!class_exists( 'shopFunctionsF' )) {
+        	require(JPATH_SITE.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'shopfunctionsf.php');
+        }
+        if (!class_exists( 'calculationHelper' )) {
+        	require(JPATH_COMPONENT_SITE.DS.'helpers'.DS.'cart.php');
+        }
+        if (!class_exists( 'VirtueMartModelProduct' )){
+           JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
+        }
+        // load the base
+        $mainframe = JFactory::getApplication();
+        $virtuemart_currency_id = $mainframe->getUserStateFromRequest( "virtuemart_currency_id", 'virtuemart_currency_id',JRequest::getInt('virtuemart_currency_id',0) );
+        $currency = CurrencyDisplay::getInstance();
+        $cSymbol = $currency->getSymbol();
+        $cDecimals = $currency->getNbrDecimals();
+        $cDecSymbol = $currency->getDecimalSymbol();
+        //
+        $productModel = new VirtueMartModelProduct();
 	    $product = $productModel->getProduct($id, 100, true, true, true);
-	    
-	    //if($config['vm_add_to_cart'] == 1) {
-	        vmJsApi::jQuery();
-	        vmJsApi::jPrice();
-	        vmJsApi::cssSite();	
-	    //}
-	    
-	    $news_price = '';
-        $news_price.= $currency->createPriceDiv('basePriceWithTax','',$product->prices);
-        // calculate tax
-        $taxAmount = $currency->createPriceDiv('taxAmount','MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT',$product->prices);
-        $taxAmount = strip_tags($taxAmount, '<div>');
-        $news_price .= $taxAmount;  
-	    
+	    // prepare price - apply correct format and decimal separator
+	    $price = str_replace('.',$cDecSymbol,number_format($product->prices[$config['vm_show_price_type']],$cDecimals));
+	    if($config['vm_currency_position'] == 'before') { 
+	    	$price = $cSymbol.' '.$price;
+	    } else {
+	    	$price = $price.' '.$cSymbol;
+	    }
+	    //
+        if($config['vm_add_to_cart'] == 1) {
+            vmJsApi::jQuery();
+            vmJsApi::jPrice();
+        }
+        $news_price = '<div class="PricebasePriceWithTax">';
+        //
+        if($config['vm_show_price_type'] != 'none') {
+            if($config['vm_display_type'] == 'text_price') {
+            	$news_price .=  '<span class="PricebasePriceWithTax">'.JText::_('MOD_NEWS_PRO_GK5_PRODUCT_PRICE').' '.$price.'</span>';
+            } else {
+            	$news_price .= '<span class="PricebasePriceWithTax">'.$price.'</span>';
+            }
+        } 
+        $news_price .= '</div>';
+       	// display discount
+        if($config['vm_show_discount_amount'] == 1) {
+        	$news_price .= '<div class="PricetaxAmount">';
+            $disc_amount = str_replace('.',$cDecSymbol,number_format($product->prices['discountAmount'],$cDecimals));
+            if($config['vm_currency_position'] == 'before') {  
+            	$disc_amount = $cSymbol.' '.$disc_amount;
+            } else {
+            	$disc_amount = $disc_amount.' '.$cSymbol;
+            }
+            $news_price .= JText::_('MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT'). $disc_amount;
+            $news_price .= '</div>'; 
+        }
+		// display tax
+        if($config['vm_show_tax'] == 1) {
+        	$news_price .= '<div class="PricetaxAmount">';
+          	$taxAmount = str_replace('.',$cDecSymbol,number_format($product->prices['taxAmount'],$cDecimals));
+            if($config['vm_currency_position'] == 'before') {  
+            	$taxAmount = $cSymbol.' '.$taxAmount;
+            } else {
+            	$taxAmount = $taxAmount.' '.$cSymbol;
+            }
+            $news_price.= JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount;  
+            $news_price .= '</div>'; 
+        }
 	    // 'Add to cart' button
 	    $news_cart = '';
 	    //if($config['vm_add_to_cart'] == 1) {
