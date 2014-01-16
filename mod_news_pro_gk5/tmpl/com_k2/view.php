@@ -192,6 +192,12 @@ class NSP_GK5_com_k2_View {
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);
 	        //
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
+	        
+	        // case when there is no rates
+	        if($item['rating_count'] == 0) {
+	        	$item['rating_count'] = 1;
+	        }
+	        
 	        $info_rate = ($item['rating_count'] > 0) ? '<span class="nspRate">' . JText::_('MOD_NEWS_PRO_GK5_NSP_RATE') .' '. number_format($item['rating_sum'] / $item['rating_count'], 2) . '</span>': '';
 	        
 	        $info_stars = '<span class="nsp-stars">';
