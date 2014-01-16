@@ -233,6 +233,7 @@ class NSP_GK5_com_content_Model {
 			content.images AS images,
 			content.featured AS frontpage,
 			content.access AS access,
+			content.language AS lang,
 			categories.title AS catname, 
 			users.email AS author_email,
 			content.created_by_alias AS author_alias,
