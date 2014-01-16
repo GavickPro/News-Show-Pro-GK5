@@ -267,6 +267,10 @@ class NSP_GK5_com_easyblog_Model {
 		for($i = 0; $i < count($content); $i++) {
 			$second_sql_where .= (($i != 0) ? ' OR ' : '') . ' content.id = ' . $content[$i]['id'];
 		}
+		// when the where condition is not blank
+		if($second_sql_where != '') {
+			$second_sql_where = ' AND ('.$second_sql_where.')';
+		}
 		// second SQL query to get rest of the data and avoid the DISTINCT
 		$second_query_news = '
 		SELECT
