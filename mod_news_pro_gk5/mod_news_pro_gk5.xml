@@ -557,8 +557,8 @@
                         <option value="left">MOD_NEWS_PRO_GK5_FLEFT</option>
                         <option value="right">MOD_NEWS_PRO_GK5_FRIGHT</option>
                 </field>
-                <field name="info_format" type="text" default="%DATE %HITS %CATEGORY %AUTHOR" size="32" label="MOD_NEWS_PRO_GK5_INFO_FORMAT" description="MOD_NEWS_PRO_GK5_INFO_FORMAT_DESC" class="gk-group-info" />
-                <field name="info2_format" type="text" default="" size="32" label="MOD_NEWS_PRO_GK5_INFO2_FORMAT" description="MOD_NEWS_PRO_GK5_INFO2_FORMAT_DESC" class="gk-group-info" />
+                <field name="info_format" type="text" filter="raw" default="%DATE %HITS %CATEGORY %AUTHOR" size="32" label="MOD_NEWS_PRO_GK5_INFO_FORMAT" description="MOD_NEWS_PRO_GK5_INFO_FORMAT_DESC" class="gk-group-info" />
+                <field name="info2_format" type="text" filter="raw" default="" size="32" label="MOD_NEWS_PRO_GK5_INFO2_FORMAT" description="MOD_NEWS_PRO_GK5_INFO2_FORMAT_DESC" class="gk-group-info" />
                 <field name="category_link" type="list" class="gk_switch gk-group-info" default="1" label="MOD_NEWS_PRO_GK5_CATEGORY_LINK" description="MOD_NEWS_PRO_GK5_CATEGORY_LINK_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
