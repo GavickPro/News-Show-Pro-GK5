@@ -274,7 +274,12 @@ class NSP_GK5_com_content_Model {
 			}
 			// generating tables of news data
 			foreach($news2 as $item) {						
-			    $pos = array_search($item['iid'], $content_iid);
+			        $pos = array_search($item['iid'], $content_iid);
+			        if( $item['lang'] == '*' ){
+    					$lang = JFactory::getLanguage();
+             				$item['lang'] = $lang->getTag();
+  			        }
+			    
 				// check the access restrictions
 				$authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
 				$access = JComponentHelper::getParams('com_content')->get('show_noauth');
