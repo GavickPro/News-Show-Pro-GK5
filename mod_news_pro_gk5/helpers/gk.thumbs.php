@@ -7,7 +7,7 @@
 * @ All rights reserved
 * @ Joomla! is Free Software
 * @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-* @version $Revision: GK5 1.3.3 $
+* @version $Revision: GK5 1.3.5 $
 **/
 
 // access restriction
@@ -86,9 +86,17 @@ class NSP_GK5_Thumbs {
 		
 		return $name;
 	}*/
+	
+	// function used to get the custom media path
+	function getMediaPath() {
+        $imagemanager = JComponentHelper::getParams('com_media');
+  		$imagepath = $imagemanager->get('image_path', '');
+  		return $imagepath;
+    }
+	
 	// function to change file path to  real path.
-	function getRealPath($path, $k2_mode = false, $vm_mode = false) {
-		$start = ($k2_mode || $vm_mode) ? (($k2_mode) ? strpos($path, 'media/') : strpos($path, 'components/')) : strpos($path, 'images/');
+	function getRealPath($path, $k2_mode = false, $vm_mode = false) {		
+		$start = ($k2_mode || $vm_mode) ? (($k2_mode) ? strpos($path, 'media/') : strpos($path, 'components/')) : strpos($path, self::getMediaPath());
 		$path = './'.substr($path, $start);
 		
 		return realpath($path);
