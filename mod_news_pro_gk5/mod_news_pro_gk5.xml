@@ -240,7 +240,9 @@
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_VIRTUEMART">
-                    <field name="vm_itemid" type="text" default="9999" size="5" label="MOD_NEWS_PRO_GK5_VM_ITEMID" description="MOD_NEWS_PRO_GK5_VM_ITEMID_DESC"/>
+                <field name="vm_itemid" type="text" default="9999" size="5" label="MOD_NEWS_PRO_GK5_VM_ITEMID" description="MOD_NEWS_PRO_GK5_VM_ITEMID_DESC"/>
+                
+                <field name="vm_lang" type="text" default="" size="5" label="MOD_NEWS_PRO_GK5_VM_LANG" description="MOD_NEWS_PRO_GK5_VM_LANG_DESC"/>
                                     
                 <field name="vm_shopper_group" default="-1" type="vmshoppergroups" label="MOD_NEWS_PRO_GK5_VM_SHOPPERGROUPS" description="MOD_NEWS_PRO_GK5_VM_SHOPPERGROUPS_DESC"/>
                 

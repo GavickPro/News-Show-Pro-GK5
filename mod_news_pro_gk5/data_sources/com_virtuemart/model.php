@@ -33,6 +33,10 @@ class NSP_GK5_com_virtuemart_Model {
        	if($lang == '') { 
        		$lang = 'en_gb';
        	}
+       	//
+       	if($config['vm_lang'] != '') {
+       		$lang = $config['vm_lang'];
+       	}
 		//
 		if($config['data_source'] == 'com_virtuemart_categories'){
 			$source = $config['com_virtuemart_categories'];
@@ -98,6 +102,10 @@ class NSP_GK5_com_virtuemart_Model {
         // small validation 
         if($lang == '') {
         	$lang = 'en_gb';
+        }
+        //
+        if($config['vm_lang'] != '') {
+        	$lang = $config['vm_lang'];
         }
 		//
 		$sql_where = '';
