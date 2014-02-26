@@ -16,9 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  
 class JFormFieldVMMulticategories extends JFormFieldList {
 	// name of element
-	protected $type = 'VMMultiCategories';
-    var $options = array();
-    
+	protected $type = 'VMMultiCategories';    
     
 	protected function getInput() {
 		// Initialize variables.

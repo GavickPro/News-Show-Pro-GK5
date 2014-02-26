@@ -16,7 +16,7 @@ jimport('joomla.html.html');
 jimport('joomla.form.formfield');//import the necessary class definition for formfield
 class JFormFieldK2Multicategories extends JFormFieldList {
 	protected $type = 'K2Multicategories'; //the form field type
-    var $options = array();
+	
     protected function getInput() {
 		// Initialize variables.
 		$html = array();
@@ -32,6 +32,7 @@ class JFormFieldK2Multicategories extends JFormFieldList {
 		// Initialize JavaScript field attributes.
 		$attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
 		$path = JPath::clean(JPATH_BASE.DS.'components'.DS.'com_k2');
+		$options = array();
 		if (! file_exists($path)) {
 			// do nothing because K2 is not installed
 		} else {

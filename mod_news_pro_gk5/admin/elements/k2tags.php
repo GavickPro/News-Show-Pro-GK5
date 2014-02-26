@@ -33,6 +33,8 @@ class JFormFieldK2Tags extends JFormFieldList {
 		$attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
 		// Get the field options.
 		$path = JPath::clean(JPATH_BASE.DS.'components'.DS.'com_k2');
+		$options = array();
+		
 		if (! file_exists($path)) {
 			// do nothing because K2 is not installed
 		} else {
