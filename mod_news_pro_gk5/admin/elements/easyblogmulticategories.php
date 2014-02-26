@@ -32,16 +32,16 @@ class JFormFieldEasyblogMulticategories extends JFormFieldList {
 		// Initialize JavaScript field attributes.
 		$attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
 		// Get the field options.
-		$options = (array) $this->getOptions();
+		$this->getOptions();
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ((string) $this->element['readonly'] == 'true') {
-			$html[] = JHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
+			$html[] = JHtml::_('select.genericlist', $this->options, '', trim($attr), 'value', 'text', $this->value, $this->id);
 			$html[] = '<input type="hidden" name="'.$this->name.'" value="'.$this->value.'"/>';
 		}
 		// Create a regular list.
 		else {
-		    if($options[0]!=''){
-				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
+		    if(isset($this->options[0]) && $this->options[0] != ''){
+				$html[] = JHtml::_('select.genericlist', $this->options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
                return '<select id="jform_params_easyblog_categories" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">Easy Blog is not installed or any Easy Blog categories are available.</strong>';
             }
@@ -86,10 +86,7 @@ class JFormFieldEasyblogMulticategories extends JFormFieldList {
         	    	$this->options[] = JHtml::_('select.option', $option[0], $option[1]);
         	    	$this->recursive_options($temp_options, 1, $option[0]);
         	    }
-        	}		
-            return $this->options;
-		} else {	
-            return $this->options;
+        	}
 		}
 	}
  	// bind function to save
