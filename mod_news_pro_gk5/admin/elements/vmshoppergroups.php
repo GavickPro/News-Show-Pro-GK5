@@ -15,7 +15,9 @@ defined('_JEXEC') or die('Restricted access');
  
 class JFormFieldVMShoppergroups extends JFormFieldList {
 	// name of element
-	protected $type = 'VMShopperGroups';    
+	protected $type = 'VMShopperGroups';
+    var $options = array();
+    
     
 	protected function getInput() {
 		// Initialize variables.

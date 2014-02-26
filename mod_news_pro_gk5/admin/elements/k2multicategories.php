@@ -17,7 +17,7 @@ jimport('joomla.html.html');
 jimport('joomla.form.formfield');//import the necessary class definition for formfield
 class JFormFieldK2Multicategories extends JFormFieldList {
 	protected $type = 'K2Multicategories'; //the form field type
-
+    var $options = array();
     protected function getInput() {
 		// Initialize variables.
 		$html = array();
