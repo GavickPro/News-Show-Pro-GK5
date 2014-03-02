@@ -110,9 +110,12 @@ class NSP_GK5_com_content_Model {
 		if($config['news_unauthorized'] == '0') {
 			$access_con = ' AND content.access IN ('. implode(',', JFactory::getUser()->authorisedLevels()) .') ';
 		}
-		$app = JFactory::getApplication();
-		$timezone = $app->getCfg('offset') + $config['time_offset'];
-		$date = JFactory::getDate("now", $timezone);
+		// check if the timezone offset is set
+		if($config['time_offset'] == 0) {
+			$date = JFactory::getDate("now");
+		} else {
+			$date = JFactory::getDate("now", $timezone);
+		}
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available

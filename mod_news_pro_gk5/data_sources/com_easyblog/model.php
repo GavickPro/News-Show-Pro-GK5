@@ -150,9 +150,12 @@ class NSP_GK5_com_easyblog_Model {
 		} else {
 			$access_con = ' AND content.private = 0 ';
 		}
-		$app = JFactory::getApplication();
-		$timezone = $app->getCfg('offset') + $config['time_offset'];
-		$date = JFactory::getDate("now", $timezone);
+		// check if the timezone offset is set
+		if($config['time_offset'] == 0) {
+			$date = JFactory::getDate("now");
+		} else {
+			$date = JFactory::getDate("now", $timezone);
+		}
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available
