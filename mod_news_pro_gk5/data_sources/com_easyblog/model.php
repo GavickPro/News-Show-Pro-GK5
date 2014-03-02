@@ -149,11 +149,14 @@ class NSP_GK5_com_easyblog_Model {
 		} else {
 			$access_con = ' AND content.private = 0 ';
 		}
-		$app = JFactory::getApplication();
-		$timezone = $app->getCfg('offset') + $config['time_offset'];
 		
-		$date = JFactory::getDate($config['time_offset'].' hour '.date('Y-m-d H:i:s', strtotime('now')));
-		//$date = JFactory::getDate("now", $config['time_offset']);
+		// check if the timezone offset is set
+		if($config['time_offset'] == 0) {
+			$date = JFactory::getDate();
+		} else {
+			$date = JFactory::getDate($config['time_offset'].' hour '.date('Y-m-d H:i:s', strtotime('now')));
+		}
+		
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		
