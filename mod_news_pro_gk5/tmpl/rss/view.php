@@ -74,7 +74,7 @@ class NSP_GK5_rss_View {
 			if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
 				// try to override standard image
 				if(strpos($IMG_SOURCE,'http://') == FALSE) {
-					$img_file = NSP_GK5_Thumbs::createThumbnail($IMG_SOURCE, $config);
+					$img_file = NSP_GK5_Thumbs::createThumbnail($IMG_SOURCE, $config, false, false, '', $links);
 					
 					if(is_array($img_file)) {
 						$uri = JURI::getInstance();

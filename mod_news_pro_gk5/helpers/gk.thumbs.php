@@ -141,7 +141,7 @@ class NSP_GK5_Thumbs {
         }
     }
 	// Creating thumbnails
-	function createThumbnail($path, $config, $k2_mode = false, $vm_mode = false, $img_rel = '') {
+	function createThumbnail($path, $config, $k2_mode = false, $vm_mode = false, $img_rel = '', $links = false) {
 		if($config['use_curl_download'] == 0 && (stripos($path, 'http://') || stripos($path, 'https://'))) {
 			return false;
 		}
@@ -220,8 +220,8 @@ class NSP_GK5_Thumbs {
 				// Getting informations about image
 				if(is_file($file)){
 					$imageData = getimagesize($file);
-					$img_w = str_replace('px','',str_replace('%','',$config['img_width']));
-					$img_h = str_replace('px','',str_replace('%','',$config['img_height']));
+					$img_w = str_replace('px','',str_replace('%','', $links ? $config['links_img_width'] : $config['img_width']));
+					$img_h = str_replace('px','',str_replace('%','', $links ? $config['links_img_height'] : $config['img_height']));
 					// loading image depends from type of image		
 					if($imageData['mime'] == 'image/jpeg' || $imageData['mime'] == 'image/pjpeg' || $imageData['mime'] == 'image/jpg') $imageSource = @imagecreatefromjpeg($file);
 					elseif($imageData['mime'] == 'image/gif') $imageSource = @imagecreatefromgif($file);
@@ -293,8 +293,8 @@ class NSP_GK5_Thumbs {
 				// Getting informations about image
 				if(is_file($file)){					
 					$imageData = getimagesize($file);
-					$img_w = str_replace('px','',str_replace('%','',$config['img_width']));
-					$img_h = str_replace('px','',str_replace('%','',$config['img_height']));
+					$img_w = str_replace('px','',str_replace('%','', $links ? $config['links_img_width'] : $config['img_width']));
+					$img_h = str_replace('px','',str_replace('%','',$links ? $config['links_img_height'] : $config['img_height']));
 					// loading image depends from type of image		
 					if(
 						$imageData['mime'] == 'image/jpeg' || 

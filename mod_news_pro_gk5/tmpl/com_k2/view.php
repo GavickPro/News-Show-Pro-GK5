@@ -93,7 +93,7 @@ class NSP_GK5_com_k2_View {
 				// try to override standard image
 				if(strpos($IMG_SOURCE, 'http://') == FALSE) {					
 					
-					$img_file = NSP_GK5_Thumbs::createThumbnail(str_replace(JURI::root() . 'media', 'media', $IMG_SOURCE), $config, true);
+					$img_file = NSP_GK5_Thumbs::createThumbnail(str_replace(JURI::root() . 'media', 'media', $IMG_SOURCE), $config, true, false, '', $links);
 					
 					if(is_array($img_file)) {
 						$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/'.$img_file[1];
