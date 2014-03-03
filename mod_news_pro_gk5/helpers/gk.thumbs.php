@@ -32,21 +32,21 @@ class NSP_GK5_Thumbs {
 		stories.demo.jpg
 		(in this situation mirror of ./images/ directory isn't necessary)
 	*/
-	function translateName($name,$mod_id, $k2_mode = false, $vm_mode = false, $image_type = '', $downloaded = false, $filename = null) {
+	function translateName($name,$mod_id, $k2_mode = false, $vm_mode = false, $image_type = '', $downloaded = false, $filename = null, $links = false) {
 		// check the mode
 		if($downloaded || stripos($name, 'http://') !== FALSE || stripos($name, 'https://') !== FALSE) {
 			if($downloaded) {
 				$name = 'downloaded.' . $filename;
 				$ext = substr($name, -4);
 				$name = substr($name, 0, -4);
-				return $name . $mod_id . $ext; 
+				return $name . $mod_id . ($links ? '_links' : '') . $ext; 
 			} else {
 				$slashpos = strrpos($name, '/');
 				$filename = substr($name, $slashpos + 1);
 				$name = 'downloaded.' . $filename;
 				$ext = substr($name, -4);
 				$name = substr($name, 0, -4);
-				return $name . $mod_id . $ext;
+				return $name . $mod_id . ($links ? '_links' : '') . $ext;
 			}
 		} else {
 			$name = NSP_GK5_Thumbs::getRealPath($name, $k2_mode, $vm_mode);
@@ -55,7 +55,7 @@ class NSP_GK5_Thumbs {
 			$ext = substr($name, -4);
 			$name = substr($name, 0, -4);
 			$name = str_replace(DS,'.',$name);
-			$name .= $mod_id.$image_type.$ext;
+			$name .= $mod_id . $image_type . ($links ? '_links' : '') . $ext;
 			return $name;
 		}
 	}
@@ -201,7 +201,7 @@ class NSP_GK5_Thumbs {
 			}
 		}
 		// checking the special images
-		$check_result = NSP_GK5_Thumbs::checkSpecialImages(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '', $downloaded, $imgname));
+		$check_result = NSP_GK5_Thumbs::checkSpecialImages(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '', $downloaded, $imgname, $links));
 		// preparing an array with the image class values
 		$img_rels = array();
 		// check if any classes exists in the image
@@ -210,13 +210,13 @@ class NSP_GK5_Thumbs {
 		}
 		// no scale images
 		if($check_result == 2) { // NOSCALE      
-			if(NSP_GK5_Thumbs::checkCache(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale'), false, $config['module_id'])){  
-				return array(TRUE, NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale'));	
+			if(NSP_GK5_Thumbs::checkCache(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links), false, $config['module_id'])){  
+				return array(TRUE, NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links));	
 			} else {
 				// file path
 				$file = NSP_GK5_Thumbs::getRealPath($path, $k2_mode, $vm_mode, '_noscale');
 				// filename
-				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname);
+				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links);
 				// Getting informations about image
 				if(is_file($file)){
 					$imageData = getimagesize($file);
@@ -279,17 +279,18 @@ class NSP_GK5_Thumbs {
 						$vm_mode, 
 						($check_result == 1) ? '_cropped' : '', 
 						$downloaded, 
-						$imgname
+						$imgname,
+						$links
 					), 
 					$config['cache_time'], 
 					$config['module_id']
 				)){
-				return array(TRUE, NSP_GK5_Thumbs::translateName($path, $config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname));	
+				return array(TRUE, NSP_GK5_Thumbs::translateName($path, $config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links));	
 			} else {
 				// file path
 				$file = NSP_GK5_Thumbs::getRealPath($path, $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '');
 				// filename
-				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname);
+				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links);
 				// Getting informations about image
 				if(is_file($file)){					
 					$imageData = getimagesize($file);
