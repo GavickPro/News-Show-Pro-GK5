@@ -211,6 +211,9 @@
 .nspList { 
 	float: left; 
 }
+.nspList > li > .nspImageWrapper {
+	float: left;
+}
 .nspLinks ul { 
 	list-style-type: none!important; 
 	padding: 0!important; 

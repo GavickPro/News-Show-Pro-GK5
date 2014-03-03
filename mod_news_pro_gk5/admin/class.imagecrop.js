@@ -91,5 +91,12 @@ var ImageCrop = new Class({
 		hfield.inject(document.id('jform_params_img_width').getParent(), 'bottom');
 		span.inject(hfield, 'after');
 		parent.setStyle('display', 'none');
+		
+		var lhfield = document.id('jform_params_links_img_height');
+		var lparent = lhfield.getParent();
+		var lspan = lhfield.getParent().getElement('span');
+		lhfield.inject(document.id('jform_params_links_img_width').getParent(), 'bottom');
+		lspan.inject(lhfield, 'after');
+		lparent.setStyle('display', 'none');
 	}
 });

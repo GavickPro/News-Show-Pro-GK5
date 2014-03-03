@@ -75,6 +75,15 @@
                 </field>
                 
                 <field name="article_format" type="filelist" default="" label="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT" description="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_DESC" directory="modules/mod_news_pro_gk5/article_formats" filter="(\.format)$" stripext="" hide_default="hide_default" />
+                
+                <field name="nsp_title" type="list" default="0" class="gk_switch" label="MOD_NEWS_PRO_GK5_NSP_TITLE" description="MOD_NEWS_PRO_GK5_NSP_TITLE_DESC">
+                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                
+                <field name="nsp_title_url" type="text" default="" label="MOD_NEWS_PRO_GK5_NSP_TITLE_URL" description="MOD_NEWS_PRO_GK5_NSP_TITLE_URL_DESC" />
+                
+                <field name="nsp_title_label" type="text" default="" label="MOD_NEWS_PRO_GK5_NSP_TITLE_LABEL" description="MOD_NEWS_PRO_GK5_NSP_TITLE_LABEL_DESC" />
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE">
@@ -689,8 +698,13 @@
 
             <fieldset name="NSP_LINKS_LAYOUT">
                 <field name="news_short_pages" type="text" default="3" size="5" label="MOD_NEWS_PRO_GK5_NEWS_SHORT_PAGES_AMOUNT" description="MOD_NEWS_PRO_GK5_NEWS_SHORT_PAGES_AMOUNT_DESC"/>
-                                <field name="links_amount" type="text" default="3" size="5" label="MOD_NEWS_PRO_GK5_LINKSAMOUNT" description="MOD_NEWS_PRO_GK5_LINKSAMOUNT_DESC"/>
-                                <field name="links_columns_amount" type="text" default="1" size="5" label="MOD_NEWS_PRO_GK5_LINKSCOLAMOUNT" description="MOD_NEWS_PRO_GK5_LINKSCOLAMOUNT_DESC"/>
+                <field name="links_amount" type="text" default="3" size="5" label="MOD_NEWS_PRO_GK5_LINKSAMOUNT" description="MOD_NEWS_PRO_GK5_LINKSAMOUNT_DESC"/>
+                <field name="links_columns_amount" type="text" default="1" size="5" label="MOD_NEWS_PRO_GK5_LINKSCOLAMOUNT" description="MOD_NEWS_PRO_GK5_LINKSCOLAMOUNT_DESC"/>
+                <field name="links_image" type="list" default="0" class="gk_switch" label="MOD_NEWS_PRO_GK5_LINKS_IMAGE" description="MOD_NEWS_PRO_GK5_LINKS_IMAGE_DESC">
+                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                            
                             <field name="bottom_interface_style" type="list" default="arrows_with_pagination" label="MOD_NEWS_PRO_GK5_BOTTOM_INTERFACE_STYLE" description="">
                                 <option value="none">MOD_NEWS_PRO_GK5_NONE</option>
                                 <option value="arrows">MOD_NEWS_PRO_GK5_ARROWS</option>
@@ -714,6 +728,15 @@
                         <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
                 </field>
                 <field name="list_text_limit" class="short text-limit" type="text" default="30" size="5" label="MOD_NEWS_PRO_GK5_LIST_TEXT_MAX_AMOUNT" description=""/>
+                
+                <field name="links_title" type="list" default="0" class="gk_switch" label="MOD_NEWS_PRO_GK5_LINKS_TITLE" description="MOD_NEWS_PRO_GK5_LINKS_TITLE_DESC">
+                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                
+                <field name="links_title_url" type="text" default="" label="MOD_NEWS_PRO_GK5_LINKS_TITLE_URL" description="MOD_NEWS_PRO_GK5_LINKS_TITLE_URL_DESC" />
+                
+                <field name="links_title_label" type="text" default="" label="MOD_NEWS_PRO_GK5_LINKS_TITLE_LABEL" description="MOD_NEWS_PRO_GK5_LINKS_TITLE_LABEL_DESC" />
             </fieldset>    
 
             <fieldset name="NSP_THUMBNAILS">   
@@ -757,6 +780,11 @@
                 <field name="img_width" type="text" default="160" size="5" class="input-times text_area" label="MOD_NEWS_PRO_GK5_IMAGE_W" description="MOD_NEWS_PRO_GK5_IMAGE_W_DESC"/>
                                 <field name="img_height" type="text" default="120" size="5" class="input-pixels text_area" label="MOD_NEWS_PRO_GK5_IMAGE_H" description="MOD_NEWS_PRO_GK5_IMAGE_H_DESC"/>
                                 <field name="img_margin" type="text" default="6px 14px 0 0" label="MOD_NEWS_PRO_GK5_IMAGE_MARGIN" description="MOD_NEWS_PRO_GK5_IMAGE_MARGIN_DESC"/>
+                                
+                 <field name="links_img_width" type="text" default="160" size="5" class="input-times text_area" label="MOD_NEWS_PRO_GK5_LINKS_IMAGE_W" description="MOD_NEWS_PRO_GK5_IMAGE_W_DESC"/>
+                 <field name="links_img_height" type="text" default="120" size="5" class="input-pixels text_area" label="MOD_NEWS_PRO_GK5_LINKS_IMAGE_H" description="MOD_NEWS_PRO_GK5_IMAGE_H_DESC"/>
+                 <field name="links_img_margin" type="text" default="6px 14px 0 0" label="MOD_NEWS_PRO_GK5_LINKS_IMAGE_MARGIN" description="MOD_NEWS_PRO_GK5_IMAGE_MARGIN_DESC"/>               
+                                
                 <field name="img_bg" type="color" default="#000" size="8" label="MOD_NEWS_PRO_GK5_IMAGE_BG" description="MOD_NEWS_PRO_GK5_IMAGE_BG_DESC" class="gk-color" />   
                                 <field name="img_stretch" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_IMAGE_STRETCH" description="MOD_NEWS_PRO_GK5_IMAGE_STRETCH_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
