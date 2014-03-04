@@ -75,15 +75,6 @@
                 </field>
                 
                 <field name="article_format" type="filelist" default="" label="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT" description="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_DESC" directory="modules/mod_news_pro_gk5/article_formats" filter="(\.format)$" stripext="" hide_default="hide_default" />
-                
-                <field name="nsp_title" type="list" default="0" class="gk_switch" label="MOD_NEWS_PRO_GK5_NSP_TITLE" description="MOD_NEWS_PRO_GK5_NSP_TITLE_DESC">
-                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
-                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
-                </field>
-                
-                <field name="nsp_title_url" type="text" default="" label="MOD_NEWS_PRO_GK5_NSP_TITLE_URL" description="MOD_NEWS_PRO_GK5_NSP_TITLE_URL_DESC" />
-                
-                <field name="nsp_title_label" type="text" default="" label="MOD_NEWS_PRO_GK5_NSP_TITLE_LABEL" description="MOD_NEWS_PRO_GK5_NSP_TITLE_LABEL_DESC" />
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE">
@@ -481,6 +472,29 @@
                                 <field type="text" name="portal_mode_video_gallery_text_limit" class="short text-limit" default="60" label="NSP_PORTAL_MODE_VIDEO_GALLERY_TEXT_LIMIT" description="" />
                                 
                                 <field type="text" name="portal_mode_video_gallery_autoanimation" default="5000" class="input-ms" label="NSP_PORTAL_MODE_VIDEO_GALLERY_AUTOANIMATION" description="" />
+                        </fieldset>
+                        
+                        
+                        <fieldset name="NSP_PORTAL_MODE_VIDEOLIST">                                
+                                <field name="portal_mode_video_list_popup" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_POPUP" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_POPUP_DESC">
+                                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                                </field>
+                                
+                                <field type="text" name="portal_mode_video_list_popup_x" default="640" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_POPUP_X" description="" />
+                                
+                                <field type="text" name="portal_mode_video_list_popup_y" default="480" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_POPUP_Y" description="" />
+                                
+                                <field type="text" name="portal_mode_video_list_pages" default="2" label="NSP_PORTAL_MODE_VIDEO_LIST_PAGES" description="NSP_PORTAL_MODE_VIDEO_LIST_PAGES_DESC" />
+                                
+                                <field type="text" name="portal_mode_video_list_per_page" default="3" label="NSP_PORTAL_MODE_VIDEO_LIST_PER_PAGE" description="NSP_PORTAL_MODE_VIDEO_LIST_PER_PAGE_DESC" />
+                                
+                                <field name="portal_mode_video_list_title_limit_type" class="short" type="radio" default="chars" label="NSP_PORTAL_MODE_VIDEO_LIST_TITLE_LIMIT_TYPE" description="">
+                                        <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
+                                        <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>
+                                </field>
+                                
+                                <field type="text" name="portal_mode_video_list_title_limit" class="short text-limit" default="40" label="NSP_PORTAL_MODE_VIDEO_LIST_TITLE_LIMIT" description="" />
                         </fieldset>
                         
                         <!-- Portal Modes fieldsets END -->

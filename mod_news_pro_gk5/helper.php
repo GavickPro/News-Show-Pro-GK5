@@ -27,6 +27,7 @@ class NSP_GK5_Helper {
 	var $content = array(); // array with generated content
 	var $module_id = 0; // module id used in JavaScript
 	var $source = null;
+	var $params = null;
 	
 	// module initialization
 	function init($module, $params) {  
@@ -34,6 +35,7 @@ class NSP_GK5_Helper {
 		$this->module_id = ($params->get('module_unique_id', '') == '') ? 'nsp-'.$module->id : $params->get('module_unique_id', '');
 		$this->config = $params->toArray();
 		$this->config['module_id'] = $this->module_id;
+		$this->params = $params;
 		// detect the data source
 		$this->source = $this->config["source_name"];
 		// if the user set engine mode to Mootools
