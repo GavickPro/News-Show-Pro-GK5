@@ -35,6 +35,21 @@ var GKNSPVideoList = function(module) {
 			//
 			// init UI
 			//
+			// video popups
+			module.getElements('.gkItem').each(function(item, i) {
+				item.getElement('.gkImageWrap').addEvent('click', function(e) {
+					e.preventDefault();
+					var target_img = item.getElement('img');
+					var url = target_img.getProperty('data-url');
+					
+					if(url != '#') {
+						SqueezeBox.open(url, {handler: 'iframe', size: {x: target_img.getProperty('data-x'),y: target_img.getProperty('data-y') }});
+					} else {
+						window.location.href = item.getElement('h3 a').getProperty('href');
+					}
+				});
+			});
+			// pagination events
 			if(this.pagination) {
 				// next button events
 				module.getElement('.gkBottomNavNext').addEvent('click', function(e) {
