@@ -68,7 +68,7 @@ ImageCrop.prototype.init = function() {
 	
 	// code to prepare other available fields
 	this.prepareOtherFields();
-}
+},
 
 ImageCrop.prototype.cropEvent = function(type) {
 	var reverse = (type == 'top') ? 'bottom' : (type == 'bottom') ? 'top' : (type == 'left') ? 'right' : 'left';
@@ -79,13 +79,13 @@ ImageCrop.prototype.cropEvent = function(type) {
 	field.val(jQuery('#simple_crop_' + type).val());
 	jQuery('#simple_crop_crop').css('margin-' + type, field.val() + "%");
 	jQuery('#simple_crop_crop').css(line, (200.0 - ( (200.0 * ( fieldr.val() * 1 + field.val() * 1 ) ) / 100.0 ) ) + "px" );	
-}
+},
 
 ImageCrop.prototype.toggleCropOptions = function(state) {
 	// when auto-scale enabled / disabled
 	jQuery('#simple_crop').parents().eq(1).css('display', state == 1 ? 'none' : 'block');
 	jQuery('#jform_params_crop_rules').parents().eq(1).css('display', state == 1 ? 'none' : 'block');
-}
+},
 
 ImageCrop.prototype.prepareOtherFields = function() {
 	var hfield = jQuery('#jform_params_img_height');
@@ -94,4 +94,11 @@ ImageCrop.prototype.prepareOtherFields = function() {
 	jQuery('#jform_params_img_width').parent().append(hfield);
 	hfield.after(span);
 	parent.css('display', 'none');
+
+	var lhfield = jQuery('#jform_params_links_img_height');
+	var lparent = lhfield.parent();
+	var lspan = lhfield.parent().find('span');
+	jQuery('#jform_params_links_img_width').parent().append(lhfield);
+	lhfield.after(lspan);
+	lparent.css('display', 'none');
 }

@@ -888,7 +888,14 @@ div.switcher-off + select {
 #simple_crop {
 	position: absolute;
 	right: 20px;
-	top:  150px;
+	top:  200px;
+}
+.input-prepend .add-on {
+	margin-left: -2px;
+	margin-right: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
 }
 #nsp-gk5-checkout,
 #gk_about_us {

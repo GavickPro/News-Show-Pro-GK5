@@ -148,14 +148,12 @@ class NSP_GK5_com_content_Model {
 		if($config['news_unauthorized'] == '0') {
 			$access_con = ' AND content.access IN ('. implode(',', $user->getAuthorisedViewLevels()) .') ';
 		}
-		
 		// check if the timezone offset is set
 		if($config['time_offset'] == 0) {
-			$date = JFactory::getDate();
+			$date = JFactory::getDate(date('Y-m-d H:i:s', strtotime('now')));
 		} else {
 			$date = JFactory::getDate($config['time_offset'].' hour '.date('Y-m-d H:i:s', strtotime('now')));
 		}
-		
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available
@@ -282,6 +280,7 @@ class NSP_GK5_com_content_Model {
 			content.images AS images,
 			content.featured AS frontpage,
 			content.access AS access,
+			content.language AS lang,
 			categories.title AS catname, 
 			users.email AS author_email,
 			content.created_by_alias AS author_alias,
@@ -323,7 +322,11 @@ class NSP_GK5_com_content_Model {
 			}
 			// generating tables of news data
 			foreach($news2 as $item) {						
-			    $pos = array_search($item['iid'], $content_iid);
+			   $pos = array_search($item['iid'], $content_iid);
+				if( $item['lang'] == '*' ){
+					$lang = JFactory::getLanguage();
+					$item['lang'] = $lang->getTag();
+				}
 				// check the access restrictions
 				$authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
 				$access = JComponentHelper::getParams('com_content')->get('show_noauth');

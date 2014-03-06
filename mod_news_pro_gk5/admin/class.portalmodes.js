@@ -87,6 +87,8 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('#Highlights_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'VIDEOGALLERY') {
 					jQuery('#Video_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'VIDEOLIST') {
+					jQuery('#Video_List_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				}
 			} else {
 				if($this.configs[portal_mode_value].full_name == 'NEWS_GALLERY') {
@@ -102,13 +104,15 @@ PortalModes.prototype.changeValue = function() {
 				} else if($this.configs[portal_mode_value].full_name == 'PRODUCT_GALLERY_2') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY_2]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'CENTERED_TITLE_OVERLAY') {
-					jQuery('a[href=#attrib-NSP_PORTAL_MODE_CENTERED_TITLE_OVERLAY]').parent().css('display', 'block');
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'GRID_TITLE_OVERLAY') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_TITLE_OVERLAY]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'HIGHLIGHTS') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_HIGHLIGHTS]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'VIDEOGALLERY') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOGALLERY]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'VIDEOLIST') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOLIST]').parent().css('display', 'block');
 				}
 			}
 			// check the data source value
@@ -161,6 +165,7 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('#Grid_Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Highlights_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Video_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#Video_List_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 	} else {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_GALLERY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'none');
@@ -172,6 +177,7 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_TITLE_OVERLAY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_HIGHLIGHTS]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOGALLERY]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOLIST]').parent().css('display', 'none');
 	}
 }
 

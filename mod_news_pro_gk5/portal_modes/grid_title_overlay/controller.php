@@ -43,11 +43,7 @@ class NSP_GK5_Grid_Title_Overlay {
 			echo '<figure class="gkNspPM gkNspPM-GridTitleOverlay" data-textpos="'.$this->parent->config['portal_mode_grid_title_overlay_text_pos'].'" data-textcolor="'.$this->parent->config['portal_mode_grid_title_overlay_text_color'].'">';
 			//
 			if($this->get_image($i)) {
-				$img_url = strip_tags($this->get_image($i));
-				if(substr($img_url, 0, 6) == 'images') {
-					$img_url = '/' . $img_url;
-				}
-				echo '<a href="'.$this->get_link($i).'" style="background: url(\''.$img_url.'\');" ><span>'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'</span></a>';
+				echo '<a href="'.$this->get_link($i).'" style="background: url(\''.strip_tags($this->get_image($i)).'\');" ><span>'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'</span></a>';
 			}
 			//
 			if($this->parent->config['portal_mode_grid_title_overlay_text_pos'] != 'none') {

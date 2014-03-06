@@ -45,10 +45,10 @@ class JFormFieldK2Multicategories extends JFormFieldList {
 		// Create a regular list.
 		else {
 		    if(isset($this->options[0]) && $this->options[0] != ''){
-				$html[] = JHtml::_('select.genericlist', $this->options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
-            } else {
-               return '<select id="jform_params_k2_categories" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field hide-k2">  K2 is not installed or any K2 categories are available.</strong>';
-            }
+					$html[] = JHtml::_('select.genericlist', $this->options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
+	           } else {
+	              return '<select id="jform_params_k2_categories" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">K2 is not installed or any K2 categories are available.</strong>';
+	           }
 		}
 		
 		return implode($html);
@@ -86,7 +86,7 @@ class JFormFieldK2Multicategories extends JFormFieldList {
         	    	$this->recursive_options($temp_options, 1, $option[0]);
         	    }
         	}		
-		}
+		} 
 	}
  	// bind function to save
     function bind( $array, $ignore = '' ) {

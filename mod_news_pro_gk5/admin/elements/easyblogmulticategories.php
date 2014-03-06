@@ -86,7 +86,7 @@ class JFormFieldEasyblogMulticategories extends JFormFieldList {
         	    	$this->options[] = JHtml::_('select.option', $option[0], $option[1]);
         	    	$this->recursive_options($temp_options, 1, $option[0]);
         	    }
-        	}
+        	}		
 		}
 	}
  	// bind function to save

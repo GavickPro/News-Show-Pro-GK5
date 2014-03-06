@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 class NSP_GK5_com_k2_Model {
 	// Method to get sources of articles
 	static function getSources($config) {
-		if($config['data_source'] != 'k2_all' && $config['data_source'] != 'k2_authors') {
+		if($config['data_source'] != 'k2_all') {
 			//
 			$db = JFactory::getDBO();
 			// if source type is section / sections
@@ -148,14 +148,12 @@ class NSP_GK5_com_k2_Model {
 		if($config['news_unauthorized'] == '0') {
 			$access_con = ' AND content.access IN ('. implode(',', $user->getAuthorisedViewLevels()) .') ';
 		}
-		
-		// check if the timezone offset is set
 		if($config['time_offset'] == 0) {
-			$date = JFactory::getDate();
+			$date = JFactory::getDate(date('Y-m-d H:i:s', strtotime('now')));
 		} else {
 			$date = JFactory::getDate($config['time_offset'].' hour '.date('Y-m-d H:i:s', strtotime('now')));
 		}
-		
+		//$date = JFactory::getDate("now", $config['time_offset']);
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available

@@ -1,6 +1,5 @@
 <?php
 
-
 /**
 * This View is responsible for generating layout parts for the com_content data source
 * @package News Show Pro GK5
@@ -52,8 +51,8 @@ class NSP_GK5_rss_View {
 		}
 	}
 	// article image generator
-	static function image($config, $item, $only_url = false, $pm = false){		
-		if($config['news_content_image_pos'] != 'disabled' || $pm) {
+	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
+		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {
 			$item['title'] = str_replace('"', "&quot;", $item['title']);
 		    $IMG_SOURCE = '';
 			$IMG_LINK = $item['url'];	
@@ -75,7 +74,7 @@ class NSP_GK5_rss_View {
 			if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
 				// try to override standard image
 				if(strpos($IMG_SOURCE,'http://') == FALSE) {
-					$img_file = NSP_GK5_Thumbs::createThumbnail($IMG_SOURCE, $config);
+					$img_file = NSP_GK5_Thumbs::createThumbnail($IMG_SOURCE, $config, false, false, '', $links);
 					
 					if(is_array($img_file)) {
 						$uri = JURI::getInstance();
@@ -100,26 +99,36 @@ class NSP_GK5_rss_View {
 			} else {
 				//
 				if($IMG_SOURCE != '') {
-					$class = ' t'.$config['news_content_image_pos'].' f'.$config['news_content_image_float']; 
+					$class = '';
+										
+					if(!$links) {
+						$class = ' t'.$config['news_content_image_pos'].' f'.$config['news_content_image_float']; 
+					} 
 					$size = '';
 					$margins = '';
 					// 
-					if($config['responsive_images'] == 1) {
+					if(!$links && $config['responsive_images'] == 1) {
 						$class .= ' gkResponsive'; 
 					}
 					//
-					if($config['img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['img_width'].'px;';
-					if($config['img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['img_height'].'px;';
-					if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
+					if(!$links) {
+						if($config['img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['img_width'].'px;';
+						if($config['img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['img_height'].'px;';
+						if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
+					} else {
+						if($config['links_img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['links_img_width'].'px;';
+						if($config['links_img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['links_img_height'].'px;';
+						if($config['links_img_margin'] != '') $margins = ' style="margin:'.$config['links_img_margin'].';"';
+					}
 					//
-					if($config['news_image_link'] == 1) {
+					if($config['news_image_link'] == 1 || $links) {
 						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 						} else {
-							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 						}
 					} else {
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
+						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
 					}
 				} else {
 					return '';
@@ -184,6 +193,7 @@ class NSP_GK5_rss_View {
 		if($config['news_short_pages'] > 0) {
 	        $text = '';
 	        $title = '';
+	        $image = '';
 	        
 	        if($config['list_text_limit'] > 0) {
 	            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
@@ -204,8 +214,12 @@ class NSP_GK5_rss_View {
 					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
 				}
 			}
+			
+			if($config['links_image'] == 1) {
+				$image = NSP_GK5_rss_View::image($config, $item, false, false, true);
+			}
 			// creating rest news list
-			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $title . $text . '</li>';	
+			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $image . (($image != '') ? '<div>' . $title . $text . '</div>' : ($title . $text)) . '</li>';	
 		} else {
 			return '';
 		}

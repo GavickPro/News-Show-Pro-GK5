@@ -42,7 +42,6 @@
 	        border-radius: 50%;
 	cursor:pointer; 
 	float:left; 
-	padding: 0!important;
 	height: 14px; 
 	margin: 1px 4px 0 0!important; 
 	text-indent:-999em; 
@@ -143,12 +142,12 @@
 }
 .nspArt p.nspText a { }
 .nspArt p.nspText a:hover { }
-.nspArt p.nspInfo { 
+.nspArt .nspInfo { 
 	display: block!important;
 	font-size: 90%; 
 }
-.nspArt p.nspInfo a { }
-.nspArt p.nspInfo a:hover { }
+.nspArt .nspInfo a { }
+.nspArt .nspInfo a:hover { }
 .nspArt p.nspInfo > .nsp-stars {
 	padding: 0 10px 0 0!important;
 }
@@ -211,6 +210,9 @@
 }
 .nspList { 
 	float: left; 
+}
+.nspList > li > .nspImageWrapper {
+	float: left;
 }
 .nspLinks ul { 
 	list-style-type: none!important; 
