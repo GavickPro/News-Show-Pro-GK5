@@ -545,9 +545,13 @@ fieldset.panelform select[multiple=multiple] {
 	font-size: 11px;
 	font-weight: 700;
 	line-height: 16px;
-	padding-left: 28px
+	padding-left: 28px;
+	margin-left: -25px!important;
 }
-
+#jform_params_links_img_width,
+#jform_params_links_img_height {
+	width: 52px;	
+}
 .gkFormLine.hasText span {
 	background: #fff;
 	padding: 3px
@@ -582,6 +586,7 @@ fieldset.panelform select[multiple=multiple] {
 	border: none!important
 }
 ul#nsp-gk5-checkout {
+	margin: 0;
 	list-style: none;
 }
 #nsp-gk5-checkout h3 { background: #fb6239; color: #fff; padding: 4px; font-size: 12px;}
@@ -900,7 +905,6 @@ div.switcher-off + select {
 #nsp-gk5-checkout,
 #gk_about_us {
 	max-width: 750px;
-	margin: 0 auto;
 }
 #moduleOptions > .accordion-group:first-child > .collapse.in {
 	min-height: 300px;
@@ -938,17 +942,26 @@ div.switcher-off + select {
 	width: 90%;
 	margin: 2px 0;
 }
+.j32 ul#myTabTabs > li.separator {
+	margin-bottom: 32px;
+}
+
 .j32 ul#myTabTabs > li > a {
 	color: #666;
 	border: 1px solid #ddd;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.j32 .form-horizontal .control-label {
+	min-width: 200px;
 }
 .j32 ul#myTabTabs > li.active > a {
 	color: #fff;
-	background: #59B1F6;
-	border-color: #2587d3;
+	background: #f98817;
+	border-color: #f98817;
 }
 .j32 div#myTabContent {
 	float: right;

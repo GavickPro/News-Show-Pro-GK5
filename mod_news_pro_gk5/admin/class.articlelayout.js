@@ -20,7 +20,13 @@ ArticleLayout.prototype.layoutTabs = function() {
 	jQuery('.gkFormLine').each(function(i, elm) {
 		elm = jQuery(elm);
 		if(elm.attr('data-section-toggle') != '') {
-			elm.addClass('closed');
+			if(i==0) {
+				elm.addClass('open');
+				var classToToggle = '.gk-group-' + elm.attr('data-section-toggle');
+				jQuery(classToToggle).css('display', 'block');
+			} else {
+				elm.addClass('closed');
+			}
 			elm.click(function() {
 				var classToToggle = '.gk-group-' + elm.attr('data-section-toggle');
 				if(jQuery(classToToggle).css('display') == 'none') {

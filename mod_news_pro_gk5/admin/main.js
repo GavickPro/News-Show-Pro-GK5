@@ -26,6 +26,9 @@ jQuery(window).load(function() {
 	if((jQuery('#gk_about_us').data('jversion')).substr(0,3) == '3.2') {
 		jQuery('#module-form').addClass('j32');
 	}
+	jQuery('a[href="#attrib-advanced"]').parent().addClass('separator');
+	jQuery('a[href^="#description"]').parent().css('display', 'none');
+	jQuery('a[href="#permissions"]').parent().after(jQuery('a[href="#attrib-advanced"]').parent());
 	//
 	jQuery('#moduleOptions a[href^="#collapse"]').each(function(i, el) {
 		jQuery(el).attr('id', jQuery(el).html().replace(/ /g,'_').replace('!', ''));
@@ -131,7 +134,9 @@ jQuery(window).load(function() {
 		el = jQuery(el);
 		el.parent().find('.chzn-done').attr('style', 'display: none!important');
 	});
-
+	
+	
+	
 	jQuery('#nsp-gk5-checkout').parent().css('margin-left', '10px');
 	jQuery('#gk_about_us').parent().css('margin-left', '10px');
 	
