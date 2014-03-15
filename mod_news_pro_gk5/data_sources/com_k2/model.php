@@ -279,6 +279,7 @@ class NSP_GK5_com_k2_Model {
 			content.access AS access,
 			content.catid AS cid,
 			content.video AS video,
+			content.plugins AS plugins,
 			categories.name AS catname, 
 			categories.image AS cat_image,
 			categories.alias AS cat_alias,
