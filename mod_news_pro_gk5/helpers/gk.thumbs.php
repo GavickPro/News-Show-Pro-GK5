@@ -86,19 +86,19 @@ class NSP_GK5_Thumbs {
 		
 		return $name;
 	}*/
-	
+
 	// function used to get the custom media path
 	function getMediaPath() {
         $imagemanager = JComponentHelper::getParams('com_media');
   		$imagepath = $imagemanager->get('image_path', '');
   		return $imagepath;
     }
-	
+
 	// function to change file path to  real path.
 	function getRealPath($path, $k2_mode = false, $vm_mode = false) {		
 		$start = ($k2_mode || $vm_mode) ? (($k2_mode) ? strpos($path, 'media/') : strpos($path, 'components/')) : strpos($path, self::getMediaPath());
 		$path = './'.substr($path, $start);
-		
+
 		return realpath($path);
 	}
 	/*
@@ -110,7 +110,7 @@ class NSP_GK5_Thumbs {
 		if($cache_time === FALSE) {
 			$cache_time = 100 * 365 * 24 * 60 * 60;
 		}
-		
+
 		$cache_dir = JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS;
 		$file = $cache_dir.$filename;
 		return (!is_file($file) || $cache_time == 0) ? FALSE : (filemtime($file) + 60 * $cache_time > time());
@@ -308,6 +308,10 @@ class NSP_GK5_Thumbs {
 					} else {
 						$imageSource = @imagecreatefrompng($file); 
 					}
+					
+					// check if the proper image resource was created
+					if(!$imageSource) return FALSE;
+					
 					// here can be exist an error when image is to big - then class return blank page	
 					// setting image size in variables
 					$imageSourceWidth = imagesx($imageSource);
@@ -361,7 +365,7 @@ class NSP_GK5_Thumbs {
 								$imageSourceNWidth *= $ratio2;
 							}
 						}
-						
+
 						$img_w = $imageSourceNWidth;
 						$img_h = $imageSourceNHeight;
 					}
@@ -410,7 +414,7 @@ class NSP_GK5_Thumbs {
 							$img_w = $imageSourceNWidth;
 							$img_h = $imageSourceNHeight;
 			            }
-			            
+
 			            $imageBG = imagecreatetruecolor($img_w, $img_h);
 						// enable transparent background 
 						if($config['img_bg'] == 'transparent'){
@@ -512,7 +516,7 @@ class NSP_GK5_Thumbs {
 					//
 					// applying filters
 					//
-					
+
 					// grayscale
 					if($config['grayscale_filter'] || $config['sepia_filter']) {
 						imagefilter($imageBG, IMG_FILTER_GRAYSCALE); 
@@ -541,7 +545,7 @@ class NSP_GK5_Thumbs {
 					if($config['contrast_filter']) {
 						imagefilter($imageBG, IMG_FILTER_CONTRAST, $config['filter_arg']); 
 					}
-					
+
 					// save image depends from MIME type	
 					if($imageData['mime'] == 'image/jpeg' || $imageData['mime'] == 'image/pjpeg' || $imageData['mime'] == 'image/jpg') imagejpeg($imageBG,$cache_dir.$filename, $config['img_quality']);
 					elseif($imageData['mime'] == 'image/gif') imagegif($imageBG, $cache_dir.$filename); 
