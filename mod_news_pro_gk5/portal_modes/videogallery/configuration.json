@@ -1,0 +1,9 @@
+{
+	"name": "VideoGallery",
+	"full_name": "VIDEOGALLERY",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

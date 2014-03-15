@@ -1,13 +1,16 @@
 <?php
 
 /**
- *
- * This Model is responsible for getting data from the
- * com_easyblog data source
- *
- **/
+* This Model is responsible for getting data from the com_easyblog data source
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
+**/
 
-// no direct access
+// access restriction
 defined('_JEXEC') or die('Restricted access');
 
 class NSP_GK5_com_easyblog_Model {
@@ -123,7 +126,12 @@ class NSP_GK5_com_easyblog_Model {
 		if($config['data_source'] == 'easyblog_authors' && $config['easyblog_authors'] != ''){
 			// initializing variables
 			$sql_where = '';
-			$ids = explode(',', $config['easyblog_authors']);
+		
+			if(!is_array($config['easyblog_authors'])) {
+				$ids = explode(',', $config['easyblog_authors']);
+			} else {
+				$ids = $config['easyblog_authors'];
+			}
 			//
 			for($i = 0; $i < count($ids); $i++ ){	
 				// linking string with content IDs
@@ -142,19 +150,25 @@ class NSP_GK5_com_easyblog_Model {
 		} else {
 			$access_con = ' AND content.private = 0 ';
 		}
-		$app = JFactory::getApplication();
-		$timezone = $app->getCfg('offset') + $config['time_offset'];
-		$date = JFactory::getDate("now", $timezone);
+		// check if the timezone offset is set
+		if($config['time_offset'] == 0) {
+			$date = JFactory::getDate("now");
+		} else {
+			$date = JFactory::getDate("now", $timezone);
+		}
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available
 		// when showing only frontpage articles is disabled
-		$frontpage_con = '';
+		$frontpage_con1 = '';
+		$frontpage_con2 = '';
 		
 		if($config['only_featured'] == 0 && $config['news_featured'] == 0) {
-		 	$frontpage_con = ' AND content.frontpage = 0 ';
+		 	$frontpage_con1 = ' LEFT JOIN #__easyblog_featured as featured ON content.id = featured.content_id ';
+		 	$frontpage_con2 = ' AND (featured.id IS NULL OR (featured.id IS NOT NULL AND (featured.type NOT LIKE "post" OR featured.type IS NULL))) ';
 		} else if($config['only_featured'] == 1) {
-			$frontpage_con = ' AND content.frontpage = 1';
+			$frontpage_con1 = ' LEFT JOIN #__easyblog_featured as featured ON content.id = featured.content_id ';
+			$frontpage_con2 = ' AND featured.id IS NOT NULL AND featured.type LIKE "post"';
 		}
 		
 		$since_con = '';
@@ -205,10 +219,14 @@ class NSP_GK5_com_easyblog_Model {
 		$article_id_query = 'content.id AS id';
 		$one_article_query = '';
 		
-		if($config['one_article_per_category']) {
+		if($config['one_article_per_category'] && $config['data_source'] == 'easyblog_authors') {
+			$article_id_query = 'MAX(content.id) AS id, content.created_by AS author';
+			$one_article_query = ' GROUP BY content.created_by ';
+		} elseif($config['one_article_per_category']) {
 			$article_id_query = 'MAX(content.id) AS id, content.category_id AS cid';
 			$one_article_query = ' GROUP BY content.category_id ';
 		}
+		
 		// creating SQL query			
 		$query_news = '
 		SELECT
@@ -216,6 +234,7 @@ class NSP_GK5_com_easyblog_Model {
 		FROM 
 			#__easyblog_post AS content 
 			'.$tag_join.'
+		'.$frontpage_con1.'
 		WHERE 
 			content.published = 1
                 '. $access_con .'   
@@ -226,7 +245,7 @@ class NSP_GK5_com_easyblog_Model {
 			'.$frontpage_con.' 
 			'.$since_con.'
 			'.$current_con.'
-		
+			'.$frontpage_con2.'
 		'.$one_article_query.'	
 		
 		ORDER BY 

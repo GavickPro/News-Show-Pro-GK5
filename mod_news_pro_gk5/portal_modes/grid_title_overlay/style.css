@@ -1,0 +1,83 @@
+/* Portal Mode - Grid Title Overlay */
+
+.gkNspPM-GridTitleOverlay {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+	float: left;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+}
+.gkNspPM-GridTitleOverlay > a {
+	background-size: cover!important;
+	background-position: center center!important;
+	display: block;
+	float: left;
+	height: 100%;
+	position: absolute;
+	text-indent: -9999px;
+	width: 100%;
+	z-index: 1;
+}
+.gkNspPM-GridTitleOverlay > a > span {
+	background: #000;
+	height: 100%;
+	display: block;
+	float: left;
+	left: 0;
+	opacity: 0.3; filter: alpha(opacity=30);
+	position: absolute;
+	top: 0;
+	-webkit-transition: opacity .3s ease-out;
+	-moz-transition: opacity .3s ease-out;
+	-ms-transition: opacity .3s ease-out;
+	-o-transition: opacity .3s ease-out;
+	transition: opacity .3s ease-out;
+	width: 100%;
+	z-index: 2;
+}
+.gkNspPM-GridTitleOverlay:hover > a > span {
+	opacity: 0; filter: alpha(opacity=0);
+}
+.gkNspPM-GridTitleOverlay > figcaption {
+	position: absolute;
+	z-index: 3;
+}
+.gkNspPM-GridTitleOverlay[data-textpos="bottom"] > figcaption {
+	bottom: 0;
+}
+.gkNspPM-GridTitleOverlay[data-textpos="top"] > figcaption {
+	top: 0;
+}
+.gkNspPM-GridTitleOverlay > figcaption h3 {
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+.gkNspPM-GridTitleOverlay[data-textcolor="dark"] > figcaption a {
+	color: #272727;	
+}
+.gkNspPM-GridTitleOverlay[data-textcolor="light"] > figcaption a {
+	color: #fff;	
+}
+.gkNspPM-GridTitleOverlay > figcaption a:active,
+.gkNspPM-GridTitleOverlay > figcaption a:focus,
+.gkNspPM-GridTitleOverlay > figcaption a:hover {
+	color: #db4a37;	
+}
+
+/* Mobile devices */
+@media (max-width: 1030px) {
+	.gkNspPM-GridTitleOverlay > figcaption h3 {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 580px) {
+	.gkNspPM-GridTitleOverlay > figcaption h3 {
+		font-size: 16px;
+	}
+}

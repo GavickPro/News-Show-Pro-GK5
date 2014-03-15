@@ -1,13 +1,16 @@
 <?php
 
 /**
- *
- * This View is responsible for generating layout parts for the
- * com_virtuemart data source
- *
- **/
+* This View is responsible for generating layout parts for the com_virtuemart data source
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
+**/
 
-// no direct access
+// access restriction
 defined('_JEXEC') or die('Restricted access');
 
 class NSP_GK5_com_virtuemart_View {
@@ -17,6 +20,14 @@ class NSP_GK5_com_virtuemart_View {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
 			$output = str_replace('"', "&quot;", $output);
+	        // first word span wrap
+	        if($config['news_header_first_word'] == 1) {
+	        	$output_temp = explode(' ', $output);
+	        	$first_word = $output_temp[0];
+	        	$output_temp[0] = '<span>'.$output_temp[0].'</span>';
+	        	$output = preg_replace('/' . $first_word . '/mi', $output_temp[0], $output, 1);
+	        }
+	        
 	        $link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
 			//
 			if($config['news_header_link'] == 1) {
@@ -48,8 +59,8 @@ class NSP_GK5_com_virtuemart_View {
 		}
 	}
 	// article image generator
-	static function image($config, $item, $only_url = false, $pm = false){		
-		if($config['news_content_image_pos'] != 'disabled' || $pm) {			
+	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
+		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {			
 			$news_title = str_replace('"', "&quot;", $item['title']);
 			$IMG_SOURCE = $item['image'];
 			$IMG_LINK = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
@@ -59,7 +70,7 @@ class NSP_GK5_com_virtuemart_View {
 			if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
 				// try to override standard image
 				if(strpos($IMG_SOURCE,'http://') == FALSE) {
-					$img_file = NSP_GK5_Thumbs::createThumbnail($IMG_SOURCE, $config);
+					$img_file = NSP_GK5_Thumbs::createThumbnail($IMG_SOURCE, $config, false, false, '', $links);
 					
 					if(is_array($img_file)) {
 						$uri = JURI::getInstance();
@@ -86,30 +97,41 @@ class NSP_GK5_com_virtuemart_View {
 				if($only_url) {
 					return $IMG_SOURCE;
 				} else {
-					$class = ' t'.$config['news_content_image_pos'].' f'.$config['news_content_image_float']; 
+					$class = '';
+					
+					if(!$links) {
+						$class = ' t'.$config['news_content_image_pos'].' f'.$config['news_content_image_float'];
+					} 
+					
 					$size = '';
 					$margins = '';
 					// 
-					if($config['responsive_images'] == 1) {
+					if(!$links && $config['responsive_images'] == 1) {
 						$class .= ' gkResponsive'; 
 					}
 					//
-					if($config['img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['img_width'].'px;';
-					if($config['img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['img_height'].'px;';
-					if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
+					if(!$links) {
+						if($config['img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['img_width'].'px;';
+						if($config['img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['img_height'].'px;';
+						if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
+					} else {
+						if($config['links_img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['links_img_width'].'px;';
+						if($config['links_img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['links_img_height'].'px;';
+						if($config['links_img_margin'] != '') $margins = ' style="margin:'.$config['links_img_margin'].';"';
+					}
 					//
 					$size = ($size == '') ? '' : ' style="' . $size . '"';
 					//
 					//
 					if($config['news_image_link'] == 1) {
 						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
 						} else {
-							return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
 							
 						}
 					} else {
-						return ($config['news_content_image_pos'] == 'center') ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
+						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
 					}
 				}
 			} else {
@@ -126,7 +148,7 @@ class NSP_GK5_com_virtuemart_View {
 			$class = ' f'.$config['news_content_readmore_pos'];
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a <a class="readon inline"  href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+				return '<a class="readon inline"  href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			} else {
 				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			}
@@ -153,7 +175,7 @@ class NSP_GK5_com_virtuemart_View {
 			($config['news_content_info_pos'] != 'disabled' && $num == 1) || 
 			($config['news_content_info2_pos'] != 'disabled' && $num == 2)
 		) {
-			$news_info = '<p class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </p>';
+			$news_info = '<div class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </div>';
 	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_virtuemart_View::categoryLink($item).'" >'.$item['cat_name'].'</a>' : $news_catname;
 	        //          
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
@@ -185,6 +207,7 @@ class NSP_GK5_com_virtuemart_View {
 		if($config['news_short_pages'] > 0) {
 	        $text = '';
 	        $title = '';
+	        $image = '';
 	        
 	        if($config['list_text_limit'] > 0) {
 	            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
@@ -205,8 +228,12 @@ class NSP_GK5_com_virtuemart_View {
 					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
 				}
 			}
+			
+			if($config['links_image'] == 1) {
+				$image = NSP_GK5_com_virtuemart_View::image($config, $item, false, false, true);
+			}
 			// creating rest news list
-			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $title . $text . '</li>';	
+			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $image . (($image != '') ? '<div>' . $title . $text . '</div>' : ($title . $text)) . '</li>';	
 		} else {
 			return '';
 		}
@@ -245,46 +272,32 @@ class NSP_GK5_com_virtuemart_View {
         // load the base
         $mainframe = JFactory::getApplication();
         $virtuemart_currency_id = $mainframe->getUserStateFromRequest( "virtuemart_currency_id", 'virtuemart_currency_id',JRequest::getInt('virtuemart_currency_id',0) );
-        $currency = CurrencyDisplay::getInstance( );
-        
+        $currency = CurrencyDisplay::getInstance();
+        $cSymbol = $currency->getSymbol();
+        $cDecimals = $currency->getNbrDecimals();
+        $cDecSymbol = $currency->getDecimalSymbol();
+
         $productModel = new VirtueMartModelProduct();
 	    $product = $productModel->getProduct($item['id'], 100, true, true, true);
-        
+	    // prepare price - apply correct format and decimal separator
+	    $price = str_replace('.',$cDecSymbol,number_format($product->prices[$config['vm_show_price_type']],$cDecimals));
+	    if($config['vm_currency_position'] == 'before') { 
+	    	$price = $cSymbol.' '.$price;
+	    } else {
+	    	$price = $price.' '.$cSymbol;
+	    }
+	    //
         if($config['vm_add_to_cart'] == 1) {
             vmJsApi::jQuery();
             vmJsApi::jPrice();
-            vmJsApi::cssSite();	
         }
-        
-        $news_price = '';
-        
-        if($config['vm_show_price_type'] == 'base') {
-            if($config['vm_show_price_with_tax'] == 1) {
-                if($config['vm_display_type'] == 'text_price') {
-                	$news_price.= $currency->createPriceDiv('basePriceWithTax','MOD_NEWS_PRO_GK5_PRODUCT_BASEPRICE_WITHTAX',$product->prices);
-                } else {
-                	$news_price.= $currency->createPriceDiv('basePriceWithTax','',$product->prices);
-                }
-            }
-            
+        $news_price = '<div>';
+        //
+        if($config['vm_show_price_type'] != 'none') {
             if($config['vm_display_type'] == 'text_price') {
-            	$news_price .= $currency->createPriceDiv('priceWithoutTax','MOD_NEWS_PRO_GK5_PRODUCT_BASEPRICE_WITHOUTTAX',$product->prices);
+            	$news_price .=  '<span>'.JText::_('MOD_NEWS_PRO_GK5_PRODUCT_PRICE').' '.$price.'</span>';
             } else {
-            	$news_price .= $currency->createPriceDiv('priceWithoutTax','',$product->prices);
-            }
-        } elseif ($config['vm_show_price_type'] == 'sale') {
-            if($config['vm_show_price_with_tax'] == 1) {
-           	    if($config['vm_display_type'] == 'text_price') {
-           	    	$news_price .= $currency->createPriceDiv('salesPrice','MOD_NEWS_PRO_GK5_PRODUCT_SALESPRICE',$product->prices);
-           	    } else {
-           	    	$news_price .= $currency->createPriceDiv('salesPrice','',$product->prices);
-           	    }
-            } else {
-                 if($config['vm_display_type'] == 'text_price') {
-                 	$news_price.= $currency->createPriceDiv('priceWithoutTax','MOD_NEWS_PRO_GK5_PRODUCT_SALESPRICE_WITHOUT_TAX',$product->prices);
-                 } else {
-                 	$news_price .= $currency->createPriceDiv('priceWithoutTax','',$product->prices);
-                 }
+            	$news_price .= '<span>'.$price.'</span>';
             }
         } 
         // 'Add to cart' button
@@ -306,24 +319,31 @@ class NSP_GK5_com_virtuemart_View {
                     <noscript><input type="hidden" name="task" value="add" /></noscript>
                     <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
                     <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
-                </form>';    
-                
+                </form>';     
             $news_price .= $code;
 		} 
        	// display discount
         if($config['vm_show_discount_amount'] == 1) {
-            $disc_amount = $currency->createPriceDiv('discountAmount','MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT',$product->prices);
-            $disc_amount = strip_tags($disc_amount, '<div>');
-            $news_price.= $disc_amount;
+            $disc_amount = str_replace('.',$cDecSymbol,number_format($product->prices['discountAmount'],$cDecimals));
+            if($config['vm_currency_position'] == 'before') {  
+            	$disc_amount = $cSymbol.' '.$disc_amount;
+            } else {
+            	$disc_amount = $disc_amount.' '.$cSymbol;
+            }
+            $news_price.= JText::_('MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT'). $disc_amount;
         }
 		// display tax
         if($config['vm_show_tax'] == 1) {
-          	$taxAmount = $currency->createPriceDiv('taxAmount','MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT',$product->prices);
-          	$taxAmount = strip_tags($taxAmount, '<div>');
-          	$news_price .= $taxAmount;  
+          	$taxAmount = str_replace('.',$cDecSymbol,number_format($product->prices['taxAmount'],$cDecimals));
+            if($config['vm_currency_position'] == 'before') {  
+            	$taxAmount = $cSymbol.' '.$taxAmount;
+            } else {
+            	$taxAmount = $taxAmount.' '.$cSymbol;
+            }
+            $news_price.= JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount;  
         }
   		// results
-        return ($news_price != '') ? $news_price : '';
+        return ($news_price != '<div>') ? $news_price.'</div>' : '';
 	}
 	// article link generator
 	static function itemLink($item, $config) {

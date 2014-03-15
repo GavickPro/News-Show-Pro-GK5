@@ -1,5 +1,18 @@
 <?php
 
+/**
+* Portfolio Portal Mode
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
+**/
+
+// access restriction
+defined('_JEXEC') or die('Restricted access');
+
 class NSP_GK5_Portfolio {
 	// necessary class fields
 	private $parent;
@@ -27,7 +40,7 @@ class NSP_GK5_Portfolio {
 		// amount
 		$amount = 0;	
 		// main wrapper
-		echo '<div class="gkNspPM gkNspPM-Portfolio'.(($parent->config['portal_mode_portfolio_initial_anim'] == '0') ? ' noInitialAnim' : '').'" data-cols="'.$this->parent->config['portal_mode_portfolio_cols'].'" data-rows="'.$this->parent->config['portal_mode_portfolio_rows'].'">';
+		echo '<div class="gkNspPM gkNspPM-Portfolio'.(($this->parent->config['portal_mode_portfolio_initial_anim'] == '0') ? ' noInitialAnim' : '').'" data-cols="'.$this->parent->config['portal_mode_portfolio_cols'].'" data-rows="'.$this->parent->config['portal_mode_portfolio_rows'].'">';
 		// images wrapper
 		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_portfolio_cols'].' animate_queue">';
 		// JSON data array

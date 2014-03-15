@@ -1,0 +1,10 @@
+{
+	"name": "Highlights",
+	"full_name": "HIGHLIGHTS",
+	"support": [
+		"com_content", 
+		"com_k2",
+		"com_easyblog"
+	],
+	"thumbnails": false
+}

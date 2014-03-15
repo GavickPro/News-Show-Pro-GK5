@@ -1,13 +1,16 @@
 <?php
 
 /**
- *
- * This Model is responsible for getting data from the
- * com_k2 data source
- *
- **/
+* This Model is responsible for getting data from the com_k2 data source
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
+**/
 
-// no direct access
+// access restriction
 defined('_JEXEC') or die('Restricted access');
 
 class NSP_GK5_com_k2_Model {
@@ -123,7 +126,11 @@ class NSP_GK5_com_k2_Model {
 		if($config['data_source'] == 'k2_authors' && $config['k2_authors'] != ''){
 			// initializing variables
 			$sql_where = '';
-			$ids = explode(',', $config['k2_authors']);
+			if(!is_array($config['k2_authors'])) {
+				$ids = explode(',', $config['k2_authors']);
+			} else {
+				$ids = $config['k2_authors'];
+			}
 			//
 			for($i = 0; $i < count($ids); $i++ ){	
 				// linking string with content IDs
@@ -140,9 +147,12 @@ class NSP_GK5_com_k2_Model {
 		if($config['news_unauthorized'] == '0') {
 			$access_con = ' AND content.access IN ('. implode(',', JFactory::getUser()->authorisedLevels()) .') ';
 		}
-		$app = JFactory::getApplication();
-		$timezone = $app->getCfg('offset') + $config['time_offset'];
-		$date = JFactory::getDate("now", $timezone);
+		// check if the timezone offset is set
+		if($config['time_offset'] == 0) {
+			$date = JFactory::getDate("now");
+		} else {
+			$date = JFactory::getDate("now", $timezone);
+		}
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available
@@ -184,9 +194,13 @@ class NSP_GK5_com_k2_Model {
 		}
 		// Ordering string
 		$order_options = '';
+		$rating_join = '';
 		// When sort value is random
 		if($config['news_sort_value'] == 'random') {
 			$order_options = ' RAND() '; 
+		}else if($config['news_sort_value'] == 'rating') {
+			$order_options = ' (content_rating.rating_sum / content_rating.rating_count) '.$config['news_sort_order'];
+			$rating_join = 'LEFT JOIN #__k2_rating AS content_rating ON content_rating.itemID = content.id';
 		}else{ // when sort value is different than random
 			$order_options = ' content.'.$config['news_sort_value'].' '.$config['news_sort_order'].' ';
 		}	
@@ -203,7 +217,10 @@ class NSP_GK5_com_k2_Model {
 		$article_id_query = 'content.id AS id';
 		$one_article_query = '';
 		
-		if($config['one_article_per_category']) {
+		if($config['one_article_per_category'] && $config['data_source'] == 'k2_authors') {
+			$article_id_query = 'MAX(content.id) AS id, content.created_by AS author';
+			$one_article_query = ' GROUP BY content.created_by ';
+		} elseif($config['one_article_per_category']) {
 			$article_id_query = 'MAX(content.id) AS id, content.catid AS cid';
 			$one_article_query = ' GROUP BY content.catid ';
 		}
@@ -213,6 +230,7 @@ class NSP_GK5_com_k2_Model {
 			'.$article_id_query.'				
 		FROM 
 			#__k2_items AS content 
+			'.$rating_join.'
 			'.$tag_join.'
 		WHERE 
 			content.published = 1 AND content.trash = 0
@@ -261,6 +279,7 @@ class NSP_GK5_com_k2_Model {
 			content.access AS access,
 			content.catid AS cid,
 			content.video AS video,
+			content.plugins AS plugins,
 			categories.name AS catname, 
 			categories.image AS cat_image,
 			categories.alias AS cat_alias,

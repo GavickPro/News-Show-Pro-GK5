@@ -1,13 +1,16 @@
 <?php
 
 /**
- *
- * This Model is responsible for getting data from the
- * com_virtuemart data source
- *
- **/
+* This Model is responsible for getting data from the com_virtuemart data source
+* @package News Show Pro GK5
+* @Copyright (C) 2009-2013 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
+**/
 
-// no direct access
+// access restriction
 defined('_JEXEC') or die('Restricted access');
 
 class NSP_GK5_com_virtuemart_Model {
@@ -29,6 +32,10 @@ class NSP_GK5_com_virtuemart_Model {
         // small validation 
        	if($lang == '') { 
        		$lang = 'en_gb';
+       	}
+       	//
+       	if($config['vm_lang'] != '') {
+       		$lang = $config['vm_lang'];
        	}
 		//
 		if($config['data_source'] == 'com_virtuemart_categories'){
@@ -96,6 +103,10 @@ class NSP_GK5_com_virtuemart_Model {
         if($lang == '') {
         	$lang = 'en_gb';
         }
+        //
+        if($config['vm_lang'] != '') {
+        	$lang = $config['vm_lang'];
+        }
 		//
 		$sql_where = '';
 		//
@@ -126,9 +137,12 @@ class NSP_GK5_com_virtuemart_Model {
 		//if($config['news_unauthorized'] == '0') {
 		//	$access_con = ' AND content.access IN ('. implode(',', JFactory::getUser()->authorisedLevels()) .') ';
 		//}
-		$app = JFactory::getApplication();
-		$timezone = $app->getCfg('offset') + $config['time_offset'];
-		$date = JFactory::getDate("now", $timezone);
+		// check if the timezone offset is set
+		if($config['time_offset'] == 0) {
+			$date = JFactory::getDate("now");
+		} else {
+			$date = JFactory::getDate("now", $timezone);
+		}
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
 		// if some data are available

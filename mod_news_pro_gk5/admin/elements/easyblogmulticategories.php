@@ -1,14 +1,18 @@
 <?php
+
 /**
-* JElementEasyblogMultiCategories - additional element for module XML file
+* Easy Blog Multicategories lsit
 * @package News Show Pro GK5
 * @Copyright (C) 2009-2013 Gavick.com
 * @ All rights reserved
 * @ Joomla! is Free Software
-* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
-* @version $Revision: 5.0.0 $
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
 **/
-defined( '_JEXEC' ) or die( 'Restricted access' );
+
+// access restriction
+defined('_JEXEC') or die('Restricted access');
+
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');//import the necessary class definition for formfield
 class JFormFieldEasyblogMulticategories extends JFormFieldList {
@@ -29,16 +33,16 @@ class JFormFieldEasyblogMulticategories extends JFormFieldList {
 		// Initialize JavaScript field attributes.
 		$attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
 		// Get the field options.
-		$options = (array) $this->getOptions();
+		$this->getOptions();
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ((string) $this->element['readonly'] == 'true') {
-			$html[] = JHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
+			$html[] = JHtml::_('select.genericlist', $this->options, '', trim($attr), 'value', 'text', $this->value, $this->id);
 			$html[] = '<input type="hidden" name="'.$this->name.'" value="'.$this->value.'"/>';
 		}
 		// Create a regular list.
 		else {
-		    if($options[0]!=''){
-				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
+		    if(isset($this->options[0]) && $this->options[0] != ''){
+				$html[] = JHtml::_('select.genericlist', $this->options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
                return '<select id="jform_params_easyblog_categories" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">Easy Blog is not installed or any Easy Blog categories are available.</strong>';
             }
@@ -83,10 +87,7 @@ class JFormFieldEasyblogMulticategories extends JFormFieldList {
         	    	$this->options[] = JHtml::_('select.option', $option[0], $option[1]);
         	    	$this->recursive_options($temp_options, 1, $option[0]);
         	    }
-        	}		
-            return $this->options;
-		} else {	
-            return $this->options;
+        	}
 		}
 	}
  	// bind function to save

@@ -1,0 +1,350 @@
+/* Portal Mode - VideoGallery */
+
+.gkNspPM-VideoGallery {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	overflow: hidden;
+	padding: 0 50px 0 0;
+	position: relative;
+	width: 50%;
+}
+
+.gkNspPM-VideoGallery .gkSmallBlock {
+	cursor: pointer;
+	float: right;
+	width: 48%;
+}
+
+.gkNspPM-VideoGallery .gkItemsPage {
+	display: none;
+}
+
+.gkNspPM-VideoGallery .gkItemsPage.active {
+	display: block;
+}
+
+.gkNspPM-VideoGallery .gkSmallBlock figcaption {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0 120px 0 170px;
+	position: relative;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock figure {
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock figcaption {
+	bottom: -20%;
+	opacity: 0;
+	padding: 30px;
+	position: absolute;
+	-webkit-transition: all .25s ease-out;
+	-moz-transition: all .25s ease-out;
+	-ms-transition: all .25s ease-out;
+	-o-transition: all .25s ease-out;
+	transition: all .25s ease-out;
+	z-index: 2;
+}
+.gkNspPM-VideoGallery .gkBigBlock.active figcaption {
+	bottom: 0;
+	opacity: 1;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock strong {
+	background: #f7a834;
+	color: #fff;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 3px 5px;
+	line-height: 20px;
+	text-transform: uppercase;
+}
+
+.gkNspPM-VideoGallery .gkSmallBlock .gkItem {
+	cursor: pointer;
+	padding: 16px 0;
+}
+
+.gkNspPM-VideoGallery .gkSmallBlock h3 {
+	font-size: 18px;
+	font-weight: 300;
+	margin: 0 0 5px 0;
+	padding: 0;
+	text-transform: none;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock h3 {
+	margin: 10px 0 0 0;
+	font-weight: 300;
+	line-height: 1;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock h3 a {
+	color: #f5f5f5!important;
+	font-size: 24px;
+	font-weight: 300!important;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock h3 a:active,
+.gkNspPM-VideoGallery .gkBigBlock h3 a:focus,
+.gkNspPM-VideoGallery .gkBigBlock h3 a:hover {
+	color: #d82731!important;
+}
+
+.gkNspPM-VideoGallery .gkSmallBlock p {
+	font-size: 14px;
+	margin: 0;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock img,
+.gkNspPM-VideoGallery .gkBigBlock .gkImageWrap {
+	cursor: pointer;
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.gkNspPM-VideoGallery .gkSmallBlock img,
+.gkNspPM-VideoGallery .gkSmallBlock .gkImageWrap  {
+	height: auto;
+	float: left;
+	max-width: 120px;
+}
+.gkNspPM-VideoGallery .gkSmallBlock .gkImageWrap {
+	margin: 0 35px 0 0;	
+}
+.gkNspPM-VideoGallery .gkImageWrap {
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+}
+.gkNspPM-VideoGallery .gkImageWrap img {
+	-webkit-transform: scale(1) rotate(0deg);
+	-moz-transform: scale(1) rotate(0deg);
+	-ms-transform: scale(1) rotate(0deg);
+	-o-transform: scale(1) rotate(0deg);
+	transform: scale(1) rotate(0deg);
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-ms-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	transition: all .2s linear;
+}
+
+.gkNspPM-VideoGallery .gkImageWrap:hover img,
+.gkNspPM-VideoGallery .gkBigBlock:hover img {
+	-webkit-transform: scale(1.2) rotate(-5deg);
+	-moz-transform: scale(1.2) rotate(-5deg);
+	-ms-transform: scale(1.2) rotate(-5deg);
+	-o-transform: scale(1.2) rotate(-5deg);
+	transform: scale(1.2) rotate(-5deg);
+}
+
+.gkNspPM-VideoGallery .gkBigBlock p,
+.gkNspPM-VideoGallery .gkBigBlock small,
+.gkNspPM-VideoGallery .gkSmallBlock strong {
+	display: none;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock figure:before {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.6))); /* Chrome,Safari4+ */
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); /* FF3.6+ */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* W3C */
+	
+	content: "";
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+}
+.gkNspPM-VideoGallery .gkBigBlock figure:after {
+	background: transparent;
+	background: rgba(0, 0, 0, .1);
+	border: 3px solid #fff;
+	border-radius: 50%;
+	color: #fff;
+	content: "\f0c1";
+	font-family: FontAwesome;
+	font-size: 48px;
+	left: 50%;
+	line-height: 100px;
+	margin: -50px 0 0 -50px;
+	opacity: 0;
+	position: absolute;
+	text-indent: 28px;
+	top: 20%;
+	-webkit-transition: all .25s ease-out;
+	-moz-transition: all .25s ease-out;
+	-ms-transition: all .25s ease-out;
+	-o-transition: all .25s ease-out;
+	transition: all .25s ease-out;
+	width: 100px;
+	z-index: 3;
+}
+.gkNspPM-VideoGallery .gkBigBlock figure.video:after {
+	content: "\f04b";
+	text-indent: 34px;
+}
+
+.gkNspPM-VideoGallery .gkBigBlock.active figure:after {
+	opacity: 1;
+	top: 40%;
+}
+
+.gkNspPM-VideoGallery .gkSmallBlock small {
+	border: 1px solid #d82731;
+	font-size: 14px;
+	height: 45px;
+	line-height: 45px;
+	margin: -22px 0 0 0;
+	position: absolute;
+	right: 20px;
+	text-align: center;
+	top: 50%;
+	width: 45px;
+}
+
+.gkNspPM-VideoGallery .gkSmallBlock small:after {
+	border-style: solid;
+	border-width: 8px 8px 8px 0;
+	border-color: transparent #d82731 transparent transparent;
+	content: "";
+	height: 0px;
+	left: -8px;
+	position: absolute;
+	top: 15px;
+	width: 0px;
+}
+.gkNspPM-VideoGallery .gkSmallBlock small:before {
+	border-style: solid;
+	border-width: 7px 7px 7px 0;
+	border-color: transparent #fff transparent transparent;
+	content: "";
+	height: 0px;
+	left: -6px;
+	position: absolute;
+	top: 16px;
+	width: 0px;
+	z-index: 1;
+}
+.gkNspPM-VideoGallery .gkBigBlock .gkIsHelperImage {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+/* styles for the portal mode in the dark areas */
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock small {
+	color: #f5f5f5;
+}
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock small:before {
+	border-color: transparent #000 transparent transparent;
+}
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock h3 a {
+	color: #f5f5f5!important;
+}
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock h3 a:active,
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock h3 a:focus,
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock h3 a:hover {
+	color: #d82731!important;
+}
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock p {
+	color: #777;
+}
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock .gkItem {
+	border-top: 1px solid #333;
+}
+.dark-area .gkNspPM-VideoGallery .gkSmallBlock .gkItem:first-child {
+	border-top: none;
+}
+
+/* Mobile devices */
+@media (max-width: 1100px) {
+	.gkNspPM-VideoGallery .gkSmallBlock figcaption {
+		padding: 0 60px 0 80px;
+	}
+	.gkNspPM-VideoGallery .gkSmallBlock .gkImageWrap {
+		margin: 0 10px 0 0;
+	}
+	.gkNspPM-VideoGallery .gkSmallBlock img, 
+	.gkNspPM-VideoGallery .gkSmallBlock .gkImageWrap {
+		max-width: 70px;
+	}
+	.gkNspPM-VideoGallery .gkSmallBlock h3 {
+		font-size: 15px;
+	}
+	.gkNspPM-VideoGallery .gkSmallBlock p {
+		font-size: 11px;
+	}
+	.gkNspPM-VideoGallery .gkSmallBlock .gkItem {
+		padding: 10px 0;
+	}
+	.gkNspPM-VideoGallery .gkBigBlock figcaption {
+		padding: 10px;
+	}
+	.gkNspPM-VideoGallery .gkBigBlock {
+		padding: 0;
+	}
+	.gkNspPM-VideoGallery .gkSmallBlock small {
+		right: 2px;
+	}
+	.gkNspPM-VideoGallery .gkBigBlock h3 a {
+		font-size: 18px;
+		line-height: 1!important;
+	}
+	.gkNspPM-VideoGallery .gkBigBlock h3 {
+		margin: 0;
+	}
+	.gkNspPM-VideoGallery .gkBigBlock figure:after {
+		border: 2px solid #fff;
+		font-size: 20px;
+		line-height: 60px;
+		margin: -30px 0 0 -30px;
+		text-indent: 25px;
+		width: 60px;
+	}
+	.gkNspPM-VideoGallery .gkBigBlock figure.video:after {
+		text-indent: 25px;
+	}
+}
+
+@media (max-width: 760px) {
+	.gkNspPM-VideoGallery .gkSmallBlock figcaption {
+		padding: 0 0 0 80px;
+	}
+	.gkNspPM-VideoGallery .gkSmallBlock small,
+	.gkNspPM-VideoGallery .gkBigBlock figure.video:after {
+		display: none;
+	} 
+}
+
+@media (max-width: 600px) {
+	.gkNspPM-VideoGallery .gkBigBlock,
+	.gkNspPM-VideoGallery .gkSmallBlock {
+		width: 100%;
+	}
+}

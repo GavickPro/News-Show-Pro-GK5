@@ -1,0 +1,80 @@
+/* Portal Mode - Highlights */
+
+.gkNspPM-Highlights h3 {
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.gkNspPM-Highlights h3 a:active,
+.gkNspPM-Highlights h3 a:focus,
+.gkNspPM-Highlights h3 a:hover {
+	color: #aaa;
+}
+.gkNspPM-Highlights p {
+	color: #999;
+	margin: 0;
+	text-transform: uppercase;
+	font-size: 12px;
+	margin-top: 6px;
+}
+.gkNspPM-Highlights {
+	margin: 0;
+}
+.gkNspPM-Highlights li {
+	border-bottom: 1px solid #e5e5e5;
+	list-style-type: none;
+	padding: 16px 16px 16px 60px;
+	position: relative;
+}
+.gkNspPM-Highlights {
+	counter-reset: gkhighlights;
+}
+.gkNspPM-Highlights li:before {
+	border: 1px solid #e5e5e5;
+	counter-increment: gkhighlights;
+	content: counter(gkhighlights);
+	height: 22px;
+	left: 19px;
+	line-height: 23px;
+	position: absolute;
+	text-align: center;
+	top: 22px;
+	width: 22px;
+	color: #111;
+}
+.gkNspPM-Highlights li:after {
+	border-style: solid;
+	border-width: 4px 0 4px 4px;
+	border-color: transparent transparent transparent #e5e5e5;
+	content: "";
+	height: 0px;
+	left: 42px;
+	position: absolute;
+	top: 30px;
+	width: 0px;
+}
+.gkNspPM-Highlights li h3:before {
+	border-style: solid;
+	border-width: 3px 0 3px 3px;
+	border-color: transparent transparent transparent #fff;
+	content: "";
+	height: 0px;
+	left: 42px;
+	position: absolute;
+	top: 31px;
+	width: 0px;
+	z-index: 1;
+}
+.gkNspPM-Highlights + a {
+	color: #111;
+	display: block;
+	line-height: 50px; 
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.gkNspPM-Highlights + a:active,
+.gkNspPM-Highlights + a:focus,
+.gkNspPM-Highlights + a:hover {
+	color: #f95f6a;
+}

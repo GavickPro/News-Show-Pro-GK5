@@ -1,17 +1,18 @@
 <?php
 
 /**
-* Image class
+* Helper class for generating thumbnails
 * @package News Show Pro GK5
-* @Copyright (C) 2009-2012 Gavick.com
+* @Copyright (C) 2009-2013 Gavick.com
 * @ All rights reserved
 * @ Joomla! is Free Software
-* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
-* @version $Revision: GK5 1.0 $
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.5 $
 **/
 
-// no direct access
+// access restriction
 defined('_JEXEC') or die('Restricted access');
+
 /*
 	This class uses options of module:
 	- cache time
@@ -31,21 +32,21 @@ class NSP_GK5_Thumbs {
 		stories.demo.jpg
 		(in this situation mirror of ./images/ directory isn't necessary)
 	*/
-	function translateName($name,$mod_id, $k2_mode = false, $vm_mode = false, $image_type = '', $downloaded = false, $filename = null) {
+	function translateName($name,$mod_id, $k2_mode = false, $vm_mode = false, $image_type = '', $downloaded = false, $filename = null, $links = false) {
 		// check the mode
 		if($downloaded || stripos($name, 'http://') !== FALSE || stripos($name, 'https://') !== FALSE) {
 			if($downloaded) {
 				$name = 'downloaded.' . $filename;
 				$ext = substr($name, -4);
 				$name = substr($name, 0, -4);
-				return $name . $mod_id . $ext; 
+				return $name . $mod_id . ($links ? '_links' : '') . $ext; 
 			} else {
 				$slashpos = strrpos($name, '/');
 				$filename = substr($name, $slashpos + 1);
 				$name = 'downloaded.' . $filename;
 				$ext = substr($name, -4);
 				$name = substr($name, 0, -4);
-				return $name . $mod_id . $ext;
+				return $name . $mod_id . ($links ? '_links' : '') . $ext;
 			}
 		} else {
 			$name = NSP_GK5_Thumbs::getRealPath($name, $k2_mode, $vm_mode);
@@ -54,7 +55,7 @@ class NSP_GK5_Thumbs {
 			$ext = substr($name, -4);
 			$name = substr($name, 0, -4);
 			$name = str_replace(DS,'.',$name);
-			$name .= $mod_id.$image_type.$ext;
+			$name .= $mod_id . $image_type . ($links ? '_links' : '') . $ext;
 			return $name;
 		}
 	}
@@ -85,11 +86,19 @@ class NSP_GK5_Thumbs {
 		
 		return $name;
 	}*/
+
+	// function used to get the custom media path
+	function getMediaPath() {
+        $imagemanager = JComponentHelper::getParams('com_media');
+  		$imagepath = $imagemanager->get('image_path', '');
+  		return $imagepath;
+    }
+
 	// function to change file path to  real path.
-	function getRealPath($path, $k2_mode = false, $vm_mode = false) {
-		$start = ($k2_mode || $vm_mode) ? (($k2_mode) ? strpos($path, 'media/') : strpos($path, 'components/')) : strpos($path, 'images/');
+	function getRealPath($path, $k2_mode = false, $vm_mode = false) {		
+		$start = ($k2_mode || $vm_mode) ? (($k2_mode) ? strpos($path, 'media/') : strpos($path, 'components/')) : strpos($path, self::getMediaPath());
 		$path = './'.substr($path, $start);
-		
+
 		return realpath($path);
 	}
 	/*
@@ -101,7 +110,7 @@ class NSP_GK5_Thumbs {
 		if($cache_time === FALSE) {
 			$cache_time = 100 * 365 * 24 * 60 * 60;
 		}
-		
+
 		$cache_dir = JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS;
 		$file = $cache_dir.$filename;
 		return (!is_file($file) || $cache_time == 0) ? FALSE : (filemtime($file) + 60 * $cache_time > time());
@@ -132,7 +141,7 @@ class NSP_GK5_Thumbs {
         }
     }
 	// Creating thumbnails
-	function createThumbnail($path, $config, $k2_mode = false, $vm_mode = false, $img_rel = '') {
+	function createThumbnail($path, $config, $k2_mode = false, $vm_mode = false, $img_rel = '', $links = false) {
 		if($config['use_curl_download'] == 0 && (stripos($path, 'http://') || stripos($path, 'https://'))) {
 			return false;
 		}
@@ -192,7 +201,7 @@ class NSP_GK5_Thumbs {
 			}
 		}
 		// checking the special images
-		$check_result = NSP_GK5_Thumbs::checkSpecialImages(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '', $downloaded, $imgname));
+		$check_result = NSP_GK5_Thumbs::checkSpecialImages(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '', $downloaded, $imgname, $links));
 		// preparing an array with the image class values
 		$img_rels = array();
 		// check if any classes exists in the image
@@ -201,18 +210,18 @@ class NSP_GK5_Thumbs {
 		}
 		// no scale images
 		if($check_result == 2) { // NOSCALE      
-			if(NSP_GK5_Thumbs::checkCache(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale'), false, $config['module_id'])){  
-				return array(TRUE, NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale'));	
+			if(NSP_GK5_Thumbs::checkCache(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links), false, $config['module_id'])){  
+				return array(TRUE, NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links));	
 			} else {
 				// file path
 				$file = NSP_GK5_Thumbs::getRealPath($path, $k2_mode, $vm_mode, '_noscale');
 				// filename
-				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname);
+				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links);
 				// Getting informations about image
 				if(is_file($file)){
 					$imageData = getimagesize($file);
-					$img_w = str_replace('px','',str_replace('%','',$config['img_width']));
-					$img_h = str_replace('px','',str_replace('%','',$config['img_height']));
+					$img_w = str_replace('px','',str_replace('%','', $links ? $config['links_img_width'] : $config['img_width']));
+					$img_h = str_replace('px','',str_replace('%','', $links ? $config['links_img_height'] : $config['img_height']));
 					// loading image depends from type of image		
 					if($imageData['mime'] == 'image/jpeg' || $imageData['mime'] == 'image/pjpeg' || $imageData['mime'] == 'image/jpg') $imageSource = @imagecreatefromjpeg($file);
 					elseif($imageData['mime'] == 'image/gif') $imageSource = @imagecreatefromgif($file);
@@ -270,22 +279,23 @@ class NSP_GK5_Thumbs {
 						$vm_mode, 
 						($check_result == 1) ? '_cropped' : '', 
 						$downloaded, 
-						$imgname
+						$imgname,
+						$links
 					), 
 					$config['cache_time'], 
 					$config['module_id']
 				)){
-				return array(TRUE, NSP_GK5_Thumbs::translateName($path, $config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname));	
+				return array(TRUE, NSP_GK5_Thumbs::translateName($path, $config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links));	
 			} else {
 				// file path
 				$file = NSP_GK5_Thumbs::getRealPath($path, $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '');
 				// filename
-				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname);
+				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links);
 				// Getting informations about image
 				if(is_file($file)){					
 					$imageData = getimagesize($file);
-					$img_w = str_replace('px','',str_replace('%','',$config['img_width']));
-					$img_h = str_replace('px','',str_replace('%','',$config['img_height']));
+					$img_w = str_replace('px','',str_replace('%','', $links ? $config['links_img_width'] : $config['img_width']));
+					$img_h = str_replace('px','',str_replace('%','',$links ? $config['links_img_height'] : $config['img_height']));
 					// loading image depends from type of image		
 					if(
 						$imageData['mime'] == 'image/jpeg' || 
@@ -298,6 +308,10 @@ class NSP_GK5_Thumbs {
 					} else {
 						$imageSource = @imagecreatefrompng($file); 
 					}
+					
+					// check if the proper image resource was created
+					if(!$imageSource) return FALSE;
+					
 					// here can be exist an error when image is to big - then class return blank page	
 					// setting image size in variables
 					$imageSourceWidth = imagesx($imageSource);
@@ -351,7 +365,7 @@ class NSP_GK5_Thumbs {
 								$imageSourceNWidth *= $ratio2;
 							}
 						}
-						
+
 						$img_w = $imageSourceNWidth;
 						$img_h = $imageSourceNHeight;
 					}
@@ -400,7 +414,7 @@ class NSP_GK5_Thumbs {
 							$img_w = $imageSourceNWidth;
 							$img_h = $imageSourceNHeight;
 			            }
-			            
+
 			            $imageBG = imagecreatetruecolor($img_w, $img_h);
 						// enable transparent background 
 						if($config['img_bg'] == 'transparent'){
@@ -502,7 +516,7 @@ class NSP_GK5_Thumbs {
 					//
 					// applying filters
 					//
-					
+
 					// grayscale
 					if($config['grayscale_filter'] || $config['sepia_filter']) {
 						imagefilter($imageBG, IMG_FILTER_GRAYSCALE); 
@@ -531,7 +545,7 @@ class NSP_GK5_Thumbs {
 					if($config['contrast_filter']) {
 						imagefilter($imageBG, IMG_FILTER_CONTRAST, $config['filter_arg']); 
 					}
-					
+
 					// save image depends from MIME type	
 					if($imageData['mime'] == 'image/jpeg' || $imageData['mime'] == 'image/pjpeg' || $imageData['mime'] == 'image/jpg') imagejpeg($imageBG,$cache_dir.$filename, $config['img_quality']);
 					elseif($imageData['mime'] == 'image/gif') imagegif($imageBG, $cache_dir.$filename); 

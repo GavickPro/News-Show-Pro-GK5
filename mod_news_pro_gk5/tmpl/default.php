@@ -10,7 +10,9 @@
 **/
 
 // no direct access
+
 defined('_JEXEC') or die('Restricted access');
+
 $news_amount = count($this->content);
 if($this->config['links_position'] != 'bottom' && $this->config['news_short_pages'] > 0 && count($news_list_tab) > 0 && $this->config['news_full_pages'] > 0){
 	$links_width = $this->config['links_width'];
@@ -21,7 +23,7 @@ if($this->config['links_position'] != 'bottom' && $this->config['news_short_page
 }
 ?>
 <?php if($news_amount > 0) : ?>
-	<div class="nspMain<?php if($this->config['autoanim'] == TRUE) echo ' autoanim'; ?><?php if($this->config['hover_anim'] == TRUE) echo ' hover'; ?><?php echo ' ' . $this->config['moduleclass_sfx']; ?>" id="nsp-<?php echo $this->config['module_id']; ?>" data-config="<?php echo $news_config_json; ?>">
+	<div class="nspMain<?php if($this->config['autoanim'] == TRUE) echo ' autoanim'; ?><?php if($this->config['hover_anim'] == TRUE) echo ' hover'; ?><?php echo ' ' . $this->config['moduleclass_sfx']; ?>" id="nsp-<?php echo $this->config['module_id']; ?>" data-config="<?php echo $news_config_json; ?>">		
 		<?php if(($this->config['news_column'] * $this->config['news_rows']) > 0) : ?>
 			<div class="nspArts<?php echo ' '.$this->config['links_position']; ?>" style="width:<?php echo $arts_width; ?>%;">
 				<?php if(
@@ -95,6 +97,19 @@ if($this->config['links_position'] != 'bottom' && $this->config['news_short_page
 							<?php endif; ?>
 						<?php endfor; ?>		
 					</div>
+					
+					<?php 
+						if($this->config['links_title'] == '1') : 
+							$bottom_url = ($this->params->get('module_link_switch') == '1' && $this->config['links_title_url'] == '') ? $this->params->get('module_link') : $this->config['links_title_url'];	
+					?>
+					<a href="<?php echo $bottom_url; ?>" class="readon-button">
+						<?php if($this->config['links_title_label'] != '') : ?>
+							<?php echo $this->config['links_title_label']; ?>
+						<?php else : ?>
+							<?php echo JText::_('MOD_NEWS_PRO_GK5_LINKS_TITLE_LABEL_DEFAULT'); ?>
+						<?php endif; ?>
+					</a>
+					<?php endif; ?>
 				</div>	
 				<?php endif; ?>	
 				

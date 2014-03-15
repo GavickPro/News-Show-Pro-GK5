@@ -142,12 +142,25 @@
 }
 .nspArt p.nspText a { }
 .nspArt p.nspText a:hover { }
-.nspArt p.nspInfo { 
+.nspArt .nspInfo { 
 	display: block!important;
 	font-size: 90%; 
 }
-.nspArt p.nspInfo a { }
-.nspArt p.nspInfo a:hover { }
+.nspArt .nspInfo a { }
+.nspArt .nspInfo a:hover { }
+.nspArt .nspInfo > .nsp-stars {
+	padding: 0 10px 0 0!important;
+}
+.nspArt .nsp-star-0:before,
+.nspArt .nsp-star-1:before {
+	content: "★";
+	color: #6c6c6c;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+}
+.nspArt .nsp-star-1:before {
+	color: #f7a834;
+}
 .nspArt .tleft { 
 	text-align: left; 
 }
@@ -197,6 +210,9 @@
 }
 .nspList { 
 	float: left; 
+}
+.nspList > li > .nspImageWrapper {
+	float: left;
 }
 .nspLinks ul { 
 	list-style-type: none!important; 
@@ -338,6 +354,37 @@ img.nspImage.gkResponsive {
 .neutral .nspLinks ul li h4 {
 	font-size: 15px;
 	margin: 0 0 10px 0;
+}
+
+/* K2Store styles */
+.nspK2StoreCartForm {
+	padding: 10px 0;
+	text-align: center;
+}
+.nspK2StoreCartForm .k2store-notification {
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	font-size: 12px;
+	margin: 10px 0;
+	padding: 10px;
+	position: relative;
+}
+.nspK2StoreCartForm .cart_dialogue_close {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+
+.nspK2StorePrice {
+	color: #111;
+	display: block;
+	font-size: 14px;
+	padding: 10px 0;
+	text-align: center;
+}
+.nspK2StorePrice strike {
+	color: #ccc;
+	display: block;
 }
 
 /* Mobile */

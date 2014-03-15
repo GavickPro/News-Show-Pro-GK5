@@ -30,7 +30,8 @@
 			"MOD_NEWS_PRO_GK5_TITLE": "title",
 			"MOD_NEWS_PRO_GK5_ORDER": "ordering",
 			"MOD_NEWS_PRO_GK5_RANDOM": "random",
-			"MOD_NEWS_PRO_GK5_HITS": "hits"
+			"MOD_NEWS_PRO_GK5_HITS": "hits",
+			"MOD_NEWS_PRO_GK5_RATING": "rating"
 		},
 		"offset": true,
 		"news_since": true,

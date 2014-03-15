@@ -1,16 +1,18 @@
 <?php
+
 /**
-* Utils class
+* Helper Utils class
 * @package News Show Pro GK5
-* @Copyright (C) 2009-2012 Gavick.com
+* @Copyright (C) 2009-2013 Gavick.com
 * @ All rights reserved
 * @ Joomla! is Free Software
-* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
-* @version $Revision: GK5 1.0 $
+* @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* @version $Revision: GK5 1.3.3 $
 **/
 
-// no direct access
+// access restriction
 defined('_JEXEC') or die('Restricted access');
+
 class NSP_GK5_Utils {
 	// Method to cut text with specified limit value and type (characters/words)
 	static function cutText($text, $config, $field, $at_end = FALSE) {
