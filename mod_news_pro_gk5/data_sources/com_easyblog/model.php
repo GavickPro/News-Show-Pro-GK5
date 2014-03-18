@@ -71,7 +71,6 @@ class NSP_GK5_com_easyblog_Model {
 		        ';	
 			// Executing SQL Query
 			$db->setQuery($query_name);
-	
 			// check if some categories was detected
 			if($categories = $db->loadObjectList()) {
 				$categories_array = array();
@@ -104,7 +103,7 @@ class NSP_GK5_com_easyblog_Model {
 			}	
 		}
 		// Overwrite SQL query when user set IDs manually
-		if($config['data_source'] == 'easyblog_articles' && $config['easyblog_articles'] != ''){
+		if($config['data_source'] == 'easyblog_authors' && $config['easyblog_authors'] != ''){
 			// initializing variables
 			$sql_where = '';			
 			if(!is_array($config['easyblog_authors'])) {
@@ -308,7 +307,9 @@ class NSP_GK5_com_easyblog_Model {
 			'.$order_options.'
 		';
 		// run the query
+		//print_r($second_query_news);
 		$db->setQuery($second_query_news);
+		
 		// when exist some results
 		if($news2 = $db->loadAssocList()) {
 			// create the iid array
@@ -391,7 +392,7 @@ class NSP_GK5_com_easyblog_Model {
 				;';
 			}
 			// run SQL query
-			$db->setQuery($query_news);
+			//$db->setQuery($query_news);
 			// when exist some results
 			if($counters = $db->loadObjectList()) {
 				// generating tables of news data
@@ -444,7 +445,7 @@ class NSP_GK5_com_easyblog_Model {
 				content.id ASC
 			;';
 			// run SQL query
-			$db->setQuery($query_news);
+			//$db->setQuery($query_news);
 			// when exist some results
 			if($counters = $db->loadObjectList()) {
 				// generating tables of news data
