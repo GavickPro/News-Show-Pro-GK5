@@ -20,6 +20,7 @@ class JFormFieldK2Tags extends JFormFieldList {
     protected function getInput() {
 		// Initialize variables.
 		$html = array();
+		$options = array();
 		$attr = '';
 		// Initialize some field attributes.
 		$attr .= $this->element['class'] ? ' class="'.(string) $this->element['class'].'"' : '';
@@ -46,7 +47,7 @@ class JFormFieldK2Tags extends JFormFieldList {
 		}
 		// Create a regular list.
 		else {
-		    if($options[0]!=''){
+		    if(count($options) > 0){
 				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
                return '<select id="jform_params_k2_tags" style="display:none"></select><strong style="line-height: 2.6em" class="gk-hidden-field">K2 is not installed or any K2 tags are available.</strong>';
