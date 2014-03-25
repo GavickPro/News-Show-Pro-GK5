@@ -10,7 +10,7 @@
 	],
 	"supported_options": {
 		"sort_values": false,
-		"offset": false,
+		"offset": true,
 		"news_since": false,
 		"news_in": false,
 		"news_featured": false,

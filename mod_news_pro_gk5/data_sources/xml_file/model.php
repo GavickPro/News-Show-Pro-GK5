@@ -48,7 +48,7 @@ class NSP_GK5_xml_file_Model {
 	static function getArticles($items, $config, $amount) {	
 		$content = array();
 		//
-		for($i = 0; $i < $amount; $i++) {
+		for($i = $config['offset']; $i < $amount + $config['offset']; $i++) {
 			if(isset($items[$i])) {
 				array_push($content, $items[$i]);
 			}
