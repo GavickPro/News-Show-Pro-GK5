@@ -51,6 +51,7 @@ class NSP_GK5_Article_Format {
 		$text = NSP_GK5_Utils::cutText($data['text'], $config, 'news_limit');
 		// URL
 		$url = '';
+		
 		if(isset($data['url'])) { 
 			$url = $data['url'];
 		} else {
@@ -68,7 +69,7 @@ class NSP_GK5_Article_Format {
 		if(isset($data['caturl'])) {
 			$category_url = $data['caturl'];
 		} else {
-			$url = call_user_func(array($viewClass, 'categoryLink'), $data);
+			$category_url = call_user_func(array($viewClass, 'categoryLink'), $data);
 		}
 		// Other data
 		$hits = $data['hits'];
