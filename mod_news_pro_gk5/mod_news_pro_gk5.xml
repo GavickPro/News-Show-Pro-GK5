@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" client="site" method="upgrade">
         <name>News Show Pro GK5</name>
-        <creationDate>06/03/2014</creationDate>
+        <creationDate>04/04/2014</creationDate>
         <author>Gavick.com</author>
         <copyright>(C) 2009-2014 Gavick.com</copyright>
         <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
         <authorEmail>info@gavick.com</authorEmail>
         <authorUrl>www.gavick.com</authorUrl>
-        <version>1.4.0</version>
+        <version>1.4.1</version>
         <description>
         <![CDATA[
                 <style type='text/css'>
@@ -22,7 +22,7 @@
                         span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
                 </style>
                 <span class='readonly'>
-                        <h1>News Show Pro GK5 <small>ver. 1.4.0</small></h1>
+                        <h1>News Show Pro GK5 <small>ver. 1.4.1</small></h1>
                         <p>GK5 is new generation of our extensions dedicated to Joomla 2.5+.</p>
                         <p>Basing on experiences gathered, we created probably the best tool to present articles for Joomla! Huge amount of options and possibilities of formatting causes News Show Pro GK5 is a complex tool in making www pages content attractive. News Show Pro is appropriate while preparing simple structures with an individual article, the same as, complex arrangements including few articles and a list of links.</p> 
                         <p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
@@ -410,6 +410,22 @@
                                 </field>
                                 
                                 <field name="portal_mode_portfolio_link_url" type="text" default="" size="20" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_URL" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_URL_DESC" />
+                        </fieldset>
+                        
+                        <fieldset name="NSP_PORTAL_MODE_PORTFOLIO2">
+                                <field name="portal_mode_portfolio2_cols" type="text" default="3" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO2_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO2_COLS_DESC" />
+                                
+                                <field name="portal_mode_portfolio2_rows" type="text" default="3" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO2_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO2_ROWS_DESC" />
+                                
+                                <field name="portal_mode_portfolio2_filter" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO2_FILTER" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO2_FILTER_DESC">
+                                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                                </field>
+                                
+                                <field name="portal_mode_portfolio2_popup" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO2_POPUP" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO2_POPUP_DESC">
+                                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                                </field>
                         </fieldset>
                         
                         <fieldset name="NSP_PORTAL_MODE_GRID_TITLE_OVERLAY">                                
