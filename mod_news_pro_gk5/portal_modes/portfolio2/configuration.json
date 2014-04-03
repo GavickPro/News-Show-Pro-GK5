@@ -1,0 +1,10 @@
+{
+	"name": "Portfolio2",
+	"full_name": "PORTFOLIO2",
+	"support": [
+		"com_content", 
+		"com_k2",
+		"com_easyblog"
+	],
+	"thumbnails": true
+}

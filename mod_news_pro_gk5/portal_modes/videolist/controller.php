@@ -122,6 +122,7 @@ class NSP_GK5_VideoList {
 				// prepare the results
 				foreach($videos as $v) {
 					$vid = $v->video;
+					$vid = JHTML::_('content.prepare', $vid);
 					if(trim($vid) != '') {
 						$vid_matches = array();
 						preg_match('@src="(.*?)"@mi', $vid, $vid_matches);

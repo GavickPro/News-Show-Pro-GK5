@@ -214,7 +214,8 @@ class NSP_GK5_com_easyblog_View {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //
 	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
-	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.EasyBlogAvatarHelper::getAvatarUrl($item['author_id']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
+	        $author_html = '<a href="'.urldecode(JRoute::_('index.php?option=com_easyblog&view=blogger&layout=listings&id=' . $item['author_id'])).'">'.$author.'</a>';
+   	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.EasyBlogAvatarHelper::getAvatarUrl($item['author_id']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
 	        //
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);
 	        //

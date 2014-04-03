@@ -68,7 +68,7 @@ class NSP_GK5_Article_Format {
 		if(isset($data['caturl'])) {
 			$category_url = $data['caturl'];
 		} else {
-			$url = call_user_func(array($viewClass, 'categoryLink'), $data);
+			$category_url = call_user_func(array($viewClass, 'categoryLink'), $data);
 		}
 		// Other data
 		$hits = $data['hits'];

@@ -77,6 +77,8 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('#Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'PORTFOLIO') {
 					jQuery('#Portfolio_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'PORTFOLIO') {
+					jQuery('#Portfolio_II_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'PRODUCT_GALLERY_2') {
 					jQuery('#Product_Gallery_II_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'CENTERED_TITLE_OVERLAY') {
@@ -101,6 +103,8 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_TITLE_OVERLAY]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'PORTFOLIO') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'PORTFOLIO2') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO2]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'PRODUCT_GALLERY_2') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY_2]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'CENTERED_TITLE_OVERLAY') {
@@ -160,6 +164,7 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('#News_Blocks_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Portfolio_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#Portfolio2_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Centered_Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Product_Gallery_II_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Grid_Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
@@ -172,6 +177,7 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_BLOCKS]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_TITLE_OVERLAY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO2]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_CENTERED_TITLE_OVERLAY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY_2]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_TITLE_OVERLAY]').parent().css('display', 'none');

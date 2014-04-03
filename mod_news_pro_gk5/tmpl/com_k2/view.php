@@ -195,7 +195,8 @@ class NSP_GK5_com_k2_View {
 			($config['news_content_info_pos'] != 'disabled' && $num == 1) || 
 			($config['news_content_info2_pos'] != 'disabled' && $num == 2)
 		) {
-	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
+			$news_info_tag = stripos($config['info'.(($num == 2) ? '2' : '').'_format'], '%CART') !== FALSE ? 'div' : 'p';
+	        $news_info = '<'.$news_info_tag.' class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</'.$news_info_tag.'>';
 	        //
 	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
 	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
@@ -255,6 +256,39 @@ class NSP_GK5_com_k2_View {
 	        		$i++;
 	        	}
 	        }
+	        // get k2 store data
+	        $k2store_data = array(
+		        				'cart' => '',
+		        				'price' => ''
+	        				);
+	       	// get K2Store data if necessary
+	        if(
+	        	stripos($news_info, '%CART') !== FALSE || 
+	        	stripos($news_info, '%PRICE') !== FALSE
+	        ) {
+	        	$k2store_data = NSP_GK5_com_k2_View::k2Store($item);
+	        	
+	        	if(stripos($news_info, '%CART') !== FALSE) {
+		        	// load K2Store scripts
+		       		$uri = JURI::getInstance();
+		        	$document = JFactory::getDocument();
+		        	$headData = $document->getHeadData();
+		        	// generate keys of script section
+		        	$headData_keys = array_keys($headData["scripts"]);
+		        	// set variable for false
+		        	$engine_founded = false;
+		        	// searching phrase mootools in scripts paths
+		        	if(array_search($uri->root().'media/k2store/js/k2store.js', $headData_keys) > 0) {
+		        		$engine_founded = true;
+		        	}
+		        	// if engine doesn't exists in the head section
+		        	if(!$engine_founded){ 
+		        		// add new script tag connected with mootools from module
+		        		$document->addScript($uri->root().'media/k2store/js/k2store.noconflict.js');
+		        		$document->addScript($uri->root().'media/k2store/js/k2store.js');
+		        	}
+	        	}
+	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
@@ -265,6 +299,8 @@ class NSP_GK5_com_k2_View {
 	        $news_info = str_replace('%COMMENTS_SHORT', $info_comments_short, $news_info);
 	        $news_info = str_replace('%COMMENTS', $info_comments, $news_info);
 	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
+	        $news_info = str_replace('%CART', $k2store_data['cart'], $news_info);
+	        $news_info = str_replace('%PRICE', $k2store_data['price'], $news_info);
 	    } else {
 	    	return '';
 	    }
@@ -316,6 +352,67 @@ class NSP_GK5_com_k2_View {
 	// category link generator
 	static function categoryLink($item) {
 		return urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item['cid'].':'.urlencode($item['cat_alias']))));
+	}
+	// K2 Store data generator
+	static function k2Store($item) {
+		// preparing the output array
+		$output = array(
+						'cart' => '',
+						'price' => ''
+						);
+		// if the settings exists
+		if(is_file(JPATH_SITE.'/components/com_k2store/helpers/cart.php')) {
+			require_once (JPATH_SITE.'/components/com_k2store/helpers/cart.php');
+			// get product data
+			$item_plugins_data = json_decode($item['plugins']);
+			
+			// output for the cart
+			$output['cart'] = '<form action="index.php?option=com_k2store&amp;view=mycart" method="post" class="k2storeCartForm1 nspK2StoreCartForm" id="k2storeadminForm_'.$item['id'].'" name="k2storeadminForm_'.$item['id'].'" enctype="multipart/form-data">							
+				<div id="add_to_cart_12" class="k2store_add_to_cart">
+			        <input type="hidden" id="k2store_product_id" name="product_id" value="'.$item['id'].'">
+		
+			        '.JHTML::_( 'form.token' ).'				        
+			        <input type="hidden" name="return" value="'.base64_encode(JUri::getInstance()->toString()).'">
+			        <input value="Add to cart" type="submit" class="k2store_cart_button btn btn-primary">
+			    </div>
+			
+				<div class="k2store-notification" style="display: none;">
+						<div class="message"></div>
+						<div class="cart_link"><a class="btn btn-success" href="index.php?option=com_k2store&amp;view=mycart">View Cart</a></div>
+						<div class="cart_dialogue_close" onclick="jQuery(this).parent().slideUp().hide();">x</div>
+				</div>
+				
+				<div class="error_container">
+					<div class="k2product"></div>
+					<div class="k2stock"></div>
+				</div>
+			
+				<input type="hidden" name="product_qty" value="1">
+				<input type="hidden" name="option" value="com_k2store">
+				<input type="hidden" name="view" value="mycart">
+				<input type="hidden" id="task" name="task" value="add">
+			</form>';
+			// output for the price
+			$output['price'] = '';
+			// getting the necessary data
+			$price = $item_plugins_data->k2storeitem_price;
+			$tax = $item_plugins_data->k2storeitem_tax;
+			$special_price = 0;
+			// getting the special price if exists
+			if(isset($item_plugins_data->k2storespecial_price)) {
+				$special_price = $item_plugins_data->k2storespecial_price;
+			}
+			// generate the basic price
+			$base_price = K2StoreHelperCart::dispayPriceWithTax($price, $tax, 1);
+			// check if the special price exists
+			if($special_price > 0.0000) {
+				$base_price = '<strike>' . $base_price . '</strike> ' . K2StoreHelperCart::dispayPriceWithTax($special_price, $tax, 1);
+			} 
+			// set the final output of the price
+			$output['price'] = '<span class="nspK2StorePrice">' . $base_price . '</span>';
+		}
+		// return the output array
+		return $output;
 	}
 }
 
