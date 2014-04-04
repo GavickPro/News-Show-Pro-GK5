@@ -313,3 +313,37 @@
 	top: 0;
 }
 
+@media (max-width: 840px) {
+	.gkNspPM-Portfolio2 .gkImagesWrapper > a {
+		padding: 5px;
+	}
+	.gkNspPM-Portfolio2 .gkImagesWrapper {
+		padding: 45px 0;
+	}
+	.gkNspPM-Portfolio2 .gkPortfolioTitle {
+		font-size: 20px;
+		margin-bottom: 18px;
+	}
+	.gkNspPM-Portfolio2 .gkPortfolioCategory, 
+	.gkNspPM-Portfolio2 .gkPortfolioAuthor, 
+	.gkNspPM-Portfolio2 .gkPortfolioDate {
+		font-size: 12px;
+		padding: 10px 0;
+	}
+}
+
+@media (max-width:600px) {
+	.gkNspPM-Portfolio2[data-cols="3"] .gkImagesWrapper a,
+	.gkNspPM-Portfolio2[data-cols="4"] .gkImagesWrapper a,
+	.gkNspPM-Portfolio2[data-cols="5"] .gkImagesWrapper a,
+	.gkNspPM-Portfolio2[data-cols="6"] .gkImagesWrapper a {
+		width: 50%;
+	}
+	.gkNspPM-Portfolio2 .gkImagesWrapper > a img {
+		height: auto;
+		width: 100%;
+	}
+	.gkNspPM-Portfolio2 .gkImagesWrapper > a:after {
+		padding: 5px;
+	}
+}
