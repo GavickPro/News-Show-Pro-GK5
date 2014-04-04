@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
 	jQuery(document).find('.gkNspPM-Portfolio2').each(function(i, module) {
 		if(!module.hasClass('active')) {
-			module.addClass('active');
+			jQuery(module).addClass('active');
 			gkPortalModePortfolio2Init(jQuery(module));
 		}
 	});
