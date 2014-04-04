@@ -142,7 +142,7 @@ var gkPortalModePortfolio2Init = function(module) {
 			images.each(function(i, img) {
 				img = jQuery(img);
 				img.click(function(e) {
-					if(jQuery(window).height() > 600) {
+					if(jQuery(window).width() > 600) {
 						e.preventDefault();
 						
 						current_popup_image = i;
