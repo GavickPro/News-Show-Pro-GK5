@@ -145,8 +145,11 @@ class NSP_GK5_Product_Gallery_2 {
         //
         $productModel = new VirtueMartModelProduct();
 	    $product = $productModel->getProduct($id, 100, true, true, true);
+	    $price = strip_tags($currency->createPriceDiv ($config['vm_show_price_type'], '', $product->prices));
+	    // remove currency 
+	    $price = str_replace($cSymbol, '', $price);
 	    // prepare price - apply correct format and decimal separator
-	    $price = str_replace('.',$cDecSymbol,number_format($product->prices[$config['vm_show_price_type']],$cDecimals));
+	    $price = str_replace('.',$cDecSymbol,number_format($price,$cDecimals,$cDecSymbol,''));
 	    if($config['vm_currency_position'] == 'before') { 
 	    	$price = $cSymbol.' '.$price;
 	    } else {
