@@ -57,8 +57,13 @@ class NSP_GK5_VideoList {
 					echo '<span class="gkImageWrap"><img src="'.$this->get_image($i).'" alt="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'" data-url="'.$this->get_video($i).'" data-x="'.$this->parent->config['portal_mode_video_list_popup_x'].'" data-y="'.$this->parent->config['portal_mode_video_list_popup_y'].'" /></span>';
 					
 					echo '<figcaption>';
-						echo '<h3><a href="'.$this->get_link($i).'" title="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'">'.$title.'</a></h3>';
-						echo '<strong>' . $info_date . '</strong>';
+						if($this->parent->config['portal_mode_video_list_title'] == 1) {
+							echo '<h3><a href="'.$this->get_link($i).'" title="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'">'.$title.'</a></h3>';
+						}
+						
+						if($this->parent->config['portal_mode_video_list_date'] == 1) {
+							echo '<strong>' . $info_date . '</strong>';
+						}
 					echo '</figcaption>';
 				echo '</figure>';
 				
