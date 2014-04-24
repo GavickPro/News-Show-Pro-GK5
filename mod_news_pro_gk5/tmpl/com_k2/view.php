@@ -198,8 +198,11 @@ class NSP_GK5_com_k2_View {
 			$news_info_tag = stripos($config['info'.(($num == 2) ? '2' : '').'_format'], '%CART') !== FALSE ? 'div' : 'p';
 	        $news_info = '<'.$news_info_tag.' class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</'.$news_info_tag.'>';
 	        //
-	        $author = '<a href="'.urldecode(JRoute::_(K2HelperRoute::getUserRoute($item['author_id']))).'">' . (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']) . '</a>';
-	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
+	        $author_name .= (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
+	        $author_html = '<a href="'.urldecode(JRoute::_(K2HelperRoute::getUserRoute($item['author_id']))).'">';
+	        $author_html .= $author_name;
+	        $author_html .= '</a>';
+	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
 	        //
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);
 	        //
