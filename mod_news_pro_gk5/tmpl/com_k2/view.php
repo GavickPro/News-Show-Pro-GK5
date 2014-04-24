@@ -353,6 +353,10 @@ class NSP_GK5_com_k2_View {
 	static function categoryLink($item) {
 		return urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item['cid'].':'.urlencode($item['cat_alias']))));
 	}
+	// user link generator
+	static function authorLink($item) {
+		return urldecode(JRoute::_(K2HelperRoute::getUserRoute($item['author_id'])));
+	}
 	// K2 Store data generator
 	static function k2Store($item) {
 		// preparing the output array

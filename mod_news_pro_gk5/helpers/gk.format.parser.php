@@ -26,6 +26,7 @@ class NSP_GK5_Article_Format {
 			{IMAGE_SRC} - article image URL
 			{AUTHOR_EMAIL} - article autor e-mail 
 			{AUTHOR_NAME} - article author name
+			{AUTHOR_URL} - article author URL
 			{CATEGORY} - article category name
 			{CATEGORY_URL} - article category URL
 			{HITS} - article hits
@@ -62,7 +63,8 @@ class NSP_GK5_Article_Format {
 		$image_src = call_user_func(array($viewClass, 'image'), $config, $data, true);
 		// Author data
 		$author_email = $data['author_email'];
-		$author_name = $data['author'];
+		$author_name = $data['author_username'];
+		$author_url = call_user_func(array($viewClass, 'authorLink'), $data);
 		// Category data
 		$category = $data['catname'];
 		$category_url = '';
@@ -91,6 +93,7 @@ class NSP_GK5_Article_Format {
 				'{IMAGE_SRC}',
 				'{AUTHOR_EMAIL}', 
 				'{AUTHOR_NAME}',
+				'{AUTHOR_URL}',
 				'{CATEGORY}',
 				'{CATEGORY_URL}',
 				'{HITS}',
@@ -105,6 +108,7 @@ class NSP_GK5_Article_Format {
 				$image_src,
 				$author_email,
 				$author_name,
+				$author_url,
 				$category,
 				$category_url,
 				$hits,

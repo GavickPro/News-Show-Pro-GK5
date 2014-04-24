@@ -320,6 +320,10 @@ class NSP_GK5_com_easyblog_View {
 	static function categoryLink($item) {
 		return urldecode(JRoute::_('index.php?option=com_easyblog&view=categories&layout=listings&id=' . $item['cid']));
 	}
+	// user link generator
+	static function authorLink($item) {
+		return urldecode(JRoute::_('index.php?option=com_easyblog&view=blogger&layout=listings&id=' . $item['author_id']));
+	}
 }
 
 // EOF

@@ -358,6 +358,10 @@ class NSP_GK5_com_virtuemart_View {
 	static function categoryLink($item) {
 		return 'index.php?option=com_virtuemart&amp;view=category&amp;virtuemart_category_id='.$item['cid'];
 	}
+	// user link generator
+	static function authorLink($item) {
+		return '';
+	}
 }
 
 // EOF

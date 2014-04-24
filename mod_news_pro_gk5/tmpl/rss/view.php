@@ -232,6 +232,10 @@ class NSP_GK5_rss_View {
 	static function categoryLink($item) {
 		return '';
 	}
+	// user link generator
+	static function authorLink($item) {
+		return '';
+	}
 }
 
 // EOF

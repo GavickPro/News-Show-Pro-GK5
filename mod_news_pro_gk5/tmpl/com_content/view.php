@@ -311,6 +311,10 @@ class NSP_GK5_com_content_View {
 	static function categoryLink($item) {
 		return JRoute::_(ContentHelperRoute::getCategoryRoute($item['cid']));
 	}
+	// user link generator
+	static function authorLink($item) {
+		return '';
+	}
 }
 
 // EOF

@@ -255,6 +255,10 @@ class NSP_GK5_json_file_View {
 	static function categoryLink($item) {
 		return $item["category_url"];
 	}
+	// user link generator
+	static function authorLink($item) {
+		return '';
+	}
 }
 
 // EOF
