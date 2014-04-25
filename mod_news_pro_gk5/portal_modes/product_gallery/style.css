@@ -101,6 +101,7 @@
 /* Content - header, price and button "add to cart" */
 
 .gkNspPM-ProductGallery .gkImage {
+	position: relative;
 	border: 1px solid #fff;
 	-webkit-transition: all .25s ease-out;
 	-moz-transition: all .25s ease-out;
@@ -160,7 +161,18 @@
 	transition: all .25s ease-out;
 	width: 100%;
 }
-
+.gkNspPM-ProductGallery .nspBadge {
+	background: #fff;
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	padding: 2px 10px;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);	
+}
 .gkNspPM-ProductGallery .gkImage.hover .gkPrice {
 	top: 72px;
 }

@@ -206,6 +206,7 @@ class NSP_GK5_com_virtuemart_Model {
             content.product_desc AS text,
             contentR.modified_on AS date,
             contentR.created_on AS date_publish,
+            contentR.product_special AS featured,
 			manufacturer.mf_name AS manufacturer,
 			manufacturer.virtuemart_manufacturer_id AS manufacturer_id
 		FROM 
