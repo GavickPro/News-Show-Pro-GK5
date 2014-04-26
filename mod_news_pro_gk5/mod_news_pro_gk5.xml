@@ -283,6 +283,12 @@
                     <option value="price">MOD_NEWS_PRO_GK5_PRICE</option>
                               <option value="text_price">MOD_NEWS_PRO_GK5_TEXT_PRICE</option>
                          </field> 
+                         
+				<field name="vm_show_featured_badge" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_FEATURED_BADGE" description="MOD_NEWS_PRO_GK5_VM_FEATURED_BADGE_DESC">
+					<option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+					<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+				</field>        
+                         
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_RSS">

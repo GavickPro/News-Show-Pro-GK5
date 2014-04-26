@@ -123,8 +123,8 @@ class NSP_GK5_com_virtuemart_View {
 					$size = ($size == '') ? '' : ' style="' . $size . '"';
 					//
 					//
-					if($item['featured']) {
-						$badge = '<span class="nspBadge">'.JText::_('MOD_NEWS_PRO_GK5_NSP_FEATURED').'</span>';
+					if($item['featured'] && $config['vm_show_featured_badge']) {
+						$badge = '<sup class="nspBadge">'.JText::_('MOD_NEWS_PRO_GK5_NSP_FEATURED').'</sup>';
 					} else {
 						$badge = '';
 					}

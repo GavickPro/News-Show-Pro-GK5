@@ -62,8 +62,8 @@ class NSP_GK5_Product_Gallery {
 				echo '<div class="gkPrice">' . $store_output['price'] . '</div>';
 				echo '<div class="gkAddToCart">' . $store_output['cart'] . '</div>';
 				echo '<div class="gkImgOverlay">' . $store_output['price'] . '</div>';
-				if($this->parent->content[$i]['featured']) {
-					echo '<span class="nspBadge">'.JText::_('MOD_NEWS_PRO_GK5_NSP_FEATURED').'</span>';
+				if($this->parent->content[$i]['featured'] && $this->parent->config['vm_show_featured_badge']) {
+					echo '<sup class="nspBadge">'.JText::_('MOD_NEWS_PRO_GK5_NSP_FEATURED').'</sup>';
 				}
 				echo '</div>';
 			}		
