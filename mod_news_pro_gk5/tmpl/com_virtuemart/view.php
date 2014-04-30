@@ -123,15 +123,20 @@ class NSP_GK5_com_virtuemart_View {
 					$size = ($size == '') ? '' : ' style="' . $size . '"';
 					//
 					//
+					if($item['featured'] && $config['vm_show_featured_badge']) {
+						$badge = '<sup class="nspBadge">'.JText::_('MOD_NEWS_PRO_GK5_NSP_FEATURED').'</sup>';
+					} else {
+						$badge = '';
+					}
 					if($config['news_image_link'] == 1) {
 						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>' . $badge;
 						} else {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>' . $badge;
 							
 						}
 					} else {
-						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
+						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>' . $badge;
 					}
 				}
 			} else {
@@ -180,7 +185,7 @@ class NSP_GK5_com_virtuemart_View {
 	        //          
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        //          
-            if($config['no_comments_text'] && (!isset($item['comments']) || $item['comments'] == 0)){
+            if(!isset($item['comments']) || $item['comments'] == 0){
                 $comments_amount = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
             } else {
                 $comments_amount = JText::_('MOD_NEWS_PRO_GK5_COMMENTS').' ('.(isset($item['comments']) ? $item['comments'] : '0' ) . ')';
@@ -281,7 +286,7 @@ class NSP_GK5_com_virtuemart_View {
 	    $product = $productModel->getProduct($item['id'], 100, true, true, true);
 	    $price = strip_tags($currency->createPriceDiv ($config['vm_show_price_type'], '', $product->prices));
 	    // remove currency 
-	    $price = str_replace($cSymbol, '', $price);
+	    $price = (float) str_replace($cSymbol, '', $price);
 	    // prepare price - apply correct format and decimal separator
 	    $price = str_replace('.',$cDecSymbol,number_format($price,$cDecimals,$cDecSymbol,''));
 	    if($config['vm_currency_position'] == 'before') { 

@@ -60,6 +60,9 @@ class NSP_GK5_Product_Gallery_2 {
 					echo '<a href="' . $this->get_link($i) . '" class="readon">' . JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_READON_TEXT') . '</a>';
 					echo '</div>';
 				}
+				if($this->parent->content[$i]['featured'] && $this->parent->config['vm_show_featured_badge']) {
+					echo '<sup class="nspBadge">'.JText::_('MOD_NEWS_PRO_GK5_NSP_FEATURED').'</sup>';
+				}
 				echo '</div>';
 			}		
 		}
