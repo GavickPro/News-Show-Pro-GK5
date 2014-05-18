@@ -32,7 +32,7 @@ class NSP_GK5_Thumbs {
 		stories.demo.jpg
 		(in this situation mirror of ./images/ directory isn't necessary)
 	*/
-	function translateName($name,$mod_id, $k2_mode = false, $vm_mode = false, $image_type = '', $downloaded = false, $filename = null, $links = false) {
+	function translateName($name,$mod_id, $k2_mode = false, $vm_mode = false, $image_type = '', $downloaded = false, $filename = null, $links = false, $hikashop_mode = false) {
 		// check the mode
 		if($downloaded || stripos($name, 'http://') !== FALSE || stripos($name, 'https://') !== FALSE) {
 			if($downloaded) {
@@ -49,8 +49,8 @@ class NSP_GK5_Thumbs {
 				return $name . $mod_id . ($links ? '_links' : '') . $ext;
 			}
 		} else {
-			$name = NSP_GK5_Thumbs::getRealPath($name, $k2_mode, $vm_mode);
-			$start = ($k2_mode || $vm_mode) ? (($k2_mode) ? strpos($name, DS.'media'.DS) : strpos($name, DS.'components'.DS)) : strpos($name, DS.'images'.DS);
+			$name = NSP_GK5_Thumbs::getRealPath($name, $k2_mode, $vm_mode, $hikashop_mode);
+			$start = ($k2_mode || $vm_mode || $hikashop_mode) ? (($k2_mode || $hikashop_mode) ? strpos($name, DS.'media'.DS) : strpos($name, DS.'components'.DS)) : strpos($name, DS.'images'.DS);
 			$name = ($k2_mode || $vm_mode) ? (($k2_mode) ? substr($name, $start+7) : substr($name, $start+12)) : substr($name, $start+8);
 			$ext = substr($name, -4);
 			$name = substr($name, 0, -4);
@@ -95,8 +95,8 @@ class NSP_GK5_Thumbs {
     }
 
 	// function to change file path to  real path.
-	function getRealPath($path, $k2_mode = false, $vm_mode = false) {		
-		$start = ($k2_mode || $vm_mode) ? (($k2_mode) ? strpos($path, 'media/') : strpos($path, 'components/')) : strpos($path, self::getMediaPath());
+	function getRealPath($path, $k2_mode = false, $vm_mode = false, $hikashop_mode = false) {		
+		$start = ($k2_mode || $vm_mode || $hikashop_mode) ? (($k2_mode || $hikashop_mode) ? strpos($path, 'media/') : strpos($path, 'components/')) : strpos($path, self::getMediaPath());
 		$path = './'.substr($path, $start);
 
 		return realpath($path);
@@ -141,7 +141,15 @@ class NSP_GK5_Thumbs {
         }
     }
 	// Creating thumbnails
-	function createThumbnail($path, $config, $k2_mode = false, $vm_mode = false, $img_rel = '', $links = false) {
+	function createThumbnail(
+		$path, 
+		$config, 
+		$k2_mode = false, 
+		$vm_mode = false, 
+		$img_rel = '', 
+		$links = false, 
+		$hikashop_mode = false
+	) {
 		if($config['use_curl_download'] == 0 && (stripos($path, 'http://') || stripos($path, 'https://'))) {
 			return false;
 		}
@@ -201,7 +209,7 @@ class NSP_GK5_Thumbs {
 			}
 		}
 		// checking the special images
-		$check_result = NSP_GK5_Thumbs::checkSpecialImages(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '', $downloaded, $imgname, $links));
+		$check_result = NSP_GK5_Thumbs::checkSpecialImages(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '', $downloaded, $imgname, $links, $hikashop_mode));
 		// preparing an array with the image class values
 		$img_rels = array();
 		// check if any classes exists in the image
@@ -210,13 +218,13 @@ class NSP_GK5_Thumbs {
 		}
 		// no scale images
 		if($check_result == 2) { // NOSCALE      
-			if(NSP_GK5_Thumbs::checkCache(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links), false, $config['module_id'])){  
-				return array(TRUE, NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links));	
+			if(NSP_GK5_Thumbs::checkCache(NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links), false, $config['module_id'], $hikashop_mode)){  
+				return array(TRUE, NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links, $hikashop_mode));	
 			} else {
 				// file path
-				$file = NSP_GK5_Thumbs::getRealPath($path, $k2_mode, $vm_mode, '_noscale');
+				$file = NSP_GK5_Thumbs::getRealPath($path, $k2_mode, $vm_mode, '_noscale', $hikashop_mode);
 				// filename
-				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links);
+				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, '_noscale', $downloaded, $imgname, $links, $hikashop_mode);
 				// Getting informations about image
 				if(is_file($file)){
 					$imageData = getimagesize($file);
@@ -280,17 +288,20 @@ class NSP_GK5_Thumbs {
 						($check_result == 1) ? '_cropped' : '', 
 						$downloaded, 
 						$imgname,
-						$links
+						$links,
+						$hikashop_mode
 					), 
 					$config['cache_time'], 
 					$config['module_id']
 				)){
-				return array(TRUE, NSP_GK5_Thumbs::translateName($path, $config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links));	
+				return array(TRUE, NSP_GK5_Thumbs::translateName($path, $config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links, $hikashop_mode));	
 			} else {
 				// file path
-				$file = NSP_GK5_Thumbs::getRealPath($path, $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '');
+				$file = NSP_GK5_Thumbs::getRealPath($path, $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $hikashop_mode);
+				
 				// filename
-				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links);
+				$filename = NSP_GK5_Thumbs::translateName($path,$config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links, $hikashop_mode);
+				
 				// Getting informations about image
 				if(is_file($file)){					
 					$imageData = getimagesize($file);

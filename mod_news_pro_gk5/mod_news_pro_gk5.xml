@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" client="site" method="upgrade">
         <name>News Show Pro GK5</name>
-        <creationDate>30/04/2014</creationDate>
+        <creationDate>19/05/2014</creationDate>
         <author>Gavick.com</author>
         <copyright>(C) 2009-2014 Gavick.com</copyright>
         <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
         <authorEmail>info@gavick.com</authorEmail>
         <authorUrl>www.gavick.com</authorUrl>
-        <version>1.4.2</version>
+        <version>1.5.0</version>
         <description>
         <![CDATA[
                 <style type='text/css'>
@@ -22,7 +22,7 @@
                         span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
                 </style>
                 <span class='readonly'>
-                        <h1>News Show Pro GK5 <small>ver. 1.4.2</small></h1>
+                        <h1>News Show Pro GK5 <small>ver. 1.5.0</small></h1>
                         <p>GK5 is new generation of our extensions dedicated to Joomla 2.5+.</p>
                         <p>Basing on experiences gathered, we created probably the best tool to present articles for Joomla! Huge amount of options and possibilities of formatting causes News Show Pro GK5 is a complex tool in making www pages content attractive. News Show Pro is appropriate while preparing simple structures with an individual article, the same as, complex arrangements including few articles and a list of links.</p> 
                         <p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
@@ -113,6 +113,10 @@
                 <field name="com_virtuemart_products" type="text" default="" size="25" label="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_PRODUCTS" description="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_PRODUCTS_DESC" class="gk-hidden-field" />
                 
                 <field name="com_virtuemart_categories" type="vmmulticategories" extension="vmmulticategories" default="" size="60" multiple="multiple" label="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_CATEGORIES" description="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_CATEGORIES_DESC" class="gk-hidden-field" />
+                
+                <field name="com_hikashop_products" type="text" default="" size="25" label="MOD_NEWS_PRO_GK5_COM_HIKASHOP_PRODUCTS" description="MOD_NEWS_PRO_GK5_COM_HIKASHOP_PRODUCTS_DESC" class="gk-hidden-field" />
+                
+                <field name="com_hikashop_categories" type="hikashopmulticategories" extension="hikashopmulticategories" default="" size="60" multiple="multiple" label="MOD_NEWS_PRO_GK5_COM_HIKASHOP_CATEGORIES" description="MOD_NEWS_PRO_GK5_COM_HIKASHOP_CATEGORIES_DESC" class="gk-hidden-field" />
                 
                 <!-- Data sources fields END -->
                 
@@ -264,10 +268,10 @@
                     <option value="before">MOD_NEWS_PRO_GK5_VM_BEFORE_PRICE</option>
                     <option value="after">MOD_NEWS_PRO_GK5_VM_AFTER_PRICE</option>
                 </field>
-                         <field name="vm_add_to_cart" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART" description="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART_DESC">
-                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
-                              <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
-                         </field> 
+                 <field name="vm_add_to_cart" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART" description="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART_DESC">
+            		  <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                      <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                 </field> 
                 
                 <field name="vm_show_discount_amount" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_DISCOUNT_AMOUNT" description="MOD_NEWS_PRO_GK5_VM_DISCOUNT_AMOUNT_DESC">
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
@@ -289,6 +293,20 @@
 					<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
 				</field>        
                          
+            </fieldset>
+            
+            <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_HIKASHOP">
+                <field name="hikashop_itemid" type="text" default="9999" size="5" label="MOD_NEWS_PRO_GK5_HIKASHOP_ITEMID" description="MOD_NEWS_PRO_GK5_HIKASHOP_ITEMID_DESC"/>
+                
+                <field name="hikashop_out_of_stock" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_VM_OUT_OF_STOCK" description="MOD_NEWS_PRO_GK5_VM_OUT_OF_STOCK_DESC">
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field> 
+                                
+                <!--<field name="hikashop_add_to_cart" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART" description="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART_DESC">
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field> -->            
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_RSS">
