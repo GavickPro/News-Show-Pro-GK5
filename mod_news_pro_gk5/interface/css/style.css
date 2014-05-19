@@ -396,6 +396,18 @@ img.nspImage.gkResponsive {
 	color: #ccc;
 	display: block;
 }
+/* HikaShop styles */
+.nspHikashopBlock {
+	text-align: center;
+}
+.nspHikashopBlock span {
+	display: block;
+}
+.nspHikashopBlock .button {
+	display: inline-block;
+	float: none;
+	margin-top: 30px;
+}
 
 /* Mobile */
 @media (max-width: 800px) {

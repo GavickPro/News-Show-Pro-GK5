@@ -77,7 +77,7 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('#Title_Overlay_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'PORTFOLIO') {
 					jQuery('#Portfolio_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
-				} else if($this.configs[portal_mode_value].full_name == 'PORTFOLIO2') {
+				} else if($this.configs[portal_mode_value].full_name == 'PORTFOLIO') {
 					jQuery('#Portfolio_II_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'PRODUCT_GALLERY_2') {
 					jQuery('#Product_Gallery_II_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');

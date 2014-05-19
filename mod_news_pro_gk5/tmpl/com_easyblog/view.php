@@ -215,7 +215,14 @@ class NSP_GK5_com_easyblog_View {
 	        //
 	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
 	        $author_html = '<a href="'.urldecode(JRoute::_('index.php?option=com_easyblog&view=blogger&layout=listings&id=' . $item['author_id'])).'">'.$author.'</a>';
-   	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.EasyBlogAvatarHelper::getAvatarUrl($item['author_id']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
+	        
+	        // load easyblog helper
+	        require_once (JPATH_SITE.DS.'components'.DS.'com_easyblog'.DS.'helpers'.DS.'helper.php');
+ 
+		$blogger   = EasyBlogHelper::getTable( 'Profile' , 'Table' );
+		$blogger->load( $item['author_id'] );
+ 
+		$info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.EasyBlogAvatarHelper::getAvatarUrl($blogger).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
 	        //
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);
 	        //
@@ -314,11 +321,15 @@ class NSP_GK5_com_easyblog_View {
 	}
 	// article link generator
 	static function itemLink($item, $config = false) {
-		return urldecode(JRoute::_(EasyBlogRouter::getEntryRoute($item['id'])));
+		return urldecode(JRoute::_(EasyBlogRouter::_('index.php?option=com_easyblog&view=entry&id=' . $item['id'])));
 	}
 	// category link generator
 	static function categoryLink($item) {
 		return urldecode(JRoute::_('index.php?option=com_easyblog&view=categories&layout=listings&id=' . $item['cid']));
+	}
+	// user link generator
+	static function authorLink($item) {
+		return urldecode(JRoute::_('index.php?option=com_easyblog&view=blogger&layout=listings&id=' . $item['author_id']));
 	}
 }
 
