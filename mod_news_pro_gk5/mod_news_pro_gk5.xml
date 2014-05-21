@@ -895,7 +895,7 @@
                 </field>
                                 <field name="img_quality" type="text"  class="input-percents text_area" default="95" size="5" label="MOD_NEWS_PRO_GK5_IMAGE_QUALITY" description="MOD_NEWS_PRO_GK5_IMAGE_QUALITY_DESC"/>   
                                 <!-- TODO: refactor me to something like : thumb_cache_time -->
-                                <field name="cache_time" type="text" default="30" size="5" class="input-minutes text_area medium" label="MOD_NEWS_PRO_GK5_CACHE_TIME" description="MOD_NEWS_PRO_GK5_CACHE_TIME_DESC"/>   
+                                <field name="thumbs_cache_time" type="text" default="60" size="5" class="input-minutes text_area medium" label="MOD_NEWS_PRO_GK5_CACHE_TIME" description="MOD_NEWS_PRO_GK5_CACHE_TIME_DESC"/>
                 <field name="simple_crop_editor" type="simplecrop" default="" label="MOD_NEWS_PRO_GK5_SIMPLE_CROP" description="MOD_NEWS_PRO_GK5_SIMPLE_CROP_DESC"/>
                 <field name="simple_crop_top" type="text" class="input-percents" default="0" size="5" label="MOD_NEWS_PRO_GK5_SIMPLE_CROP_TOP" description="MOD_NEWS_PRO_GK5_SIMPLE_CROP_TOP_DESC"/>
                 <field name="simple_crop_bottom" type="text" class="input-percents" default="0" size="5" label="MOD_NEWS_PRO_GK5_SIMPLE_CROP_BOTTOM" description="MOD_NEWS_PRO_GK5_SIMPLE_CROP_BOTTOM_DESC"/>

@@ -36,7 +36,7 @@ class JFormFieldCheckout extends JFormField {
 			$output .= '<li>'.JText::_('MOD_NEWS_PRO_GK5_PROBLEM_CACHE_DIR').'</li>';
 		}
 		// cache time
-		if($params->get('cache_time') < 5) {
+		if($params->get('thumbs_cache_time') < 5) {
 			$output .= '<li>'.JText::_('MOD_NEWS_PRO_GK5_PROBLEM_CACHE_TIME').'</li>';
 		}
 		// if all is OK 
