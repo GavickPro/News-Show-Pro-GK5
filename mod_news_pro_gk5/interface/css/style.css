@@ -425,6 +425,11 @@ img.nspImage.gkResponsive {
 	float: none;
 	margin-top: 30px;
 }
+.nspHikashopBlock .hikashop_product_stock_count {
+	color: #999!important;
+	font-size: 11px!important;
+	padding: 10px 0!important;
+}
 
 /* Mobile */
 @media (max-width: 800px) {
