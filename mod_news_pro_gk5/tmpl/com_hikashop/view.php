@@ -154,9 +154,9 @@ class NSP_GK5_com_hikashop_View {
 			$class = ' f'.$config['news_content_readmore_pos'];
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a class="readon inline"  href="'.NSP_GK5_com_hikashop_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+				return '<a class="readon inline"  href="'.NSP_GK5_com_hikashop_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_COM_HIKASHOP_VIEW_PRODUCT')).'</a>';
 			} else {
-				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_hikashop_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_hikashop_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_COM_HIKASHOP_VIEW_PRODUCT')).'</a>';
 			}
 		} else {
 			return '';
@@ -257,7 +257,30 @@ class NSP_GK5_com_hikashop_View {
 			$html .= '<span>' . $currencyHelper->format($msrpCurrencied, $currCurrency).' ('.$currencyHelper->format($item['product_msrp'], $mainCurr).')' . '</span>';
 		}
 		
-		$html .= '<a href="'.NSP_GK5_com_hikashop_View::itemLink($item, $config).'" class="button">'.JText::_('MOD_NEWS_PRO_GK5_COM_HIKASHOP_VIEW_PRODUCT').'</a>';
+		if($config['hikashop_add_to_cart'] > 0) {
+			if(!defined('DS')) {
+				define('DS', DIRECTORY_SEPARATOR);
+			}
+			include_once(rtrim(JPATH_ADMINISTRATOR,DS) . DS . 'components' . DS . 'com_hikashop' . DS . 'helpers' . DS . 'helper.php');
+			JHTML::_('behavior.framework');
+			$hs_config = hikashop_config();
+			$productClass = hikashop_get('class.product');
+			$_SESSION['hikashop_product']= $productClass->get($item['id']);
+			$params = new JRegistry('');
+			// enable quantity field
+			if($config['hikashop_add_to_cart'] == 2) {
+				$params->set('show_quantity_field', 1);
+			} else {
+				$params->set('show_quantity_field', 0);
+			}
+			
+			
+			$params->set('price_with_tax',$hs_config->get('price_with_tax',1));
+			$params->set('add_to_cart',1);
+			$js = '';
+			$html .= hikashop_getLayout('product','add_to_cart_listing',$params,$js);
+		}
+		
 		$html .= '</div>';
 		
 		return $html;
