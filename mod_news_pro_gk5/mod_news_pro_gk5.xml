@@ -619,6 +619,11 @@
                 <field name="portal_mode_jomsocial_photos_amount" type="text" default="4" class="short" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_AMOUNT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_AMOUNT_DESC"/>
                 
                 <field name="portal_mode_jomsocial_photos_width" type="text" default="310" class="input-pixels" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_WIDTH" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_WIDTH_DESC"/>
+                
+                <field name="portal_mode_jomsocial_photos_animation" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_ANIMATION" description="">
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
             </fieldset>
             
             <!-- Portal Modes fieldsets END -->

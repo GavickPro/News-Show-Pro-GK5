@@ -2,7 +2,7 @@ jQuery(document).ready(function() {
 	jQuery(document).find('.gkNspPM-JomSocialPhotos').each(function(i, module) {
 		module = jQuery(module);
 		
-		if(!module.hasClass('active')) {
+		if(!module.hasClass('active') && module.hasClass('animate')) {
 			module.addClass('active');
 			gkPortalModeJomSocialPhotosInit(module);
 		}

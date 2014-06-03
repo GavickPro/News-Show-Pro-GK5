@@ -38,7 +38,7 @@ class NSP_GK5_JomSocial_Photos {
 	// output generator	
 	function output() {	
 		// main wrapper
-		echo '<div class="gkNspPM gkNspPM-JomSocialPhotos" data-cols="'.$this->parent->config['portal_mode_jomsocial_photos_amount'].'">';
+		echo '<div class="gkNspPM gkNspPM-JomSocialPhotos'.($this->parent->config['portal_mode_jomsocial_photos_animation'] == 1 ? ' animate' : '').'" data-cols="'.$this->parent->config['portal_mode_jomsocial_photos_amount'].'">';
 		
 		$width = 3000;
 		$new_width = $this->parent->config['portal_mode_jomsocial_photos_total'] * $this->parent->config['portal_mode_jomsocial_photos_width'];
@@ -48,18 +48,48 @@ class NSP_GK5_JomSocial_Photos {
 		}
 		
 		echo '<div style="width: '.$width.'px">';
+		// generate indexes array like:
+		// [6,4,2,0,1,3,5,7]
+		// [6,4,2,0,1,3,5]
+		$indexes = array();
+		$amount = count($this->parent->content);
+		
+		if($amount % 2 == 0) {
+			for($i = $amount - 2; $i > 0; $i -= 2) {
+				array_push($indexes, $i);
+			}
+			
+			array_push($indexes, 0);
+			
+			for($i = 1; $i < $amount; $i += 2) {
+				array_push($indexes, $i);
+			}
+		} else {
+			for($i = $amount - 1; $i > 0; $i -= 2) {
+				array_push($indexes, $i);
+			}
+			
+			array_push($indexes, 0);
+			
+			for($i = 1; $i < $amount; $i += 2) {
+				array_push($indexes, $i);
+			}
+		}
+		
 		// render images
-		for($i = 0; $i < count($this->parent->content); $i++) {			
-			$text = trim($this->parent->content[$i]['text']);
+		for($i = 0; $i < count($this->parent->content); $i++) {	
+			$id = $indexes[$i];
+				
+			$text = trim($this->parent->content[$id]['text']);
 			// output the HTML code
 			echo '<figure style="width: '.$this->parent->config['portal_mode_jomsocial_photos_width'].'px;">';
-			if($this->get_image($i)) {
-				echo '<img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags(htmlspecialchars($this->parent->content[$i]['text'])).'" />';
+			if($this->get_image($id)) {
+				echo '<img src="'.strip_tags($this->get_image($id)).'" alt="'.strip_tags(htmlspecialchars($this->parent->content[$id]['text'])).'" />';
 			}
 			echo '<figcaption>';
-			echo '<small>'.$this->parent->content[$i]['author_username'].'</small>';
+			echo '<small>'.$this->parent->content[$id]['author_username'].'</small>';
 			echo '<p>'.$text.'</p>';
-			echo '<a href="'.$this->get_link($i).'">';
+			echo '<a href="'.$this->get_link($id).'">';
 			echo JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_MORE');
 			echo '</a>';
 			echo '</figcaption>';

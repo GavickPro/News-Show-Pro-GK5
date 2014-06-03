@@ -1,6 +1,6 @@
 window.addEvent('domready', function() {
 	document.getElements('.gkNspPM-JomSocialPhotos').each(function(module) {
-		if(!module.hasClass('active')) {
+		if(!module.hasClass('active') && module.hasClass('animate')) {
 			module.addClass('active');
 			gkPortalModeJomSocialPhotosInit(module);
 		}
