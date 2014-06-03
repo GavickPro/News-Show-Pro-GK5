@@ -1,6 +1,7 @@
 /* Portal Mode - News Blocks */
 
 .gkNspPM-JomSocialPhotos {
+	overflow: hidden;
 	text-align: center;
 }
 .gkNspPM-JomSocialPhotos > div {
