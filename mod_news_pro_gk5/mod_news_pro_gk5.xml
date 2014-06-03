@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" client="site" method="upgrade">
     <name>News Show Pro GK5</name>
-    <creationDate>23/05/2014</creationDate>
+    <creationDate>04/05/2014</creationDate>
     <author>Gavick.com</author>
     <copyright>(C) 2009-2014 Gavick.com</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>info@gavick.com</authorEmail>
     <authorUrl>www.gavick.com</authorUrl>
-    <version>1.5.1</version>
+    <version>1.6.0</version>
     <description>
         <![CDATA[
             <style type='text/css'>
@@ -22,7 +22,7 @@
             span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
             </style>
             <span class='readonly'>
-            <h1>News Show Pro GK5 <small>ver. 1.5.1</small></h1>
+            <h1>News Show Pro GK5 <small>ver. 1.6.0</small></h1>
             <p>GK5 is new generation of our extensions dedicated to Joomla 2.5+.</p>
             <p>Basing on experiences gathered, we created probably the best tool to present articles for Joomla! Huge amount of options and possibilities of formatting causes News Show Pro GK5 is a complex tool in making www pages content attractive. News Show Pro is appropriate while preparing simple structures with an individual article, the same as, complex arrangements including few articles and a list of links.</p>
             <p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
@@ -156,6 +156,10 @@
                 <field name="com_hikashop_products" type="text" default="" size="25" label="MOD_NEWS_PRO_GK5_COM_HIKASHOP_PRODUCTS" description="MOD_NEWS_PRO_GK5_COM_HIKASHOP_PRODUCTS_DESC" class="gk-hidden-field" />
                 
                 <field name="com_hikashop_categories" type="hikashopmulticategories" extension="hikashopmulticategories" default="" size="60" multiple="multiple" label="MOD_NEWS_PRO_GK5_COM_HIKASHOP_CATEGORIES" description="MOD_NEWS_PRO_GK5_COM_HIKASHOP_CATEGORIES_DESC" class="gk-hidden-field" />
+                
+                <field name="jomsocial_user_status" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_JOMSOCIAL_USERS" description="MOD_NEWS_PRO_GK5_JOMSOCIAL_USERS_DESC" />
+                
+                <field name="jomsocial_user_photo" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_JOMSOCIAL_USERS" description="MOD_NEWS_PRO_GK5_JOMSOCIAL_USERS_DESC" />
                 
                 <!-- Data sources fields END -->
                 
@@ -587,6 +591,36 @@
                 <field type="text" name="portal_mode_video_list_title_limit" class="short text-limit" default="40" label="NSP_PORTAL_MODE_VIDEO_LIST_TITLE_LIMIT" description="" />
             </fieldset>
             
+            <fieldset name="NSP_PORTAL_MODE_EVENTS_LIST">
+                <field name="portal_mode_events_list_cols" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_EVENTS_LIST_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_EVENTS_LIST_COLS_DESC">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </field>
+                
+                <field name="portal_mode_events_list_rows" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_EVENTS_LIST_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_EVENTS_LIST_ROWS_DESC">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="NSP_PORTAL_MODE_JOMSOCIAL_PHOTOS">
+                <field name="portal_mode_jomsocial_photos_total" type="text" default="8" class="short" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_TOTAL" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_TOTAL_DESC"/>
+                
+                <field name="portal_mode_jomsocial_photos_amount" type="text" default="4" class="short" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_AMOUNT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_AMOUNT_DESC"/>
+                
+                <field name="portal_mode_jomsocial_photos_width" type="text" default="310" class="input-pixels" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_WIDTH" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_JOMSOCIAL_PHOTOS_WIDTH_DESC"/>
+            </fieldset>
+            
             <!-- Portal Modes fieldsets END -->
             
             <fieldset name="NSP_ARTICLE_LAYOUT">
@@ -809,6 +843,11 @@
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
                 
+                <field name="links_readmore" type="list" default="0" class="gk_switch" label="MOD_NEWS_PRO_GK5_LINKS_READMORE" description="MOD_NEWS_PRO_GK5_LINKS_READMORE_DESC">
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                
                 <field name="bottom_interface_style" type="list" default="arrows_with_pagination" label="MOD_NEWS_PRO_GK5_BOTTOM_INTERFACE_STYLE" description="">
                     <option value="none">MOD_NEWS_PRO_GK5_NONE</option>
                     <option value="arrows">MOD_NEWS_PRO_GK5_ARROWS</option>
@@ -1015,6 +1054,6 @@
                  <fieldset name="NSP_ABOUT_US" addfieldpath="/modules/mod_news_pro_gk5/admin/elements">
                  <field type="about" name="about_us" />
                  </fieldset>
-                 </fields>
-                 </config>
-                 </extension>
+         </fields>
+    </config>
+</extension>

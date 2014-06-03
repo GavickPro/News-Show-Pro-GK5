@@ -1,0 +1,96 @@
+/* Portal Mode - News Blocks */
+
+.gkNspPM-JomSocialPhotos {
+	text-align: center;
+}
+.gkNspPM-JomSocialPhotos > div {
+	background: #152136;
+	left: 50%;
+	line-height: 1;
+	margin: 0 auto;
+	position: relative;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+.gkNspPM-JomSocialPhotos figure {
+	display: inline-block;
+	position: relative;
+}
+.gkNspPM-JomSocialPhotos[data-cols="1"] figure { max-width: 100%; }
+.gkNspPM-JomSocialPhotos[data-cols="2"] figure { max-width: 50%; }
+.gkNspPM-JomSocialPhotos[data-cols="3"] figure { max-width: 33.333333%; }
+.gkNspPM-JomSocialPhotos[data-cols="4"] figure { max-width: 25%; }
+.gkNspPM-JomSocialPhotos[data-cols="5"] figure { max-width: 20%; }
+.gkNspPM-JomSocialPhotos[data-cols="6"] figure { max-width: 16.666666%; }
+.gkNspPM-JomSocialPhotos[data-cols="7"] figure { max-width: 14.285714%; }
+.gkNspPM-JomSocialPhotos[data-cols="8"] figure { max-width: 12.5%; }
+.gkNspPM-JomSocialPhotos figcaption {
+	background: rgba(0, 0, 0, .75);
+	height: 100%;
+	padding: 50px;
+	position: absolute;
+	text-align: left;
+	top: 100%;
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	width: 100%;
+	z-index: 3;
+}
+.gkNspPM-JomSocialPhotos figure:hover figcaption {
+	top: 0;
+}
+.gkNspPM-JomSocialPhotos figure img {
+	display: block;
+	opacity: 0.5;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: all .4s ease-out;
+	-moz-transition: all .4s ease-out;
+	-ms-transition: all .4s ease-out;
+	-o-transition: all .4s ease-out;
+	transition: all .4s ease-out;
+}
+.gkNspPM-JomSocialPhotos figure img.hide {
+	opacity: 0;
+	-webkit-transform: scale(0.5);
+	-moz-transform: scale(0.5);
+	-ms-transform: scale(0.5);
+	-o-transform: scale(0.5);
+	transform: scale(0.5);
+}
+.gkNspPM-JomSocialPhotos figcaption small {
+	color: #fff;
+	display: block;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0 0 20px 0;	
+	text-transform: uppercase;
+}
+.gkNspPM-JomSocialPhotos figcaption p {
+	color: rgba(255, 255, 255, .5);
+	line-height: 1.2;
+	margin: 0 0 10px 0;
+}
+.gkNspPM-JomSocialPhotos figcaption a:active,
+.gkNspPM-JomSocialPhotos figcaption a:focus,
+.gkNspPM-JomSocialPhotos figcaption a:hover {
+	color: #fff;
+}
+
+/* Mobile devices */
+@media (max-width: 1030px) {
+	
+}
+
+@media (max-width: 820px) {
+	
+}
