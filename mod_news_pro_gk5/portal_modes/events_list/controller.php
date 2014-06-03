@@ -84,7 +84,7 @@ class NSP_GK5_Events_List {
 			if($event_info['when'] != '') {
 				echo '<span>';
 				echo JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_EVENTS_LIST_WHEN') . $event_info['when'];
-				echo '<div class="gkEventsListProgress"></div>';
+				echo '<span class="gkEventsListProgress"></span>';
 				echo '</span>';
 			}
 			
