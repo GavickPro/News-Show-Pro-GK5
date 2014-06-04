@@ -117,6 +117,10 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOGALLERY]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'VIDEOLIST') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOLIST]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'JOMSOCIAL_PHOTOS') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_JOMSOCIAL_PHOTOS]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'EVENTS_LIST') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_EVENTS_LIST]').parent().css('display', 'block');
 				}
 			}
 			// check the data source value
@@ -184,6 +188,8 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_HIGHLIGHTS]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOGALLERY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_VIDEOLIST]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_JOMSOCIAL_PHOTOS]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_EVENTS_LIST]').parent().css('display', 'none');
 	}
 }
 

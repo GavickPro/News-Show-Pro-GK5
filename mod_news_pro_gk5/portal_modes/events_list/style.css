@@ -1,0 +1,145 @@
+/* Portal Mode - News Blocks */
+
+.gkNspPM-EventsList > div {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	margin: 10px 0;
+	min-height: 60px;
+	overflow: hidden;
+	padding: 10px 30px;
+	position: relative;
+}
+
+.gkNspPM-EventsList[data-cols="1"] > div {
+	width: 100%;
+}
+
+.gkNspPM-EventsList[data-cols="2"] > div {
+	width: 50%;
+}
+
+.gkNspPM-EventsList[data-cols="3"] > div {
+	width: 33.333333%;
+}
+
+.gkNspPM-EventsList[data-cols="4"] > div {
+	width: 25%;
+}
+
+.gkNspPM-EventsList[data-cols="2"] > div:nth-child(2n+1),
+.gkNspPM-EventsList[data-cols="3"] > div:nth-child(3n+1),
+.gkNspPM-EventsList[data-cols="4"] > div:nth-child(4n+1) {
+	clear: both;
+}
+
+.gkNspPM-EventsList time {
+	border: 1px solid #e5e5e5;
+	color: #000;
+	left: 30px;
+	line-height: 1.2;
+	font-size: 18px;
+	font-weight: 500;
+	min-width: 66px;
+	padding: 10px;
+	position: absolute;
+	text-transform: uppercase;
+	top: 0;
+}
+
+.gkNspPM-EventsList time > small {
+	display: block;
+	font-size: 12px;
+}
+
+.gkNspPM-EventsList > div > time + div {
+	padding-left: 90px;
+}
+
+.gkNspPM-EventsList h3 {
+	color: #000;
+	font-size: 15px;
+	font-style: italic;
+	text-transform: none;
+}
+
+.gkNspPM-EventsList a {
+	color: #000;
+	display: block;
+	height: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.gkNspPM-EventsList a:active,
+.gkNspPM-EventsList a:focus,
+.gkNspPM-EventsList a:hover {
+	color: #fa7252;
+}
+
+.gkNspPM-EventsList > div > div > span {
+	color: #999;
+	font-size: 11px;
+}
+
+.gkNspPM-EventsList .gkEventsListProgress {
+	background: #e5e5e5;
+	display: inline-block;
+	height: 3px;
+	margin-left: 16px;
+	position: relative;
+	top: -2px;
+	width: 50px;
+}
+
+.gkNspPM-EventsList .gkEventsListProgress > div {
+	background: #fa7252;
+	height: 3px;
+	left: 0;
+	max-width: 100%;
+	position: absolute;
+	top: 0;
+	-webkit-transition: all .75s ease-out;
+	-moz-transition: all .75s ease-out;
+	-ms-transition: all .75s ease-out;
+	-o-transition: all .75s ease-out;
+	transition: all .75s ease-out;
+	width: 0%;
+}
+
+/* Mobile devices */
+@media (max-width: 1240px) {
+	.gkNspPM-EventsList > div {
+		padding: 10px 15px;
+	}	
+}
+
+@media (max-width: 1040px) {
+	.gkNspPM-EventsList > div {
+		margin: 0;
+	}
+	.gkNspPM-EventsList time {
+		left: 5px;
+	}
+	.gkNspPM-EventsList h3 {
+		font-size: 13px;
+	}
+	.gkNspPM-EventsList > div > time + div {
+		padding-left: 64px;
+	}
+	.gkNspPM-EventsList .gkEventsListProgress {
+		display: none;
+	}
+}
+
+@media (max-width: 840px) {
+	.gkNspPM-EventsList time {
+		display: none;
+	}
+	.gkNspPM-EventsList > div > time + div {
+		padding-left: 0;
+	}	
+}
