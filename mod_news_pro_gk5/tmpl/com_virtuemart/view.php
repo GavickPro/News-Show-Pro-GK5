@@ -292,9 +292,9 @@ class NSP_GK5_com_virtuemart_View {
 	    $product = $productModel->getProduct($item['id'], 100, true, true, true);
 	    $price = strip_tags($currency->createPriceDiv ($config['vm_show_price_type'], '', $product->prices));
 	    // remove currency 
-	    $price = (float) str_replace($cSymbol, '', $price);
+	    $price = str_replace($cSymbol, '', $price);
 	    // prepare price - apply correct format and decimal separator
-	    $price = str_replace('.',$cDecSymbol,number_format($price,$cDecimals,$cDecSymbol,''));
+	    $price = str_replace('.',$cDecSymbol, $price);
 	    if($config['vm_currency_position'] == 'before') { 
 	    	$price = $cSymbol.' '.$price;
 	    } else {
