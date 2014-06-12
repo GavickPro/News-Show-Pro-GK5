@@ -60,9 +60,10 @@ class NSP_GK5_Events_List {
 			
 				if($event_datetimes_count > 0) {
 					$event_timestamp = strtotime($event_datetimes[1][0]);
+					$event_timestamp_sql = strftime('%Y-%m-%d %H:%M:%S', $event_timestamp);
 					$event_info['timestamp'] = date(DATE_W3C, $event_timestamp);
 					$event_info['counter_timestamp'] = date(DATE_W3C, strtotime($event_datetimes[1][4]));
-					$event_info['date'] = strftime('%a', $event_timestamp) . '<small>' . strftime('%b %e', $event_timestamp) . '</small>';
+					$event_info['date'] = JHTML::date($event_timestamp_sql, 'D') . '<small>' . JHTML::date($event_timestamp_sql, 'M j') . '</small>';
 					$event_info['when'] = $event_datetimes[2][0] . ' @ ' . $event_datetimes[2][2];
 				}
 			}
