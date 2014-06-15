@@ -272,7 +272,7 @@ class NSP_GK5_com_k2_Model {
 			content.alias AS alias,
 			'.($config['use_title_alias'] ? 'content.alias' : 'content.title').' AS title, 
 			content.introtext AS text,
-			content.'.($config['date_publish'] == 1 ? 'publish_up' : 'created').' AS date,  
+			content.'.($config['date_publish'] == 0 ? 'created' : ($config['date_publish'] == 1 ? 'publish_up' : 'publish_down')).' AS date, 
 			content.publish_up AS date_publish,
 			content.hits AS hits,
 			content.featured AS frontpage,

@@ -275,7 +275,7 @@ class NSP_GK5_com_easyblog_Model {
 			content.permalink AS alias,
 			'.($config['use_title_alias'] ? 'content.permalink' : 'content.title').' AS title, 
 			content.intro AS text, 
-			content.'.($config['date_publish'] == 1 ? 'publish_up' : 'created').' AS date, 
+			content.'.($config['date_publish'] == 0 ? 'created' : ($config['date_publish'] == 1 ? 'publish_up' : 'publish_down')).' AS date, 
 			content.publish_up AS date_publish,
 			content.hits AS hits,
 			content.frontpage AS frontpage,

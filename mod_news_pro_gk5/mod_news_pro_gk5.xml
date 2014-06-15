@@ -759,6 +759,7 @@
                 <field name="date_publish" type="list" default="0" label="MOD_NEWS_PRO_GK5_DATEPUBLISH" description="MOD_NEWS_PRO_GK5_DATEPUBLISH_DESC" class="gk-group-info">
                     <option value="0">MOD_NEWS_PRO_GK5_DATE_CREATE</option>
                     <option value="1">MOD_NEWS_PRO_GK5_DATE_PUBLISH</option>
+                    <option value="2">MOD_NEWS_PRO_GK5_DATE_UNPUBLISH</option>
                 </field>
                 <field name="username" type="list" class="inputbox gk-group-info" default="0" label="MOD_NEWS_PRO_GK5_AUTHORNAME" description="MOD_NEWS_PRO_GK5_AUTHORNAME_DESC">
                     <option value="users.name">MOD_NEWS_PRO_GK5_NAME</option>
