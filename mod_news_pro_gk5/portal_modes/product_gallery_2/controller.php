@@ -152,7 +152,7 @@ class NSP_GK5_Product_Gallery_2 {
 	    // remove currency 
 	    $price = str_replace($cSymbol, '', $price);
 	    // prepare price - apply correct format and decimal separator
-	    $price = str_replace('.',$cDecSymbol,number_format($price,$cDecimals,$cDecSymbol,''));
+	    $price = str_replace('.',$cDecSymbol, $price);
 	    if($config['vm_currency_position'] == 'before') { 
 	    	$price = $cSymbol.' '.$price;
 	    } else {
