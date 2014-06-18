@@ -379,6 +379,19 @@
                 <field name="portal_mode_news_gallery_autoanimation_time" type="text" default="5000" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_AUTOANIMATION_TIME" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_AUTOANIMATION_TIME_DESC" />
             </fieldset>
             
+            <fieldset name="NSP_PORTAL_MODE_NEWS_SLIDESHOW"> 
+                <field type="text" name="portal_mode_news_slideshow_amount" default="7" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDESHOW_AMOUNT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDESHOW_AMOUNT_DESC" />
+                
+                <field name="portal_mode_news_slideshow_autoanimation" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_AUTOANIMATION" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_GALLERY_AUTOANIMATION_DESC">
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+
+                <field name="portal_mode_news_slideshow_animation_speed" class="input-ms text_area medium" type="text" default="400" size="5" label="MOD_NEWS_PRO_GK5_ANIMSPEED" description="MOD_NEWS_PRO_GK5_ANIMSPEED_DESC"/>
+
+                <field name="portal_mode_news_slideshow_animation_interval" class="input-ms text_area medium last-in-group" type="text" default="5000" size="5" label="MOD_NEWS_PRO_GK5_ANIMINTERVAL" description="MOD_NEWS_PRO_GK5_ANIMINTERVAL_DESC"/>
+            </fieldset>
+
             <fieldset name="NSP_PORTAL_MODE_PRODUCT_GALLERY">
                 <field name="portal_mode_product_gallery_amount" type="text" default="10" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_AMOUNT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_AMOUNT_DESC" />
                 

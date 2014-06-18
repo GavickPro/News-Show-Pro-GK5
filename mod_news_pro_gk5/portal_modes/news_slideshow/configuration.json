@@ -1,0 +1,10 @@
+{
+	"name": "News_Slideshow",
+	"full_name": "NEWS_SLIDESHOW",
+	"support": [
+		"com_content", 
+		"com_k2",
+		"com_easyblog"
+	],
+	"thumbnails": true
+}
