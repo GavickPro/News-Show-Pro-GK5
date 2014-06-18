@@ -25,8 +25,6 @@ var gkPortalModeNewsSlideshowInit = function(module) {
 
 	module.getElement('.gkImage').addClass('active');	
 	setTimeout(function() {
-		console.log(arts[0].getSize().x);
-		console.log(arts.length);
 		module.getElement('.gkImagesWrapper').setStyle('width', (arts[0].getSize().x * arts.length) + 2);
 	}, 150);
 	
@@ -37,7 +35,7 @@ var gkPortalModeNewsSlideshowInit = function(module) {
 		module.getElement('.nspBotInterface .gkPrevBtn').addEvent('click', function() {
 			animation = true;
 			new Fx.Morph(headline_titles[current_art], {duration:anim_speed / 2}).start({'opacity':0});
-			if(current_art == 0) {
+			if(current_art === 0) {
 				current_art = arts.length - 1;
 			} else {
 				current_art--;
@@ -84,7 +82,6 @@ var gkPortalModeNewsSlideshowInit = function(module) {
 	
 	module.getElement('.nspImages').addEvent('touchstart', function(e) {
 		arts_swipe = true;
-		console.log('touchstart');
 		if(e.changedTouches.length > 0) {
 			arts_pos_start_x = e.changedTouches[0].pageX;
 			arts_pos_start_y = e.changedTouches[0].pageY;
@@ -112,9 +109,9 @@ var gkPortalModeNewsSlideshowInit = function(module) {
 				new Date().getTime() - arts_time_start <= 500
 			) {
 				if(e.changedTouches[0].pageX - arts_pos_start_x > 0) {
-					module.getElement('.nspBotInterface .gkNextBtn').fireEvent("click")
+					module.getElement('.nspBotInterface .gkPrevBtn').fireEvent("click");
 				} else {
-					module.getElement('.nspBotInterface .gkPrevBtn').fireEvent("click")
+					module.getElement('.nspBotInterface .gkNextBtn').fireEvent("click");
 				}
 			}
 		}
