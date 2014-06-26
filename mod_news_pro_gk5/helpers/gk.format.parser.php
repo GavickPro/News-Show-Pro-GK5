@@ -82,9 +82,22 @@ class NSP_GK5_Article_Format {
 		// Get the layout text
 		//
 		
-		if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'article_formats'.DS.$config['article_format'])) {
+		if(
+			(
+			$config['article_format'] != '-1' &&
+			is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'article_formats'.DS.$config['article_format'])
+			) ||
+			(
+				$config['article_format'] == '-1' &&
+				$config['article_format_text'] != ''
+			)
+		) {
 			// read the format file
-			$format_file = file_get_contents(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'article_formats'.DS.$config['article_format']);
+			$format_file = $config['article_format_text'];
+			
+			if($config['article_format'] != '-1') {
+				$format_file = file_get_contents(JPATH_ROOT . DS . 'modules' . DS . 'mod_news_pro_gk5' . DS . 'article_formats' . DS . $config['article_format']);
+			}
 			// replace values
 			$to_replace = array(
 				'{TITLE}',

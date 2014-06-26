@@ -140,11 +140,13 @@ window.addEvent("domready",function(){
 		
 	if(article_format == 1) {
 		document.id('jform_params_article_format').getParent().setStyle('display', 'block');
+		document.id('jform_params_article_format_text').getParent().setStyle('display', 'block');
 		$$('.article-format-hide').each(function(el, i) {
 			el.getParent().setStyle('display', 'none');
 		});
 	} else {
 		document.id('jform_params_article_format').getParent().setStyle('display', 'none');
+		document.id('jform_params_article_format_text').getParent().setStyle('display', 'none');
 		$$('.article-format-hide').each(function(el, i) {
 			el.getParent().setStyle('display', 'block');
 		});
@@ -155,11 +157,13 @@ window.addEvent("domready",function(){
 		
 		if(article_format == 1) {
 			document.id('jform_params_article_format').getParent().setStyle('display', 'block');
+			document.id('jform_params_article_format_text').getParent().setStyle('display', 'block');
 			$$('.article-format-hide').each(function(el, i) {
 				el.getParent().setStyle('display', 'none');
 			});
 		} else {
 			document.id('jform_params_article_format').getParent().setStyle('display', 'none');
+			document.id('jform_params_article_format_text').getParent().setStyle('display', 'none');
 			$$('.article-format-hide').each(function(el, i) {
 				el.getParent().setStyle('display', 'block');
 			});

@@ -114,6 +114,8 @@
                 </field>
                 
                 <field name="article_format" type="filelist" default="" label="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT" description="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_DESC" directory="modules/mod_news_pro_gk5/article_formats" filter="(\.format)$" stripext="" hide_default="hide_default" />
+                
+                <field name="article_format_text" type="textarea" default="" label="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_TEXT" description="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_TEXT_DESC" filter="raw" />
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE">
