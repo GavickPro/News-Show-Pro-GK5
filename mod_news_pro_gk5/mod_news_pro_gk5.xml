@@ -242,6 +242,11 @@
                     <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
                 </field>
                 
+                <field name="com_content_text_type" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE_DESC">
+                    <option value="introtext">MOD_NEWS_PRO_GK5_INTROTEXT</option>
+                    <option value="fulltext">MOD_NEWS_PRO_GK5_FULLTEXT</option>
+                </field>
+                
                 <field name="hide_current_com_content_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_COM_CONTENT_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_COM_CONTENT_ARTICLE_DESC">
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                     <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
@@ -253,6 +258,11 @@
                     <option value="k2">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_K2</option>
                     <option value="jcomments">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_JCOMMENTS</option>
                     <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
+                </field>
+                
+                <field name="com_k2_text_type" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE_DESC">
+                    <option value="introtext">MOD_NEWS_PRO_GK5_INTROTEXT</option>
+                    <option value="fulltext">MOD_NEWS_PRO_GK5_FULLTEXT</option>
                 </field>
                 
                 <field name="hide_current_k2_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE_DESC">
