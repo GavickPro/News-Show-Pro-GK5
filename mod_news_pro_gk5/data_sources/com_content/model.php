@@ -293,7 +293,9 @@ class NSP_GK5_com_content_Model {
 					}
 				}
 				// merge the new data to the array of items data
-				$content[$pos] = array_merge($content[$pos], (array) $item);
+				if(isset($content[$pos]) && is_array($content[$pos])) {
+					$content[$pos] = array_merge($content[$pos], (array) $item);
+				}
 			}
 		}
 		// load comments

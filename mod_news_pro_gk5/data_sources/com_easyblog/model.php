@@ -313,7 +313,9 @@ class NSP_GK5_com_easyblog_Model {
 			foreach($news2 as $item) {						
 			    $pos = array_search($item['id'], $content_id);
 				// merge the new data to the array of items data
-				$content[$pos] = array_merge($content[$pos], (array) $item);
+				if(isset($content[$pos]) && is_array($content[$pos])) {
+					$content[$pos] = array_merge($content[$pos], (array) $item);
+				}
 			}
 		}
 		// load comments
