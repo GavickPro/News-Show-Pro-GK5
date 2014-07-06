@@ -242,7 +242,7 @@
                     <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
                 </field>
                 
-                <field name="com_content_text_type" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE_DESC">
+                <field name="com_content_text_type" type="list" default="0" label="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE_DESC">
                     <option value="introtext">MOD_NEWS_PRO_GK5_INTROTEXT</option>
                     <option value="fulltext">MOD_NEWS_PRO_GK5_FULLTEXT</option>
                 </field>
@@ -260,7 +260,7 @@
                     <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
                 </field>
                 
-                <field name="com_k2_text_type" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE_DESC">
+                <field name="com_k2_text_type" type="list" default="0" label="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE_DESC">
                     <option value="introtext">MOD_NEWS_PRO_GK5_INTROTEXT</option>
                     <option value="fulltext">MOD_NEWS_PRO_GK5_FULLTEXT</option>
                 </field>
@@ -277,6 +277,11 @@
                     <option value="M">M</option>
                     <option value="S">S</option>
                     <option value="XS">XS</option>
+                </field>
+                
+                <field name="k2_get_extra_fields" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_K2_GET_EXTRA_FIELDS" description="MOD_NEWS_PRO_GK5_K2_GET_EXTRA_FIELDS_DESC">
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                 </field>
             </fieldset>
             
@@ -429,6 +434,28 @@
                 </field>
                 
                 <field name="portal_mode_news_blocks_rows" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_BLOCKS_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_BLOCKS_ROWS_DESC">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="NSP_PORTAL_MODE_SPEAKERS_LIST">
+                <field name="portal_mode_speakers_list_cols" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_SPEAKERS_LIST_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_SPEAKERS_LIST_COLS_DESC">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </field>
+                
+                <field name="portal_mode_speakers_list_rows" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_SPEAKERS_LIST_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_SPEAKERS_LIST_ROWS_DESC">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

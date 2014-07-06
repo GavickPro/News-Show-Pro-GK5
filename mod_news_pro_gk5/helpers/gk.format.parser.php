@@ -39,6 +39,9 @@ class NSP_GK5_Article_Format {
 			{VIDEO_HTML} - HTML of the article video
 			{CATEGORY_IMAGE_SRC} - article category image URL
 			
+			{{extra_field_alias}} - value of the extra field with specific alias
+			{{extra_field_alias_X}} - value of X-nth element in the array of the extra field data - indexing starts with 0
+			
 		*/
 		
 		//
@@ -171,6 +174,27 @@ class NSP_GK5_Article_Format {
 				);
 				// replace values in the format file 
 				$format_file = str_replace($to_replace, $replacement, $format_file);
+				// if using of the extra fields is enabled
+				if($config['k2_get_extra_fields'] == 1) {
+					$keywords = array_keys($data['extra_fields']);
+					$to_replace = array();
+					$replacement = array();
+					// prepare the replacement arrays
+					foreach($keywords as $keyword) {
+						if(is_array($data['extra_fields'][$keyword])) {
+							for($i = 0; $i < count($data['extra_fields'][$keyword]); $i++) {
+								array_push($to_replace, '{{' . $keyword . '_' . $i . '}}');
+								array_push($replacement, $data['extra_fields'][$keyword][$i]);	
+							}
+						} else {
+							array_push($to_replace, '{{' . $keyword . '}}');
+							array_push($replacement, $data['extra_fields'][$keyword]);
+						}
+					}
+					
+					// replace values in the format file 
+					$format_file = str_replace($to_replace, $replacement, $format_file);
+				}
 			}
 			// parse lang rules
 			$matches = array();
