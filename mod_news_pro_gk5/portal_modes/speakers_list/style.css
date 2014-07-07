@@ -78,9 +78,9 @@
 
 .gkNspPM-SpeakersList > figure > a:after {
 	color: #fff;
-	content: "g";
+	content: "\f007";
 	display: block;
-	font-family: events-pixellove;
+	font-family: FontAwesome;
 	font-size: 48px;
 	height: 64px;
 	left: 50%;
@@ -168,9 +168,25 @@
 
 /* Mobile devices */
 @media (max-width: 1030px) {
-	
+	.gkNspPM-SpeakersList h3 {
+		font-size: 18px;
+	}
+	.gkNspPM-SpeakersList small {
+		font-size: 13px;
+	}
 }
 
 @media (max-width: 820px) {
-	
+	.gkNspPM-SpeakersList[data-cols="4"] > figure {
+		width: 50%;
+	}	
+}
+
+@media (max-width: 640px) {
+	.gkNspPM-SpeakersList[data-cols="1"] > figure,
+	.gkNspPM-SpeakersList[data-cols="2"] > figure,
+	.gkNspPM-SpeakersList[data-cols="3"] > figure,
+	.gkNspPM-SpeakersList[data-cols="4"] > figure {
+		width: 100%;
+	}	
 }
