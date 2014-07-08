@@ -242,7 +242,7 @@
                     <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
                 </field>
                 
-                <field name="com_content_text_type" type="list" default="0" label="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE_DESC">
+                <field name="com_content_text_type" type="list" default="introtext" label="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE_DESC">
                     <option value="introtext">MOD_NEWS_PRO_GK5_INTROTEXT</option>
                     <option value="fulltext">MOD_NEWS_PRO_GK5_FULLTEXT</option>
                 </field>
@@ -260,7 +260,7 @@
                     <option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
                 </field>
                 
-                <field name="com_k2_text_type" type="list" default="0" label="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE_DESC">
+                <field name="com_k2_text_type" type="list" default="introtext" label="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE_DESC">
                     <option value="introtext">MOD_NEWS_PRO_GK5_INTROTEXT</option>
                     <option value="fulltext">MOD_NEWS_PRO_GK5_FULLTEXT</option>
                 </field>
