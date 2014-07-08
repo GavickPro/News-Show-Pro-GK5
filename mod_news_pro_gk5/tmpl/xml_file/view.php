@@ -216,6 +216,8 @@ class NSP_GK5_xml_file_View {
 	        $text = '';
 	        $title = '';
 	        $image = '';
+	        $readmore = '';
+	        $link = $item['url'];
 	        
 	        if($config['list_text_limit'] > 0) {
 	            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
@@ -230,7 +232,6 @@ class NSP_GK5_xml_file_View {
 				$title = htmlspecialchars($item['title']);
 				$title = NSP_GK5_Utils::cutText($title, $config, 'list_title_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
-				$link = $item['url'];
 			
 				if(JString::strlen($title) > 0) {
 					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
@@ -240,8 +241,13 @@ class NSP_GK5_xml_file_View {
 			if($config['links_image'] == 1) {
 				$image = NSP_GK5_xml_file_View::image($config, $item, false, false, true);
 			}
+			
+			if($config['links_readmore'] == 1) {
+				$readmore = '<a class="readon" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+			}
+			
 			// creating rest news list
-			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $image . (($image != '') ? '<div>' . $title . $text . '</div>' : ($title . $text)) . '</li>';	
+			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $image . (($image != '') ? '<div>' . $title . $text . $readmore . '</div>' : ($title . $text . $readmore)) . '</li>';	
 		} else {
 			return '';
 		}
@@ -253,6 +259,10 @@ class NSP_GK5_xml_file_View {
 	// category link generator
 	static function categoryLink($item) {
 		return $item["category_url"];
+	}
+	// user link generator
+	static function authorLink($item) {
+		return '';
 	}
 }
 

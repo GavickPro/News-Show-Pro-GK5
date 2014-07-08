@@ -273,7 +273,8 @@ class NSP_GK5_com_content_Model {
 		SELECT
 			content.id AS iid,
 			'.($config['use_title_alias'] ? 'content.alias' : 'content.title').' AS title, 
-			content.introtext AS text, 
+			content.'.$config['com_content_text_type'].' AS text,
+			content.'.($config['date_publish'] == 0 ? 'created' : ($config['date_publish'] == 1 ? 'publish_up' : 'publish_down')).' AS date, 
 			content.created AS date, 
 			content.publish_up AS date_publish,
 			content.hits AS hits,
@@ -427,8 +428,28 @@ class NSP_GK5_com_content_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['iid'] : ' content.id = '.$content[$i]['iid'];
 			}
-			
-			if($config['com_content_comments_source'] == 'komento') {
+			// check the comments source
+			if($config['com_content_comments_source'] == 'jcomments') {
+				// creating SQL query
+				$query_news = '
+				SELECT 
+					content.id AS id,
+					COUNT(comments.object_id) AS count			
+				FROM 
+					#__content AS content 
+					LEFT JOIN 
+						#__jcomments AS comments
+						ON comments.object_id = content.id 		
+				WHERE 
+					comments.published = 1
+					AND 
+					( '.$sql_where.' )
+					AND
+					comments.object_group = \'com_content\'  
+				GROUP BY 
+					comments.object_id
+				;';
+			} elseif($config['com_content_comments_source'] == 'komento') {
 				// creating SQL query
 				$query_news = '
 				SELECT 
@@ -465,9 +486,10 @@ class NSP_GK5_com_content_Model {
 				$content[$i]['comments'] = $counters_tab[$content[$i]['iid']];
 			}
 		}
-
+		
 		return $content;
 	}
+
 }
 
 // EOF

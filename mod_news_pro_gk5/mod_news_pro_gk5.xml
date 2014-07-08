@@ -90,6 +90,8 @@
                 </field>
                 
                 <field name="article_format" type="filelist" default="" label="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT" description="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_DESC" directory="modules/mod_news_pro_gk5/article_formats" filter="(\.format)$" stripext="" hide_default="hide_default" />
+
+                 <field name="article_format_text" type="textarea" default="" label="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_TEXT" description="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_TEXT_DESC" filter="raw" />
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE">
@@ -213,9 +215,15 @@
 	            
 	             <field name="com_content_comments_source" type="list" default="none" label="MOD_NEWS_PRO_GK5_COM_CONTENT_COMMENTS_SOURCE" description="MOD_NEWS_PRO_GK5_COM_CONTENT_COMMENTS_SOURCE_DESC">
 	            	<option value="none">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_NONE</option>
+	            	<option value="jcomments">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_JCOMMENTS</option>
 	            	<option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
 	            </field>
 	            
+				<field name="com_content_text_type" type="list" default="introtext" label="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_CONTENT_TEXT_TYPE_DESC">
+                    <option value="introtext">MOD_NEWS_PRO_GK5_INTROTEXT</option>
+                    <option value="fulltext">MOD_NEWS_PRO_GK5_FULLTEXT</option>
+                </field>
+
 	            <field name="hide_current_com_content_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_COM_CONTENT_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_COM_CONTENT_ARTICLE_DESC">
 	                <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
 	                <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
@@ -227,9 +235,15 @@
            		
            		<field name="k2_comments_source" type="list" default="k2" label="MOD_NEWS_PRO_GK5_K2_COMMENTS_SOURCE" description="MOD_NEWS_PRO_GK5_K2_COMMENTS_SOURCE_DESC">
            			<option value="k2">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_K2</option>
+           			<option value="jcomments">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_JCOMMENTS</option>
             		<option value="komento">MOD_NEWS_PRO_GK5_COMMENTS_SOURCE_KOMENTO</option>
             	</field>
             	
+				<field name="com_k2_text_type" type="list" default="introtext" label="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE" description="MOD_NEWS_PRO_GK5_COM_K2_TEXT_TYPE_DESC">
+                    <option value="introtext">MOD_NEWS_PRO_GK5_INTROTEXT</option>
+                    <option value="fulltext">MOD_NEWS_PRO_GK5_FULLTEXT</option>
+                </field>
+
             	<field name="hide_current_k2_article" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE" description="MOD_NEWS_PRO_GK5_HIDE_CURRENT_K2_ARTICLE_DESC">
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                     <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
@@ -243,6 +257,12 @@
                     <option value="S">S</option>
                     <option value="XS">XS</option>
                 </field>  
+
+                <field name="k2_get_extra_fields" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_K2_GET_EXTRA_FIELDS" description="MOD_NEWS_PRO_GK5_K2_GET_EXTRA_FIELDS_DESC">
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field>
+
            	</fieldset>
            	
            	<fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_HIKASHOP">
@@ -421,6 +441,28 @@
                    </field>
            </fieldset>
 			
+			<fieldset name="NSP_PORTAL_MODE_SPEAKERS_LIST">
+                <field name="portal_mode_speakers_list_cols" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_SPEAKERS_LIST_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_SPEAKERS_LIST_COLS_DESC">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </field>
+                
+                <field name="portal_mode_speakers_list_rows" type="list" default="2" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_SPEAKERS_LIST_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_SPEAKERS_LIST_ROWS_DESC">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </field>
+            </fieldset>
+
 			<fieldset name="NSP_PORTAL_MODE_GRID_TITLE_OVERLAY">				
 				<field name="portal_mode_grid_title_overlay_text_pos" type="list" default="none" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_POS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_TEXT_POS_DESC">
 					<option value="none">MOD_NEWS_PRO_GK5_PORTAL_MODE_GRID_TITLE_OVERLAY_NONE</option>
@@ -497,6 +539,16 @@
 			    
 			    <field type="text" name="portal_mode_video_list_per_page" default="3" label="NSP_PORTAL_MODE_VIDEO_LIST_PER_PAGE" description="NSP_PORTAL_MODE_VIDEO_LIST_PER_PAGE_DESC" />
 			    
+				<field name="portal_mode_video_list_title" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_TITLE" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_TITLE_DESC">
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                
+                <field name="portal_mode_video_list_date" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_DATE" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_DATE_DESC">
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+
 			    <field name="portal_mode_video_list_title_limit_type" class="short" type="radio" default="chars" label="NSP_PORTAL_MODE_VIDEO_LIST_TITLE_LIMIT_TYPE" description="">
 			            <option value="words">MOD_NEWS_PRO_GK5_WORDS</option>
 			            <option value="chars">MOD_NEWS_PRO_GK5_CHARS</option>

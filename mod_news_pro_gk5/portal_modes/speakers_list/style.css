@@ -1,0 +1,192 @@
+/* Portal Mode - News Blocks */
+
+.gkNspPM-SpeakersList figure {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	margin: 20px 0;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	width: 50%;
+}
+
+.gkNspPM-SpeakersList[data-cols="1"] > figure { width: 100%; }
+.gkNspPM-SpeakersList[data-cols="2"] > figure { width: 50%; }
+.gkNspPM-SpeakersList[data-cols="3"] > figure { width: 33.333333%; }
+.gkNspPM-SpeakersList[data-cols="4"] > figure { width: 25%; }
+
+.gkNspPM-SpeakersList[data-cols="1"] > figure,
+.gkNspPM-SpeakersList[data-cols="2"] > figure:nth-child(2n+1),
+.gkNspPM-SpeakersList[data-cols="3"] > figure:nth-child(3n+1),
+.gkNspPM-SpeakersList[data-cols="4"] > figure:nth-child(4n+1) { 
+	clear: both;
+}
+
+.gkNspPM-SpeakersList img {
+	border-radius: 50%;
+	display: block;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+}
+
+.gkNspPM-SpeakersList > figure > a {
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 auto 32px auto;
+	overflow: hidden;
+	position: relative;
+	-webkit-transform: scale(1.001);
+	-moz-transform: scale(1.001);
+	-ms-transform: scale(1.001);
+	-o-transform: scale(1.001);
+	transform: scale(1.001);
+}
+
+.gkNspPM-SpeakersList > figure > a:before {
+	background: rgba(0, 188, 242, 0.9);
+	border-radius: 50%;
+	content: "";
+	display: block;
+	height: 100%;
+	opacity: 0;
+	position: absolute;
+	text-align: center;
+	-webkit-transform: scale(0.5);
+	-moz-transform: scale(0.5);
+	-ms-transform: scale(0.5);
+	-o-transform: scale(0.5);
+	transform: scale(0.5);
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.gkNspPM-SpeakersList > figure > a:after {
+	color: #fff;
+	content: "\f007";
+	display: block;
+	font-family: FontAwesome;
+	font-size: 48px;
+	height: 64px;
+	left: 50%;
+	line-height: 1.4;
+	margin: -32px 0 0 -32px;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: scale(.5);
+	-moz-transform: scale(.5);
+	-ms-transform: scale(.5);
+	-o-transform: scale(.5);
+	transform: scale(.5);
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	-webkit-transition-delay: .125s;
+	-moz-transition-delay: .125s;
+	-ms-transition-delay: .125s;
+	-o-transition-delay: .125s;
+	transition-delay: .125s;
+	width: 64px;
+	z-index: 2;
+}
+
+.gkNspPM-SpeakersList > figure > a:hover:before {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+
+.gkNspPM-SpeakersList > figure > a:hover:after {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+
+.gkNspPM-SpeakersList > figure > a:hover img {
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.gkNspPM-SpeakersList figcaption {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: block;
+	padding: 0 32px 40px 32px;
+	text-align: center;
+}
+
+.gkNspPM-SpeakersList h3 {
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 1.7;
+}
+
+.gkNspPM-SpeakersList small {
+	color: #666;
+	display: block;
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.gkNspPM-SpeakersList figcaption a {
+	color: #000;
+}
+
+.gkNspPM-SpeakersList figcaption a:active,
+.gkNspPM-SpeakersList figcaption a:focus,
+.gkNspPM-SpeakersList figcaption a:hover {
+	color: #00bcf2;
+}
+
+/* Mobile devices */
+@media (max-width: 1030px) {
+	.gkNspPM-SpeakersList h3 {
+		font-size: 18px;
+	}
+	.gkNspPM-SpeakersList small {
+		font-size: 13px;
+	}
+}
+
+@media (max-width: 820px) {
+	.gkNspPM-SpeakersList[data-cols="4"] > figure {
+		width: 50%;
+	}	
+}
+
+@media (max-width: 640px) {
+	.gkNspPM-SpeakersList[data-cols="1"] > figure,
+	.gkNspPM-SpeakersList[data-cols="2"] > figure,
+	.gkNspPM-SpeakersList[data-cols="3"] > figure,
+	.gkNspPM-SpeakersList[data-cols="4"] > figure {
+		width: 100%;
+	}	
+}

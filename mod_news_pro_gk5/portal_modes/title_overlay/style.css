@@ -94,3 +94,20 @@
 	opacity: 0.75;
 	left: 0;
 }
+
+/* Mobile devices */
+@media (max-width: 1030px) {
+	.gkNspPM-TitleOverlay figure {
+		float: none;
+	}
+	
+	.gkNspPM-TitleOverlay img {
+		width: 100%;
+	}
+}
+
+@media (max-width: 580px) {
+	.gkNspPM-TitleOverlay > figure > figcaption {
+		width: 100%!important;
+	}
+}

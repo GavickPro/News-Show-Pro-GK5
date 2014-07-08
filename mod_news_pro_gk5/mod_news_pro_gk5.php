@@ -26,11 +26,8 @@ JHtml::_('behavior.framework', true);
 
 // start the module code
 $helper = new NSP_GK5_Helper();
-
 $helper->init($module, $params);
-
 $helper->getDatas();
-
 $helper->renderLayout();
 
 // EOF

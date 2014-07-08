@@ -248,14 +248,47 @@
 }
 
 /* Mobile devices */
+@media (max-width: 1280px) {
+	.gkNspPM-VideoList .gkBottomNav {
+		margin: 32px 19px -16px 19px;
+	}
+	.gkNspPM-VideoList .gkItemsPage figure {
+		padding: 0 6px;
+	}
+	.gkNspPM-VideoList {
+		margin: 0 -6px;
+	}
+	.gkNspPM-VideoList figcaption {
+		padding: 0 8px 16px 8px;
+	}
+}
+
 @media (max-width: 1100px) {
-	
+	 .gkNspPM-VideoList h3 {
+	 	font-size: 13px;
+	 }
+	 .gkNspPM-VideoList .gkBottomNav {
+	 	margin: 10px 10px 5px 10px;
+	 	min-height: 36px;
+	 }
 }
 
-@media (max-width: 760px) {
-	 
+@media (max-width: 640px) {
+	 .gkNspPM-VideoList .gkItemsPage figure {
+	 	padding: 0 2px;
+	 }
+	 .gkNspPM-VideoList h3 {
+	 	font-size: 12px;
+	 }
 }
 
-@media (max-width: 600px) {
-	
+@media (max-width: 480px) {
+	.gkNspPM-VideoList .gkItemsPage[data-cols="1"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="2"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="3"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="4"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="5"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="6"] figure {
+		width: 100%;
+	}
 }

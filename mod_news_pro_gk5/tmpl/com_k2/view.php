@@ -198,8 +198,11 @@ class NSP_GK5_com_k2_View {
 			$news_info_tag = stripos($config['info'.(($num == 2) ? '2' : '').'_format'], '%CART') !== FALSE ? 'div' : 'p';
 	        $news_info = '<'.$news_info_tag.' class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</'.$news_info_tag.'>';
 	        //
-	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
-	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
+	        $author_name .= (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
+	        $author_html = '<a href="'.urldecode(JRoute::_(K2HelperRoute::getUserRoute($item['author_id']))).'">';
+	        $author_html .= $author_name;
+	        $author_html .= '</a>';
+	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
 	        //
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);
 	        //
@@ -315,6 +318,8 @@ class NSP_GK5_com_k2_View {
 	        $text = '';
 	        $title = '';
 	        $image = '';
+	        $readmore = '';
+	        $link = NSP_GK5_com_k2_View::itemLink($item);
 	        
 	        if($config['list_text_limit'] > 0) {
 	            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
@@ -329,7 +334,6 @@ class NSP_GK5_com_k2_View {
 				$title = htmlspecialchars($item['title']);
 				$title = NSP_GK5_Utils::cutText($title, $config, 'list_title_limit', '&hellip;');
 				$title = str_replace('"', "&quot;", $title);
-				$link = NSP_GK5_com_k2_View::itemLink($item);
 			
 				if(JString::strlen($title) > 0) {
 					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
@@ -339,8 +343,13 @@ class NSP_GK5_com_k2_View {
 			if($config['links_image'] == 1) {
 				$image = NSP_GK5_com_k2_View::image($config, $item, false, false, true);
 			}
+			
+			if($config['links_readmore'] == 1) {
+				$readmore = '<a class="readon" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+			}
+			
 			// creating rest news list
-			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $image . (($image != '') ? '<div>' . $title . $text . '</div>' : ($title . $text)) . '</li>';	
+			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $image . (($image != '') ? '<div>' . $title . $text . $readmore . '</div>' : ($title . $text . $readmore)) . '</li>';	
 		} else {
 			return '';
 		}
@@ -352,6 +361,10 @@ class NSP_GK5_com_k2_View {
 	// category link generator
 	static function categoryLink($item) {
 		return urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item['cid'].':'.urlencode($item['cat_alias']))));
+	}
+	// user link generator
+	static function authorLink($item) {
+		return urldecode(JRoute::_(K2HelperRoute::getUserRoute($item['author_id'])));
 	}
 	// K2 Store data generator
 	static function k2Store($item) {

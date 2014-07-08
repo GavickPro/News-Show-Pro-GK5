@@ -1,4 +1,5 @@
 <?php
+
 /**
 * Helper Utils class
 * @package News Show Pro GK5

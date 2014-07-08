@@ -26,6 +26,7 @@ class NSP_GK5_Article_Format {
 			{IMAGE_SRC} - article image URL
 			{AUTHOR_EMAIL} - article autor e-mail 
 			{AUTHOR_NAME} - article author name
+			{AUTHOR_URL} - article author URL
 			{CATEGORY} - article category name
 			{CATEGORY_URL} - article category URL
 			{HITS} - article hits
@@ -38,12 +39,15 @@ class NSP_GK5_Article_Format {
 			{VIDEO_HTML} - HTML of the article video
 			{CATEGORY_IMAGE_SRC} - article category image URL
 			
+			{{extra_field_alias}} - value of the extra field with specific alias
+			{{extra_field_alias_X}} - value of X-nth element in the array of the extra field data - indexing starts with 0
+			
 		*/
 		
 		//
 		// Get the values
 		//
-
+		
 		// Image
 		$viewClass = 'NSP_GK5_'.$config['source_name'].'_View';
 		// Basic data
@@ -51,6 +55,7 @@ class NSP_GK5_Article_Format {
 		$text = NSP_GK5_Utils::cutText($data['text'], $config, 'news_limit');
 		// URL
 		$url = '';
+		
 		if(isset($data['url'])) { 
 			$url = $data['url'];
 		} else {
@@ -61,7 +66,8 @@ class NSP_GK5_Article_Format {
 		$image_src = call_user_func(array($viewClass, 'image'), $config, $data, true);
 		// Author data
 		$author_email = $data['author_email'];
-		$author_name = $data['author'];
+		$author_name = $data['author_username'];
+		$author_url = call_user_func(array($viewClass, 'authorLink'), $data);
 		// Category data
 		$category = $data['catname'];
 		$category_url = '';
@@ -73,15 +79,28 @@ class NSP_GK5_Article_Format {
 		// Other data
 		$hits = $data['hits'];
 		$date = JHTML::_('date', $data['date'], $config['date_format']);
-		$rating = $data['rating_count'] > 0 ? number_format($data['rating_sum'] / $data['rating_count'], 2) : 0;
+		$rating = $item['rating_count'] > 0 ? number_format($data['rating_sum'] / $data['rating_count'], 2) : 0;
 		
 		//
 		// Get the layout text
 		//
 		
-		if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'article_formats'.DS.$config['article_format'])) {
+		if(
+			(
+			$config['article_format'] != '-1' &&
+			is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'article_formats'.DS.$config['article_format'])
+			) ||
+			(
+				$config['article_format'] == '-1' &&
+				$config['article_format_text'] != ''
+			)
+		) {
 			// read the format file
-			$format_file = file_get_contents(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'article_formats'.DS.$config['article_format']);
+			$format_file = $config['article_format_text'];
+			
+			if($config['article_format'] != '-1') {
+				$format_file = file_get_contents(JPATH_ROOT . DS . 'modules' . DS . 'mod_news_pro_gk5' . DS . 'article_formats' . DS . $config['article_format']);
+			}
 			// replace values
 			$to_replace = array(
 				'{TITLE}',
@@ -90,6 +109,7 @@ class NSP_GK5_Article_Format {
 				'{IMAGE_SRC}',
 				'{AUTHOR_EMAIL}', 
 				'{AUTHOR_NAME}',
+				'{AUTHOR_URL}',
 				'{CATEGORY}',
 				'{CATEGORY_URL}',
 				'{HITS}',
@@ -104,6 +124,7 @@ class NSP_GK5_Article_Format {
 				$image_src,
 				$author_email,
 				$author_name,
+				$author_url,
 				$category,
 				$category_url,
 				$hits,
@@ -153,11 +174,32 @@ class NSP_GK5_Article_Format {
 				);
 				// replace values in the format file 
 				$format_file = str_replace($to_replace, $replacement, $format_file);
+				// if using of the extra fields is enabled
+				if($config['k2_get_extra_fields'] == 1) {
+					$keywords = array_keys($data['extra_fields']);
+					$to_replace = array();
+					$replacement = array();
+					// prepare the replacement arrays
+					foreach($keywords as $keyword) {
+						if(is_array($data['extra_fields'][$keyword])) {
+							for($i = 0; $i < count($data['extra_fields'][$keyword]); $i++) {
+								array_push($to_replace, '{{' . $keyword . '_' . $i . '}}');
+								array_push($replacement, $data['extra_fields'][$keyword][$i]);	
+							}
+						} else {
+							array_push($to_replace, '{{' . $keyword . '}}');
+							array_push($replacement, $data['extra_fields'][$keyword]);
+						}
+					}
+					
+					// replace values in the format file 
+					$format_file = str_replace($to_replace, $replacement, $format_file);
+				}
 			}
 			// parse lang rules
 			$matches = array();
 			preg_match_all('@{{.*?}}@', $format_file, $matches);
-
+			
 			if(count($matches) > 0) {
 				for($i = 0; $i < count($matches); $i++) {
 					$phrase = $matches[$i][0];

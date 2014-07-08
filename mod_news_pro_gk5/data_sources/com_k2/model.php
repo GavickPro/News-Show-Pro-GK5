@@ -276,8 +276,8 @@ class NSP_GK5_com_k2_Model {
 			content.id AS id,
 			content.alias AS alias,
 			'.($config['use_title_alias'] ? 'content.alias' : 'content.title').' AS title, 
-			content.introtext AS text, 
-			content.created AS date, 
+			content.'.$config['com_k2_text_type'].' AS text,
+			content.'.($config['date_publish'] == 0 ? 'created' : ($config['date_publish'] == 1 ? 'publish_up' : 'publish_down')).' AS date, 
 			content.publish_up AS date_publish,
 			content.hits AS hits,
 			content.featured AS frontpage,
@@ -334,12 +334,91 @@ class NSP_GK5_com_k2_Model {
 		if(stripos($config['info_format'], '%COMMENTS') !== FALSE || stripos($config['info2_format'], '%COMMENTS') !== FALSE) {
 			$content = NSP_GK5_com_k2_Model::getComments($content, $config);
 		}
+		// load extra fields
+		if($config['k2_get_extra_fields'] == 1) {
+			$content = NSP_GK5_com_k2_Model::getExtraFields($content, $config);
+		}
 		// load tags
 		if(stripos($config['info_format'], '%TAGS') !== FALSE || stripos($config['info2_format'], '%TAGS') !== FALSE) {
 			$content = NSP_GK5_com_k2_Model::getTags($content, $config);
 		}
 		// the content array
 		return $content; 
+	}
+	// method to get the extra fields
+	static function getExtraFields($content, $config) {
+		// 
+		$db = JFactory::getDBO();
+		$schema_tab = array();
+		$preparation_tab = array();
+		$results_tab = array();
+		// 
+		if(count($content) > 0) {
+			// initializing variables
+			$sql_where = '';
+			//
+			for($i = 0; $i < count($content); $i++ ) {	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['id'] : ' content.id = '.$content[$i]['id'];
+			}
+			// getting extra fields data
+			$query_news = '
+			SELECT 
+				content.id AS id,
+				content.extra_fields AS extra_fields
+			FROM 
+				#__k2_items AS content		
+			WHERE 
+				'.$sql_where.'
+			ORDER BY
+				content.id ASC
+			;';
+			// run SQL query
+			$db->setQuery($query_news);
+			// when exist some results
+			if($extra_fields_data = $db->loadObjectList()) {
+				// generating tables of news data
+				foreach($extra_fields_data as $item) {					
+					$preparation_tab[$item->id] = json_decode($item->extra_fields);
+				}
+			}
+			// getting extra fields schema
+			$query_news2 = '
+			SELECT 
+				extra_fields.id AS id,
+				extra_fields.name AS name,
+				extra_fields.value AS value
+			FROM 
+				#__k2_extra_fields AS extra_fields	
+			ORDER BY
+				extra_fields.id ASC
+			;';
+			// run SQL query
+			$db->setQuery($query_news2);
+			// when exist some results
+			if($extra_fields_schema = $db->loadObjectList()) {
+				// generating tables of news data
+				foreach($extra_fields_schema as $item) {					
+					$schema_tab[$item->id] = json_decode($item->value);
+				}
+			}
+			// merge the retrieved data
+			foreach($preparation_tab as $key => $extra_fields_tab) {
+				$extra_fields_data = array();
+				
+				foreach($extra_fields_tab as $extra_field) {					
+					$extra_fields_data[$schema_tab[$extra_field->id][0]->alias] = $extra_field->value;
+				}
+				
+				$results_tab[$key] = $extra_fields_data;
+			}
+		}
+		//
+		for($i = 0; $i < count($content); $i++ ) {	
+			$content[$i]['extra_fields'] = $results_tab[$content[$i]['id']];
+		}
+		
+		return $content;
 	}
 	// method to get comments amount
 	static function getComments($content, $config) {
@@ -372,6 +451,26 @@ class NSP_GK5_com_k2_Model {
 					AND ( '.$sql_where.' ) 
 				GROUP BY 
 					comments.itemID
+				;';
+			} elseif($config['k2_comments_source'] == 'jcomments') {
+				// creating SQL query
+				$query_news = '
+				SELECT 
+					content.id AS id,
+					COUNT(comments.object_id) AS count			
+				FROM 
+					#__k2_items AS content 
+					LEFT JOIN 
+						#__jcomments AS comments
+						ON comments.object_id = content.id 		
+				WHERE 
+					comments.published = 1
+					AND 
+					( '.$sql_where.' )
+					AND
+					comments.object_group = \'com_k2\'  
+				GROUP BY 
+					comments.object_id
 				;';
 			} elseif($config['k2_comments_source'] == 'komento') {
 				// creating SQL query
@@ -410,7 +509,7 @@ class NSP_GK5_com_k2_Model {
 				$content[$i]['comments'] = $counters_tab[$content[$i]['id']];
 			}
 		}
-
+		
 		return $content;
 	}	
 	//

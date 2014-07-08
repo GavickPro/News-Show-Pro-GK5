@@ -35,6 +35,8 @@ class NSP_GK5_Helper {
 		$this->module_id = ($params->get('module_unique_id', '') == '') ? 'nsp-'.$module->id : $params->get('module_unique_id', '');
 		$this->config = $params->toArray();
 		$this->config['module_id'] = $this->module_id;
+		if(!isset($this->config['com_content_text_type'])) { $this->config['com_content_text_type'] = 'introtext'; }
+		if(!isset($this->config['com_k2_text_type'])) { $this->config['com_k2_text_type'] = 'introtext'; }
 		$this->params = $params;
 		// detect the data source
 		$this->source = $this->config["source_name"];

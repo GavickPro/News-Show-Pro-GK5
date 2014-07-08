@@ -20,8 +20,8 @@ class NSP_GK5_jomsocial_Model {
 	}
 	// Method to get articles in standard mode 
 	static function getArticles($categories, $config, $amount) {	
+		//
 		if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) {
-			//
 			$sql_where = '';
 			// Overwrite SQL query when user set IDs manually
 			if(
@@ -169,7 +169,7 @@ class NSP_GK5_jomsocial_Model {
 							ON
 							user.userid = users.id
 					
-				WHERE
+				WHERE 
 					(
 						activity.access = 0 
 						OR
@@ -250,90 +250,91 @@ class NSP_GK5_jomsocial_Model {
 			}
 			// the content array
 			return $content; 
-		} else {
-			return null;
+			
+			} else {
+				return null;
+			}
 		}
-	}
-	// method to get comments/likes amount
-	static function getComments($content, $config) {
-		// 
-		$db = JFactory::getDBO();
-		$counters_tab = array();
-		$likes_tab = array();
-		// 
-		if(count($content) > 0) {
-			// initializing variables
-			$sql_where = '';
+		// method to get comments/likes amount
+		static function getComments($content, $config) {
+			// 
+			$db = JFactory::getDBO();
+			$counters_tab = array();
+			$likes_tab = array();
+			// 
+			if(count($content) > 0) {
+				// initializing variables
+				$sql_where = '';
+				//
+				for($i = 0; $i < count($content); $i++ ) {	
+					// linking string with content IDs
+					$sql_where .= ($i != 0) ? ' OR activity.id = '.$content[$i]['ID'] : ' activity.id = '.$content[$i]['ID'];
+				}
+				// creating SQL query for comments
+				$query_news = '
+				SELECT 
+					activity.id AS ID,
+					COUNT(comments.contentid) AS count			
+				FROM 
+					#__community_activities AS activity 
+					LEFT JOIN 
+						#__community_wall AS comments
+						ON 
+						comments.contentid = activity.id 		
+				WHERE 
+					comments.published = 1
+					AND 
+					( '.$sql_where.' )
+					AND
+					comments.type = "'.$content[0]['type'].'"  
+				GROUP BY 
+					comments.contentid
+				;';
+				// run SQL query
+				$db->setQuery($query_news);
+				// when exist some results
+				if($counters = $db->loadObjectList()) {
+					// generating tables of news data
+					foreach($counters as $item) {						
+						$counters_tab[$item->ID] = $item->count;
+					}
+				}
+				
+				// creating SQL query for likes
+				$query_news = '
+				SELECT 
+					activity.id AS ID,
+					COUNT(likes.uid) AS count			
+				FROM 
+					#__community_activities AS activity 
+					LEFT JOIN 
+						#__community_likes AS likes
+						ON 
+						likes.uid = activity.id 		
+				WHERE 
+					( '.$sql_where.' )
+					AND
+					likes.element = "'.$content[0]['type'].'"  
+				GROUP BY 
+					likes.uid
+				;';
+				// run SQL query
+				$db->setQuery($query_news);
+				// when exist some results
+				if($counters = $db->loadObjectList()) {
+					// generating tables of news data
+					foreach($counters as $item) {						
+						$likes_tab[$item->ID] = $item->count;
+					}
+				}
+			}
 			//
 			for($i = 0; $i < count($content); $i++ ) {	
-				// linking string with content IDs
-				$sql_where .= ($i != 0) ? ' OR activity.id = '.$content[$i]['ID'] : ' activity.id = '.$content[$i]['ID'];
-			}
-			// creating SQL query for comments
-			$query_news = '
-			SELECT 
-				activity.id AS ID,
-				COUNT(comments.contentid) AS count			
-			FROM 
-				#__community_activities AS activity 
-				LEFT JOIN 
-					#__community_wall AS comments
-					ON 
-					comments.contentid = activity.id 		
-			WHERE 
-				comments.published = 1
-				AND 
-				( '.$sql_where.' )
-				AND
-				comments.type = "'.$content[0]['type'].'"  
-			GROUP BY 
-				comments.contentid
-			;';
-			// run SQL query
-			$db->setQuery($query_news);
-			// when exist some results
-			if($counters = $db->loadObjectList()) {
-				// generating tables of news data
-				foreach($counters as $item) {						
-					$counters_tab[$item->ID] = $item->count;
-				}
+				$content[$i]['likes'] = isset($likes_tab[$content[$i]['ID']]) ? $likes_tab[$content[$i]['ID']] : 0;
+				$content[$i]['comments'] = isset($counters_tab[$content[$i]['ID']]) ? $counters_tab[$content[$i]['ID']] : 0;
 			}
 			
-			// creating SQL query for likes
-			$query_news = '
-			SELECT 
-				activity.id AS ID,
-				COUNT(likes.uid) AS count			
-			FROM 
-				#__community_activities AS activity 
-				LEFT JOIN 
-					#__community_likes AS likes
-					ON 
-					likes.uid = activity.id 		
-			WHERE 
-				( '.$sql_where.' )
-				AND
-				likes.element = "'.$content[0]['type'].'"  
-			GROUP BY 
-				likes.uid
-			;';
-			// run SQL query
-			$db->setQuery($query_news);
-			// when exist some results
-			if($counters = $db->loadObjectList()) {
-				// generating tables of news data
-				foreach($counters as $item) {						
-					$likes_tab[$item->ID] = $item->count;
-				}
-			}
-		}
-		//
-		for($i = 0; $i < count($content); $i++ ) {	
-			$content[$i]['likes'] = isset($likes_tab[$content[$i]['ID']]) ? $likes_tab[$content[$i]['ID']] : 0;
-			$content[$i]['comments'] = isset($counters_tab[$content[$i]['ID']]) ? $counters_tab[$content[$i]['ID']] : 0;
-		}
-		
-		return $content;
+			return $content;
 	}
 }
 

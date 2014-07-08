@@ -129,7 +129,11 @@ class NSP_GK5_com_easyblog_Model {
 		if($config['data_source'] == 'easyblog_authors' && $config['easyblog_authors'] != ''){
 			// initializing variables
 			$sql_where = '';
-			$ids = explode(',', $config['easyblog_authors']);
+			if(!is_array($config['easyblog_authors'])) {
+				$ids = explode(',', $config['easyblog_authors']);
+			} else {
+				$ids = $config['easyblog_authors'];
+			}
 			//
 			for($i = 0; $i < count($ids); $i++ ){	
 				// linking string with content IDs
@@ -281,7 +285,7 @@ class NSP_GK5_com_easyblog_Model {
 			content.permalink AS alias,
 			'.($config['use_title_alias'] ? 'content.permalink' : 'content.title').' AS title, 
 			content.intro AS text, 
-			content.created AS date, 
+			content.'.($config['date_publish'] == 0 ? 'created' : ($config['date_publish'] == 1 ? 'publish_up' : 'publish_down')).' AS date, 
 			content.publish_up AS date_publish,
 			content.hits AS hits,
 			content.frontpage AS frontpage,
@@ -307,7 +311,6 @@ class NSP_GK5_com_easyblog_Model {
 			'.$order_options.'
 		';
 		// run the query
-		//print_r($second_query_news);
 		$db->setQuery($second_query_news);
 		
 		// when exist some results
@@ -392,7 +395,7 @@ class NSP_GK5_com_easyblog_Model {
 				;';
 			}
 			// run SQL query
-			//$db->setQuery($query_news);
+			$db->setQuery($query_news);
 			// when exist some results
 			if($counters = $db->loadObjectList()) {
 				// generating tables of news data
@@ -445,7 +448,7 @@ class NSP_GK5_com_easyblog_Model {
 				content.id ASC
 			;';
 			// run SQL query
-			//$db->setQuery($query_news);
+			$db->setQuery($query_news);
 			// when exist some results
 			if($counters = $db->loadObjectList()) {
 				// generating tables of news data
