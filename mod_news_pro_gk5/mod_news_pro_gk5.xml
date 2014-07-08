@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
-	<creationDate>04 Jun 2014</creationDate>
+	<creationDate>08/07/2014</creationDate>
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2014 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
