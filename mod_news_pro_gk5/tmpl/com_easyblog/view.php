@@ -327,7 +327,7 @@ class NSP_GK5_com_easyblog_View {
 	}
 	// article link generator
 	static function itemLink($item, $config = false) {
-		return urldecode(JRoute::_(EasyBlogRouter::_('index.php?option=com_easyblog&view=entry&id=' . $item['id'])));
+		return urldecode(JRoute::_('index.php?option=com_easyblog&view=entry&id=' . $item['id']));
 	}
 	// category link generator
 	static function categoryLink($item) {
