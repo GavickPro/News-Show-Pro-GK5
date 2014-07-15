@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 // load necessary K2 Route Helper
 require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
 //
-class NSP_GK5_com_k2_View {
+class NSP_GK5_com_k2_View extends NSP_GK5_View {
 	// header generator
 	static function header($config, $item) {
 		if($config['news_content_header_pos'] != 'disabled') {
@@ -47,6 +47,7 @@ class NSP_GK5_com_k2_View {
 		if($config['news_content_text_pos'] != 'disabled') {
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
+			$item['text'] = NSP_GK5_com_k2_View::textPlugins($item['text'], $config);
 			$link = NSP_GK5_com_k2_View::itemLink($item);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 

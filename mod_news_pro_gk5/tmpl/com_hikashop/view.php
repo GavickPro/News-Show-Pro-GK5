@@ -20,7 +20,7 @@ if(!defined('DS')) {
 include_once(rtrim(JPATH_ADMINISTRATOR,DS).DS.'components'.DS.'com_hikashop'.DS.'helpers'.DS.'helper.php');
 
 
-class NSP_GK5_com_hikashop_View {
+class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 	// header generator
 	static function header($config, $item) {
 		if($config['news_content_header_pos'] != 'disabled') {
@@ -51,6 +51,7 @@ class NSP_GK5_com_hikashop_View {
 		if($config['news_content_text_pos'] != 'disabled') {
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
+			$item['text'] = NSP_GK5_com_hikashop_View::textPlugins($item['text'], $config);
 			$link = NSP_GK5_com_hikashop_View::itemLink($item, $config);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 

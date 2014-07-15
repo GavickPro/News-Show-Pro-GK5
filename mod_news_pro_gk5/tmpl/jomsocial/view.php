@@ -17,7 +17,7 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 	include_once(JPATH_BASE . '/components/com_community/defines.community.php');
 	require_once(JPATH_BASE . '/components/com_community/libraries/core.php');
 	
-	class NSP_GK5_jomsocial_View {
+	class NSP_GK5_jomsocial_View extends NSP_GK5_View {
 		// header generator
 		static function header($config, $item) {
 			return '';		
@@ -27,7 +27,8 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 			if($config['news_content_text_pos'] != 'disabled') {
 				//
 				$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
-				$link = NSP_GK5_jomsocial_View::itemLink($item);
+				$item['text'] = NSP_GK5_com_jomsocial_View::textPlugins($item['text']);
+				$link = NSP_GK5_jomsocial_View::itemLink($item, $config);
 				//
 				$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
 				$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];

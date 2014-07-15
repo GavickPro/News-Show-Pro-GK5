@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted access');
 require_once (JPATH_SITE.DS.'components'.DS.'com_easyblog'.DS.'helpers'.DS.'router.php');
 require_once (JPATH_SITE.DS.'components'.DS.'com_easyblog'.DS.'helpers'.DS.'avatar.php');
 //
-class NSP_GK5_com_easyblog_View {
+class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	// header generator
 	static function header($config, $item) {
 		if($config['news_content_header_pos'] != 'disabled') {
@@ -48,6 +48,7 @@ class NSP_GK5_com_easyblog_View {
 		if($config['news_content_text_pos'] != 'disabled') {
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
+			$item['text'] = NSP_GK5_com_easyblog_View::textPlugins($item['text'], $config);
 			$link = NSP_GK5_com_easyblog_View::itemLink($item);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 

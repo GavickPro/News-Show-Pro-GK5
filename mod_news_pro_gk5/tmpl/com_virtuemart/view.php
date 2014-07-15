@@ -13,7 +13,7 @@
 // access restriction
 defined('_JEXEC') or die('Restricted access');
 
-class NSP_GK5_com_virtuemart_View {
+class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 	// header generator
 	static function header($config, $item) {
 		if($config['news_content_header_pos'] != 'disabled') {
@@ -44,6 +44,7 @@ class NSP_GK5_com_virtuemart_View {
 		if($config['news_content_text_pos'] != 'disabled') {
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
+			$item['text'] = NSP_GK5_com_virtuemart_View::textPlugins($item['text'], $config);
 			$link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
