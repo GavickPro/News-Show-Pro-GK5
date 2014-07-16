@@ -18,6 +18,11 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	static function header($config, $item) {
 		if($config['news_content_header_pos'] != 'disabled') {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
+			
+			if(NSP_GK5_com_content_View::image($config, $item, true, true) != '') {
+				$class .= ' has-image';
+			}
+			
 			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
 			$output = str_replace('"', "&quot;", $output);
 			// first word span wrap
