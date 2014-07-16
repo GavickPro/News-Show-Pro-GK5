@@ -234,8 +234,8 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 		        $link = NSP_GK5_jomsocial_View::itemLink($item);
 		        
 		        if($config['list_text_limit'] > 0) {
-		            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
-		            $text = preg_replace("/\{.+?\}/", "", $text);
+		           	$item['text'] = NSP_GK5_jomsocial_View::textPlugins($item['text'], $config);
+		           	$text = NSP_GK5_Utils::cutText(strip_tags($item['text']), $config, 'list_text_limit', '&hellip;');
 		            
 		            if(JString::strlen($text) > 0) {
 		            	$text = '<p>'.$text.'</p>';

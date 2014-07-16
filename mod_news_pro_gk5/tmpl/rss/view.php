@@ -199,8 +199,8 @@ class NSP_GK5_rss_View extends NSP_GK5_View {
 	        $link = $item['url'];
 	        
 	        if($config['list_text_limit'] > 0) {
-	            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
-	            $text = preg_replace("/\{.+?\}/", "", $text);
+	            $item['text'] = NSP_GK5_rss_View::textPlugins($item['text'], $config);
+	            $text = NSP_GK5_Utils::cutText(strip_tags($item['text']), $config, 'list_text_limit', '&hellip;');
 	            
 	            if(JString::strlen($text) > 0) {
 	            	$text = '<p>'.$text.'</p>';
