@@ -127,7 +127,7 @@
                 
                 <field name="com_content_categories" type="category" class="gk-hidden-field" extension="com_content" default="" multiple="multiple" label="MOD_NEWS_PRO_GK5_COM_CATEGORIES" description="MOD_NEWS_PRO_GK5_COM_CATEGORIES_DESC" />
                 
-                <field name="com_content_articles" type="text" default="" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_COM_ARTICLES" size="5" description="MOD_NEWS_PRO_GK5_COM_ARTICLES_DESC" />
+                <field name="com_content_articles" type="text" default="" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_COM_ARTICLES" size="25" description="MOD_NEWS_PRO_GK5_COM_ARTICLES_DESC" />
                 
                 <field name="k2_categories" type="k2multicategories" extension="k2multicategories" default="" size="50" multiple="multiple" class="gk-hidden-field" label="MOD_NEWS_PRO_GK5_K2CATEGORIES" description="MOD_NEWS_PRO_GK5_K2CATEGORIES_DESC" />
                 
