@@ -129,7 +129,10 @@ class NSP_GK5_com_hikashop_Model {
 		// Ordering string
 		$order_options = '';
 		// When sort value is random
-		if($config['news_sort_value'] == 'random') {
+		if(
+			$config['news_sort_value'] == 'random'|| 
+			$config['news_sort_value'] == 'user'
+		) {
 			$order_options = ' RAND() '; 
 		} else { // when sort value is different than random
 			$sort_value = $config['news_sort_value'];
@@ -288,6 +291,30 @@ class NSP_GK5_com_hikashop_Model {
 	    }
 	    // load variants
 	    $content = NSP_GK5_com_hikashop_Model::getVariants($content);
+	    // Reorder items if necessary
+	    if(
+	    	$config['news_sort_value'] == 'user' &&
+	    	$config['data_source'] == 'com_hikashop_products' && 
+	    	$config['com_hikashop_products'] != ''
+	    ) {
+	    	$new_content = array();
+	    	$ids = explode(',', $config['com_hikashop_products']);
+	    	$query_ids = array();
+	    	
+	    	if(count($content)) {
+	    		foreach($content as $key => $item) {
+	    			$query_ids[$item['id']] = $key;
+	    		}
+	    		
+	    		foreach($ids as $id) {
+	    			if(isset($query_ids[$id])) {
+	    				array_push($new_content, $content[$query_ids[$id]]);
+	    			}
+	    		}
+	    		
+	    		$content = $new_content;
+	    	}
+	    }
 		// the content array
 		return $content; 
 	}
