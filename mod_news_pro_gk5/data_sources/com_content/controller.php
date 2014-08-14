@@ -45,14 +45,6 @@ class NSP_GK5_com_content_Controller {
 					// GENERATE NEWS INFO2
 					$news_info2 = NSP_GK5_com_content_View::info($config, $content[$i], 2);		
 		           
-					// PARSING PLUGINS
-					if($config['parse_plugins'] == TRUE) {
-						$news_text = JHtml::_('content.prepare', $news_text);
-					}	
-					// CLEANING PLUGINS
-					if($config['clean_plugins'] == TRUE) {
-						$news_text = preg_replace("/(\{.+?\}.+?\{.+?})|(\{.+?\})/", "", $news_text);
-					} 		
 					// GENERATE CONTENT FOR TAB	
 					$generated_content = ''; // initialize variable
 					//
@@ -88,7 +80,7 @@ class NSP_GK5_com_content_Controller {
 				} 
 				// creating table with news content
 				array_push($output['arts'], $generated_content);
-				array_push($output['featured'], $content[$i]['frontpage']);
+				array_push($output['featured'], $content[$i]['featured']);
 			} else { 
 				array_push($output['list'], NSP_GK5_com_content_View::lists($config, $content[$i], $counter));
 				//

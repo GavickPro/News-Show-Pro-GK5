@@ -1,0 +1,9 @@
+{
+	"name": "Grid_News",
+	"full_name": "GRID_NEWS",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

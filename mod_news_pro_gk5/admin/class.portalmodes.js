@@ -93,6 +93,8 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('#Video_List_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'SPEAKERS_LIST') {
 					jQuery('#Speakers_List_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'GRID_NEWS') {
+					jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				}
 			} else {
 				if($this.configs[portal_mode_value].full_name == 'NEWS_GALLERY') {
@@ -125,6 +127,8 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_EVENTS_LIST]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'SPEAKERS_LIST') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_SPEAKERS_LIST]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'GRID_NEWS') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_NEWS]').parent().css('display', 'block');
 				}
 			}
 			// check the data source value
@@ -180,6 +184,8 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('#Video_Gallery_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Video_List_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Speakers_List_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		
 	} else {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_GALLERY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'none');
@@ -196,6 +202,8 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_JOMSOCIAL_PHOTOS]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_EVENTS_LIST]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_SPEAKERS_LIST]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_NEWS]').parent().css('display', 'none');
+		
 	}
 }
 

@@ -21,6 +21,7 @@ require_once (dirname(__FILE__).DS.'helper.php');
 if(!class_exists('NSP_GK5_Thumbs')) require_once (dirname(__FILE__).DS.'helpers'.DS.'gk.thumbs.php');
 if(!class_exists('NSP_GK5_Utils')) require_once (dirname(__FILE__).DS.'helpers'.DS.'gk.utils.php');
 if(!class_exists('NSP_GK5_Article_Format')) require_once(dirname(__FILE__).DS.'helpers'.DS.'gk.format.parser.php');
+if(!class_exists('NSP_GK5_View')) require_once(dirname(__FILE__).DS.'tmpl'.DS.'view.php');
 // Add MooTools loading for non-Gavick templates
 JHtml::_('behavior.framework', true);
 

@@ -17,29 +17,10 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 	include_once(JPATH_BASE . '/components/com_community/defines.community.php');
 	require_once(JPATH_BASE . '/components/com_community/libraries/core.php');
 	
-	class NSP_GK5_jomsocial_View {
+	class NSP_GK5_jomsocial_View extends NSP_GK5_View {
 		// header generator
 		static function header($config, $item) {
 			return '';		
-		}
-		// article text generator
-		static function text($config, $item, $readmore) {
-			if($config['news_content_text_pos'] != 'disabled') {
-				//
-				$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
-				$link = NSP_GK5_jomsocial_View::itemLink($item);
-				//
-				$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
-				$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
-				//
-				if($config['news_content_readmore_pos'] == 'after') { 
-					return '<p class="nspText'.$class.'">'.$item['text'].' '.$readmore.'</p>';
-				} else {
-					return '<p class="nspText'.$class.'">'.$item['text'].'</p>';
-				}
-			} else {
-				return '';
-			}
 		}
 		// article image generator
 		static function image($config, $item, $only_url = false, $pm = false, $links = false){		
@@ -131,22 +112,6 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 				return '';
 			}
 		}
-		// ReadMore button generator
-		static function readMore($config, $item) {
-			//
-			if($config['news_content_readmore_pos'] != 'disabled') {
-				$class = ' f'.$config['news_content_readmore_pos'];
-				$link = NSP_GK5_jomsocial_View::itemLink($item); 
-				//
-				if($config['news_content_readmore_pos'] == 'after') {
-					return '<a class="readon inline" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
-				} else {
-					return '<a class="readon '.$class.'" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
-				}
-			} else {
-				return '';
-			}
-		}
 		// article information generator
 		static function info($config, $item, $num = 1) {
 			// %AUTHOR %DATE %COMMENTS %LIKES
@@ -220,36 +185,6 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 		    }
 			//
 			return $news_info;
-		}
-		// rest link list generator	
-		static function lists($config, $item, $num) {
-			$odd = $num % 2;
-			
-			if($config['news_short_pages'] > 0) {
-		        $text = '';
-		        $title = '';
-		        $image = '';
-		        $readmore = '';
-		        $link = NSP_GK5_jomsocial_View::itemLink($item);
-		        
-		        if($config['list_text_limit'] > 0) {
-		            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
-		            $text = preg_replace("/\{.+?\}/", "", $text);
-		            
-		            if(JString::strlen($text) > 0) {
-		            	$text = '<p>'.$text.'</p>';
-		            }
-				}
-				
-				if($config['links_readmore'] == 1) {
-					$readmore = '<a class="readon" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
-				}
-				
-				// creating rest news list
-				return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $text . $readmore . '</li>';	
-			} else {
-				return '';
-			}
 		}
 		// article link generator
 		static function itemLink($item, $config = false) {

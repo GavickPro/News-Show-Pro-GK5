@@ -32,7 +32,7 @@ class NSP_GK5_Thumbs {
 		stories.demo.jpg
 		(in this situation mirror of ./images/ directory isn't necessary)
 	*/
-	static function translateName($name,$mod_id, $k2_mode = false, $vm_mode = false, $image_type = '', $downloaded = false, $filename = null, $links = false, $hikashop_mode = false) {
+	function translateName($name,$mod_id, $k2_mode = false, $vm_mode = false, $image_type = '', $downloaded = false, $filename = null, $links = false, $hikashop_mode = false) {
 		// check the mode
 		if($downloaded || stripos($name, 'http://') !== FALSE || stripos($name, 'https://') !== FALSE) {
 			if($downloaded) {
@@ -88,14 +88,14 @@ class NSP_GK5_Thumbs {
 	}*/
 
 	// function used to get the custom media path
-	static function getMediaPath() {
+	function getMediaPath() {
         $imagemanager = JComponentHelper::getParams('com_media');
   		$imagepath = $imagemanager->get('image_path', '');
   		return $imagepath;
     }
 
 	// function to change file path to  real path.
-	static function getRealPath($path, $k2_mode = false, $vm_mode = false, $hikashop_mode = false) {		
+	function getRealPath($path, $k2_mode = false, $vm_mode = false, $hikashop_mode = false) {		
 		$start = ($k2_mode || $vm_mode || $hikashop_mode) ? (($k2_mode || $hikashop_mode) ? strpos($path, 'media/') : strpos($path, 'components/')) : strpos($path, self::getMediaPath());
 		$path = './'.substr($path, $start);
 
@@ -106,7 +106,7 @@ class NSP_GK5_Thumbs {
 		this function checks if file exists in cache directory
 		and checks if time of file life isn't too long
 	*/
-	static function checkCache($filename, $cache_time) {
+	function checkCache($filename, $cache_time) {
 		if($cache_time === FALSE) {
 			$cache_time = 100 * 365 * 24 * 60 * 60;
 		}
@@ -123,7 +123,7 @@ class NSP_GK5_Thumbs {
             1 - when _cropped image exists
             2 - when _noscale image exists
     */
-    static function checkSpecialImages($path) {
+    function checkSpecialImages($path) {
         $cache_dir = JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS;
         // generate the names
         $ext = substr($path, -4);
@@ -141,7 +141,7 @@ class NSP_GK5_Thumbs {
         }
     }
 	// Creating thumbnails
-	static function createThumbnail(
+	function createThumbnail(
 		$path, 
 		$config, 
 		$k2_mode = false, 

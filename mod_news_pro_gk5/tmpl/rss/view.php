@@ -13,43 +13,7 @@
 // access restriction
 defined('_JEXEC') or die('Restricted access');
 
-class NSP_GK5_rss_View {
-	// header generator
-	static function header($config, $item) {
-		if($config['news_content_header_pos'] != 'disabled') {
-			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
-			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
-			$output = str_replace('"', "&quot;", $output);
-	        $link = $item['url'];
-			//
-			if($config['news_header_link'] == 1) {
-				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</a></h4>';	
-			} else {
-				return '<h4 class="nspHeader'.$class.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</h4>';
-			}
-		} else {
-			return '';
-		}		
-	}
-	// article text generator
-	static function text($config, $item, $readmore) {
-		if($config['news_content_text_pos'] != 'disabled') {
-			//
-			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
-			$link = $item['url'];
-			//
-			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
-			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
-			//
-			if($config['news_content_readmore_pos'] == 'after') { 
-				return '<p class="nspText'.$class.'">'.$item['text'].' '.$readmore.'</p>';
-			} else {
-				return '<p class="nspText'.$class.'">'.$item['text'].'</p>';
-			}
-		} else {
-			return '';
-		}
-	}
+class NSP_GK5_rss_View extends NSP_GK5_View {
 	// article image generator
 	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
 		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {
@@ -138,22 +102,6 @@ class NSP_GK5_rss_View {
 			return '';
 		}
 	}
-	// ReadMore button generator
-	static function readMore($config, $item) {
-		//
-		if($config['news_content_readmore_pos'] != 'disabled') {
-			$class = ' f'.$config['news_content_readmore_pos'];
-			$link = $item['url']; 
-			//
-			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a class="readon inline" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
-			} else {
-				return '<a class="readon '.$class.'" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
-			}
-		} else {
-			return '';
-		}
-	}
 	// article information generator
 	static function info($config, $item, $num = 1) {
 		// %AUTHOR %DATE %HITS %CATEGORY
@@ -185,50 +133,6 @@ class NSP_GK5_rss_View {
 	    }
 		//
 		return $news_info;		
-	}
-	// rest link list generator	
-	static function lists($config, $item, $num) {
-		$odd = $num % 2;
-		
-		if($config['news_short_pages'] > 0) {
-	        $text = '';
-	        $title = '';
-	        $image = '';
-	        $readmore = '';
-	        $link = $item['url'];
-	        
-	        if($config['list_text_limit'] > 0) {
-	            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
-	            $text = preg_replace("/\{.+?\}/", "", $text);
-	            
-	            if(JString::strlen($text) > 0) {
-	            	$text = '<p>'.$text.'</p>';
-	            }
-			}
-			
-			if($config['list_title_limit'] > 0) {
-				$title = htmlspecialchars($item['title']);
-				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
-				$title = str_replace('"', "&quot;", $title);
-			
-				if(JString::strlen($title) > 0) {
-					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
-				}
-			}
-			
-			if($config['links_image'] == 1) {
-				$image = NSP_GK5_rss_View::image($config, $item, false, false, true);
-			}
-			
-			if($config['links_readmore'] == 1) {
-				$readmore = '<a class="readon" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
-			}
-			
-			// creating rest news list
-			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $image . (($image != '') ? '<div>' . $title . $text . $readmore . '</div>' : ($title . $text . $readmore)) . '</li>';	
-		} else {
-			return '';
-		}
 	}
 	// article link generator
 	static function itemLink($item, $config = false) {

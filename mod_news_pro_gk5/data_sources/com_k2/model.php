@@ -197,7 +197,10 @@ class NSP_GK5_com_k2_Model {
 		$order_options = '';
 		$rating_join = '';
 		// When sort value is random
-		if($config['news_sort_value'] == 'random') {
+		if(
+			$config['news_sort_value'] == 'random' || 
+			$config['news_sort_value'] == 'user'
+		) {
 			$order_options = ' RAND() '; 
 		}else if($config['news_sort_value'] == 'rating') {
 			$order_options = ' (content_rating.rating_sum / content_rating.rating_count) '.$config['news_sort_order'];
@@ -341,6 +344,30 @@ class NSP_GK5_com_k2_Model {
 		// load tags
 		if(stripos($config['info_format'], '%TAGS') !== FALSE || stripos($config['info2_format'], '%TAGS') !== FALSE) {
 			$content = NSP_GK5_com_k2_Model::getTags($content, $config);
+		}
+		// Reorder items if necessary
+		if(
+			$config['news_sort_value'] == 'user' &&
+			$config['data_source'] == 'k2_articles' && 
+			$config['k2_articles'] != ''
+		) {
+			$new_content = array();
+			$ids = explode(',', $config['k2_articles']);
+			$query_ids = array();
+			
+			if(count($content)) {
+				foreach($content as $key => $item) {
+					$query_ids[$item['id']] = $key;
+				}
+				
+				foreach($ids as $id) {
+					if(isset($query_ids[$id])) {
+						array_push($new_content, $content[$query_ids[$id]]);
+					}
+				}
+				
+				$content = $new_content;
+			}
 		}
 		// the content array
 		return $content; 

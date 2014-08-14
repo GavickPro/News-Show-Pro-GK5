@@ -43,15 +43,6 @@ class NSP_GK5_com_k2_Controller {
 					$news_info = NSP_GK5_com_k2_View::info($config, $content[$i]);
 					// GENERATE NEWS INFO2
 					$news_info2 = NSP_GK5_com_k2_View::info($config, $content[$i], 2);		
-		           
-					// PARSING PLUGINS
-					if($config['parse_plugins'] == TRUE) {
-						$news_text = JHtml::_('content.prepare', $news_text);
-					}	
-					// CLEANING PLUGINS
-					if($config['clean_plugins'] == TRUE) {
-						$news_text = preg_replace("/(\{.+?\}.+?\{.+?})|(\{.+?\})/", "", $news_text);
-					} 		
 					// GENERATE CONTENT FOR TAB	
 					$generated_content = ''; // initialize variable
 					//
