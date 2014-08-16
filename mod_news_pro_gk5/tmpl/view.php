@@ -13,7 +13,7 @@
 // access restriction
 defined('_JEXEC') or die('Restricted access');
 
-class NSP_GK5_View {
+abstract class NSP_GK5_View {
 	// header generator
 	static function header($config, $item) {
 		if($config['news_content_header_pos'] != 'disabled') {
@@ -129,29 +129,19 @@ class NSP_GK5_View {
 	}
 	
 	// article image generator
-	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
-		return '';
-	}
+	abstract static function image($config, $item, $only_url = false, $pm = false, $links = false);
 	
 	// article information generator
-	static function info($config, $item, $num = 1) {
-		return '';		
-	}	
+	abstract static function info($config, $item, $num = 1);
 	
 	// article link generator
-	static function itemLink($item, $config = false) {
-		return '';
-	}
+	abstract static function itemLink($item, $config = false);
 	
 	// category link generator
-	static function categoryLink($item) {
-		return '';
-	}
+	abstract static function categoryLink($item);
 	
 	// user link generator
-	static function authorLink($item) {
-		return '';
-	}
+	abstract static function authorLink($item);
 	
 	// Plugin text cleaner
 	function textPlugins($text, $config) {
