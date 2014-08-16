@@ -118,7 +118,7 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 						if($config['news_image_modal'] == 1) {
 							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 						} else {
-							$link = static::itemLink($item);	
+							$link = NSP_GK5_com_easyblog_View::itemLink($item);	
 							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 						}
 					} else {
@@ -169,7 +169,7 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	        //
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
 	        $info_rate = '';
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item).'" >'.$item['catname'].'</a>' : $item['catname'];
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_easyblog_View::categoryLink($item).'" >'.$item['catname'].'</a>' : $item['catname'];
 	        $info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
 	       	//
 	        if(isset($item['comments'])) { 
@@ -183,7 +183,7 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	        }
 	        //
         	$info_comments_short = 0;
-        	$link = static::itemLink($item);
+        	$link = NSP_GK5_com_easyblog_View::itemLink($item);
             //
             if(isset($item['comments'])) { 
             	$info_comments_short = $item['comments'];

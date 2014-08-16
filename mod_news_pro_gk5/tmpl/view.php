@@ -19,7 +19,7 @@ class NSP_GK5_View {
 		if($config['news_content_header_pos'] != 'disabled') {
 			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
 			
-			if(static::image($config, $item, true, true) != '') {
+			if(NSP_GK5_View::image($config, $item, true, true) != '') {
 				$class .= ' has-image';
 			}
 			
@@ -33,7 +33,7 @@ class NSP_GK5_View {
 				$output = preg_replace('/' . $first_word . '/mi', $output_temp[0], $output, 1);
 			}
 			
-	        $link = static::itemLink($item);
+	        $link = NSP_GK5_View::itemLink($item);
 			//
 			if($config['news_header_link'] == 1) {
 				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</a></h4>';	
@@ -50,8 +50,8 @@ class NSP_GK5_View {
 		if($config['news_content_text_pos'] != 'disabled') {
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
-			$item['text'] = static::textPlugins($item['text'], $config);
-			$link = static::itemLink($item);
+			$item['text'] = NSP_GK5_View::textPlugins($item['text'], $config);
+			$link = NSP_GK5_View::itemLink($item);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
 			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
@@ -71,7 +71,7 @@ class NSP_GK5_View {
 		//
 		if($config['news_content_readmore_pos'] != 'disabled') {
 			$class = ' f'.$config['news_content_readmore_pos'];
-			$link = static::itemLink($item); 
+			$link = NSP_GK5_View::itemLink($item); 
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
 				return '<a class="readon inline" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
@@ -95,7 +95,7 @@ class NSP_GK5_View {
 	        $link = NSP_GK5_com_content_View::itemLink($item);
 	        
 	        if($config['list_text_limit'] > 0) {
-	            $item['text'] = static::textPlugins($item['text'], $config);
+	            $item['text'] = NSP_GK5_View::textPlugins($item['text'], $config);
 	            $text = NSP_GK5_Utils::cutText(strip_tags($item['text']), $config, 'list_text_limit', '&hellip;');
 	            
 	            if(JString::strlen($text) > 0) {
@@ -114,7 +114,7 @@ class NSP_GK5_View {
 			}
 			
 			if($config['links_image'] == 1) {
-				$image = static::image($config, $item, false, false, true);
+				$image = NSP_GK5_View::image($config, $item, false, false, true);
 			}
 			
 			if($config['links_readmore'] == 1) {

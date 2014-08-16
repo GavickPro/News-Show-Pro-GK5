@@ -26,7 +26,7 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {			
 			$news_title = str_replace('"', "&quot;", $item['title']);
 			$IMG_SOURCE = 'media' . DS . 'com_hikashop' . DS . 'upload' . DS . $item['image'];
-			$IMG_LINK = static::itemLink($item, $config);
+			$IMG_LINK = NSP_GK5_com_hikashop_View::itemLink($item, $config);
 			//
 			$full_size_img = $IMG_SOURCE;
 			//
@@ -123,7 +123,7 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 			($config['news_content_info2_pos'] != 'disabled' && $num == 2)
 		) {
 			$news_info = '<div class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </div>';
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item, $config).'" >'.$item['cat_name'].'</a>' : $news_catname;
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_hikashop_View::categoryLink($item, $config).'" >'.$item['cat_name'].'</a>' : $news_catname;
 	        //          
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        //          
@@ -132,13 +132,13 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
             } else {
                 $comments_amount = JText::_('MOD_NEWS_PRO_GK5_COMMENTS').' ('.(isset($item['comments']) ? $item['comments'] : '0' ) . ')';
             }
-	        $info_comments = '<a class="nspComments" href="'.static::itemLink($item, $config).'#product-tabs">'.$comments_amount.'</a>';
+	        $info_comments = '<a class="nspComments" href="'.NSP_GK5_com_hikashop_View::itemLink($item, $config).'#product-tabs">'.$comments_amount.'</a>';
 	        // Replace the following phrases:
 	        // %COMMENTS %DATE %CATEGORY %MANUFACTURER %STORE
             $news_info = str_replace('%DATE', $info_date, $news_info);
             $news_info = str_replace('%CATEGORY', $info_category, $news_info);
             $news_info = str_replace('%COMMENTS', $info_comments, $news_info);
-            $news_info = str_replace('%STORE', static::store($config, $item), $news_info);
+            $news_info = str_replace('%STORE', NSP_GK5_com_hikashop_View::store($config, $item), $news_info);
 	    } else {
 	    	return '';
 	    }
