@@ -19,7 +19,7 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {
 			$item['title'] = str_replace('"', "&quot;", $item['title']);
 		    $IMG_SOURCE = '';
-			$IMG_LINK = NSP_GK5_com_content_View::itemLink($item);	
+			$IMG_LINK = static::itemLink($item);	
 			//
 			$images = json_decode($item['images']);
 			$uri = JURI::getInstance();
@@ -134,7 +134,7 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 		) {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'. NSP_GK5_com_content_View::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];	        
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'. static::categoryLink($item) .'" >'.$item['catname'].'</a>' : $item['catname'];	        
 	        //
 	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
 	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'. NSP_GK5_Utils::avatarURL($item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author.'</span>' : $author;
@@ -158,7 +158,7 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	        $info_comments = '';
 	        
 	        if($config['com_content_comments_source'] != 'none') {
-		    	$link = NSP_GK5_com_content_View::itemLink($item); 
+		    	$link = static::itemLink($item); 
 		    	
 		    	$info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
 		        //
@@ -178,7 +178,7 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	        $info_comments_short = '';
 	        
 	        if($config['com_content_comments_source'] != 'none') {
-	        	$link = NSP_GK5_com_content_View::itemLink($item); 
+	        	$link = static::itemLink($item); 
 	        	
 	        	$info_comments_short = 0;
 	            //
