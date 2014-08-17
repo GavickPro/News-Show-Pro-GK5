@@ -92,7 +92,7 @@ class NSP_GK5_View {
 	        $title = '';
 	        $image = '';
 	        $readmore = '';
-	        $link = NSP_GK5_com_content_View::itemLink($item);
+	        $link = static::itemLink($item);
 	        
 	        if($config['list_text_limit'] > 0) {
 	            $item['text'] = static::textPlugins($item['text'], $config);
