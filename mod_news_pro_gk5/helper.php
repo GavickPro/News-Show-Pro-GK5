@@ -35,6 +35,15 @@ class NSP_GK5_Helper {
 		$this->module_id = ($params->get('module_unique_id', '') == '') ? 'nsp-'.$module->id : $params->get('module_unique_id', '');
 		$this->config = $params->toArray();
 		$this->config['module_id'] = $this->module_id;
+		
+		if(!isset($this->config['thumbs_cache_time'])) {
+			$this->config['thumbs_cache_time'] = 0;
+		}
+		
+		if(!isset($this->config['vm_lang'])) {
+			$this->config['vm_lang'] = '';
+		}
+		
 		$this->params = $params;
 		if(!isset($this->config['com_content_text_type'])) { $this->config['com_content_text_type'] = 'introtext'; }
 		if(!isset($this->config['com_k2_text_type'])) { $this->config['com_k2_text_type'] = 'introtext'; }
