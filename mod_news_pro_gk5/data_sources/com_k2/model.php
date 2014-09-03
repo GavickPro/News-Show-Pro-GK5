@@ -53,6 +53,10 @@ class NSP_GK5_com_k2_Model {
 				if(count($source) == 1) $where .= (is_array($source)) ? $where1.$source[0] : $where1.$source;
 				else $where .= ($i == 0) ? $where1.$source[$i] : $where2.$source[$i];		
 			}
+			
+			if($where != '') {
+				$where = ' (' . $where . ') ';
+			}
 			//
 			$query_name = '
 				SELECT 
@@ -65,7 +69,8 @@ class NSP_GK5_com_k2_Model {
 					c.id = content.catid 	
 				'.$tag_join.' 
 				WHERE 
-					( '.$where.' ) 
+					1=1 
+					'.$where.'
 					AND 
 					c.published = 1
 		        ';	
@@ -215,7 +220,7 @@ class NSP_GK5_com_k2_Model {
 			$lang_filter = ' AND content.language in ('.$db->quote(JFactory::getLanguage()->getTag()).','.$db->quote('*').') ';
 		}
 		
-		if($config['data_source'] != 'k2_all') {
+		if($config['data_source'] != 'k2_all' && $sql_where != '') {
 			$sql_where = ' AND ( ' . $sql_where . ' ) ';
 		}
 		// one article per page - helper variables
@@ -388,6 +393,10 @@ class NSP_GK5_com_k2_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['id'] : ' content.id = '.$content[$i]['id'];
 			}
+			
+			if($sql_where != '') {
+				$sql_where = ' AND (' . $sql_where . ') ';
+			}
 			// getting extra fields data
 			$query_news = '
 			SELECT 
@@ -396,6 +405,7 @@ class NSP_GK5_com_k2_Model {
 			FROM 
 				#__k2_items AS content		
 			WHERE 
+				1=1 
 				'.$sql_where.'
 			ORDER BY
 				content.id ASC
@@ -461,6 +471,10 @@ class NSP_GK5_com_k2_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['id'] : ' content.id = '.$content[$i]['id'];
 			}
+			
+			if($sql_where != '') {
+				$sql_where = ' AND (' . $sql_where . ') ';
+			}
 			// check the comments source
 			if($config['k2_comments_source'] == 'k2') {
 				// creating SQL query
@@ -475,7 +489,7 @@ class NSP_GK5_com_k2_Model {
 						ON comments.itemID = content.id 		
 				WHERE 
 					comments.published
-					AND ( '.$sql_where.' ) 
+					'.$sql_where.'  
 				GROUP BY 
 					comments.itemID
 				;';
@@ -492,8 +506,7 @@ class NSP_GK5_com_k2_Model {
 						ON comments.object_id = content.id 		
 				WHERE 
 					comments.published = 1
-					AND 
-					( '.$sql_where.' )
+					'.$sql_where.' 
 					AND
 					comments.object_group = \'com_k2\'  
 				GROUP BY 
@@ -512,8 +525,7 @@ class NSP_GK5_com_k2_Model {
 						ON comments.cid = content.id 		
 				WHERE 
 					comments.published = 1
-					AND 
-					( '.$sql_where.' )
+					'.$sql_where.' 
 					AND
 					comments.component = \'com_k2\'  
 				GROUP BY 
@@ -553,6 +565,10 @@ class NSP_GK5_com_k2_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['id'] : ' content.id = '.$content[$i]['id'];
 			}
+			
+			if($sql_where != '') {
+				$sql_where = ' AND (' . $sql_where . ') ';
+			}
 			// creating SQL query
 			$query_news = '
 			SELECT 
@@ -568,7 +584,7 @@ class NSP_GK5_com_k2_Model {
 					ON xref.tagID = tags.id 		
 			WHERE 
 				tags.published
-				AND ( '.$sql_where.' ) 
+				'.$sql_where.' 
 			ORDER BY
 				content.id ASC
 			;';

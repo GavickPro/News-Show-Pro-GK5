@@ -54,6 +54,10 @@ class NSP_GK5_com_content_Model {
 				if(count($source) == 1) $where .= (is_array($source)) ? $where1.$source[0] : $where1.$source;
 				else $where .= ($i == 0) ? $where1.$source[$i] : $where2.$source[$i];		
 			}
+			
+			if($where != '') {
+				$where = ' (' . $where . ') ';
+			}
 			//
 			$query_name = '
 				SELECT 
@@ -66,7 +70,7 @@ class NSP_GK5_com_content_Model {
 					c.id = content.catid 
 					'.$tag_join.'	
 				WHERE 
-					( '.$where.' ) 
+					'.$where.'
 					AND 
 					c.extension = '.$db->quote('com_content').
 					$tag_where.
@@ -215,7 +219,7 @@ class NSP_GK5_com_content_Model {
 			$lang_filter = ' AND content.language in ('.$db->quote(JFactory::getLanguage()->getTag()).','.$db->quote('*').') ';
 		}
 		
-		if($config['data_source'] != 'com_content_all') {
+		if($config['data_source'] != 'com_content_all' && $sql_where != '') {
 			$sql_where = ' AND ( ' . $sql_where . ' ) ';
 		}
 		
@@ -395,6 +399,10 @@ class NSP_GK5_com_content_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['iid'] : ' content.id = '.$content[$i]['iid'];
 			}
+			
+			if($sql_where != '') {
+				$sql_where2 = ' AND (' . $sql_where . ') ';
+			}
 			// creating SQL query
 			$query_news = '
 			SELECT 
@@ -411,7 +419,7 @@ class NSP_GK5_com_content_Model {
 					ON tags.id = tag_map.tag_id 		
 			WHERE 
 				tags.published
-				AND ( '.$sql_where.' ) 
+				'.$sql_where.'
 			ORDER BY
 				content.id ASC
 			;';
@@ -455,6 +463,10 @@ class NSP_GK5_com_content_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.id = '.$content[$i]['iid'] : ' content.id = '.$content[$i]['iid'];
 			}
+			
+			if($sql_where != '') {
+				$sql_where = ' AND (' . $sql_where . ') ';
+			}
 			// check the comments source
 			if($config['com_content_comments_source'] == 'jcomments') {
 				// creating SQL query
@@ -469,8 +481,7 @@ class NSP_GK5_com_content_Model {
 						ON comments.object_id = content.id 		
 				WHERE 
 					comments.published = 1
-					AND 
-					( '.$sql_where.' )
+					'.$sql_where.' 
 					AND
 					comments.object_group = \'com_content\'  
 				GROUP BY 
@@ -489,8 +500,7 @@ class NSP_GK5_com_content_Model {
 						ON comments.cid = content.id 		
 				WHERE 
 					comments.published = 1
-					AND 
-					( '.$sql_where.' )
+					'.$sql_where.' 
 					AND
 					comments.component = \'com_content\'  
 				GROUP BY 

@@ -78,7 +78,8 @@ class NSP_GK5_jomsocial_Model {
 			//
 			if(
 				$config['data_source'] != 'jomsocial_latest_status' && 
-				$config['data_source'] != 'jomsocial_latest_photo'
+				$config['data_source'] != 'jomsocial_latest_photo' &&
+				$sql_where != ''
 			) {
 				$sql_where = ' AND ( ' . $sql_where . ' ) ';
 			}
@@ -206,6 +207,11 @@ class NSP_GK5_jomsocial_Model {
 					$content[$i]['params'] = json_decode($content[$i]['params']);
 					$second_sql_where .= (($i != 0) ? ' OR ' : '') . ' photo.id = ' . $content[$i]['params']->photoid;
 				}
+				
+				if($second_sql_where != '') {
+					$second_sql_where = ' (' . $second_sql_where . ') ';
+				}
+				
 				// second SQL query to get rest of the data and avoid the DISTINCT
 				$second_query_news = '
 				SELECT
@@ -215,6 +221,7 @@ class NSP_GK5_jomsocial_Model {
 				FROM 
 					#__community_photos AS photo 
 				WHERE 
+					1=1 
 					'.$second_sql_where.'
 				ORDER BY
 					photo.id DESC
@@ -270,6 +277,10 @@ class NSP_GK5_jomsocial_Model {
 					// linking string with content IDs
 					$sql_where .= ($i != 0) ? ' OR activity.id = '.$content[$i]['ID'] : ' activity.id = '.$content[$i]['ID'];
 				}
+				
+				if($sql_where != '') {
+					$sql_where = ' AND (' . $sql_where . ') ';
+				}
 				// creating SQL query for comments
 				$query_news = '
 				SELECT 
@@ -283,8 +294,7 @@ class NSP_GK5_jomsocial_Model {
 						comments.contentid = activity.id 		
 				WHERE 
 					comments.published = 1
-					AND 
-					( '.$sql_where.' )
+					'.$sql_where.' 
 					AND
 					comments.type = "'.$content[0]['type'].'"  
 				GROUP BY 
@@ -312,7 +322,8 @@ class NSP_GK5_jomsocial_Model {
 						ON 
 						likes.uid = activity.id 		
 				WHERE 
-					( '.$sql_where.' )
+					1=1 
+					'.$sql_where.'
 					AND
 					likes.element = "'.$content[0]['type'].'"  
 				GROUP BY 

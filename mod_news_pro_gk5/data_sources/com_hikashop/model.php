@@ -39,6 +39,10 @@ class NSP_GK5_com_hikashop_Model {
 			if(count($source) == 1) $where .= (is_array($source)) ? $where1.$source[0] : $where1.$source;
 			else $where .= ($i == 0) ? $where1.$source[$i] : $where2.$source[$i];		
 		}
+		
+		if($where != '') {
+			$where = ' (' . $where . ') ';
+		}
 		//
 		$query_name = '
 		SELECT DISTINCT 
@@ -54,7 +58,7 @@ class NSP_GK5_com_hikashop_Model {
 			ON 
 			cx.product_id = content.product_id 
         WHERE 
-			( '.$where.' ) 
+			'.$where.'
 		';
 		// Executing SQL Query
 		$db->setQuery($query_name);
@@ -159,6 +163,10 @@ class NSP_GK5_com_hikashop_Model {
 		if($config['hikashop_out_of_stock'] != 1) {
             $out_of_stock_con = ' AND contentR.product_quantity > 0 ';
 		}
+		
+		if($sql_where != '') {
+			$sql_where = ' AND (' . $sql_where . ') ';
+		}
 		// creating SQL query
 		$query_news = '
 		SELECT DISTINCT
@@ -180,7 +188,7 @@ class NSP_GK5_com_hikashop_Model {
         WHERE
             contentR.product_parent_id = 0
             AND contentR.product_published = 1  
-			AND ( '.$sql_where.' ) 
+			'.$sql_where.'  
 			'.$frontpage_con.' 
 			'.$since_con.'
 			'.$shopper_group_con.'
@@ -207,6 +215,10 @@ class NSP_GK5_com_hikashop_Model {
 			// linking string with content IDs
 			$sql_where2 .= ($i != 0) ? ' OR content.product_id = '.$content[$i]['id'] : ' content.product_id = '.$content[$i]['id'];
 		}
+		
+		if($sql_where2 != '') {
+			$sql_where2 = ' (' . $sql_where2 . ') ';
+		}
 		// creating SQL query
 		$query_news2 = '
 		SELECT DISTINCT
@@ -227,7 +239,8 @@ class NSP_GK5_com_hikashop_Model {
 				ON 
 		        category_xref.category_id = category.category_id 	
         WHERE
-			('.$sql_where2.')
+			1=1 
+			'.$sql_where2.' 
 			AND category.category_published = \'1\' 
 		ORDER BY 
 			content.product_id ASC
@@ -263,7 +276,8 @@ class NSP_GK5_com_hikashop_Model {
 			ON 
 			`m`.`file_ref_id` = `content`.`product_id`
 		WHERE
-			(".$sql_where2.")
+			1=1 
+			".$sql_where2."
 			AND
 			`m`.`file_type` LIKE 'product'
 		ORDER BY
@@ -333,6 +347,10 @@ class NSP_GK5_com_hikashop_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.product_id = '.$content[$i]['id'] : ' content.product_id = '.$content[$i]['id'];
 			}
+			
+			if($sql_where != '') {
+				$sql_where = ' AND (' . $sql_where . ') ';
+			}
 			// creating SQL query
 			$query_news = "
 			SELECT 
@@ -347,7 +365,7 @@ class NSP_GK5_com_hikashop_Model {
 			WHERE 
 				comments.vote_published = '1'
 				AND comments.vote_type = 'product'
-				AND ( ".$sql_where." ) 
+				".$sql_where."
 			GROUP BY 
 				comments.vote_ref_id
 			;";
@@ -385,6 +403,10 @@ class NSP_GK5_com_hikashop_Model {
 				// linking string with content IDs
 				$sql_where .= ($i != 0) ? ' OR content.product_id = '.$content[$i]['id'] : ' content.product_id = '.$content[$i]['id'];
 			}
+			
+			if($sql_where != '') {
+				$sql_where = ' (' . $sql_where . ') ';
+			}
 			// creating SQL query
 			$query_news = "
 			SELECT 
@@ -397,7 +419,7 @@ class NSP_GK5_com_hikashop_Model {
 					ON 
 	                variants.variant_product_id = content.product_id 		
 			WHERE 
-				( ".$sql_where." ) 
+				".$sql_where."
 			GROUP BY 
 				variants.variant_product_id
 			;";
