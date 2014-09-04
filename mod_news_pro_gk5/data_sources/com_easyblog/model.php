@@ -55,7 +55,7 @@ class NSP_GK5_com_easyblog_Model {
 			}
 			
 			if($where != '') {
-				$where = ' (' . $where . ') ';
+				$where = ' AND (' . $where . ') ';
 			}
 			//
 			$query_name = '

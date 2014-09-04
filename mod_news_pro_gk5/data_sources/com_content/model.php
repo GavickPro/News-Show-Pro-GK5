@@ -56,7 +56,7 @@ class NSP_GK5_com_content_Model {
 			}
 			
 			if($where != '') {
-				$where = ' (' . $where . ') ';
+				$where = ' AND (' . $where . ') ';
 			}
 			//
 			$query_name = '
@@ -70,6 +70,7 @@ class NSP_GK5_com_content_Model {
 					c.id = content.catid 
 					'.$tag_join.'	
 				WHERE 
+					1=1 
 					'.$where.'
 					AND 
 					c.extension = '.$db->quote('com_content').

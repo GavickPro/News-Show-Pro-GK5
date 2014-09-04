@@ -41,7 +41,7 @@ class NSP_GK5_com_hikashop_Model {
 		}
 		
 		if($where != '') {
-			$where = ' (' . $where . ') ';
+			$where = ' AND (' . $where . ') ';
 		}
 		//
 		$query_name = '
@@ -58,6 +58,7 @@ class NSP_GK5_com_hikashop_Model {
 			ON 
 			cx.product_id = content.product_id 
         WHERE 
+			1=1 
 			'.$where.'
 		';
 		// Executing SQL Query
@@ -217,7 +218,7 @@ class NSP_GK5_com_hikashop_Model {
 		}
 		
 		if($sql_where2 != '') {
-			$sql_where2 = ' (' . $sql_where2 . ') ';
+			$sql_where2 = ' AND (' . $sql_where2 . ') ';
 		}
 		// creating SQL query
 		$query_news2 = '
@@ -405,7 +406,7 @@ class NSP_GK5_com_hikashop_Model {
 			}
 			
 			if($sql_where != '') {
-				$sql_where = ' (' . $sql_where . ') ';
+				$sql_where = ' AND (' . $sql_where . ') ';
 			}
 			// creating SQL query
 			$query_news = "
@@ -419,6 +420,7 @@ class NSP_GK5_com_hikashop_Model {
 					ON 
 	                variants.variant_product_id = content.product_id 		
 			WHERE 
+				1=1 
 				".$sql_where."
 			GROUP BY 
 				variants.variant_product_id

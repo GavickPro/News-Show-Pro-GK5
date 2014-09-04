@@ -209,7 +209,7 @@ class NSP_GK5_jomsocial_Model {
 				}
 				
 				if($second_sql_where != '') {
-					$second_sql_where = ' (' . $second_sql_where . ') ';
+					$second_sql_where = ' AND (' . $second_sql_where . ') ';
 				}
 				
 				// second SQL query to get rest of the data and avoid the DISTINCT
