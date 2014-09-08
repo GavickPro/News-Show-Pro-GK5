@@ -51,7 +51,7 @@ class NSP_GK5_View {
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
 			$item['text'] = static::textPlugins($item['text'], $config);
-			$link = static::itemLink($item);
+			$link = static::itemLink($item, $config);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
 			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
