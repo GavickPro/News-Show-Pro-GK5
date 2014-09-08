@@ -48,6 +48,10 @@ class NSP_GK5_Helper {
 			$this->config['vm_show_featured_badge'] = 0;
 		}
 		
+		if(!isset($this->config['open_links_window'])) {
+			$this->config['open_links_window'] = '_self';
+		}
+		
 		$this->params = $params;
 		if(!isset($this->config['com_content_text_type'])) { $this->config['com_content_text_type'] = 'introtext'; }
 		if(!isset($this->config['com_k2_text_type'])) { $this->config['com_k2_text_type'] = 'introtext'; }

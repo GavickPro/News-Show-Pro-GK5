@@ -36,7 +36,7 @@ class NSP_GK5_View {
 	        $link = static::itemLink($item, $config);
 			//
 			if($config['news_header_link'] == 1) {
-				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</a></h4>';	
+				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'" target="'.$config['open_links_window'].'">'.$output.'</a></h4>';	
 			} else {
 				return '<h4 class="nspHeader'.$class.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</h4>';
 			}
@@ -53,7 +53,7 @@ class NSP_GK5_View {
 			$item['text'] = static::textPlugins($item['text'], $config);
 			$link = static::itemLink($item, $config);
 			//
-			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
+			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'" target="'.$config['open_links_window'].'">'.$item['text'].'</a>' : $item['text']; 
 			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
 			//
 			if($config['news_content_readmore_pos'] == 'after') { 
@@ -74,9 +74,9 @@ class NSP_GK5_View {
 			$link = static::itemLink($item, $config); 
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a class="readon inline" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+				return '<a class="readon inline" href="'.$link.'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			} else {
-				return '<a class="readon '.$class.'" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+				return '<a class="readon '.$class.'" href="'.$link.'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			}
 		} else {
 			return '';
@@ -109,7 +109,7 @@ class NSP_GK5_View {
 				$title = str_replace('"', "&quot;", $title);
 			
 				if(JString::strlen($title) > 0) {
-					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
+					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'" target="'.$config['open_links_window'].'">'.$title.'</a></h4>';
 				}
 			}
 			
@@ -118,7 +118,7 @@ class NSP_GK5_View {
 			}
 			
 			if($config['links_readmore'] == 1) {
-				$readmore = '<a class="readon" href="'.$link.'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+				$readmore = '<a class="readon" href="'.$link.'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			}
 			
 			// creating rest news list

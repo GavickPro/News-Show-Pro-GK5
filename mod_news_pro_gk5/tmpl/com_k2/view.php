@@ -100,10 +100,10 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 					//
 					if($config['news_image_link'] == 1 || $links) {
 						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 						} else {
 							$link = static::itemLink($item);	
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 						}
 					} else {
 						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
@@ -140,7 +140,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 	        $news_info = '<'.$news_info_tag.' class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</'.$news_info_tag.'>';
 	        //
 	        $author_name .= (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
-	        $author_html = '<a href="'.urldecode(JRoute::_(K2HelperRoute::getUserRoute($item['author_id']))).'">';
+	        $author_html = '<a href="'.urldecode(JRoute::_(K2HelperRoute::getUserRoute($item['author_id']))).'" target="'.$config['open_links_window'].'">';
 	        $author_html .= $author_name;
 	        $author_html .= '</a>';
 	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
@@ -163,7 +163,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 	        }
 	        $info_stars .= '</span>'; 
 	        
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item).'" >'.$item['catname'].'</a>' : $item['catname'];
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item).'" target="'.$config['open_links_window'].'">'.$item['catname'].'</a>' : $item['catname'];
 	        $info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
 	       	//
 	        if(isset($item['comments'])) { 
@@ -183,7 +183,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
             	$info_comments_short = $item['comments'];
             }
             
-            $info_comments_short = '<a href="'.$link.'">'.$info_comments_short.'</a>';
+            $info_comments_short = '<a href="'.$link.'" target="'.$config['open_links_window'].'">'.$info_comments_short.'</a>';
 	        //
 	        $info_tags = '';
 	        if(isset($item['tags']) && count($item['tags']) > 0) {
@@ -192,9 +192,9 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 	        		$link = urldecode(JRoute::_(K2HelperRoute::getTagRoute($tag)));
 	        	
 	        		if($i == 0) {
-	        			$info_tags .= '<a href="' . $link . '">' . $tag . '</a>';
+	        			$info_tags .= '<a href="' . $link . '" target="'.$config['open_links_window'].'">' . $tag . '</a>';
 	        		} else {
-	        			$info_tags .= ', <a href="' . $link . '">' . $tag . '</a>';
+	        			$info_tags .= ', <a href="' . $link . '" target="'.$config['open_links_window'].'">' . $tag . '</a>';
 	        		}
 	        		//
 	        		$i++;
