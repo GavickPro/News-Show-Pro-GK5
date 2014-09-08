@@ -87,9 +87,9 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 					//
 					if($config['news_image_link'] == 1) {
 						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
 						} else {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
 							
 						}
 					} else {
@@ -122,7 +122,7 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 			($config['news_content_info2_pos'] != 'disabled' && $num == 2)
 		) {
 			$news_info = '<div class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </div>';
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item, $config).'" >'.$item['cat_name'].'</a>' : $news_catname;
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item, $config).'" target="'.$config['open_links_window'].'">'.$item['cat_name'].'</a>' : $news_catname;
 	        //          
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        //          
@@ -131,7 +131,7 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
             } else {
                 $comments_amount = JText::_('MOD_NEWS_PRO_GK5_COMMENTS').' ('.(isset($item['comments']) ? $item['comments'] : '0' ) . ')';
             }
-	        $info_comments = '<a class="nspComments" href="'.static::itemLink($item, $config).'#product-tabs">'.$comments_amount.'</a>';
+	        $info_comments = '<a class="nspComments" href="'.static::itemLink($item, $config).'#product-tabs" target="'.$config['open_links_window'].'">'.$comments_amount.'</a>';
 	        // Replace the following phrases:
 	        // %COMMENTS %DATE %CATEGORY %MANUFACTURER %STORE
             $news_info = str_replace('%DATE', $info_date, $news_info);

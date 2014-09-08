@@ -31,7 +31,7 @@ class NSP_GK5_com_virtuemart_View {
 	        $link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
 			//
 			if($config['news_header_link'] == 1) {
-				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</a></h4>';	
+				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'" target="'.$config['open_links_window'].'">'.$output.'</a></h4>';	
 			} else {
 				return '<h4 class="nspHeader'.$class.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</h4>';
 			}
@@ -46,7 +46,7 @@ class NSP_GK5_com_virtuemart_View {
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
 			$link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
 			//
-			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'">'.$item['text'].'</a>' : $item['text']; 
+			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'" target="'.$config['open_links_window'].'">'.$item['text'].'</a>' : $item['text']; 
 			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
 			//
 			if($config['news_content_readmore_pos'] == 'after') { 
@@ -125,9 +125,9 @@ class NSP_GK5_com_virtuemart_View {
 					//
 					if($config['news_image_link'] == 1) {
 						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
 						} else {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
 							
 						}
 					} else {
@@ -148,9 +148,9 @@ class NSP_GK5_com_virtuemart_View {
 			$class = ' f'.$config['news_content_readmore_pos'];
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a class="readon inline"  href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+				return '<a class="readon inline"  href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			} else {
-				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
+				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			}
 		} else {
 			return '';
@@ -176,7 +176,7 @@ class NSP_GK5_com_virtuemart_View {
 			($config['news_content_info2_pos'] != 'disabled' && $num == 2)
 		) {
 			$news_info = '<div class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </div>';
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_virtuemart_View::categoryLink($item).'" >'.$item['cat_name'].'</a>' : $news_catname;
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_virtuemart_View::categoryLink($item).'" target="'.$config['open_links_window'].'">'.$item['cat_name'].'</a>' : $news_catname;
 	        //          
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        //          
@@ -185,7 +185,7 @@ class NSP_GK5_com_virtuemart_View {
             } else {
                 $comments_amount = JText::_('MOD_NEWS_PRO_GK5_COMMENTS').' ('.(isset($item['comments']) ? $item['comments'] : '0' ) . ')';
             }
-	        $info_comments = '<a class="nspComments" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'#reviewform">'.$comments_amount.'</a>';
+	        $info_comments = '<a class="nspComments" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'#reviewform" target="'.$config['open_links_window'].'">'.$comments_amount.'</a>';
 	        $info_manufacturer = JText::_('MOD_NEWS_PRO_GK5_MANUFACTURER').$item['manufacturer'];
 	        // Replace the following phrases:
 	        // %COMMENTS %DATE %CATEGORY %MANUFACTURER %STORE
@@ -225,7 +225,7 @@ class NSP_GK5_com_virtuemart_View {
 				$link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
 			
 				if(JString::strlen($title) > 0) {
-					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'">'.$title.'</a></h4>';
+					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'" target="'.$config['open_links_window'].'">'.$title.'</a></h4>';
 				}
 			}
 			

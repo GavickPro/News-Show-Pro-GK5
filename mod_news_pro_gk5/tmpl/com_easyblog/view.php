@@ -116,10 +116,10 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 					//
 					if($config['news_image_link'] == 1) {
 						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 						} else {
 							$link = static::itemLink($item);
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
 						}
 					} else {
 						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
@@ -154,7 +154,7 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //
 	        $author = (trim(htmlspecialchars($item['author_alias'])) != '') ? htmlspecialchars($item['author_alias']) : htmlspecialchars($item['author_username']);
-	        $author_html = '<a href="'.urldecode(JRoute::_('index.php?option=com_easyblog&view=blogger&layout=listings&id=' . $item['author_id'])).'">'.$author.'</a>';
+	        $author_html = '<a href="'.urldecode(JRoute::_('index.php?option=com_easyblog&view=blogger&layout=listings&id=' . $item['author_id'])).'" target="'.$config['open_links_window'].'">'.$author.'</a>';
 	        
 	        // load easyblog helper
 	        require_once (JPATH_SITE.DS.'components'.DS.'com_easyblog'.DS.'helpers'.DS.'helper.php');
@@ -168,7 +168,7 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	        //
 	        $info_hits = JText::_('MOD_NEWS_PRO_GK5_NHITS').$item['hits'];
 	        $info_rate = '';
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item).'" >'.$item['catname'].'</a>' : $item['catname'];
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item).'" target="'.$config['open_links_window'].'">'.$item['catname'].'</a>' : $item['catname'];
 	        $info_comments = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
 	       	//
 	        if(isset($item['comments'])) { 
@@ -188,7 +188,7 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
             	$info_comments_short = $item['comments'];
             }
             
-            $info_comments_short = '<a href="'.$link.'">'.$info_comments_short.'</a>';
+            $info_comments_short = '<a href="'.$link.'" target="'.$config['open_links_window'].'">'.$info_comments_short.'</a>';
 	        //
 	        $info_tags = '';
 	        
@@ -198,9 +198,9 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	        		$link = urldecode(JRoute::_('index.php?option=com_easyblog&view=tags&layout=tag&id=' . $id));
 	        	
 	        		if($i == 0) {
-	        			$info_tags .= '<a href="' . $link . '">' . $tag . '</a>';
+	        			$info_tags .= '<a href="' . $link . '" target="'.$config['open_links_window'].'">' . $tag . '</a>';
 	        		} else {
-	        			$info_tags .= ', <a href="' . $link . '">' . $tag . '</a>';
+	        			$info_tags .= ', <a href="' . $link . '" target="'.$config['open_links_window'].'">' . $tag . '</a>';
 	        		}
 	        		//
 	        		$i++;

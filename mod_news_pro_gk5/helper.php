@@ -65,6 +65,10 @@ class NSP_GK5_Helper {
 		if($this->config['list_title_limit'] == 0 && $this->config['list_text_limit'] == 0) {
 			$this->config['news_short_pages'] = 0;
 		}
+		
+		if(!isset($this->config['open_links_window'])) {
+			$this->config['open_links_window'] = '_self';
+		}
 
 		if($this->config['news_header_enabled'] == 0) $this->config['news_content_header_pos'] = 'disabled';
 		if($this->config['news_image_enabled']  == 0) $this->config['news_content_image_pos'] = 'disabled';
