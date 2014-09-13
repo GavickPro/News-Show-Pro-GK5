@@ -402,7 +402,7 @@ class NSP_GK5_com_content_Model {
 			}
 			
 			if($sql_where != '') {
-				$sql_where2 = ' AND (' . $sql_where . ') ';
+				$sql_where = ' AND (' . $sql_where . ') ';
 			}
 			// creating SQL query
 			$query_news = '
