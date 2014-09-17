@@ -158,7 +158,9 @@ div.control-group > div.controls select {
 	max-width: 215px
 }
 div.control-group > div.controls #jform_params_img_width,
-div.control-group > div.controls #jform_params_img_height {
+div.control-group > div.controls #jform_params_img_height,
+div.control-group > div.controls #jform_params_links_img_width,
+div.control-group > div.controls #jform_params_links_img_height {
 	max-width: 40px;
 }
 div.control-group > div.controls input#jform_params_news_since {

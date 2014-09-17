@@ -123,9 +123,11 @@ jQuery(window).load(function() {
 	jQuery('.input-percents').each(function(i, el){jQuery(el).parent().html("<div class=\"input-prepend\">" + jQuery(el).parent().html() + "<span class=\"add-on\">%</span></div>")});
 	jQuery('.input-ms').each(function(i, el){jQuery(el).parent().html("<div class=\"input-prepend\">" + jQuery(el).parent().html() + "<span class=\"add-on\">ms</span></div>")});
 	jQuery('.input-times').each(function(i, el){ jQuery(el).parent().find('#jform_params_img_width').after('<span class=\"add-on\">&times;</span>');});
+	jQuery('.input-times').each(function(i, el){ jQuery(el).parent().find('#jform_params_links_img_width').after('<span class=\"add-on\">&times;</span>');});
 	
 	
 	jQuery('#jform_params_img_height-lbl').parents().eq(1).css('display', 'none');
+	jQuery('#jform_params_links_img_height-lbl').parents().eq(1).css('display', 'none');
 	jQuery('.gk-group-layout').each(function(i, elm) {
 		jQuery(elm).css('display', 'none');
 	});
