@@ -154,7 +154,7 @@ class NSP_GK5_View {
 	}
 	
 	// Plugin text cleaner
-	function textPlugins($text, $config) {
+	static function textPlugins($text, $config) {
 		// PARSING PLUGINS
 		if($config['parse_plugins'] == TRUE) {
 			$text = JHtml::_('content.prepare', $text);
