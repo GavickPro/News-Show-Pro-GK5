@@ -80,7 +80,10 @@ class NSP_GK5_com_content_Controller {
 				} 
 				// creating table with news content
 				array_push($output['arts'], $generated_content);
-				array_push($output['featured'], $content[$i]['featured']);
+				
+				if (array_key_exists('featured', $content[$i])) {
+					array_push($output['featured'], $content[$i]['featured']);
+				}
 			} else { 
 				array_push($output['list'], NSP_GK5_com_content_View::lists($config, $content[$i], $counter));
 				//
