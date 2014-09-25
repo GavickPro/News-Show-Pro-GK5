@@ -39,7 +39,7 @@ class NSP_GK5_rss_Model {
 					$art['date'] = $item->get_date();
 					$art['date_publish'] = $item->get_date();
 					$art['author'] = '';
-					$art['catname'] = $item->get_category()->get_term();
+					$art['catname'] = ($item->get_category()) ? $item->get_category()->get_term() : '';
 					$art['category_url'] = '';
 					$art['hits'] = 0;
 					$art['email'] = '';
