@@ -1,0 +1,9 @@
+{
+	"name": "Portfolio_Grid",
+	"full_name": "PORTFOLIO_GRID",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

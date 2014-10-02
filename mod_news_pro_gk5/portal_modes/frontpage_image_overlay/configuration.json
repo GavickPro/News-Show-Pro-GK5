@@ -1,0 +1,10 @@
+{
+	"name": "Frontpage_Image_Overlay",
+	"full_name": "FRONTPAGE_IMAGE_OVERLAY",
+	"support": [
+		"com_content", 
+		"com_k2",
+		"com_easyblog"
+	],
+	"thumbnails": true
+}

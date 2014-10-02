@@ -19,27 +19,10 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {
 			$item['title'] = str_replace('"', "&quot;", $item['title']);
 		    $IMG_SOURCE = '';
-			$IMG_LINK = static::itemLink($item);	
-			//
-			$images = json_decode($item['images']);
+			$IMG_LINK = static::itemLink($item);
 			$uri = JURI::getInstance();
 			// get image from Joomla! Images and Links settings
-			if($config['thumb_image_type'] == 'full' && (isset($images) && $images->image_fulltext!= '')) {
-				$IMG_SOURCE = $images->image_fulltext;
-			} elseif($config['thumb_image_type'] == 'intro' && (isset($images) && $images->image_intro!='')) {
-				$IMG_SOURCE = $images->image_intro;
-			} else {
-				// set image to first in article content
-				if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
-					$imgStartPos = JString::strpos($item['text'], 'src="');
-					if($imgStartPos) {
-						$imgEndPos = JString::strpos($item['text'], '"', $imgStartPos + 5);
-					}	
-					if($imgStartPos > 0) {
-						$IMG_SOURCE = JString::substr($item['text'], ($imgStartPos + 5), ($imgEndPos - ($imgStartPos + 5)));
-					}
-				}
-			}
+			$IMG_SOURCE = static::originalImage($config, $item);
 			//
 			$full_size_img = $IMG_SOURCE;
 			//
@@ -49,7 +32,6 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 					$img_file = NSP_GK5_Thumbs::createThumbnail($IMG_SOURCE, $config, false, false, '', $links);
 					
 					if(is_array($img_file)) {
-						$uri = JURI::getInstance();
 						$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/'.$img_file[1];
 					} elseif($config['create_thumbs'] == 1) {
 						jimport('joomla.filesystem.file');
@@ -188,6 +170,12 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	            
 	            $info_comments_short = '<a href="'.$link.'" target="'.$config['open_links_window'].'">'.$info_comments_short.'</a>';
 	        }
+	        // Featured label
+	        $info_featured = '';
+	        
+	        if(stripos($news_info, '%FEATURED') !== FALSE && $item['frontpage'] == '1') {
+	        	$info_featured = '<strong class="is-featured">'.JText::_('MOD_NEWS_PRO_GK5_FEATURED').'</strong>';
+	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
@@ -195,6 +183,7 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
 	        $news_info = str_replace('%STARS', $info_stars, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
+	        $news_info = str_replace('%FEATURED', $info_featured, $news_info);
 	        // only if comments used
 	       	if($config['com_content_comments_source'] != 'none') {
 	        	$news_info = str_replace('%COMMENTS_SHORT', $info_comments_short, $news_info);
@@ -218,6 +207,31 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	// user link generator
 	static function authorLink($item) {
 		return '';
+	}
+	
+	// original image
+	static function originalImage($config, $item) {
+		$images = json_decode($item['images']);
+		$IMG_SOURCE = '';
+		
+		if($config['thumb_image_type'] == 'full' && (isset($images) && $images->image_fulltext!= '')) {
+			$IMG_SOURCE = $images->image_fulltext;
+		} elseif($config['thumb_image_type'] == 'intro' && (isset($images) && $images->image_intro!='')) {
+			$IMG_SOURCE = $images->image_intro;
+		} else {
+			// set image to first in article content
+			if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
+				$imgStartPos = JString::strpos($item['text'], 'src="');
+				if($imgStartPos) {
+					$imgEndPos = JString::strpos($item['text'], '"', $imgStartPos + 5);
+				}	
+				if($imgStartPos > 0) {
+					$IMG_SOURCE = JString::substr($item['text'], ($imgStartPos + 5), ($imgEndPos - ($imgStartPos + 5)));
+				}
+			}
+		}
+		
+		return $IMG_SOURCE;
 	}
 }
 

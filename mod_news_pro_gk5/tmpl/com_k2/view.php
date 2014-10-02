@@ -24,24 +24,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 			$item['title'] = str_replace('"', "&quot;", $item['title']);
 			$uri = JURI::getInstance();
 			//
-			if(!$config['k2_image_size']) {
-				$config['k2_image_size'] = 'Generic';
-			}
-			//
-			if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg')){  
-				$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg';
-	        } else {
-				// set image to first in article content
-				if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
-					$imgStartPos = JString::strpos($item['text'], 'src="');
-					if($imgStartPos) {
-						$imgEndPos = JString::strpos($item['text'], '"', $imgStartPos + 5);
-					}	
-					if($imgStartPos > 0) {
-						$IMG_SOURCE = JString::substr($item['text'], ($imgStartPos + 5), ($imgEndPos - ($imgStartPos + 5)));
-					}
-				}
-			}
+			$IMG_SOURCE = static::originalImage($config, $item);
 			//
 			$full_size_img = $IMG_SOURCE;
 			//
@@ -233,6 +216,12 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 		        	}
 	        	}
 	        }
+	        // Featured label
+	        $info_featured = '';
+	        
+	        if(stripos($news_info, '%FEATURED') !== FALSE && $item['frontpage'] == '1') {
+	        	$info_featured = '<strong class="is-featured">'.JText::_('MOD_NEWS_PRO_GK5_FEATURED').'</strong>';
+	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
@@ -245,6 +234,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
 	        $news_info = str_replace('%CART', $k2store_data['cart'], $news_info);
 	        $news_info = str_replace('%PRICE', $k2store_data['price'], $news_info);
+	        $news_info = str_replace('%FEATURED', $info_featured, $news_info);
 	    } else {
 	    	return '';
 	    }
@@ -324,6 +314,32 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 		}
 		// return the output array
 		return $output;
+	}
+	
+	// orginal image
+	static function originalImage($config, $item) {
+		$IMG_SOURCE = '';
+		
+		if(!$config['k2_image_size']) {
+			$config['k2_image_size'] = 'Generic';
+		}
+		//
+		if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg')){  
+			$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg';
+		} else {
+			// set image to first in article content
+			if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
+				$imgStartPos = JString::strpos($item['text'], 'src="');
+				if($imgStartPos) {
+					$imgEndPos = JString::strpos($item['text'], '"', $imgStartPos + 5);
+				}	
+				if($imgStartPos > 0) {
+					$IMG_SOURCE = JString::substr($item['text'], ($imgStartPos + 5), ($imgEndPos - ($imgStartPos + 5)));
+				}
+			}
+		}
+		
+		return $IMG_SOURCE;
 	}
 }
 

@@ -207,6 +207,12 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	        		$i++;
 	        	}
 	        }
+	        // Featured label
+	        $info_featured = '';
+	        
+	        if(stripos($news_info, '%FEATURED') !== FALSE && $item['frontpage'] == '1') {
+	        	$info_featured = '<strong class="is-featured">'.JText::_('MOD_NEWS_PRO_GK5_FEATURED').'</strong>';
+	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
@@ -216,6 +222,7 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	        $news_info = str_replace('%COMMENTS_SHORT', $info_comments_short, $news_info);
 	        $news_info = str_replace('%COMMENTS', $info_comments, $news_info);
 	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
+	        $news_info = str_replace('%FEATURED', $info_featured, $news_info);
 	    } else {
 	    	return '';
 	    }
