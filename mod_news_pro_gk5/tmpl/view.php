@@ -153,6 +153,11 @@ class NSP_GK5_View {
 		return '';
 	}
 	
+	// article image generator
+	static function originalImage($config, $item){		
+		return '';
+	}
+	
 	// Plugin text cleaner
 	static function textPlugins($text, $config) {
 		// PARSING PLUGINS

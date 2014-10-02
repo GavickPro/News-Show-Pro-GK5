@@ -1,0 +1,196 @@
+/* Portal Mode - Grid Title Overlay */
+
+.gkNspPM-FrontpageImageOverlay {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+	float: left;
+	height: 100%;
+	left: 0;
+	margin: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.gkNspPM-FrontpageImageOverlay > span {
+	background-size: cover!important;
+	background-position: center center!important;
+	display: block;
+	float: left;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+.gkNspPM-FrontpageImageOverlay > span > span {
+	background: #000;
+	height: 100%;
+	display: block;
+	float: left;
+	left: 0;
+	opacity: 0.3;
+	position: absolute;
+	top: 0;
+	-webkit-transition: opacity .3s ease-out;
+	-moz-transition: opacity .3s ease-out;
+	-ms-transition: opacity .3s ease-out;
+	-o-transition: opacity .3s ease-out;
+	transition: opacity .3s ease-out;
+	width: 100%;
+	z-index: 2;
+}
+.gkNspPM-FrontpageImageOverlay:hover > span > span {
+	opacity: 0.2;
+}
+.gkNspPM-FrontpageImageOverlay > figcaption {
+	padding: 0 120px;
+	position: absolute;
+	top: 50%;
+	z-index: 3;
+}
+.gkNspPM-FrontpageImageOverlay > figcaption h1 {
+	font-size: 62px;
+	font-weight: 400;
+	line-height: 1.2;
+	margin: 0;
+	padding: 32px 0;
+	position: relative;
+	text-transform: uppercase;
+}
+.gkNspPM-FrontpageImageOverlay > figcaption h1:before {
+	background: #e45245;
+	content: "";
+	display: block;
+	height: 2px;
+	position: absolute;
+	top: 0;
+	width: 200px;
+}
+.gkNspPM-FrontpageImageOverlay > figcaption p {
+	color: #fff;
+	font-size: 21px;
+	font-weight: 300;
+	margin: 0 0 40px 0;
+	opacity: .75;
+}
+.gkNspPM-FrontpageImageOverlay[data-textcolor="dark"] > figcaption a {
+	color: #111;	
+}
+.gkNspPM-FrontpageImageOverlay[data-textcolor="dark"] > figcaption p {
+	color: #999;
+}
+.gkNspPM-FrontpageImageOverlay[data-textcolor="light"] > figcaption a {
+	color: #fff;	
+}
+.gkNspPM-FrontpageImageOverlay > figcaption a:active,
+.gkNspPM-FrontpageImageOverlay > figcaption a:focus,
+.gkNspPM-FrontpageImageOverlay > figcaption a:hover {
+	color: #e45245;	
+}
+.gkNspPM-FrontpageImageOverlay .button {
+	background: transparent;
+	border: 1px solid #fff;
+	color: #fff!important;
+}
+.gkNspPM-FrontpageImageOverlay[data-textcolor="dark"] .button:hover {
+	background: transparent;
+	border: 1px solid #000;
+	color: #000;
+}
+.gkNspPM-FrontpageImageOverlay .button:active,
+.gkNspPM-FrontpageImageOverlay .button:focus,
+.gkNspPM-FrontpageImageOverlay .button:hover {
+	background: transparent;
+	border: 1px solid #e45245;
+	color: #e45245;
+}
+
+.gkNspPM-FrontpageImageOverlay > figcaption p,
+.gkNspPM-FrontpageImageOverlay > figcaption h1,
+.gkNspPM-FrontpageImageOverlay > figcaption .button {
+	opacity: 0;
+	position: relative;
+	top: 100px;
+	-webkit-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-o-transition: all .5s ease-out;
+	transition: all .5s ease-out;
+}
+
+.gkNspPM-FrontpageImageOverlay.active > figcaption p {
+	-webkit-transition-delay: .15s;
+	-moz-transition-delay: .15s;
+	-ms-transition-delay: .15s;
+	-o-transition-delay: .15s;
+	transition-delay: .15s;
+}
+.gkNspPM-FrontpageImageOverlay.active > figcaption .button {
+	-webkit-transition-delay: .3s;
+	-moz-transition-delay: .3s;
+	-ms-transition-delay: .3s;
+	-o-transition-delay: .3s;
+	transition-delay: .3s;
+}
+
+.gkNspPM-FrontpageImageOverlay.active > figcaption p,
+.gkNspPM-FrontpageImageOverlay.active > figcaption h1,
+.gkNspPM-FrontpageImageOverlay.active > figcaption .button {
+	opacity: 1;
+	top: 0px;
+}
+
+/* Mobile devices */
+@media (max-width: 1920px) {
+	.gkNspPM-FrontpageImageOverlay > figcaption p {
+		font-size: 18px;
+	}
+	.gkNspPM-FrontpageImageOverlay > figcaption h1 {
+		font-size: 48px;
+	}
+	.gkNspPM-FrontpageImageOverlay > figcaption p {
+		margin: 0 0 20px 0;
+	}
+}
+@media (max-width: 1600px) {
+	.gkNspPM-FrontpageImageOverlay > figcaption {
+		padding: 0 90px;
+	}
+	.gkNspPM-FrontpageImageOverlay > figcaption h1 {
+		font-size: 40px;
+	}
+}
+@media (max-width: 1400px) {
+	.gkNspPM-FrontpageImageOverlay > figcaption {
+		padding: 0 60px;
+	}
+}
+@media (max-width: 1030px) {
+	.gkNspPM-FrontpageImageOverlay > figcaption h3 {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 640px) {
+	.gkNspPM-FrontpageImageOverlay > figcaption h3 {
+		font-size: 16px;
+	}
+	
+	.gkNspPM-FrontpageImageOverlay > figcaption {
+		padding: 0 20px;
+		top: 30%;
+	}
+	
+	.gkNspPM-FrontpageImageOverlay > figcaption h1 {
+		font-size: 20px;
+		padding: 12px 0;
+	}
+	
+	.gkNspPM-FrontpageImageOverlay > figcaption p {
+		font-size: 14px;
+	}
+	
+}
