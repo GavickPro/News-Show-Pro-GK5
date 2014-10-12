@@ -18,7 +18,7 @@ class NSP_GK5_rss_Model {
 	static function getSources($config) {
 		$content = array();
 		// if there are selected files - set the variables
-		if($config['rss_feed'] != '' && file_get_contents(__FILE__) && ini_get('allow_url_fopen')) {
+		if($config['rss_feed'] != '') {
 			jimport('simplepie.simplepie');
 			// loading file content
 			$rss = new SimplePie($config['rss_feed'], JPATH_ROOT . DS . 'modules' . DS . 'mod_news_pro_gk5' . DS . 'cache', $config['rss_cache_time'] * 60);
