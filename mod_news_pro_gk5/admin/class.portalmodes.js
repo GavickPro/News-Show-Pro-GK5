@@ -129,6 +129,12 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_SPEAKERS_LIST]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'GRID_NEWS') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_NEWS]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'FRONTPAGE_IMAGE_OVERLAY') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_FRONTPAGE_IMAGE_OVERLAY]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'HIGHLIGHTS') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_HIGHLIGHTS]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'PORTFOLIO_GRID') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO_GRID]').parent().css('display', 'block');
 				}
 			}
 			// check the data source value
@@ -185,7 +191,8 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('#Video_List_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Speakers_List_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
-		
+		jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 	} else {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_GALLERY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'none');
@@ -203,7 +210,9 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_EVENTS_LIST]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_SPEAKERS_LIST]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_NEWS]').parent().css('display', 'none');
-		
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_FRONTPAGE_IMAGE_OVERLAY]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_HIGHLIGHTS]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO_GRID]').parent().css('display', 'none');
 	}
 }
 
