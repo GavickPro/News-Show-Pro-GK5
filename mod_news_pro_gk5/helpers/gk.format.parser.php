@@ -38,6 +38,7 @@ class NSP_GK5_Article_Format {
 			{TAGS} - article tag lists
 			{VIDEO_HTML} - HTML of the article video
 			{CATEGORY_IMAGE_SRC} - article category image URL
+			{AVATAR_URL} - user avatar URL
 			
 			{{extra_field_alias}} - value of the extra field with specific alias
 			{{extra_field_alias_X}} - value of X-nth element in the array of the extra field data - indexing starts with 0
@@ -76,6 +77,12 @@ class NSP_GK5_Article_Format {
 		} else {
 			$category_url = call_user_func(array($viewClass, 'categoryLink'), $data);
 		}
+		// detect K2
+		$avatar = '';
+		if(isset($data['video'])) {
+			$avatar = K2HelperUtilities::getAvatar($data['author_id'], $data['author_email'], $config['avatar_size']);
+		}
+		
 		// Other data
 		$hits = $data['hits'];
 		$date = JHTML::_('date', $data['date'], $config['date_format']);
@@ -114,7 +121,8 @@ class NSP_GK5_Article_Format {
 				'{CATEGORY_URL}',
 				'{HITS}',
 				'{DATE}',
-				'{RATING}'
+				'{RATING}',
+				'{AVATAR_URL}'
 			);
 			// values for the replacement
 			$replacement = array(
@@ -129,7 +137,8 @@ class NSP_GK5_Article_Format {
 				$category_url,
 				$hits,
 				$date,
-				$rating
+				$rating,
+				$avatar
 			);
 			// replace values in the format file 
 			$format_file = str_replace($to_replace, $replacement, $format_file);
