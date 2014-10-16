@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 class NSP_GK5_com_k2_Model {
 	// Method to get sources of articles
 	static function getSources($config) {
-		if($config['data_source'] != 'k2_all') {
+		if($config['data_source'] != 'k2_all' && $config['data_source'] != 'k2_authors') {
 			//
 			$db = JFactory::getDBO();
 			// if source type is section / sections
