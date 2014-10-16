@@ -34,13 +34,17 @@ class NSP_GK5_com_k2_Model {
 				$where1 = ' c.id = ';
 				$where2 = ' OR c.id = ';
 			} else if($config['data_source'] == 'k2_tags') {
-	           	$where1 = ' t.id = ';
-	           	// adding quotes to tag name
-	          	$source = $config['k2_tags'];
+	           	   	$where1 = ' t.id = ';
+	           	   	// adding quotes to tag name
+	          	   	$source = $config['k2_tags'];
 	         
-	        	if(!is_array($source)) {
-	           		$source = array($source);
-	        	}
+	        	   	if(!is_array($source)) {
+	           		   	$source = array($source);
+	        	   	}
+			} else if($config['data_source'] == 'k2_authors') {
+				$source = strpos($config['k2_authors'],',') !== false ? explode(',', $config['k2_authors']) : $config['k2_authors'];
+				$where1 = ' content.created_by = ';
+				$where2 = ' OR content.created_by = ';
 			} else {
 				$source = strpos($config['k2_articles'],',') !== false ? explode(',', $config['k2_articles']) : $config['k2_articles'];
 				$where1 = ' content.id = ';
