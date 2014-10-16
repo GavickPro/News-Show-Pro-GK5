@@ -151,7 +151,7 @@ class NSP_GK5_com_k2_Model {
 		if($config['time_offset'] == 0) {
 			$date = JFactory::getDate("now");
 		} else {
-			$date = JFactory::getDate("now", $timezone);
+			$date = JFactory::getDate("now", $config['time_offset']);
 		}
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
