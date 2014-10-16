@@ -326,10 +326,10 @@ class NSP_GK5_com_virtuemart_Model {
 			    	$url_overrides && 
 			    	is_array($url_overrides) &&
 			    	count($url_overrides) > 0 && 
-			    	isset($url_overrides['com_content'])
+			    	isset($url_overrides['com_virtuemart'])
 			    ) {
-			    	if(isset($url_overrides['com_content'][$item['id']])) {
-			    		$item['overrided_url'] = $url_overrides['com_content'][$item['id']];
+			    	if(isset($url_overrides['com_virtuemart'][$item['id']])) {
+			    		$item['overrided_url'] = $url_overrides['com_virtuemart'][$item['id']];
 			    	}
 			    }
 			    
