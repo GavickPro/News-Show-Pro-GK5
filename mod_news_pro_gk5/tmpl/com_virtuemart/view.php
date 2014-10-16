@@ -260,6 +260,10 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 	}
 	// article link generator
 	static function itemLink($item, $config) {
+		if(isset($item['overrided_url'])) {
+			return $item['overrided_url'];
+		}
+		
 		$itemid = $config['vm_itemid'];
 		$link = 'index.php?option=com_virtuemart&amp;view=productdetails&amp;virtuemart_product_id='.$item['id'].'&amp;virtuemart_category_id='.$item['cid'].'&amp;Itemid='.$itemid;
 		return $link;

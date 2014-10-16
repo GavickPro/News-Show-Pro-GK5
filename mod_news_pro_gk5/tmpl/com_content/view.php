@@ -198,6 +198,10 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	
 	// article link generator
 	static function itemLink($item, $config = false) {
+		if(isset($item['overrided_url'])) {
+			return $item['overrided_url'];
+		}
+		
 		return ($item['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($item['id'], $item['cid'], $item['lang'])) : JRoute::_('index.php?option=com_users&view=login');
 	}
 	// category link generator
