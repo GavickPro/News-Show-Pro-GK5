@@ -102,7 +102,7 @@ class NSP_GK5_Helper {
 		$mode = $this->config['module_mode'];
 		//
 		if($mode != 'normal' && !class_exists('NSP_GK5_'.$mode)) {
-			require_once (dirname(__FILE__).DS.'tmpl'.DS.'portal_modes'.DS.strtolower($mode).DS.'controller.php');
+			require_once (JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'portal_modes/'.strtolower($mode).'/controller'));
 		}
 		//
 		$db = JFactory::getDBO();
@@ -136,13 +136,27 @@ class NSP_GK5_Helper {
 			// create instances of basic Joomla! classes
 			$document = JFactory::getDocument();
 			$uri = JURI::getInstance();
+			$app = JFactory::getApplication();
+			$template_name = $app->getTemplate();
+			// Basic paths
+			$css_path = $uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/style.css';
+			$js_path = $uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js';
+			// Check for the CSS overrides in the template
+			if(JFile::exists(JPATH_SITE . DS . 'templates' . DS . $template_name . DS . 'html' . DS . 'mod_news_pro_gk5' . DS . 'portal_modes' . DS . strtolower($this->config['module_mode']) . DS . 'style.css')) {
+				$css_path = $uri->root().'templates/'.$template_name.'/html/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/style.css';	
+			}
+			// JS potential override
+			if(JFile::exists(JPATH_SITE . DS . 'templates' . DS . $template_name . DS . 'html' . DS . 'mod_news_pro_gk5' . DS . 'portal_modes' . DS . strtolower($this->config['module_mode']) . DS . 'script.' . ($this->config['engine_mode']) . '.js')) {
+				$js_path = $uri->root().'templates/'.$template_name.'/html/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js';	
+			}
+			
 			// add stylesheets to document header
 			if($this->config["useCSS"] == 1) {
-				$document->addStyleSheet( $uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/style.css', 'text/css' );
+				$document->addStyleSheet( $css_path, 'text/css' );
 			}
 			// add script to the document header
 			if($this->config['useScript'] == 1) {
-				$document->addScript($uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js');
+				$document->addScript($js_path);
 			}
 			// init $headData variable
 			$headData = false;
@@ -156,13 +170,13 @@ class NSP_GK5_Helper {
 				// set variable for false
 				$engine_founded = false;
 				// searching phrase mootools in scripts paths
-				if(array_search($uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/scripts.'.($this->config['engine_mode']).'.js', $headData_keys) > 0) {
+				if(array_search($js_path, $headData_keys) > 0) {
 					$engine_founded = true;
 				}
 				// if engine doesn't exists in the head section
 				if(!$engine_founded){ 
 					// add new script tag connected with mootools from module
-					$document->addScript($uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js');
+					$document->addScript($js_path);
 				}
 			}
 		} else {	
@@ -234,7 +248,7 @@ class NSP_GK5_Helper {
     // RENDER PORTAL MODE LAYOUT
 	function render_portal_mode($mode) {
 		if(!class_exists('NSP_GK5_'.$mode)) {
-			require_once (dirname(__FILE__).DS.'tmpl'.DS.'portal_modes'.DS.strtolower($mode).DS.'controller.php');
+			require_once(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'portal_modes/'.strtolower($mode).'/controller'));
 		}
 
 		$class_name = 'NSP_GK5_'.$mode;
