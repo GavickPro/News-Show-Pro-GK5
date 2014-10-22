@@ -102,7 +102,7 @@ class NSP_GK5_Helper {
 		$mode = $this->config['module_mode'];
 		//
 		if($mode != 'normal' && !class_exists('NSP_GK5_'.$mode)) {
-			require_once (dirname(__FILE__).DS.'portal_modes'.DS.strtolower($mode).DS.'controller.php');
+			require_once (dirname(__FILE__).DS.'tmpl'.DS.'portal_modes'.DS.strtolower($mode).DS.'controller.php');
 		}
 		//
 		$db = JFactory::getDBO();
@@ -138,11 +138,11 @@ class NSP_GK5_Helper {
 			$uri = JURI::getInstance();
 			// add stylesheets to document header
 			if($this->config["useCSS"] == 1) {
-				$document->addStyleSheet( $uri->root().'modules/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/style.css', 'text/css' );
+				$document->addStyleSheet( $uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/style.css', 'text/css' );
 			}
 			// add script to the document header
 			if($this->config['useScript'] == 1) {
-				$document->addScript($uri->root().'modules/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js');
+				$document->addScript($uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js');
 			}
 			// init $headData variable
 			$headData = false;
@@ -156,13 +156,13 @@ class NSP_GK5_Helper {
 				// set variable for false
 				$engine_founded = false;
 				// searching phrase mootools in scripts paths
-				if(array_search($uri->root().'modules/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/scripts.'.($this->config['engine_mode']).'.js', $headData_keys) > 0) {
+				if(array_search($uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/scripts.'.($this->config['engine_mode']).'.js', $headData_keys) > 0) {
 					$engine_founded = true;
 				}
 				// if engine doesn't exists in the head section
 				if(!$engine_founded){ 
 					// add new script tag connected with mootools from module
-					$document->addScript($uri->root().'modules/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js');
+					$document->addScript($uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js');
 				}
 			}
 		} else {	
@@ -234,7 +234,7 @@ class NSP_GK5_Helper {
     // RENDER PORTAL MODE LAYOUT
 	function render_portal_mode($mode) {
 		if(!class_exists('NSP_GK5_'.$mode)) {
-			require_once (dirname(__FILE__).DS.'portal_modes'.DS.strtolower($mode).DS.'controller.php');
+			require_once (dirname(__FILE__).DS.'tmpl'.DS.'portal_modes'.DS.strtolower($mode).DS.'controller.php');
 		}
 
 		$class_name = 'NSP_GK5_'.$mode;
