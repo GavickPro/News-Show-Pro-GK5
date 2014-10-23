@@ -175,6 +175,22 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	        if(stripos($news_info, '%FEATURED') !== FALSE && $item['frontpage'] == '1') {
 	        	$info_featured = '<strong class="is-featured">'.JText::_('MOD_NEWS_PRO_GK5_FEATURED').'</strong>';
 	        }
+	        // Tags
+	        $info_tags = '';
+	        if(isset($item['tags']) && count($item['tags']) > 0) {
+	        	$i = 0;
+	        	foreach($item['tags'] as $tag_name => $tag_id) {
+	        		$link = urldecode(JRoute::_(TagsHelperRoute::getTagRoute($tag_id)));
+	        	
+	        		if($i == 0) {
+	        			$info_tags .= '<a href="' . $link . '" target="'.$config['open_links_window'].'">' . $tag_name . '</a>';
+	        		} else {
+	        			$info_tags .= ', <a href="' . $link . '" target="'.$config['open_links_window'].'">' . $tag_name . '</a>';
+	        		}
+	        		//
+	        		$i++;
+	        	}
+	        }
 	        // 
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
@@ -182,6 +198,7 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	        $news_info = str_replace('%CATEGORY', $info_category, $news_info);
 	        $news_info = str_replace('%STARS', $info_stars, $news_info);
 	        $news_info = str_replace('%RATE', $info_rate, $news_info);
+	        $news_info = str_replace('%TAGS', $info_tags, $news_info);
 	        $news_info = str_replace('%FEATURED', $info_featured, $news_info);
 	        // only if comments used
 	       	if($config['com_content_comments_source'] != 'none') {
