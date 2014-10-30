@@ -328,7 +328,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 			$config['k2_image_size'] = 'Generic';
 		}
 		
-		if($config['k2_image_size'] = 'first') {
+		if($config['k2_image_size'] == 'first') {
 			// set image to first in article content
 			if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
 				$imgStartPos = JString::strpos($item['text'], 'src="');
