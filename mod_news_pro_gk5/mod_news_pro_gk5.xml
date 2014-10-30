@@ -250,13 +250,13 @@
                 </field> 
                 
                 <field name="k2_image_size" type="list" default="Generic" label="MOD_NEWS_PRO_GK5_K2_IMAGE_SIZE" description="MOD_NEWS_PRO_GK5_K2_IMAGE_SIZE_DESC">
-                    <option value="first">MOD_NEWS_PRO_GK5_FIRST_IMAGE</option>
                     <option value="Generic">Generic</option>
                     <option value="XL">XL</option>
                     <option value="L">L</option>
                     <option value="M">M</option>
                     <option value="S">S</option>
                     <option value="XS">XS</option>
+                    <option value="first">MOD_NEWS_PRO_GK5_FIRST_IMAGE</option>
                 </field>  
 
                 <field name="k2_get_extra_fields" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_K2_GET_EXTRA_FIELDS" description="MOD_NEWS_PRO_GK5_K2_GET_EXTRA_FIELDS_DESC">
