@@ -352,8 +352,8 @@ class NSP_GK5_com_content_Model {
 				    count($url_overrides) > 0 && 
 				    isset($url_overrides['com_content'])
 				) {
-					if(isset($url_overrides['com_content'][$item['id']])) {
-						$item['overrided_url'] = $url_overrides['com_content'][$item['id']];
+					if(isset($url_overrides['com_content'][$item['iid']])) {
+						$item['overrided_url'] = $url_overrides['com_content'][$item['iid']];
 					}
 				}
 				
