@@ -276,9 +276,11 @@ NSP5.prototype = {
 				'margin-left': (-1 * this.arts_current * this.arts_block_width) + "%"
 			}, $this.config['animation_speed']);
 			
-			setTimeout(function() {
-				jQuery($this.arts_pages[$this.arts_current]).addClass('active');
-			}, this.config['animation_speed'] * 0.5);
+			if(jQuery($this.arts_pages[$this.arts_current])) {
+				setTimeout(function() {
+					jQuery($this.arts_pages[$this.arts_current]).addClass('active');
+				}, this.config['animation_speed'] * 0.5);
+			}
 			
 			setTimeout(function() {
 				$this.anim_arts = false;
