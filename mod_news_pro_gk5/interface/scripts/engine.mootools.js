@@ -255,11 +255,15 @@ var NSP5 = new Class({
 				this.arts_current = dir;
 			}
 			
-			this.arts_scroller.start(-1 * this.arts_current * this.arts_block_width);
+			if(this.arts_scroller) {
+				this.arts_scroller.start(-1 * this.arts_current * this.arts_block_width);
+			}
 			
-			(function() {
-				$this.arts_pages[$this.arts_current].addClass('active');
-			}).delay(this.config['animation_speed'] * 0.5);
+			if($this.arts_pages[$this.arts_current]) {
+				(function() {
+					$this.arts_pages[$this.arts_current].addClass('active');
+				}).delay(this.config['animation_speed'] * 0.5);
+			}
 			
 			(function() {
 				$this.anim_arts = false;
