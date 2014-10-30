@@ -312,17 +312,15 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 		// return the output array
 		return $output;
 	}
-	// original image
+	// orginal image
 	static function originalImage($config, $item) {
 		$IMG_SOURCE = '';
-			
+		
 		if(!$config['k2_image_size']) {
 			$config['k2_image_size'] = 'Generic';
 		}
-	
-		if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg')){  
-			$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg';
-		} else {
+		
+		if($config['k2_image_size'] = 'first') {
 			// set image to first in article content
 			if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
 				$imgStartPos = JString::strpos($item['text'], 'src="');
@@ -332,6 +330,13 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 				if($imgStartPos > 0) {
 					$IMG_SOURCE = JString::substr($item['text'], ($imgStartPos + 5), ($imgEndPos - ($imgStartPos + 5)));
 				}
+			}
+		} else {
+			// search for the article featured image
+			if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg')){  
+				$IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg';
+			} elseif(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.png')){  
+	            $IMG_SOURCE = JURI::root().'media/k2/items/cache/'.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.png';
 			}
 		}
 		
