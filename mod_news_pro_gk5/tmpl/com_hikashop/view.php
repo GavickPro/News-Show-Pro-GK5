@@ -195,6 +195,10 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 	
 	// article link generator
 	static function itemLink($item, $config) {
+		if(isset($item['overrided_url'])) {
+			return $item['overrided_url'];
+		}
+		
 		return hikashop_completeLink('product&task=show&cid='.$item['id'].'&name='.$item['alias'].'&Itemid=' . $config['hikashop_itemid']);
 	}
 	// category link generator

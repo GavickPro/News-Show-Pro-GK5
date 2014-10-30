@@ -323,6 +323,20 @@ class NSP_GK5_com_easyblog_Model {
 		
 		// when exist some results
 		if($news2 = $db->loadAssocList()) {
+			// load URL overrides
+			$url_overrides = false;
+			
+			if($config['url_overrides'] == '1') {
+				$override_file = JPATH_SITE . '/modules/mod_news_pro_gk5/url_overrides.json';
+				
+				if(JFile::exists($override_file)) {
+					$override_content = file_get_contents($override_file);
+								
+					if($override_content && $override_content != '') {
+						$url_overrides = json_decode($override_content, true);
+					}
+				}
+			}
 			// create the iid array
 			$content_id = array();
 			// create the content IDs array
@@ -332,6 +346,17 @@ class NSP_GK5_com_easyblog_Model {
 			// generating tables of news data
 			foreach($news2 as $item) {						
 			    $pos = array_search($item['id'], $content_id);
+				
+				if(
+				    $url_overrides && 
+				    is_array($url_overrides) &&
+				    count($url_overrides) > 0 && 
+				    isset($url_overrides['com_easyblog'])
+				) {
+					if(isset($url_overrides['com_easyblog'][$item['id']])) {
+						$item['overrided_url'] = $url_overrides['com_easyblog'][$item['id']];
+					}
+				}
 				// merge the new data to the array of items data
 				if(isset($content[$pos]) && is_array($content[$pos])) {
 					$content[$pos] = array_merge($content[$pos], (array) $item);

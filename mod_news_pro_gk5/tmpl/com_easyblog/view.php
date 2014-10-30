@@ -230,6 +230,10 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	}
 	// article link generator
 	static function itemLink($item, $config = false) {
+		if(isset($item['overrided_url'])) {
+			return $item['overrided_url'];
+		}
+		
 		return urldecode(JRoute::_('index.php?option=com_easyblog&view=entry&id=' . $item['id']));
 	}
 	// category link generator

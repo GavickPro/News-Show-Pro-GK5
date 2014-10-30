@@ -322,6 +322,20 @@ class NSP_GK5_com_content_Model {
 		$db->setQuery($second_query_news);
 		// when exist some results
 		if($news2 = $db->loadAssocList()) {
+			// load URL overrides
+			$url_overrides = false;
+			
+			if($config['url_overrides'] == '1') {
+				$override_file = JPATH_SITE . '/modules/mod_news_pro_gk5/url_overrides.json';
+				
+				if(JFile::exists($override_file)) {
+					$override_content = file_get_contents($override_file);
+								
+					if($override_content && $override_content != '') {
+						$url_overrides = json_decode($override_content, true);
+					}
+				}
+			}
 			// create the iid array
 			$content_iid = array();
 			// create the content IDs array
@@ -330,7 +344,19 @@ class NSP_GK5_com_content_Model {
 			}
 			// generating tables of news data
 			foreach($news2 as $item) {						
-			   $pos = array_search($item['iid'], $content_iid);
+			   	$pos = array_search($item['iid'], $content_iid);
+				
+				if(
+				    $url_overrides && 
+				    is_array($url_overrides) &&
+				    count($url_overrides) > 0 && 
+				    isset($url_overrides['com_content'])
+				) {
+					if(isset($url_overrides['com_content'][$item['id']])) {
+						$item['overrided_url'] = $url_overrides['com_content'][$item['id']];
+					}
+				}
+				
 				if( $item['lang'] == '*' ){
 					$lang = JFactory::getLanguage();
 					$item['lang'] = $lang->getTag();
