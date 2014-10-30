@@ -368,7 +368,7 @@ class NSP_GK5_com_k2_Model {
 			$content = NSP_GK5_com_k2_Model::getComments($content, $config);
 		}
 		// load extra fields
-		if($config['k2_get_extra_fields'] == 1) {
+		if(isset($config['k2_get_extra_fields']) && $config['k2_get_extra_fields'] == 1) {
 			$content = NSP_GK5_com_k2_Model::getExtraFields($content, $config);
 		}
 		// load tags
