@@ -33,7 +33,7 @@ class JFormFieldPortalModes extends JFormField {
 		// prefix for the language files
 		$pre = 'MOD_NEWS_PRO_GK5_';
 		// get folders with data sources
-		$folders = JFolder::listFolderTree(JPATH_SITE . '/modules/mod_news_pro_gk5/portal_modes/', '', 1);	
+		$folders = JFolder::listFolderTree(JPATH_SITE . '/modules/mod_news_pro_gk5/tmpl/portal_modes/', '', 1);
 		//
 		$json_data = null;
 		// iterate through data source folders
