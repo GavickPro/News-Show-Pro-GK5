@@ -136,6 +136,10 @@ class NSP_GK5_Portfolio2 {
 		} else {
 			// if URL isn't blank - return it!
 			if($url != '') {
+				if(stripos($url, JURI::base()) === FALSE) {
+					$url = JURI::base() . $url;
+				}
+				
 				return $url;
 			} else {
 				return false;
