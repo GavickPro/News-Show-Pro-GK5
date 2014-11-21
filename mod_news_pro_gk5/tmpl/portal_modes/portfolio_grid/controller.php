@@ -115,6 +115,7 @@ class NSP_GK5_Portfolio_Grid {
 						echo '</div>';
 					}
 				echo '</div>';
+				echo '<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>';
 			}
 		}
 		// closing main wrapper

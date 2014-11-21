@@ -375,6 +375,23 @@
 	background: transparent;
 }
 
+
+body .gk-photo-overlay > a[data-pin-href] {
+	bottom: 50px!important;
+	cursor: pointer;
+	left: auto!important;
+	margin-left: -16px!important;
+	position: absolute!important;
+	right: 50%!important;
+	top: auto!important;
+	-webkit-transform: scale(1.5);
+	-moz-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	transform: scale(1.5);
+}
+
+
 /* Mobile devices */
 @media (max-width: 1920px) {
 	.gkNspPM-PortfolioGrid {

@@ -55,7 +55,7 @@ jQuery(document).ready(function() {
 				// photos collection
 				var collection = [];
 				// create overlay elements
-				var overlay = jQuery('<div>', { class: 'gk-photo-overlay' });
+				var overlay = jQuery('<div class="gk-photo-overlay"><a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-shape="round" data-pin-height="32"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a></div>');
 				var overlay_prev = jQuery('<a>', { class: 'gk-photo-overlay-prev' });
 				var overlay_next = jQuery('<a>', { class: 'gk-photo-overlay-next' });
 				// put the element
