@@ -40,7 +40,8 @@ class NSP_GK5_Grid_News {
 		echo '<div class="gkNspPM gkNspPM-GridNews" data-cols="'.$this->parent->config['portal_mode_grid_news_cols'].'">';
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
-		
+			$this->parent->content[$i]['title'] = explode('__', $this->parent->content[$i]['title']);
+			$this->parent->content[$i]['title'] = $this->parent->content[$i]['title'][0];
 			// calculate the inverse class
 			$inverse_class = '';
 			$rows = $this->parent->config['portal_mode_grid_news_cols'] * 2;
