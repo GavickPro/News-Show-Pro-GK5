@@ -326,7 +326,7 @@ class NSP_GK5_com_easyblog_Model {
 			// load URL overrides
 			$url_overrides = false;
 			
-			if($config['url_overrides'] == '1') {
+			if(isset($config['url_overrides']) && $config['url_overrides'] == '1') {
 				$override_file = JPATH_SITE . '/modules/mod_news_pro_gk5/url_overrides.json';
 				
 				if(JFile::exists($override_file)) {
