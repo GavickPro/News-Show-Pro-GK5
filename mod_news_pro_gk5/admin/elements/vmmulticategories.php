@@ -60,54 +60,58 @@ class JFormFieldVMMulticategories extends JFormFieldList {
 	}
 
     protected function getOptions() {
-        // Initialize variables.
-        $session = JFactory::getSession();
-        $attr = '';
-        $lang = '';
-        // Initialize some field attributes.
-        $attr .= $this->element['class'] ? ' class="'.(string) $this->element['class'].'"' : '';
-        // To avoid user's confusion, readonly="true" should imply disabled="true".
-        if ( (string) $this->element['readonly'] == 'true' || (string) $this->element['disabled'] == 'true') {
-            $attr .= ' disabled="disabled"';
-        }
-
-        $attr .= $this->element['size'] ? ' size="'.(int) $this->element['size'].'"' : '';
-        $attr .= $this->multiple ? ' multiple="multiple"' : '';
-        
-        // Initialize JavaScript field attributes.
-        $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
-        $db = JFactory::getDBO();
-        // get default VM language
-        
-       // get front-end language
-        jimport('joomla.language.helper');
-        $languages = JLanguageHelper::getLanguages('lang_code');
-		$siteLang = JFactory::getLanguage()->getTag();
-		$lang = strtolower(strtr($siteLang,'-','_'));
-
-        // generating query
-        $db->setQuery("SELECT c.category_name AS name, c.virtuemart_category_id AS id, x.category_parent_id AS parent FROM #__virtuemart_categories_".$lang." AS c LEFT JOIN #__virtuemart_category_categories AS x ON x.category_child_id = c.virtuemart_category_id LEFT JOIN #__virtuemart_categories AS cr ON cr.virtuemart_category_id = c.virtuemart_category_id WHERE cr.published = '1' ORDER BY c.category_name, x.category_parent_id ASC");
- 		// getting results
-   		$results = $db->loadObjectList();
-   		
-		if(count($results)){
-  	     	// iterating
-			$temp_options = array();
-
-			foreach ($results as $item) {
-				array_push($temp_options, array($item->id, $item->name, $item->parent));	
+	    if(JFile::exists(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'config.php')) {
+	        // Initialize variables.
+	        $session = JFactory::getSession();
+	        $attr = '';
+	        $lang = '';
+	        // Initialize some field attributes.
+	        $attr .= $this->element['class'] ? ' class="'.(string) $this->element['class'].'"' : '';
+	        // To avoid user's confusion, readonly="true" should imply disabled="true".
+	        if ( (string) $this->element['readonly'] == 'true' || (string) $this->element['disabled'] == 'true') {
+	            $attr .= ' disabled="disabled"';
+	        }
+	
+	        $attr .= $this->element['size'] ? ' size="'.(int) $this->element['size'].'"' : '';
+	        $attr .= $this->multiple ? ' multiple="multiple"' : '';
+	        
+	        // Initialize JavaScript field attributes.
+	        $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
+	        $db = JFactory::getDBO();
+	        // get default VM language
+	        
+	       // get front-end language
+	        jimport('joomla.language.helper');
+	        $languages = JLanguageHelper::getLanguages('lang_code');
+			$siteLang = JFactory::getLanguage()->getTag();
+			$lang = strtolower(strtr($siteLang,'-','_'));
+	
+	        // generating query
+	        $db->setQuery("SELECT c.category_name AS name, c.virtuemart_category_id AS id, x.category_parent_id AS parent FROM #__virtuemart_categories_".$lang." AS c LEFT JOIN #__virtuemart_category_categories AS x ON x.category_child_id = c.virtuemart_category_id LEFT JOIN #__virtuemart_categories AS cr ON cr.virtuemart_category_id = c.virtuemart_category_id WHERE cr.published = '1' ORDER BY c.category_name, x.category_parent_id ASC");
+	 		// getting results
+	   		$results = $db->loadObjectList();
+	   		
+			if(count($results)){
+	  	     	// iterating
+				$temp_options = array();
+	
+				foreach ($results as $item) {
+					array_push($temp_options, array($item->id, $item->name, $item->parent));	
+				}
+	
+				foreach ($temp_options as $option) {
+	        		if($option[2] == 0) {
+	        	    	$this->options[] = JHtml::_('select.option', $option[0], $option[1]);
+	        	    	$this->recursive_options($temp_options, 1, $option[0]);
+	        	    }
+	        	}		
+	
+	            return $this->options;
+			} else {	
+	            return $this->options;
 			}
-
-			foreach ($temp_options as $option) {
-        		if($option[2] == 0) {
-        	    	$this->options[] = JHtml::_('select.option', $option[0], $option[1]);
-        	    	$this->recursive_options($temp_options, 1, $option[0]);
-        	    }
-        	}		
-
-            return $this->options;
-		} else {	
-            return $this->options;
+		} else {
+			return array('');
 		}
 	}
  	// bind function to save

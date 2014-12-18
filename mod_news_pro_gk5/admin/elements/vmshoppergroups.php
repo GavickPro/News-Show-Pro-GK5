@@ -54,44 +54,48 @@ class JFormFieldVMShoppergroups extends JFormFieldList {
 	}
 
     protected function getOptions() {
-        // Initialize variables.
-        $session = JFactory::getSession();
-        $attr = '';
-        // Initialize some field attributes.
-        $attr .= $this->element['class'] ? ' class="'.(string) $this->element['class'].'"' : '';
-        // To avoid user's confusion, readonly="true" should imply disabled="true".
-        if ( (string) $this->element['readonly'] == 'true' || (string) $this->element['disabled'] == 'true') {
-            $attr .= ' disabled="disabled"';
-        }
-
-        $attr .= $this->element['size'] ? ' size="'.(int) $this->element['size'].'"' : '';
-        $attr .= $this->multiple ? ' multiple="multiple"' : '';
-        // Initialize JavaScript field attributes.
-        $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
-        $db = JFactory::getDBO();
-        // generating query
-		$db->setQuery("SELECT sg.shopper_group_name AS name, sg.virtuemart_shoppergroup_id AS id FROM #__virtuemart_shoppergroups AS sg ORDER BY sg.shopper_group_name ASC");
- 		// getting results
-   		$results = $db->loadObjectList();
-   		
-		if(count($results)){
-  	     	// iterating
-			$temp_options = array();
-			array_push($temp_options, array(-1, 'none', 0));
-			foreach ($results as $item) {
-				array_push($temp_options, array($item->id, $item->name, 0));	
+        if(JFile::exists(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'config.php')) {
+	        // Initialize variables.
+	        $session = JFactory::getSession();
+	        $attr = '';
+	        // Initialize some field attributes.
+	        $attr .= $this->element['class'] ? ' class="'.(string) $this->element['class'].'"' : '';
+	        // To avoid user's confusion, readonly="true" should imply disabled="true".
+	        if ( (string) $this->element['readonly'] == 'true' || (string) $this->element['disabled'] == 'true') {
+	            $attr .= ' disabled="disabled"';
+	        }
+	
+	        $attr .= $this->element['size'] ? ' size="'.(int) $this->element['size'].'"' : '';
+	        $attr .= $this->multiple ? ' multiple="multiple"' : '';
+	        // Initialize JavaScript field attributes.
+	        $attr .= $this->element['onchange'] ? ' onchange="'.(string) $this->element['onchange'].'"' : '';
+	        $db = JFactory::getDBO();
+	        // generating query
+			$db->setQuery("SELECT sg.shopper_group_name AS name, sg.virtuemart_shoppergroup_id AS id FROM #__virtuemart_shoppergroups AS sg ORDER BY sg.shopper_group_name ASC");
+	 		// getting results
+	   		$results = $db->loadObjectList();
+	   		
+			if(count($results)){
+	  	     	// iterating
+				$temp_options = array();
+				array_push($temp_options, array(-1, 'none', 0));
+				foreach ($results as $item) {
+					array_push($temp_options, array($item->id, $item->name, 0));	
+				}
+	
+				foreach ($temp_options as $option) {
+	        		if($option[2] == 0) {
+	        	    	$this->options[] = JHtml::_('select.option', $option[0], $option[1]);
+	        	    	$this->recursive_options($temp_options, 1, $option[0]);
+	        	    }
+	        	}		
+	
+	            return $this->options;
+			} else {	
+	            return $this->options;
 			}
-
-			foreach ($temp_options as $option) {
-        		if($option[2] == 0) {
-        	    	$this->options[] = JHtml::_('select.option', $option[0], $option[1]);
-        	    	$this->recursive_options($temp_options, 1, $option[0]);
-        	    }
-        	}		
-
-            return $this->options;
-		} else {	
-            return $this->options;
+		} else {
+			return array('');
 		}
 	}
  	// bind function to save
