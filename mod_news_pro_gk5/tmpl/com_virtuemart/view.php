@@ -180,30 +180,16 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
            JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
         }
         // load the base
-        $mainframe = JFactory::getApplication();
-        $virtuemart_currency_id = $mainframe->getUserStateFromRequest( "virtuemart_currency_id", 'virtuemart_currency_id',JRequest::getInt('virtuemart_currency_id',0) );
-        $currency = CurrencyDisplay::getInstance();
-        $cSymbol = $currency->getSymbol();
-        $cDecimals = $currency->getNbrDecimals();
-        $cDecSymbol = $currency->getDecimalSymbol();
-
         $productModel = new VirtueMartModelProduct();
 	    $product = $productModel->getProduct($item['id'], 100, true, true, true);
-	    $price = strip_tags($currency->createPriceDiv ($config['vm_show_price_type'], '', $product->prices));
-	    // remove currency 
-	    $price = str_replace($cSymbol, '', $price);
-	    // prepare price - apply correct format and decimal separator
-	    $price = str_replace('.',$cDecSymbol, $price);
-	    if($config['vm_currency_position'] == 'before') { 
-	    	$price = $cSymbol.' '.$price;
-	    } else {
-	    	$price = $price.' '.$cSymbol;
-	    }
-	    //
+	    $currency = CurrencyDisplay::getInstance($product->allPrices[0]['product_currency']);
+	    $price = '<strong>'.$currency->createPriceDiv($config['vm_show_price_type'], '', $product->prices, true).'</strong>';
+
         if($config['vm_add_to_cart'] == 1) {
-            vmJsApi::jQuery();
             vmJsApi::jPrice();
+            vmJsApi::writeJS();
         }
+
         $news_price = '<div>';
         //
         if($config['vm_show_price_type'] != 'none') {
@@ -215,15 +201,19 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         } 
         // 'Add to cart' button
         if($config['vm_add_to_cart'] == 1) {
-            $code = '<form method="post" class="product" action="index.php">';
+            $code = '<div class="addtocart-area">';
+            $code .= '<form method="post" class="product" action="index.php">';
             $code .= '<div class="addtocart-bar">';
             $code .= '<span class="quantity-box" style="display: none"><input type="text" class="quantity-input" name="quantity[]" value="1" /></span>';
-            
-            $button_lbl = JText::_('MOD_NEWS_PRO_GK5_COM_VIRTUEMART_CART_ADD_TO');
-			$button_cls = '';
-            $stockhandle = VmConfig::get('stockhandle','none');
-            
-            $code .= '<span class="addtocart-button"><input type="submit" name="addtocart" class="addtocart-button" value="'.$button_lbl.'" title="'.$button_lbl.'" /></span>';
+            $addtoCartButton = '';
+
+			if($product->addToCartButton){
+				$addtoCartButton = $product->addToCartButton;
+			} else {
+				$addtoCartButton = shopFunctionsF::getAddToCartButton($product->orderable);
+			}
+
+            $code .= $addtoCartButton;
                 
             $code .= '</div>
                     <input type="hidden" class="pname" value="'.$product->product_name.'"/>
@@ -232,28 +222,19 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
                     <noscript><input type="hidden" name="task" value="add" /></noscript>
                     <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
                     <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
-                </form>';     
+                </form>';    
+            $code .= '</div>'; 
             $news_price .= $code;
 		} 
        	// display discount
         if($config['vm_show_discount_amount'] == 1) {
-            $disc_amount = str_replace('.',$cDecSymbol,number_format($product->prices['discountAmount'],$cDecimals));
-            if($config['vm_currency_position'] == 'before') {  
-            	$disc_amount = $cSymbol.' '.$disc_amount;
-            } else {
-            	$disc_amount = $disc_amount.' '.$cSymbol;
-            }
-            $news_price.= JText::_('MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT'). $disc_amount;
+            $disc_amount = $currency->priceDisplay($product->prices['discountAmount'], $product->allPrices[0]['product_currency']);
+            $news_price.= '<small class="nspDiscount">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT'). $disc_amount . '</small>';
         }
 		// display tax
         if($config['vm_show_tax'] == 1) {
-          	$taxAmount = str_replace('.',$cDecSymbol,number_format($product->prices['taxAmount'],$cDecimals));
-            if($config['vm_currency_position'] == 'before') {  
-            	$taxAmount = $cSymbol.' '.$taxAmount;
-            } else {
-            	$taxAmount = $taxAmount.' '.$cSymbol;
-            }
-            $news_price.= JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount;  
+          	$taxAmount = $currency->priceDisplay($product->prices['taxAmount'], $product->allPrices[0]['product_currency']);
+            $news_price.= '<small class="nspTax">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount . '</small>';  
         }
   		// results
         return ($news_price != '<div>') ? $news_price.'</div>' : '';

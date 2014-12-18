@@ -19,7 +19,6 @@ class NSP_GK5_News_Blocks {
 	private $mode;
 	// constructor
 	function __construct($parent) {
-	
 		$this->parent = $parent;
 		// detect the supported Data Sources
 		if(stripos($this->parent->config['data_source'], 'com_content_') !== FALSE) {
@@ -103,6 +102,7 @@ class NSP_GK5_News_Blocks {
 		} else {
 			return false;
 		}
+		
 	}
 	// image generator
 	function get_image($num) {		
@@ -122,7 +122,7 @@ class NSP_GK5_News_Blocks {
 			if(!class_exists('NSP_GK5_com_k2_View')) {
 				require_once(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'com_k2/view'));
 			}
-			// generate the EasyBlog image URL only
+			// generate the K2 image URL only
 			$url = NSP_GK5_com_k2_View::image($this->parent->config, $this->parent->content[$num], true, true);
 		} else if($this->mode == 'com_easyblog') {
 			// load necessary EasyBlog View class
@@ -130,13 +130,14 @@ class NSP_GK5_News_Blocks {
 				require_once(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'com_easyblog/view'));
 			}
 			// generate the EasyBlog image URL only
+			
 			$url = NSP_GK5_com_easyblog_View::image($this->parent->config, $this->parent->content[$num], true, true);
 		} else if($this->mode == 'com_virtuemart') {
 			// load necessary EasyBlog View class
 			if(!class_exists('NSP_GK5_com_virtuemart_View')) {
 				require_once(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'com_virtuemart/view'));
 			}
-			// generate the EasyBlog image URL only
+			// generate the VirtueMart image URL only
 			$url = NSP_GK5_com_virtuemart_View::image($this->parent->config, $this->parent->content[$num], true, true);
 		}
 		// check if the URL exists

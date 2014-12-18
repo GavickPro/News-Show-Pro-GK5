@@ -325,10 +325,6 @@
                     <option value="discountedPriceWithoutTax">MOD_NEWS_PRO_GK5_VM_DISCOUNT_PRICE_WITHOUT_TAX</option>
                 </field>
                 
-                <field name="vm_currency_position" type="list" default="before" label="MOD_NEWS_PRO_GK5_VM_CURRENCY_POSITION" description="MOD_NEWS_PRO_GK5_VM_CURRENCY_POSITION_DESC">
-                    <option value="before">MOD_NEWS_PRO_GK5_VM_BEFORE_PRICE</option>
-                    <option value="after">MOD_NEWS_PRO_GK5_VM_AFTER_PRICE</option>
-                </field>
                 <field name="vm_add_to_cart" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART" description="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART_DESC">
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                     <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
