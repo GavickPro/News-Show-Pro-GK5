@@ -129,6 +129,10 @@
 				
 				<field name="xml_file" type="filelist" default="" label="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE" description="MOD_NEWS_PRO_GK5_EXTERNAL_SOURCE_DESC" directory="modules/mod_news_pro_gk5/external_data" filter="(\.xml)$" stripext="" hide_default="hide_default" class="gk-hidden-field" />
                 
+                <field name="com_virtuemart_products" type="text" default="" size="25" label="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_PRODUCTS" description="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_PRODUCTS_DESC" class="gk-hidden-field" />
+                
+                <field name="com_virtuemart_categories" type="vmmulticategories" extension="vmmulticategories" default="" size="60" multiple="multiple" label="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_CATEGORIES" description="MOD_NEWS_PRO_GK5_COM_VIRTUEMART_CATEGORIES_DESC" class="gk-hidden-field" />
+                
                 <field name="com_hikashop_products" type="text" default="" size="25" label="MOD_NEWS_PRO_GK5_COM_HIKASHOP_PRODUCTS" description="MOD_NEWS_PRO_GK5_COM_HIKASHOP_PRODUCTS_DESC" class="gk-hidden-field" />
                 
 				<field name="com_hikashop_categories" type="hikashopmulticategories" extension="hikashopmulticategories" default="" size="60" multiple="multiple" label="MOD_NEWS_PRO_GK5_COM_HIKASHOP_CATEGORIES" description="MOD_NEWS_PRO_GK5_COM_HIKASHOP_CATEGORIES_DESC" class="gk-hidden-field" />
@@ -303,6 +307,53 @@
                </field> 
            </fieldset>
            	
+           	<fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_VIRTUEMART">
+           	    <field name="vm_itemid" type="text" default="9999" size="5" label="MOD_NEWS_PRO_GK5_VM_ITEMID" description="MOD_NEWS_PRO_GK5_VM_ITEMID_DESC"/>
+           	    
+           	    <field name="vm_lang" type="text" default="" size="5" label="MOD_NEWS_PRO_GK5_VM_LANG" description="MOD_NEWS_PRO_GK5_VM_LANG_DESC"/>
+           	    
+           	    <field name="vm_shopper_group" default="-1" type="vmshoppergroups" label="MOD_NEWS_PRO_GK5_VM_SHOPPERGROUPS" description="MOD_NEWS_PRO_GK5_VM_SHOPPERGROUPS_DESC"/>
+           	    
+           	    <field name="vm_out_of_stock" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_VM_OUT_OF_STOCK" description="MOD_NEWS_PRO_GK5_VM_OUT_OF_STOCK_DESC">
+           	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+           	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+           	    </field>
+           	    
+           	    <field name="vm_show_price_type" type="list" default="salesPrice" label="MOD_NEWS_PRO_GK5_VM_PRICE_TYPE" description="MOD_NEWS_PRO_GK5_VM_PRICE_TYPE_DESC">
+           	        <option value="none">MOD_NEWS_PRO_GK5_VM_NONE</option>
+           	        <option value="salesPrice">MOD_NEWS_PRO_GK5_VM_SALES_PRICE</option>
+           	        <option value="costPrice">MOD_NEWS_PRO_GK5_VM_COST_PRICE</option>
+           	        <option value="basePrice">MOD_NEWS_PRO_GK5_VM_BASE_PRICE</option>
+           	        <option value="basePriceWithTax">MOD_NEWS_PRO_GK5_VM_BASE_PRICE_WTAX</option>
+           	        <option value="discountedPriceWithoutTax">MOD_NEWS_PRO_GK5_VM_DISCOUNT_PRICE_WITHOUT_TAX</option>
+           	    </field>
+           	    
+           	    <field name="vm_add_to_cart" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART" description="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART_DESC">
+           	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+           	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+           	    </field>
+           	    
+           	    <field name="vm_show_discount_amount" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_DISCOUNT_AMOUNT" description="MOD_NEWS_PRO_GK5_VM_DISCOUNT_AMOUNT_DESC">
+           	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+           	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+           	    </field>
+           	    
+           	    <field name="vm_show_tax" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_TAX" description="MOD_NEWS_PRO_GK5_VM_DISCOUNT_TAX_DESC">
+           	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+           	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+           	    </field>
+           	    
+           	    <field name="vm_display_type" type="list" default="text_price" label="MOD_NEWS_PRO_GK5_VM_DISPLAY_TYPE" description="MOD_NEWS_PRO_GK5_VM_DISCOUNT_DISPLAY_TYPE_DESC">
+           	        <option value="price">MOD_NEWS_PRO_GK5_PRICE</option>
+           	        <option value="text_price">MOD_NEWS_PRO_GK5_TEXT_PRICE</option>
+           	    </field>
+           	    
+           		<field name="vm_show_featured_badge" type="list" class="gk_switch" default="0" label="MOD_NEWS_PRO_GK5_VM_FEATURED_BADGE" description="MOD_NEWS_PRO_GK5_VM_FEATURED_BADGE_DESC">
+           			<option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+           			<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+           		</field>
+           	</fieldset>
+           	
             <!-- Data sources fieldsets END -->
 			
 			<!-- Portal Modes fieldsets START -->
@@ -348,9 +399,10 @@
 				
 				<field name="portal_mode_product_gallery_2_cols" type="text" default="4" size="5" class="input-small" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_COLS_DESC" />
 				
-				<!-- <field name="portal_mode_product_gallery_2_button" type="list" default="cart" class="input-small" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_BUTTON" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_BUTTON_DESC">
+				<field name="portal_mode_product_gallery_2_button" type="list" default="cart" class="input-small" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_BUTTON" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_BUTTON_DESC">
 				        <option value="readon">MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_READON</option>
-				</field>-->
+                        <option value="cart">MOD_NEWS_PRO_GK5_PORTAL_MODE_PRODUCT_GALLERY_2_CART</option>
+				</field>
 			</fieldset>
 			
 			<fieldset name="NSP_PORTAL_MODE_NEWS_BLOCKS">				

@@ -3,7 +3,8 @@
 	"full_name": "PRODUCT_GALLERY",
 	"support": [
 		"com_content", 
-		"com_k2"
+		"com_k2",
+		"com_virtuemart"
 	],
 	"thumbnails": true
 }

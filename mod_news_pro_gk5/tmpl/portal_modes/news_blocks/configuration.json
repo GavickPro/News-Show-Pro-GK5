@@ -4,7 +4,8 @@
 	"support": [
 		"com_content", 
 		"com_k2",
-		"com_easyblog"
+		"com_easyblog",
+		"com_virtuemart"
 	],
 	"thumbnails": true
 }

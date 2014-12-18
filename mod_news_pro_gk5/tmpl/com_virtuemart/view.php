@@ -13,57 +13,13 @@
 // access restriction
 defined('_JEXEC') or die('Restricted access');
 
-class NSP_GK5_com_virtuemart_View {
-	// header generator
-	static function header($config, $item) {
-		if($config['news_content_header_pos'] != 'disabled') {
-			$class = ' t'.$config['news_content_header_pos'].' f'.$config['news_content_header_float'];
-			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
-			$output = str_replace('"', "&quot;", $output);
-	        // first word span wrap
-	        if($config['news_header_first_word'] == 1) {
-	        	$output_temp = explode(' ', $output);
-	        	$first_word = $output_temp[0];
-	        	$output_temp[0] = '<span>'.$output_temp[0].'</span>';
-	        	$output = preg_replace('/' . $first_word . '/mi', $output_temp[0], $output, 1);
-	        }
-	        
-	        $link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
-			//
-			if($config['news_header_link'] == 1) {
-				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'" target="'.$config['open_links_window'].'">'.$output.'</a></h4>';	
-			} else {
-				return '<h4 class="nspHeader'.$class.'" title="'.htmlspecialchars($item['title']).'">'.$output.'</h4>';
-			}
-		} else {
-			return '';
-		}		
-	}
-	// article text generator
-	static function text($config, $item, $readmore) {
-		if($config['news_content_text_pos'] != 'disabled') {
-			//
-			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
-			$link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
-			//
-			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'" target="'.$config['open_links_window'].'">'.$item['text'].'</a>' : $item['text']; 
-			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
-			//
-			if($config['news_content_readmore_pos'] == 'after') { 
-				return '<p class="nspText'.$class.'">'.$item['text'].' '.$readmore.'</p>';
-			} else {
-				return '<p class="nspText'.$class.'">'.$item['text'].'</p>';
-			}
-		} else {
-			return '';
-		}
-	}
+class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 	// article image generator
 	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
 		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {			
 			$news_title = str_replace('"', "&quot;", $item['title']);
 			$IMG_SOURCE = $item['image'];
-			$IMG_LINK = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
+			$IMG_LINK = static::itemLink($item, $config);
 			//
 			$full_size_img = $IMG_SOURCE;
 			//
@@ -123,15 +79,20 @@ class NSP_GK5_com_virtuemart_View {
 					$size = ($size == '') ? '' : ' style="' . $size . '"';
 					//
 					//
+					if($item['featured'] && $config['vm_show_featured_badge']) {
+						$badge = '<sup class="nspBadge">'.JText::_('MOD_NEWS_PRO_GK5_NSP_FEATURED').'</sup>';
+					} else {
+						$badge = '';
+					}
 					if($config['news_image_link'] == 1) {
 						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>' . $badge;
 						} else {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>';
+							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'"  /></a>' . $badge;
 							
 						}
 					} else {
-						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>';
+						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($news_title).'" style="'.$size.'" /></span>' . $badge;
 					}
 				}
 			} else {
@@ -141,21 +102,7 @@ class NSP_GK5_com_virtuemart_View {
 			return '';
 		}
 	}
-	// ReadMore button generator
-	static function readMore($config, $item) {
-		//
-		if($config['news_content_readmore_pos'] != 'disabled') {
-			$class = ' f'.$config['news_content_readmore_pos'];
-			//
-			if($config['news_content_readmore_pos'] == 'after') {
-				return '<a class="readon inline"  href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
-			} else {
-				return '<a class="readon '.$class.'" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
-			}
-		} else {
-			return '';
-		}
-	}
+
 	// article information generator
 	static function info($config, $item, $num = 1) {
 		// %AUTHOR %DATE %HITS %CATEGORY
@@ -176,16 +123,16 @@ class NSP_GK5_com_virtuemart_View {
 			($config['news_content_info2_pos'] != 'disabled' && $num == 2)
 		) {
 			$news_info = '<div class="nspInfo '.$class.'"> '.$config['info'.(($num == 2) ? '2' : '').'_format'].' </div>';
-	        $info_category = ($config['category_link'] == 1) ? '<a href="'.NSP_GK5_com_virtuemart_View::categoryLink($item).'" target="'.$config['open_links_window'].'">'.$item['cat_name'].'</a>' : $news_catname;
+	        $info_category = ($config['category_link'] == 1) ? '<a href="'.static::categoryLink($item).'" target="'.$config['open_links_window'].'">'.$item['cat_name'].'</a>' : $news_catname;
 	        //          
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);			
 	        //          
-            if($config['no_comments_text'] && (!isset($item['comments']) || $item['comments'] == 0)){
+            if(!isset($item['comments']) || $item['comments'] == 0){
                 $comments_amount = JText::_('MOD_NEWS_PRO_GK5_NO_COMMENTS');
             } else {
                 $comments_amount = JText::_('MOD_NEWS_PRO_GK5_COMMENTS').' ('.(isset($item['comments']) ? $item['comments'] : '0' ) . ')';
             }
-	        $info_comments = '<a class="nspComments" href="'.NSP_GK5_com_virtuemart_View::itemLink($item, $config).'#reviewform" target="'.$config['open_links_window'].'">'.$comments_amount.'</a>';
+	        $info_comments = '<a class="nspComments" href="'.static::itemLink($item, $config).'#reviewform" target="'.$config['open_links_window'].'">'.$comments_amount.'</a>';
 	        $info_manufacturer = JText::_('MOD_NEWS_PRO_GK5_MANUFACTURER').$item['manufacturer'];
 	        // Replace the following phrases:
 	        // %COMMENTS %DATE %CATEGORY %MANUFACTURER %STORE
@@ -193,51 +140,14 @@ class NSP_GK5_com_virtuemart_View {
             $news_info = str_replace('%CATEGORY', $info_category, $news_info);
             $news_info = str_replace('%MANUFACTURER', $info_manufacturer, $news_info);
             $news_info = str_replace('%COMMENTS', $info_comments, $news_info);
-            $news_info = str_replace('%STORE', NSP_GK5_com_virtuemart_View::store($config, $item), $news_info);
+            $news_info = str_replace('%STORE', static::store($config, $item), $news_info);
 	    } else {
 	    	return '';
 	    }
 		//
 		return $news_info;		
 	}
-	// rest link list generator	
-	static function lists($config, $item, $num) {
-		$odd = $num % 2;
-		
-		if($config['news_short_pages'] > 0) {
-	        $text = '';
-	        $title = '';
-	        $image = '';
-	        
-	        if($config['list_text_limit'] > 0) {
-	            $text = NSP_GK5_Utils::cutText(strip_tags(preg_replace("/\{.+?\}/", "", $item['text'])), $config, 'list_text_limit', '&hellip;');
-	            $text = preg_replace("/\{.+?\}/", "", $text);
-	            
-	            if(JString::strlen($text) > 0) {
-	            	$text = '<p>'.$text.'</p>';
-	            }
-			}
-			
-			if($config['list_title_limit'] > 0) {
-				$title = htmlspecialchars($item['title']);
-				$title = NSP_GK5_Utils::cutText($title, $config, 'list_text_limit', '&hellip;');
-				$title = str_replace('"', "&quot;", $title);
-				$link = NSP_GK5_com_virtuemart_View::itemLink($item, $config);
-			
-				if(JString::strlen($title) > 0) {
-					$title = '<h4><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'" target="'.$config['open_links_window'].'">'.$title.'</a></h4>';
-				}
-			}
-			
-			if($config['links_image'] == 1) {
-				$image = NSP_GK5_com_virtuemart_View::image($config, $item, false, false, true);
-			}
-			// creating rest news list
-			return '<li class="'.(($odd == 1) ? 'odd' : 'even').'">' . $image . (($image != '') ? '<div>' . $title . $text . '</div>' : ($title . $text)) . '</li>';	
-		} else {
-			return '';
-		}
-	}
+	
 	// function used to show the store details
 	static function store($config, $item) {
 		// if the VM is available
@@ -270,27 +180,16 @@ class NSP_GK5_com_virtuemart_View {
            JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
         }
         // load the base
-        $mainframe = JFactory::getApplication();
-        $virtuemart_currency_id = $mainframe->getUserStateFromRequest( "virtuemart_currency_id", 'virtuemart_currency_id',JRequest::getInt('virtuemart_currency_id',0) );
-        $currency = CurrencyDisplay::getInstance();
-        $cSymbol = $currency->getSymbol();
-        $cDecimals = $currency->getNbrDecimals();
-        $cDecSymbol = $currency->getDecimalSymbol();
-
         $productModel = new VirtueMartModelProduct();
 	    $product = $productModel->getProduct($item['id'], 100, true, true, true);
-	    // prepare price - apply correct format and decimal separator
-	    $price = str_replace('.',$cDecSymbol,number_format($product->prices[$config['vm_show_price_type']],$cDecimals));
-	    if($config['vm_currency_position'] == 'before') { 
-	    	$price = $cSymbol.' '.$price;
-	    } else {
-	    	$price = $price.' '.$cSymbol;
-	    }
-	    //
+	    $currency = CurrencyDisplay::getInstance($product->allPrices[0]['product_currency']);
+	    $price = '<strong>'.$currency->createPriceDiv($config['vm_show_price_type'], '', $product->prices, true).'</strong>';
+
         if($config['vm_add_to_cart'] == 1) {
-            vmJsApi::jQuery();
             vmJsApi::jPrice();
+            vmJsApi::writeJS();
         }
+
         $news_price = '<div>';
         //
         if($config['vm_show_price_type'] != 'none') {
@@ -302,15 +201,19 @@ class NSP_GK5_com_virtuemart_View {
         } 
         // 'Add to cart' button
         if($config['vm_add_to_cart'] == 1) {
-            $code = '<form method="post" class="product" action="index.php">';
+            $code = '<div class="addtocart-area">';
+            $code .= '<form method="post" class="product" action="index.php">';
             $code .= '<div class="addtocart-bar">';
             $code .= '<span class="quantity-box" style="display: none"><input type="text" class="quantity-input" name="quantity[]" value="1" /></span>';
-            
-            $button_lbl = JText::_('MOD_NEWS_PRO_GK5_COM_VIRTUEMART_CART_ADD_TO');
-			$button_cls = '';
-            $stockhandle = VmConfig::get('stockhandle','none');
-            
-            $code .= '<span class="addtocart-button"><input type="submit" name="addtocart" class="addtocart-button" value="'.$button_lbl.'" title="'.$button_lbl.'" /></span>';
+            $addtoCartButton = '';
+
+			if($product->addToCartButton){
+				$addtoCartButton = $product->addToCartButton;
+			} else {
+				$addtoCartButton = shopFunctionsF::getAddToCartButton($product->orderable);
+			}
+
+            $code .= $addtoCartButton;
                 
             $code .= '</div>
                     <input type="hidden" class="pname" value="'.$product->product_name.'"/>
@@ -319,28 +222,19 @@ class NSP_GK5_com_virtuemart_View {
                     <noscript><input type="hidden" name="task" value="add" /></noscript>
                     <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
                     <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
-                </form>';     
+                </form>';    
+            $code .= '</div>'; 
             $news_price .= $code;
 		} 
        	// display discount
         if($config['vm_show_discount_amount'] == 1) {
-            $disc_amount = str_replace('.',$cDecSymbol,number_format($product->prices['discountAmount'],$cDecimals));
-            if($config['vm_currency_position'] == 'before') {  
-            	$disc_amount = $cSymbol.' '.$disc_amount;
-            } else {
-            	$disc_amount = $disc_amount.' '.$cSymbol;
-            }
-            $news_price.= JText::_('MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT'). $disc_amount;
+            $disc_amount = $currency->priceDisplay($product->prices['discountAmount'], $product->allPrices[0]['product_currency']);
+            $news_price.= '<small class="nspDiscount">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT'). $disc_amount . '</small>';
         }
 		// display tax
         if($config['vm_show_tax'] == 1) {
-          	$taxAmount = str_replace('.',$cDecSymbol,number_format($product->prices['taxAmount'],$cDecimals));
-            if($config['vm_currency_position'] == 'before') {  
-            	$taxAmount = $cSymbol.' '.$taxAmount;
-            } else {
-            	$taxAmount = $taxAmount.' '.$cSymbol;
-            }
-            $news_price.= JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount;  
+          	$taxAmount = $currency->priceDisplay($product->prices['taxAmount'], $product->allPrices[0]['product_currency']);
+            $news_price.= '<small class="nspTax">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount . '</small>';  
         }
   		// results
         return ($news_price != '<div>') ? $news_price.'</div>' : '';
@@ -358,6 +252,10 @@ class NSP_GK5_com_virtuemart_View {
 	// category link generator
 	static function categoryLink($item) {
 		return 'index.php?option=com_virtuemart&amp;view=category&amp;virtuemart_category_id='.$item['cid'];
+	}
+	// user link generator
+	static function authorLink($item) {
+		return '';
 	}
 }
 
