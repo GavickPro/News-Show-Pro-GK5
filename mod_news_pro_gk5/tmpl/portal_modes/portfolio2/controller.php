@@ -122,6 +122,7 @@ class NSP_GK5_Portfolio2 {
 			}
 			// generate the K2 image URL only
 			$url = NSP_GK5_com_k2_View::image($this->parent->config, $this->parent->content[$num], true, true, $small);
+			
 		} else if($this->mode == 'com_easyblog') {
 			// load necessary EasyBlog View class
 			if(!class_exists('NSP_GK5_com_easyblog_View')) {
@@ -139,6 +140,8 @@ class NSP_GK5_Portfolio2 {
 				if(stripos($url, JURI::base()) === FALSE) {
 					$url = JURI::base() . $url;
 				}
+				
+				return $url;
 			} else {
 				return false;
 			}
