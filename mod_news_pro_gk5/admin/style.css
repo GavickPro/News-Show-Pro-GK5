@@ -6,14 +6,6 @@
 * @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html 
 * @version $Revision: GK5 1.0 $ **/ 
 
-::-moz-selection {
-background: transparent;
-}
-
-::selection {
-	background: transparent;
-}
-
 #jform_params_about_us-lbl,
 #jform_params___field1-lbl,
 label[id^=jform_params_gk_line_],
