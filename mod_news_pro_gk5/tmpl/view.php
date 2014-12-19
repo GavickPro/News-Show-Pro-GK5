@@ -33,7 +33,7 @@ class NSP_GK5_View {
 				$output = preg_replace('/' . $first_word . '/mi', $output_temp[0], $output, 1);
 			}
 			
-	        $link = static::itemLink($item);
+	        $link = static::itemLink($item, $config);
 			//
 			if($config['news_header_link'] == 1) {
 				return '<h4 class="nspHeader'.$class.'"><a href="'.$link.'" title="'.htmlspecialchars($item['title']).'" target="'.$config['open_links_window'].'">'.$output.'</a></h4>';	
@@ -51,7 +51,7 @@ class NSP_GK5_View {
 			//
 			$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
 			$item['text'] = static::textPlugins($item['text'], $config);
-			$link = static::itemLink($item);
+			$link = static::itemLink($item, $config);
 			//
 			$item['text'] = ($config['news_text_link'] == 1) ? '<a href="'.$link.'" target="'.$config['open_links_window'].'">'.$item['text'].'</a>' : $item['text']; 
 			$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
@@ -71,7 +71,7 @@ class NSP_GK5_View {
 		//
 		if($config['news_content_readmore_pos'] != 'disabled') {
 			$class = ' f'.$config['news_content_readmore_pos'];
-			$link = static::itemLink($item); 
+			$link = static::itemLink($item, $config); 
 			//
 			if($config['news_content_readmore_pos'] == 'after') {
 				return '<a class="readon inline" href="'.$link.'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
