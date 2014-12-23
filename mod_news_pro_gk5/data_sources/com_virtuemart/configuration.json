@@ -1,7 +1,8 @@
 {
 	"data_source": "COM_VIRTUEMART_TITLE",
 	"source": "com_virtuemart",
-	"tab": "NSP_DATA_SOURCE_COM_VIRTUEMART-options",
+	"tab": "NSP_DATA_SOURCE_COM_VIRTUEMART",
+	"tabj3": "NSP_DATA_SOURCE_COM_VIRTUEMART",
 	"sources": [
 		{
 			"name": "COM_VIRTUEMART_PRODUCTS",

@@ -20,9 +20,10 @@ DataSources.prototype.init = function() {
 		$this.configs[name] = JSON.decode(item.html());
 		$this.datasources.push(name);
 	});
-	// field position fix (only for Joomla! 3.2)
+	// field position fix (only for Joomla! 3.2)	
 	if(jQuery('#module-form').hasClass('j32')) {
-		jQuery('#jform_params_data_source-lbl').parents().eq(1).find('.controls').append(jQuery('#jform_params_data_source'));
+		jQuery('#jform_params_data_source-lbl').parents().eq(1).append(jQuery('#jform_params_data_source'));
+		jQuery('#jform_params_data_source').wrap('<div class="control"></div>')
 	}
 	// hide hidden fields
 	jQuery('.gk-hidden-field').each(function(i, field) {
@@ -45,20 +46,17 @@ DataSources.prototype.changeValue = function() {
 	var data_source_value = jQuery('#jform_params_data_source').val();
 	// get the name of data source
 	var option_field = jQuery('#jform_params_data_source').find('option[value="'+data_source_value+'"]');
-	
-	
-	
 	var data_source_name = option_field.attr('data-source');
 	// hide tabs with settings for unused data sources
 	jQuery($this.datasources).each(function(i, obj) {
 		obj = $this.configs[obj];
+		
 		if(obj.source != data_source_name) {
 			jQuery('#'+obj.tab).parents().eq(2).css('display', 'none');	
 			if(jQuery('#module-form').hasClass('j32')) {
 				jQuery('a[href=#attrib-'+obj.tabj3+']').parent().css('display', 'none');
 			}
 		} else  {
-			
 			jQuery('#'+obj.tab).parents().eq(2).css('display', 'block');
 			if(jQuery('#module-form').hasClass('j32')) {
 				jQuery('a[href=#attrib-'+obj.tabj3+']').parent().css('display', 'block');

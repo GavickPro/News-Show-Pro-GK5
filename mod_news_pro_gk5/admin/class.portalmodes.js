@@ -24,7 +24,8 @@ PortalModes.prototype.init = function() {
 	$this.changeValue();
 	// field position fix 
 	if(jQuery('#module-form').hasClass('j32')) {
-		jQuery('#jform_params_module_mode-lbl').parents().eq(1).find('.controls').append(jQuery('#jform_params_module_mode'));
+		jQuery('#jform_params_module_mode-lbl').parents().eq(1).append(jQuery('#jform_params_module_mode'));
+		jQuery('#jform_params_module_mode').wrap('<div class="control"></div>')
 	}
 	// add events
 	jQuery('#jform_params_module_mode').change( function() { $this.changeValue() });	
@@ -215,4 +216,3 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO_GRID]').parent().css('display', 'none');
 	}
 }
-

@@ -52,7 +52,7 @@ class JFormFieldVMMulticategories extends JFormFieldList {
 	        	$siteLang = JFactory::getLanguage()->getTag();
 	        	$lang = strtolower(strtr($siteLang,'-','_'));
 	        
-               	return '<select id="jform_params_vm_categories" style="display:none"></select><strong style="line-height: 2.6em">VirtueMart is not installed or any VirtueMart categories are available (current language: ' . $lang . ').</strong>';
+               	return '<input id="jform_params_com_virtuemart_categories" class="gk-hidden-field" type="hidden" /><strong style="line-height: 2.6em">VirtueMart is not installed or any VirtueMart categories are available (current language: ' . $lang . ').</strong>';
             }
 		}
 

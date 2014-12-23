@@ -46,7 +46,7 @@ class JFormFieldVMShoppergroups extends JFormFieldList {
 		    if($options[0]!=''){
 				$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
             } else {
-               return '<select id="jform_params_vm_shoppergroups" style="display:none"></select><strong style="line-height: 2.6em">VirtueMart is not installed or any VirtueMart shopper groups are available.</strong>';
+               return '<input id="jform_params_vm_shoppergroups" type="hidden" /><strong style="line-height: 2.6em">VirtueMart is not installed or any VirtueMart shopper groups are available.</strong>';
             }
 		}
 
