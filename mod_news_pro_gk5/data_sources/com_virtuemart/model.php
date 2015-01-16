@@ -130,6 +130,8 @@ class NSP_GK5_com_virtuemart_Model {
 		
 		if($sql_where != '') {
 			$sql_where = ' (' . $sql_where . ') ';
+		} else {
+			$sql_where = ' 1 = 1';
 		}
 		// Arrays for content
 		$content = array();
