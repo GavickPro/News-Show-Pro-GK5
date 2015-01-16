@@ -54,6 +54,9 @@ class NSP_GK5_com_virtuemart_Model {
 			if(count($source) == 1) $where .= (is_array($source)) ? $where1.$source[0] : $where1.$source;
 			else $where .= ($i == 0) ? $where1.$source[$i] : $where2.$source[$i];		
 		}
+		if($where == '') {
+			$where = '1=1';
+		}
 		//
 		$query_name = '
 		SELECT DISTINCT 
