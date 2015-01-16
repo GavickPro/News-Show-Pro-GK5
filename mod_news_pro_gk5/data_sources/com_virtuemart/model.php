@@ -127,6 +127,13 @@ class NSP_GK5_com_virtuemart_Model {
 				$sql_where .= ($i != 0) ? ' OR content.virtuemart_product_id = '.$ids[$i] : ' content.virtuemart_product_id = '.$ids[$i];
 			}
 		}
+		
+ 		if($sql_where != '') {
+ 			$sql_where = ' (' . $sql_where . ') ';
+		} else {
+			$sql_where = ' 1 = 1';
+ 		}
+ 		
 		// Arrays for content
 		$content = array();
 		$news_amount = 0;
@@ -242,7 +249,7 @@ class NSP_GK5_com_virtuemart_Model {
 		WHERE
             contentR.product_parent_id = 0
             AND contentR.published = 1  
-			AND ( '.$sql_where.' ) 
+			AND '.$sql_where.'
 			'.$frontpage_con.' 
 			'.$since_con.'
 			'.$shopper_group_con.'
