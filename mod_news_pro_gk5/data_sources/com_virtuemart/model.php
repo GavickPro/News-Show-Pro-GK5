@@ -279,6 +279,10 @@ class NSP_GK5_com_virtuemart_Model {
 			// linking string with content IDs
 			$sql_where2 .= ($i != 0) ? ' OR content.virtuemart_product_id = '.$content[$i]['id'] : ' content.virtuemart_product_id = '.$content[$i]['id'];
 		}
+		
+		if($sql_where2 == '') {
+			$sql_where2 = '1=1';
+		}
 		// creating SQL query
 		$query_news2 = '
 		SELECT DISTINCT
