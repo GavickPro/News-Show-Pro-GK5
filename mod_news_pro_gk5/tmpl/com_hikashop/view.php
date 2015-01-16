@@ -25,7 +25,7 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
 		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {			
 			$news_title = str_replace('"', "&quot;", $item['title']);
-			$IMG_SOURCE = 'media' . DS . 'com_hikashop' . DS . 'upload' . DS . $item['image'];
+			$IMG_SOURCE = 'images' . DS . 'com_hikashop' . DS . 'upload' . DS . $item['image'];
 			$IMG_LINK = static::itemLink($item, $config);
 			//
 			$full_size_img = $IMG_SOURCE;
