@@ -170,7 +170,8 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 			JHTML::_('behavior.framework');
 			$hs_config = hikashop_config();
 			$productClass = hikashop_get('class.product');
-			$_SESSION['hikashop_product']= $productClass->get($item['id']);
+			$productClass->getProducts(array($item['id']));
+			$_SESSION['hikashop_product']= $productClass->products[$item['id']];
 			$params = new JRegistry('');
 			// enable quantity field
 			if($config['hikashop_add_to_cart'] == 2) {
