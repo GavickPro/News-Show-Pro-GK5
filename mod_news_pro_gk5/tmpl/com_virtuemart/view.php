@@ -205,8 +205,23 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         } 
         // 'Add to cart' button
         if($config['vm_add_to_cart'] == 1) {
+            if(isset($product->customfields) &&count($product->customfields)) {
+            	foreach($product->customfields as $field) {
+            		if(isset($field->is_cart_attribute) && $field->is_cart_attribute == 1) {
+            			$product->orderable = 0;
+            			break;
+            		}
+            	}
+            }
+            
             $code = '<div class="addtocart-area">';
-            $code .= '<form method="post" class="product" action="index.php">';
+            
+            if($product->orderable != 0) {
+            	$code .= '<form method="post" class="product" action="index.php">';
+            } else {
+            	$code .= '<form method="post" class="product" action="'.static::itemLink($item, $config).'">';
+            }
+            
             $code .= '<div class="addtocart-bar">';
             $code .= '<span class="quantity-box" style="display: none"><input type="text" class="quantity-input" name="quantity[]" value="1" /></span>';
             $addtoCartButton = '';
@@ -217,16 +232,20 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 				$addtoCartButton = shopFunctionsF::getAddToCartButton($product->orderable);
 			}
 
-            $code .= $addtoCartButton;
-                
-            $code .= '</div>
-                    <input type="hidden" class="pname" value="'.$product->product_name.'"/>
-                    <input type="hidden" name="option" value="com_virtuemart" />
-                    <input type="hidden" name="view" value="cart" />
-                    <noscript><input type="hidden" name="task" value="add" /></noscript>
-                    <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
-                    <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
-                </form>';    
+            $code .= str_replace('addtocart-button-disabled"', 'addtocart-button" type="submit"', $addtoCartButton);
+               
+            if($product->orderable != 0) { 
+	            $code .= '</div>
+	                    <input type="hidden" class="pname" value="'.$product->product_name.'"/>
+	                    <input type="hidden" name="option" value="com_virtuemart" />
+	                    <input type="hidden" name="view" value="cart" />
+	                    <noscript><input type="hidden" name="task" value="add" /></noscript>
+	                    <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
+	                    <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
+	                </form>';   
+            } else {
+            	$code .= '</div></form>';  
+            } 
             $code .= '</div>'; 
             $news_price .= $code;
 		} 
