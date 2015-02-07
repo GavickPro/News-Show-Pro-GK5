@@ -116,9 +116,18 @@ var gkPortalModePortfolio2Init = function(module) {
 			function showItem(img) {
 				popup_image_wrap.innerHTML = '<a href="' + img.getProperty('href') + '"><img src="' + img.getProperty('data-img') + '" /></a>';
 				popup_title.innerHTML = img.getProperty('title');
-				popup_cat.innerHTML = '<span>' + img.getProperty('data-cat-text') + '</span>' + img.getProperty('data-cat');
-				popup_author.innerHTML = '<span>' + img.getProperty('data-author-text') + '</span>' + img.getProperty('data-author');
-				popup_date.innerHTML = '<span>' + img.getProperty('data-date-text') + '</span>' + img.getProperty('data-date');
+				
+				if(img.getProperty('data-cat-text') && img.getProperty('data-cat')) {
+					popup_cat.innerHTML = '<span>' + img.getProperty('data-cat-text') + '</span>' + img.getProperty('data-cat');
+				}
+				
+				if(img.getProperty('data-author-text') && img.getProperty('data-author')) {
+					popup_author.innerHTML = '<span>' + img.getProperty('data-author-text') + '</span>' + img.getProperty('data-author');
+				}
+				
+				if(img.getProperty('data-date-text') && img.getProperty('data-date')) {
+					popup_date.innerHTML = '<span>' + img.getProperty('data-date-text') + '</span>' + img.getProperty('data-date');
+				}
 				
 				var image = popup_image_wrap.getElement('img');
 				
