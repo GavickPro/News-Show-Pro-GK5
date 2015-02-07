@@ -118,9 +118,18 @@ var gkPortalModePortfolio2Init = function(module) {
 				img = jQuery(img);
 				popup_image_wrap.html('<a href="' + img.attr('href') + '"><img src="' + img.attr('data-img') + '" /></a>');
 				popup_title.html(img.attr('title'));
-				popup_cat.html('<span>' + img.attr('data-cat-text') + '</span>' + img.attr('data-cat'));
-				popup_author.html('<span>' + img.attr('data-author-text') + '</span>' + img.attr('data-author'));
-				popup_date.html('<span>' + img.attr('data-date-text') + '</span>' + img.attr('data-date'));
+				
+				if(img.attr('data-cat') && img.attr('data-cat-text')) {
+					popup_cat.html('<span>' + img.attr('data-cat-text') + '</span>' + img.attr('data-cat'));
+				}
+				
+				if(img.attr('data-author-text') && img.attr('data-author')) {
+					popup_author.html('<span>' + img.attr('data-author-text') + '</span>' + img.attr('data-author'));
+				}
+				
+				if(img.attr('data-date-text') && img.attr('data-date')) {
+					popup_date.html('<span>' + img.attr('data-date-text') + '</span>' + img.attr('data-date'));
+				}
 				
 				var image = popup_image_wrap.find('img');
 				
