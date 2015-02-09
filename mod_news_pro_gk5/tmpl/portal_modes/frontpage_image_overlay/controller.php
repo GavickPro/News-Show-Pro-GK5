@@ -71,7 +71,7 @@ class NSP_GK5_Frontpage_Image_Overlay {
 					if($this->parent->config['portal_mode_frontpage_image_overlay_readon_text'] == '') {
 						echo JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_IMAGE_OVERLAY_READON_TEXT_LABEL');
 					} else {
-						echo $this->parent->config['portal_mode_frontpage_image_overlay_readon'];
+						echo $this->parent->config['portal_mode_frontpage_image_overlay_readon_text'];
 					}
 					
 					echo '</a>';
