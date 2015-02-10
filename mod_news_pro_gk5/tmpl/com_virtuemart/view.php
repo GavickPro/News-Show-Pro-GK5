@@ -239,7 +239,7 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 	                    <input type="hidden" class="pname" value="'.$product->product_name.'"/>
 	                    <input type="hidden" name="option" value="com_virtuemart" />
 	                    <input type="hidden" name="view" value="cart" />
-	                    <noscript><input type="hidden" name="task" value="add" /></noscript>
+	                    <input type="hidden" name="task" value="add" />
 	                    <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
 	                    <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
 	                </form>';   
