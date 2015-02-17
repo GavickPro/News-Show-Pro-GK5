@@ -17,7 +17,7 @@ DataSources.prototype.init = function() {
 	jQuery('.gk-json-config').each(function(i, item) {
 		item = jQuery(item);
 		var name = item.attr('id').replace('gk-json-config-', '');
-		$this.configs[name] = JSON.decode(item.html());
+		$this.configs[name] = JSON.parse(item.html());
 		$this.datasources.push(name);
 	});
 	// field position fix (only for Joomla! 3.2)	
@@ -159,7 +159,7 @@ DataSources.prototype.changeValue = function() {
 		var portal_mode_value = jQuery('#jform_params_module_mode').val();
 		// if the portal mode is used
 		if(portal_mode_value != 'normal') {
-			var portal_mode_config = JSON.decode(jQuery('#gk-json-config-pm-'+portal_mode_value).html());
+			var portal_mode_config = JSON.parse(jQuery('#gk-json-config-pm-'+portal_mode_value).html());
 			// search for the data source name
 			var isSupported = false;
 			jQuery(portal_mode_config.support).each(function(i, source) {
