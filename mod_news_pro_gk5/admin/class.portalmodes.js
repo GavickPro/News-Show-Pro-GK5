@@ -15,7 +15,7 @@ PortalModes.prototype.init = function() {
 	// get the data sources configuration
 	jQuery('.gk-json-config-pm').each(function(i, item) {
 		var name = jQuery(item).attr('id').replace('gk-json-config-pm-', '');
-		$this.configs[name] = JSON.decode(jQuery(item).html());
+		$this.configs[name] = JSON.parse(jQuery(item).html());
 		$this.portalmodes.push(name);
 	});
 	// hide all portal mode tabs
