@@ -113,7 +113,7 @@ PortalModes.prototype.changeValue = function() {
 				} else if($this.configs[portal_mode_value].full_name == 'PRODUCT_GALLERY_2') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY_2]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'CENTERED_TITLE_OVERLAY') {
-					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'block');
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_CENTERED_TITLE_OVERLAY]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'GRID_TITLE_OVERLAY') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_GRID_TITLE_OVERLAY]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'HIGHLIGHTS') {
