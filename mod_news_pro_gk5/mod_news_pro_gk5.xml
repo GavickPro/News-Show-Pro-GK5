@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
-	<creationDate>09/03/2015</creationDate>
+	<creationDate>10/03/2015</creationDate>
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2015 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
@@ -1248,7 +1248,7 @@
                         <option value="0">MOD_NEWS_PRO_GK5_FORCEDISABLED</option>
                 </field> 
                 
-				<field name="engine_mode" type="list" default="jQuery" label="MOD_NEWS_PRO_GK5_ENGINE_MODE" description="MOD_NEWS_PRO_GK5_ENGINE_MODE_DESC">
+				<field name="engine_mode" type="list" default="jquery" label="MOD_NEWS_PRO_GK5_ENGINE_MODE" description="MOD_NEWS_PRO_GK5_ENGINE_MODE_DESC">
 						<option value="mootools">MOD_NEWS_PRO_GK5_MODE_MOOTOOLS</option>
 						<option value="jquery">MOD_NEWS_PRO_GK5_MODE_JQUERY</option>
 				</field> 
