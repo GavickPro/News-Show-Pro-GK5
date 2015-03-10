@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" client="site" method="upgrade">
 	<name>News Show Pro GK5</name>
-	<creationDate>17/02/2015</creationDate>
+	<creationDate>09/03/2015</creationDate>
 	<author>Gavick.com</author>
 	<copyright>(C) 2009-2015 Gavick.com</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavick.com</authorUrl>
-	<version>1.8.0.6</version>
+	<version>1.8.1</version>
 	<description>
 	<![CDATA[
 		<style type='text/css'>
@@ -23,7 +23,7 @@
 			
 		</style>
 		<span class='readonly'>
-			<h1>News Show Pro GK5 <small>ver. 1.8.0.6</small></h1>
+			<h1>News Show Pro GK5 <small>ver. 1.8.1</small></h1>
 			<p>GK5 is new generation of our extensions dedicated to Joomla 3+.</p>
 			<p>Basing on experiences gathered, we created probably the best tool to present articles for Joomla! Huge amount of options and possibilities of formatting causes News Show Pro GK5 is a complex tool in making www pages content attractive. News Show Pro is appropriate while preparing simple structures with an individual article, the same as, complex arrangements including few articles and a list of links.</p> 
 			<p class='homepage'><a href='http://www.gavick.com/news-show-pro-gk5.html' target='_blank'>Learn more at the NSP GK5 project website.</a></p>
@@ -798,6 +798,35 @@
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
             </fieldset>
+            
+            <fieldset name="NSP_PORTAL_MODE_NEWS_SLIDER">
+            	<field name="portal_mode_news_slider_amount" type="text" default="5" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_AMOUNT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_AMOUNT_DESC" />
+            	
+            	<field name="portal_mode_news_slider_title" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_TITLE" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_TITLE_DESC">
+            	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+            	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+            	</field>
+            	
+            	<field name="portal_mode_news_slider_text" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_TEXT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_TEXT_DESC">
+            	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+            	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+            	</field>
+            	
+            	<field name="portal_mode_news_slider_date" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_DATE" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_DATE_DESC">
+            	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+            	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+            	</field>
+            	
+            	<field name="portal_mode_news_slider_date_format" type="text" default="j F" size="10" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_DATE_FORMAT" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_DATE_FORMAT_DESC" />
+            	
+            	<field name="portal_mode_news_slider_autoanimation_time" type="text" default="3000" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_AUTOANIMATION_TIME" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_AUTOANIMATION_TIME_DESC" />
+            	
+            	<field name="portal_mode_news_slider_image_margin" type="text" default="-30% 0" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_IMAGE_MARGIN" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_IMAGE_MARGIN_DESC" />
+            	
+            	<field name="portal_mode_news_slider_label" type="text" default="" size="10" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_LABEL" description="" />
+            	
+            	<field name="portal_mode_news_slider_category_label" type="text" default="" size="10" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_CATEGORY_LABEL" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEWS_SLIDER_CATEGORY_LABEL_DESC" />
+            </fieldset>
 			
 			<!-- Portal Modes fieldsets END -->
 			
@@ -1219,7 +1248,7 @@
                         <option value="0">MOD_NEWS_PRO_GK5_FORCEDISABLED</option>
                 </field> 
                 
-				<field name="engine_mode" type="list" default="mootools" label="MOD_NEWS_PRO_GK5_ENGINE_MODE" description="MOD_NEWS_PRO_GK5_ENGINE_MODE_DESC">
+				<field name="engine_mode" type="list" default="jQuery" label="MOD_NEWS_PRO_GK5_ENGINE_MODE" description="MOD_NEWS_PRO_GK5_ENGINE_MODE_DESC">
 						<option value="mootools">MOD_NEWS_PRO_GK5_MODE_MOOTOOLS</option>
 						<option value="jquery">MOD_NEWS_PRO_GK5_MODE_JQUERY</option>
 				</field> 
