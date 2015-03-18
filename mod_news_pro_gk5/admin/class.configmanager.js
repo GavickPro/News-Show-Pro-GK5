@@ -33,12 +33,12 @@ NSPGK5ConfigManager.prototype.operation = function(type) {
 	// check if the current url has no hashes
 	if((current_url + '').indexOf('#', 0) === -1) {
 		// if no - put the variables
-	    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');    
+	    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + jQuery('config_manager_'+type+'_filename').get('value');    
 	} else {
 		// if the url has hashes - remove the hash 
 	    current_url = current_url.substr(0, (current_url + '').indexOf('#', 0) - 1);
 	    // and put the variables
-	    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');
+	    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + jQuery('config_manager_'+type+'_filename').get('value');
 	}
 	// redirect to the url with variables
 	window.location = current_url;
