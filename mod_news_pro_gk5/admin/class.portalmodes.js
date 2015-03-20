@@ -98,6 +98,8 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'NEWS_SLIDER') {
 					jQuery('#News_Slider_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'BIKESTORE_SLIDER') {
+					jQuery('#Bikestore_Slider_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				}
 			} else {
 				if($this.configs[portal_mode_value].full_name == 'NEWS_GALLERY') {
@@ -140,6 +142,8 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO_GRID]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'NEWS_SLIDER') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_SLIDER]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'BIKESTORE_SLIDER') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_BIKESTORE_SLIDER]').parent().css('display', 'block');
 				}
 			}
 			// check the data source value
@@ -199,6 +203,7 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#News_Slider_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#Bikestore_Slider_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 	} else {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_GALLERY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'none');
@@ -220,5 +225,6 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_HIGHLIGHTS]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO_GRID]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_SLIDER]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_BIKESTORE_SLIDER]').parent().css('display', 'none');
 	}
 }

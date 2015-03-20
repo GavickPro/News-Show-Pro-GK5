@@ -1,0 +1,10 @@
+{
+	"name": "Bikestore_Slider",
+	"full_name": "BIKESTORE_SLIDER",
+	"support": [
+		"com_content", 
+		"com_k2",
+		"com_virtuemart"
+	],
+	"thumbnails": true
+}

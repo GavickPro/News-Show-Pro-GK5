@@ -1,0 +1,154 @@
+/* Portal mode - bikestore slider */
+
+.gkNspPM-BikestoreSlider {
+    position: relative;
+    overflow: hidden;
+    margin: 0 -15px;
+}
+.gkNspPM-BikestoreSlider .nspArtsScroll {
+    width: 20000px
+}
+.gkNspPM-BikestoreSlider .nspArts {
+    width: 100%
+}
+.gkNspPM-BikestoreSlider .nspImages {
+    padding: 0 28px
+}
+.gkNspPM-BikestoreSlider .nspArts,
+.gkNspPM-BikestoreSlider .nspArt {
+    overflow: hidden
+}
+.gkNspPM-BikestoreSlider .nspArt {
+    float: left;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -ms-box-sizing: content-box;
+    -o-box-sizing: content-box;
+    box-sizing: content-box;
+}
+.gkNspPM-BikestoreSlider .nspArt img {
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0!important;
+}
+.gkNspPM-BikestoreSlider .nspArt .nspImageGallery a {
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.gkNspPM-BikestoreSlider .nspArt .nspImageGallery {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.gkNspPM-BikestoreSlider .nspArt .nspImageGallery img {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.gkNspPM-BikestoreSlider .nspArt:hover {
+    cursor: pointer
+}
+.gkNspPM-BikestoreSlider .nspArt:hover .nspHeader a {
+    color: #fb5a29
+}
+.gkNspPM-BikestoreSlider .nspArt:hover .nspImageGallery img {
+    -webkit-transform: scale(1.25) rotate(-7deg);
+    -moz-transform: scale(1.25) rotate(-7deg);
+    -ms-transform: scale(1.25) rotate(-7deg);
+    -o-transform: scale(1.25) rotate(-7deg);
+    transform: scale(1.25) rotate(-7deg);
+}
+.gkNspPM-BikestoreSlider .nspHeader {
+    width: 100%;
+    padding: 0;
+    margin: 10px 0 0 0!important;
+    color: #535353;
+    font-size: 12px;
+    font-weight: 400;
+    text-shadow: 0 1px 0 #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+.gkNspPM-BikestoreSlider .nspHeader a {
+    color: #535353
+}
+.gkNspPM-BikestoreSlider .nspHeader a:active,
+.gkNspPM-BikestoreSlider .nspHeader a:focus,
+.gkNspPM-BikestoreSlider .nspHeader a:hover {
+    color: #fb5a29
+}
+.gkNspPM-BikestoreSlider .nspArt {
+    padding: 0
+}
+.gkNspPM-BikestoreSlider .nspArt > div {
+    padding: 0;
+    position: relative;
+}
+.gkNspPM-BikestoreSlider .nspArt > div > div {
+    padding: 0
+}
+.gkNspPM-BikestoreSlider .nspPrev,
+.gkNspPM-BikestoreSlider .nspNext {
+    height: 16px;
+    width: 16px;
+    display: block;
+    background: transparent url('../../../interface/images/bikestore_slider_interface.png') no-repeat 0 0;
+    text-indent: -999em;
+    margin-top: -8px;
+    cursor: pointer;
+}
+.gkNspPM-BikestoreSlider .nspPrev {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+}
+.gkNspPM-BikestoreSlider .nspNext {
+    background-position: -16px 0;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+}
+.gkNspPM-BikestoreSlider .nspPrev:hover {
+    background-position: 0 -16px
+}
+.gkNspPM-BikestoreSlider .nspNext:hover {
+    background-position: -16px -16px
+}
+.gkNspPM-BikestoreSlider .nspPrev::selection,
+.gkNspPM-BikestoreSlider .nspNext::selection {
+    background: transparent!important
+}
+.gkNspPM-BikestoreSlider .nspPrev::-moz-selection,
+.gkNspPM-BikestoreSlider .nspNext::-moz-selection {
+    background: transparent!important
+}
+.gkNspPM-BikestoreSlider .nspPrev::-webkit-selection,
+.gkNspPM-BikestoreSlider .nspNext::-webkit-selection {
+    background: transparent!important
+}
+/* make element unvisible */
+.gkNspPM-BikestoreSlider .unvisible {
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
+}
