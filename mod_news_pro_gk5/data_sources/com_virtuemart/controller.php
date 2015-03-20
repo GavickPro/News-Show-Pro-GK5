@@ -14,9 +14,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 class NSP_GK5_com_virtuemart_Controller {
+	static $instances = 0;
 	// constructor
 	function initialize($config, $content) {
 		// tables which will be used in generated content
+		NSP_GK5_com_virtuemart_Controller::$instances += 1;	
 		$output = array(
 			'arts' => array(),
 			'list' => array(),
@@ -83,6 +85,30 @@ class NSP_GK5_com_virtuemart_Controller {
 				//
 				$counter++;
 			}                    
+		}
+		//
+		if($config['vm_add_to_cart'] == 1 && NSP_GK5_com_virtuemart_Controller::$instances == 1) {
+			$closeimage = JURI::root(TRUE) .'/components/com_virtuemart/assets/images/fancybox/fancy_close.png';
+			$vmLangVar = '';
+			
+			if (VmConfig::get ('vmlang_js', 1))  {
+				$vmLangVar .= "vmLang = '&lang=" . substr (VmConfig::$vmlang, 0, 2) . "' ;\n";
+			} else {
+				$vmLangVar .= 'vmLang = "";' . "\n";		
+			}
+			
+			$doc = JFactory::getDocument();
+			$doc->addScriptDeclaration(
+				$vmLangVar . '
+				vmSiteurl = \''. JURI::root() .'\' ;
+				Virtuemart.addtocart_popup = \''.VmConfig::get('addtocart_popup',1).'\' ; 
+				vmCartText = \''.addslashes(vmText::_('COM_VIRTUEMART_CART_PRODUCT_ADDED')).'\' ;
+				vmCartError = \''.addslashes(vmText::_('COM_VIRTUEMART_MINICART_ERROR_JS')).'\' ;
+				loadingImage = \''.JURI::root(TRUE) .'/components/com_virtuemart/assets/images/facebox/loading.gif\' ;
+				closeImage = \''.$closeimage.'\' ; 
+				usefancy = false;
+				jQuery(document).ready(function() { Virtuemart.product(jQuery("form.product")); });'
+			);
 		}
 		// return the results array
 		return $output;
