@@ -108,6 +108,17 @@ class NSP_GK5_com_easyblog_Model {
 			}	
 		}
 		// Overwrite SQL query when user set IDs manually
+		if($config['data_source'] == 'easyblog_articles' && $config['easyblog_articles'] != ''){
+			// initializing variables
+			$sql_where = '';
+			$ids = explode(',', $config['easyblog_articles']);
+			//
+			for($i = 0; $i < count($ids); $i++ ){	
+				// linking string with content IDs
+				$sql_where .= ($i != 0) ? ' OR content.id = '.$ids[$i] : ' content.id = '.$ids[$i];
+			}
+		}
+		// Overwrite SQL query when user set IDs manually
 		if($config['data_source'] == 'easyblog_authors' && $config['easyblog_authors'] != ''){
 			// initializing variables
 			$sql_where = '';			
