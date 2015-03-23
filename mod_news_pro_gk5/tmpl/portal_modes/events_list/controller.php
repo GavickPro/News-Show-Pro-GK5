@@ -92,6 +92,11 @@ class NSP_GK5_Events_List {
 			echo '</div>';
 			echo '</div>';
 		}
+		
+		if(count($this->parent->content) == 0) {
+			echo '<p style="text-align: center"><strong>' . JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_EVENTS_LIST_NO_EVENTS') .'</strong></p>';
+		}
+		
 		// closing main wrapper
 		echo '</div>';
 	}
