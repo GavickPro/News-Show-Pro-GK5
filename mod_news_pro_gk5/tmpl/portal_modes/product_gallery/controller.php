@@ -190,10 +190,7 @@ class NSP_GK5_Product_Gallery {
 	        // load the base
 	        $productModel = new VirtueMartModelProduct();
 		    $product = $productModel->getProduct($id, 100, true, true, true);
-		    
-		    $mainframe = JFactory::getApplication();
-		    $virtuemart_currency_id = $mainframe->getUserStateFromRequest( "virtuemart_currency_id", 'virtuemart_currency_id', 0);
-		    $currency = CurrencyDisplay::getInstance($virtuemart_currency_id != 0 ? $virtuemart_currency_id : $product->allPrices[0]['product_currency']);
+		    $currency = CurrencyDisplay::getInstance();
 		    
 		    $price = '<strong>'.$currency->createPriceDiv($config['vm_show_price_type'], '', $product->prices, true).'</strong>';
 
