@@ -193,12 +193,12 @@ class NSP_GK5_Product_Gallery_2 {
 	        $news_price .= '</div>';
 	        // display discount
 	        if($config['vm_show_discount_amount'] == 1) {
-	            $disc_amount = $currency->priceDisplay($product->prices['discountAmount'], $product->allPrices[0]['product_currency']);
+	            $disc_amount = $currency->priceDisplay($product->prices['discountAmount'], $currency->getId());
 	            $news_price.= '<small class="PricetaxAmount">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT'). $disc_amount . '</small>';
 	        }
 			// display tax
 	        if($config['vm_show_tax'] == 1) {
-	          	$taxAmount = $currency->priceDisplay($product->prices['taxAmount'], $product->allPrices[0]['product_currency']);
+	          	$taxAmount = $currency->priceDisplay($product->prices['taxAmount'], $currency->getId());
 	            $news_price.= '<small class="PricetaxAmount">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount . '</small>';  
 	        }
 	        // 'Add to cart' button

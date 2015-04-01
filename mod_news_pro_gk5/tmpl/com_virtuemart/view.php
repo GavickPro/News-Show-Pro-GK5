@@ -243,12 +243,12 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 		} 
        	// display discount
         if($config['vm_show_discount_amount'] == 1) {
-            $disc_amount = $currency->priceDisplay($product->prices['discountAmount'], $product->allPrices[0]['product_currency']);
+            $disc_amount = $currency->priceDisplay($product->prices['discountAmount'], $currency->getId());
             $news_price.= '<small class="nspDiscount">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_DISCOUNT_AMOUNT'). $disc_amount . '</small>';
         }
 		// display tax
         if($config['vm_show_tax'] == 1) {
-          	$taxAmount = $currency->priceDisplay($product->prices['taxAmount'], $product->allPrices[0]['product_currency']);
+          	$taxAmount = $currency->priceDisplay($product->prices['taxAmount'], $currency->getId());
             $news_price.= '<small class="nspTax">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount . '</small>';  
         }
   		// results
