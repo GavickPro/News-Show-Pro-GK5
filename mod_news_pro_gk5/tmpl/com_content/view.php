@@ -178,6 +178,10 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 	        // Tags
 	        $info_tags = '';
 	        if(isset($item['tags']) && count($item['tags']) > 0) {
+	        	if (!class_exists( 'TagsHelperRoute' )) {
+        			require(JPATH_SITE.DS.'components'.DS.'com_tags'.DS.'helpers'.DS.'route.php');
+        		}
+	        	
 	        	$i = 0;
 	        	foreach($item['tags'] as $tag_name => $tag_id) {
 	        		$link = urldecode(JRoute::_(TagsHelperRoute::getTagRoute($tag_id)));
