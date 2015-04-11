@@ -291,7 +291,7 @@ class NSP_GK5_Thumbs {
 						$links,
 						$hikashop_mode
 					), 
-					$config['thumbs_cache_time'], 
+					isset($config['thumbs_cache_time']) ? $config['thumbs_cache_time'] : '60', 
 					$config['module_id']
 				)){
 				return array(TRUE, NSP_GK5_Thumbs::translateName($path, $config['module_id'], $k2_mode, $vm_mode, ($check_result == 1) ? '_cropped' : '', $downloaded, $imgname, $links, $hikashop_mode));	

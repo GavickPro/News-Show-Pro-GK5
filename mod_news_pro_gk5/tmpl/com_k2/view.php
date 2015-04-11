@@ -124,7 +124,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 	        $author_html = '<a href="'.urldecode(JRoute::_(K2HelperRoute::getUserRoute($item['author_id']))).'" target="'.$config['open_links_window'].'">';
 	        $author_html .= $author_name;
 	        $author_html .= '</a>';
-	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
+	        $info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.K2HelperUtilities::getAvatar($item['author_id'], $item['author_email'], $config['avatar_size']).'" alt="'.$author_name.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
 	        //
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);
 	        //

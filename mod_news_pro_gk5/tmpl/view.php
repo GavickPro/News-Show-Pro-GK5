@@ -117,7 +117,7 @@ class NSP_GK5_View {
 				$image = static::image($config, $item, false, false, true);
 			}
 			
-			if($config['links_readmore'] == 1) {
+			if(isset($config['links_readmore']) && $config['links_readmore'] == 1) {
 				$readmore = '<a class="readon" href="'.$link.'" target="'.$config['open_links_window'].'">'.((trim($config['readmore_text']) != '') ? $config['readmore_text'] : JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE')).'</a>';
 			}
 			
