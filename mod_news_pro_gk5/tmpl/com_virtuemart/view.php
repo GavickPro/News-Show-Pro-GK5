@@ -166,7 +166,10 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         	require(JPATH_COMPONENT_SITE.DS.'helpers'.DS.'cart.php');
         }
         if (!class_exists( 'VirtueMartModelProduct' )){
-           JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
+           	if(!defined('VMPATH_ADMIN')) {
+           		define('VMPATH_ADMIN', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart');
+           	}
+           	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' . DS . 'product.php');
         }
         // load the base
         $productModel = new VirtueMartModelProduct();
