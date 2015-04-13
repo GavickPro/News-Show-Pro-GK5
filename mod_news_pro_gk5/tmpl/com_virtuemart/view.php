@@ -159,9 +159,6 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         if (!class_exists( 'CurrencyDisplay' )) {
         	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'currencydisplay.php');
         }
-        if (!class_exists( 'VmImage' )) {
-        	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'image.php');
-        }
         if (!class_exists( 'shopFunctionsF' )) {
         	require(JPATH_SITE.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'shopfunctionsf.php');
         }
