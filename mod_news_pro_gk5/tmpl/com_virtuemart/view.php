@@ -169,6 +169,8 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
            	if(!defined('VMPATH_ADMIN')) {
            		define('VMPATH_ADMIN', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart');
            	}
+           	
+           	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'helpers' . DS . 'vmmodel.php');
            	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' . DS . 'product.php');
         }
         // load the base
