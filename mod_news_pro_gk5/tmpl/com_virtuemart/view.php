@@ -1,5 +1,4 @@
 <?php
-
 /**
 * This View is responsible for generating layout parts for the com_virtuemart data source
 * @package News Show Pro GK5
@@ -9,10 +8,8 @@
 * @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 * @version $Revision: GK5 1.3.3 $
 **/
-
 // access restriction
 defined('_JEXEC') or die('Restricted access');
-
 class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 	// article image generator
 	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
@@ -102,7 +99,6 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 			return '';
 		}
 	}
-
 	// article information generator
 	static function info($config, $item, $num = 1) {
 		// %AUTHOR %DATE %HITS %CATEGORY
@@ -152,6 +148,17 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 	static function store($config, $item) {        
         // Load the language file of com_virtuemart.
         JFactory::getLanguage()->load('com_virtuemart');
+       
+        // Load path constant
+        if(!defined('VMPATH_ADMIN')) {
+        	define('VMPATH_ADMIN', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart');
+        }
+        // Load VM configuration if necessary
+        if (!class_exists( 'VmConfig' )) {
+        	require(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'config.php');
+        	VmConfig::loadConfig();
+        }
+        
         // load necessary classes
         if (!class_exists( 'calculationHelper' )) {
         	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'calculationh.php');
@@ -172,7 +179,7 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         	require(JPATH_COMPONENT_SITE.DS.'helpers'.DS.'cart.php');
         }
         if (!class_exists( 'VirtueMartModelProduct' )){
-           JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
+        	JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
         }
         // load the base
         $productModel = new VirtueMartModelProduct();
@@ -180,12 +187,10 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 	    $currency = CurrencyDisplay::getInstance();
 	    
 	    $price = '<strong>'.$currency->createPriceDiv($config['vm_show_price_type'], '', $product->prices, true).'</strong>';
-
         if($config['vm_add_to_cart'] == 1) {
             vmJsApi::jPrice();
             vmJsApi::writeJS();
         }
-
         $news_price = '<div>';
         //
         if($config['vm_show_price_type'] != 'none') {
@@ -217,13 +222,11 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
             $code .= '<div class="addtocart-bar">';
             $code .= '<span class="quantity-box" style="display: none"><input type="text" class="quantity-input" name="quantity[]" value="1" /></span>';
             $addtoCartButton = '';
-
 			if($product->addToCartButton){
 				$addtoCartButton = $product->addToCartButton;
 			} else {
 				$addtoCartButton = shopFunctionsF::getAddToCartButton($product->orderable);
 			}
-
             $code .= str_replace('addtocart-button-disabled"', 'addtocart-button" type="submit"', $addtoCartButton);
                
             if($product->orderable != 0) { 
@@ -273,5 +276,4 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 		return '';
 	}
 }
-
 // EOF
