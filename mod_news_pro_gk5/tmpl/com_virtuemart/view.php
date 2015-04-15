@@ -159,15 +159,12 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         if (!class_exists( 'CurrencyDisplay' )) {
         	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'currencydisplay.php');
         }
-<<<<<<< HEAD
-=======
         if (!class_exists( 'VirtueMartModelVendor' )) {
         	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'models'.DS.'vendor.php');
         }
         if (!class_exists( 'VmImage' )) {
         	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'image.php');
         }
->>>>>>> parent of 487e617... Testing if vendor class is necessary here.
         if (!class_exists( 'shopFunctionsF' )) {
         	require(JPATH_SITE.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'shopfunctionsf.php');
         }
@@ -175,11 +172,7 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         	require(JPATH_COMPONENT_SITE.DS.'helpers'.DS.'cart.php');
         }
         if (!class_exists( 'VirtueMartModelProduct' )){
-           	if(!defined('VMPATH_ADMIN')) {
-           		define('VMPATH_ADMIN', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart');
-           	}
-           
-           	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' . DS . 'product.php');
+           JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
         }
         // load the base
         $productModel = new VirtueMartModelProduct();
