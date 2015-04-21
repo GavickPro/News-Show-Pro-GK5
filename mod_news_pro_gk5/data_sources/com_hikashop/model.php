@@ -225,7 +225,7 @@ class NSP_GK5_com_hikashop_Model {
 		SELECT DISTINCT
 		    content.product_id AS id,
 		    content.product_alias AS alias,
-		    content.product_msrp AS product_msrp,
+		    content.product_tax_id AS tax_id,
 			category.category_id AS cid,
 			category.category_name AS cat_name,
 			category.category_alias AS cat_alias
@@ -321,6 +321,39 @@ class NSP_GK5_com_hikashop_Model {
 	           $pos = array_search($item['id'], $content_id);
 	           // merge the new data to the array of items data
 	           $temp_array = array('image' => $item['image']);
+	           if(isset($content[$pos]) && is_array($content[$pos])) {
+	           		$content[$pos] = array_merge($content[$pos], (array) $temp_array);
+	           }
+	       }
+	    }
+	    // fourth query
+	    $query_news4 = "SELECT
+	    	`content`.`product_id` AS `product_id`,
+	    	`price`.`price_value` AS `price`
+	    FROM
+	    	#__hikashop_product AS content
+	    LEFT JOIN
+	    	#__hikashop_price AS price 
+	    	ON 
+	    	`price`.`price_product_id` = `content`.`product_id`
+	    WHERE
+	    	1=1 
+	    	".$sql_where2."
+	    	AND
+	    	`price`.`price_min_quantity` = 0
+	    ORDER BY
+	    	`content`.`product_id` ASC
+	    ";
+	    
+	    $db->setQuery($query_news4);
+	    $product_prices = $db->loadAssocList();
+	    $prices = array();
+	    // get the first products images
+	    if ($product_prices) {
+	       foreach($product_prices as $item) {
+	           $pos = array_search($item['product_id'], $content_id);
+	           // merge the new data to the array of items data
+	           $temp_array = array('price' => $item['price']);
 	           if(isset($content[$pos]) && is_array($content[$pos])) {
 	           		$content[$pos] = array_merge($content[$pos], (array) $temp_array);
 	           }

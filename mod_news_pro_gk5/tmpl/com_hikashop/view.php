@@ -148,16 +148,21 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 	static function store($config, $item) {
 		$html = '<div class="nspHikashopBlock">';
 		//
-		$currencyHelper = hikashop_get('class.currency');
-		$mainCurr = $currencyHelper->mainCurrency();
-		$app = JFactory::getApplication();
-		$currCurrency = $app->getUserState( HIKASHOP_COMPONENT.'.currency_id', $mainCurr );
-		$msrpCurrencied = $currencyHelper->convertUniquePrice($item['product_msrp'],$mainCurr,$currCurrency);
+		if(!include_once(rtrim(JPATH_ADMINISTRATOR,DS).DS.'components'.DS.'com_hikashop'.DS.'helpers'.DS.'helper.php')) {
+			return true;
+		}
 		
-		if($msrpCurrencied == $item['product_msrp']) {
-			$html .= '<span>' . $currencyHelper->format($item['product_msrp'], $mainCurr) . '</span>';
+		$app = JFactory::getApplication();
+		$currencyHelper = hikashop_get('class.currency');
+		$taxed_price = $currencyHelper->getTaxedPrice($item['price'], hikashop_getZone(), $item['tax_id']);
+		$mainCurr = $currencyHelper->mainCurrency();
+		$currCurrency = $app->getUserState( HIKASHOP_COMPONENT.'.currency_id', $mainCurr );
+		$msrpCurrencied = $currencyHelper->convertUniquePrice($taxed_price, $mainCurr, $currCurrency);
+		
+		if($msrpCurrencied == $taxed_price) {
+			$html .= '<span>' . $currencyHelper->format($taxed_price, $mainCurr) . '</span>';
 		} else {
-			$html .= '<span>' . $currencyHelper->format($msrpCurrencied, $currCurrency).' ('.$currencyHelper->format($item['product_msrp'], $mainCurr).')' . '</span>';
+			$html .= '<span>' . $currencyHelper->format($msrpCurrencied, $currCurrency).' ('.$currencyHelper->format($taxed_price, $mainCurr).')' . '</span>';
 		}
 		
 		if($config['hikashop_add_to_cart'] > 0) {
@@ -176,7 +181,7 @@ class NSP_GK5_com_hikashop_View extends NSP_GK5_View {
 			} else {
 				$params->set('show_quantity_field', 0);
 			}
-			$params->set('price_with_tax',$hs_config->get('price_with_tax',1));
+			$params->set('price_with_tax', $hs_config->get('price_with_tax',1));
 			$params->set('add_to_cart',1);
 			$js = '';
 			$html .= hikashop_getLayout('product','add_to_cart_listing',$params,$js);
