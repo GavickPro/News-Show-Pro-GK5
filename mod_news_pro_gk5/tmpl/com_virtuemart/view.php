@@ -187,8 +187,11 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 	    $currency = CurrencyDisplay::getInstance();
 	    
 	    $price = '<strong>'.$currency->createPriceDiv($config['vm_show_price_type'], '', $product->prices, true).'</strong>';
-        if($config['vm_add_to_cart'] == 1) {
+       
+        if($config['vm_add_to_cart'] == 1 && JRequest::getCmd('option') != 'com_virtuemart') {
             vmJsApi::jPrice();
+            vmJsApi::addJScript( 'facebox' );
+			vmJsApi::css( 'facebox' );
             vmJsApi::writeJS();
         }
         $news_price = '<div>';
@@ -204,7 +207,10 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         if($config['vm_add_to_cart'] == 1) {
             if(isset($product->customfields) &&count($product->customfields)) {
             	foreach($product->customfields as $field) {
-            		if(isset($field->is_cart_attribute) && $field->is_cart_attribute == 1) {
+            		if(
+            			(isset($field->is_cart_attribute) && $field->is_cart_attribute == 1) ||
+            			(isset($field->layout_pos) && $field->layout_pos == 'addtocart')
+            		) {
             			$product->orderable = 0;
             			break;
             		}
@@ -216,7 +222,7 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
             if($product->orderable != 0) {
             	$code .= '<form method="post" class="product" action="index.php">';
             } else {
-            	$code .= '<form method="post" class="product" action="'.static::itemLink($item, $config).'">';
+            	$code .= '<form method="post" class="product-variant" action="'.static::itemLink($item, $config).'">';
             }
             
             $code .= '<div class="addtocart-bar">';
