@@ -258,7 +258,7 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
         return ($news_price != '<div>') ? $news_price.'</div>' : '';
 	}
 	// article link generator
-	static function itemLink($item, $config) {
+	static function itemLink($item, $config = false) {
 		if(isset($item['overrided_url'])) {
 			return $item['overrided_url'];
 		}
