@@ -267,7 +267,6 @@ class NSP_GK5_com_easyblog_Model {
 				AND ( content.publish_down = '.$db->Quote($nullDate).' OR content.publish_down >= '.$db->Quote($now).' )
 			'.$sql_where.'
 			'.$lang_filter.'
-			'.$frontpage_con.' 
 			'.$since_con.'
 			'.$current_con.'
 			'.$frontpage_con2.'
