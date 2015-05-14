@@ -17,9 +17,11 @@ class NSP_GK5_Product_Gallery_2 {
 	// necessary class fields
 	private $parent;
 	private $mode;
+	static $instances = 0;
 	// constructor
 	function __construct($parent) {
 		$this->parent = $parent;
+		NSP_GK5_Product_Gallery_2::$instances += 1;
 		// detect the supported Data Sources
 		if(stripos($this->parent->config['data_source'], 'com_content_') !== FALSE) {
 			$this->mode = 'com_content';
@@ -29,6 +31,30 @@ class NSP_GK5_Product_Gallery_2 {
 			$this->mode = 'com_virtuemart';
 		} else {
 			$this->mode = false;
+		}
+		//
+		if($config['vm_add_to_cart'] == 1 && NSP_GK5_Product_Gallery_2::$instances == 1) {
+			$closeimage = JURI::root(TRUE) .'/components/com_virtuemart/assets/images/fancybox/fancy_close.png';
+			$vmLangVar = '';
+			
+			if (VmConfig::get ('vmlang_js', 1))  {
+				$vmLangVar .= "vmLang = '&lang=" . substr (VmConfig::$vmlang, 0, 2) . "' ;\n";
+			} else {
+				$vmLangVar .= 'vmLang = "";' . "\n";		
+			}
+			
+			$doc = JFactory::getDocument();
+			$doc->addScriptDeclaration(
+				$vmLangVar . '
+				vmSiteurl = \''. JURI::root() .'\' ;
+				Virtuemart.addtocart_popup = \''.VmConfig::get('addtocart_popup',1).'\' ; 
+				vmCartText = \''.addslashes(vmText::_('COM_VIRTUEMART_CART_PRODUCT_ADDED')).'\' ;
+				vmCartError = \''.addslashes(vmText::_('COM_VIRTUEMART_MINICART_ERROR_JS')).'\' ;
+				loadingImage = \''.JURI::root(TRUE) .'/components/com_virtuemart/assets/images/facebox/loading.gif\' ;
+				closeImage = \''.$closeimage.'\' ; 
+				usefancy = false;
+				jQuery(document).ready(function() { Virtuemart.product(jQuery("form.product")); });'
+			);
 		}
 	}
 	// static function which returns amount of articles to render - VERY IMPORTANT!!
@@ -222,7 +248,7 @@ class NSP_GK5_Product_Gallery_2 {
 	                    <input type="hidden" class="pname" value="'.$product->product_name.'"/>
 	                    <input type="hidden" name="option" value="com_virtuemart" />
 	                    <input type="hidden" name="view" value="cart" />
-	                    <input type="hidden" name="task" value="add" />
+	                    <noscript><input type="hidden" name="task" value="add" /></noscript>
 	                    <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
 	                    <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
 	                </form>';    
