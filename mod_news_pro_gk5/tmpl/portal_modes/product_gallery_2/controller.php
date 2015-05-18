@@ -33,7 +33,7 @@ class NSP_GK5_Product_Gallery_2 {
 			$this->mode = false;
 		}
 		//
-		if($config['vm_add_to_cart'] == 1 && NSP_GK5_Product_Gallery_2::$instances == 1) {
+		if($this->parent->config['portal_mode_product_gallery_2_button'] == 'cart' && NSP_GK5_Product_Gallery_2::$instances == 1) {
 			$closeimage = JURI::root(TRUE) .'/components/com_virtuemart/assets/images/fancybox/fancy_close.png';
 			$vmLangVar = '';
 			
@@ -202,7 +202,7 @@ class NSP_GK5_Product_Gallery_2 {
 		    
 		    $price = '<strong>'.$currency->createPriceDiv($config['vm_show_price_type'], '', $product->prices, true).'</strong>';
 
-	        if($config['vm_add_to_cart'] == 1) {
+	        if($this->parent->config['portal_mode_product_gallery_2_button'] == 'cart') {
 	            vmJsApi::jPrice();
 	            vmJsApi::writeJS();
 	        }
