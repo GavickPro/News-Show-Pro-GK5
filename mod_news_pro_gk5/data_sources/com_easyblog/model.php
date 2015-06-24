@@ -164,9 +164,9 @@ class NSP_GK5_com_easyblog_Model {
 		$access_con = '';
 		
 		if($config['news_unauthorized'] == '1') {
-			$access_con = ' AND (content.private = 1 OR content.private = 0) ';
+			$access_con = ' AND (content.access = 1 OR content.access = 0) ';
 		} else {
-			$access_con = ' AND content.private = 0 ';
+			$access_con = ' AND content.access = 0 ';
 		}
 		$app = JFactory::getApplication();
 		$timezone = $app->getCfg('offset') + $config['time_offset'];

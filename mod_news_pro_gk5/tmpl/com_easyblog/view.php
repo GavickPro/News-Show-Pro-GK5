@@ -13,9 +13,6 @@
 // access restriction
 defined('_JEXEC') or die('Restricted access');
 
-// load necessary Easy Blog Route Helper and avatar helper
-require_once (JPATH_SITE.DS.'components'.DS.'com_easyblog'.DS.'helpers'.DS.'router.php');
-require_once (JPATH_SITE.DS.'components'.DS.'com_easyblog'.DS.'helpers'.DS.'avatar.php');
 //
 class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 	// article image generator
@@ -25,27 +22,10 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 			$item['title'] = str_replace('"', "&quot;", $item['title']);
 			$uri = JURI::getInstance();
 			//
-			if(!$config['easyblog_image_size']) {
-				$config['easyblog_image_size'] = 'original';
-			}
-			//
 			if(trim($item['image']) != ''){  
-				$image_object = json_decode($item['image']);
-				$original_path = false;
-				
-				if($config['easyblog_image_size'] == 'original') {
-					$original_path = $image_object->url;
-				} elseif($config['easyblog_image_size'] == 'thumbnail') {
-					$original_path = $image_object->thumbnail->url;
-				} elseif($config['easyblog_image_size'] == 'icon') {
-					$original_path = $image_object->icon->url;
-				}
-				
-				if($original_path) {
-					$IMG_SOURCE = substr($original_path, stripos($original_path, 'images/easyblog_images/'));
-				} else {
-					$IMG_SOURCE = '';
-				}
+				$image_path = str_replace('post:', '', $item['image']);
+
+				$IMG_SOURCE = 'images/easyblog_articles/' . $image_path;
 	        } else {
 				// set image to first in article content
 				if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
@@ -153,17 +133,25 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 		) {
 	        $news_info = '<p class="nspInfo '.$class.'">'.$config['info'.(($num == 2) ? '2' : '').'_format'].'</p>';
 	        //
-	        $author = htmlspecialchars($item['author_username']);
-	        $author_html = '<a href="'.urldecode(JRoute::_('index.php?option=com_easyblog&view=blogger&layout=listings&id=' . $item['author_id'])).'" target="'.$config['open_links_window'].'">'.$author.'</a>';
-	        
-	        // load easyblog helper
-	        require_once (JPATH_SITE.DS.'components'.DS.'com_easyblog'.DS.'helpers'.DS.'helper.php');
- 
-		$blogger   = EasyBlogHelper::getTable( 'Profile' , 'Table' );
-		$blogger->load( $item['author_id'] );
- 	
- 		$avatar_helper = new EasyBlogAvatarHelper(); 
-		$info_author = ($config['user_avatar'] == 1) ? '<span><img src="'.$avatar_helper->getAvatarUrl($blogger).'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>' : $author_html;
+ 			$info_author = '';
+ 			// load author data only if necessary
+ 			if(stripos($news_info, '%AUTHOR') !== FALSE){
+ 				$author = htmlspecialchars($item['author_username']);
+ 				$author_html = '<a href="'.urldecode(JRoute::_('index.php?option=com_easyblog&view=blogger&layout=listings&id=' . $item['author_id'])).'" target="'.$config['open_links_window'].'">'.$author.'</a>';
+ 				
+	 			if($config['user_avatar'] == 1) {
+		 			// load necessary Easy Blog Route Helper and avatar helper
+		 			require_once (JPATH_SITE.DS.'administrator'.DS.'components'.DS.'com_easyblog'.DS.'includes'.DS.'utils.php');
+		 			require_once (JPATH_SITE.DS.'administrator'.DS.'components'.DS.'com_easyblog'.DS.'includes'.DS.'easyblog.php');
+		 			require_once (JPATH_SITE.DS.'administrator'.DS.'components'.DS.'com_easyblog'.DS.'includes'.DS.'avatar'.DS.'avatar.php');
+		 			
+		 			$post_data = EB::post($item['id']);
+		 			$blogger = $post_data->getAuthor();
+		 			$info_author = '<span><img src="'.$blogger->getAvatar().'" alt="'.$author.' - avatar" class="nspAvatar" width="'.$config['avatar_size'].'" height="'.$config['avatar_size'].'" /> '.$author_html.'</span>';
+	 			} else {
+	 				$info_author = $author_html;
+	 			}
+			}
 	        //
 	        $info_date = JHTML::_('date', $item['date'], $config['date_format']);
 	        //
