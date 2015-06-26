@@ -465,6 +465,10 @@ img.nspImage.gkResponsive {
 	.nspArt {
 		width: 100%;
 	}
+	
+	.nspArt img.nspImage { 
+    		max-width: 100%;
+	}
 }
 
 /* EOF */
