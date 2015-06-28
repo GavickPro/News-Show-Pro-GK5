@@ -33,6 +33,8 @@ class NSP_GK5_View {
 				$output = preg_replace('/' . $first_word . '/mi', $output_temp[0], $output, 1);
 			}
 			
+			$output = htmlspecialchars(html_entity_decode($output));
+			
 	        $link = static::itemLink($item, $config);
 			//
 			if($config['news_header_link'] == 1) {
