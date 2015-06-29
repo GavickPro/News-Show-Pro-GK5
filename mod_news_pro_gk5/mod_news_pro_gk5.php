@@ -13,8 +13,6 @@
 // access restriction
 defined('_JEXEC') or die('Restricted access');
 if(!defined('DS')){ define('DS',DIRECTORY_SEPARATOR); }
-// Solves problem with loading mootools-more in selected templates
-JHtml::_('behavior.framework', true);
 // Loading helper class
 require_once (dirname(__FILE__).DS.'helper.php');
 // loading module classes
@@ -22,8 +20,6 @@ if(!class_exists('NSP_GK5_Thumbs')) require_once (dirname(__FILE__).DS.'helpers'
 if(!class_exists('NSP_GK5_Utils')) require_once (dirname(__FILE__).DS.'helpers'.DS.'gk.utils.php');
 if(!class_exists('NSP_GK5_Article_Format')) require_once(dirname(__FILE__).DS.'helpers'.DS.'gk.format.parser.php');
 if(!class_exists('NSP_GK5_View')) require_once(dirname(__FILE__).DS.'tmpl'.DS.'view.php');
-// Add MooTools loading for non-Gavick templates
-JHtml::_('behavior.framework', true);
 
 // start the module code
 $helper = new NSP_GK5_Helper();
