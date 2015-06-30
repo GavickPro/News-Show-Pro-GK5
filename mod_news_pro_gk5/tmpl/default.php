@@ -24,6 +24,10 @@ if($this->config['links_position'] != 'bottom' && $this->config['news_short_page
 ?>
 <?php if($news_amount > 0) : ?>
 	<div class="nspMain<?php if($this->config['autoanim'] == TRUE) echo ' autoanim'; ?><?php if($this->config['hover_anim'] == TRUE) echo ' hover'; ?><?php echo ' ' . $this->config['moduleclass_sfx']; ?>" id="nsp-<?php echo $this->config['module_id']; ?>" data-config="<?php echo $news_config_json; ?>">		
+		<?php if(trim($this->config['nsp_pre_text'])) : ?>
+		<?php echo $this->config['nsp_pre_text']; ?>
+		<?php endif; ?>
+		
 		<?php if(($this->config['news_column'] * $this->config['news_rows']) > 0) : ?>
 			<div class="nspArts<?php echo ' '.$this->config['links_position']; ?>" style="width:<?php echo $arts_width; ?>%;">
 				<?php if(
@@ -142,6 +146,10 @@ if($this->config['links_position'] != 'bottom' && $this->config['news_short_page
 				<?php endif; ?>	
 			</div>
 		</div>
+		<?php endif; ?>
+		
+		<?php if(trim($this->config['nsp_post_text'])) : ?>
+		<?php echo $this->config['nsp_post_text']; ?>
 		<?php endif; ?>
 	</div>
 <?php else : ?>

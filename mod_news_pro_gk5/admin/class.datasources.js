@@ -73,6 +73,7 @@ DataSources.prototype.changeValue = function() {
 			jQuery('.gk-used-option').removeClass('gk-used-option');
 		}
 	}
+	
 	// show the field connected with the selected option
 	if(jQuery('#jform_params_' + data_source_value)) {
 		jQuery('#jform_params_' + data_source_value).addClass('gk-used-option');

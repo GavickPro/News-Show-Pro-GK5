@@ -92,6 +92,9 @@
                 <field name="article_format" type="filelist" default="" label="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT" description="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_DESC" directory="modules/mod_news_pro_gk5/article_formats" filter="(\.format)$" stripext="" hide_default="hide_default" />
 
                  <field name="article_format_text" type="textarea" default="" label="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_TEXT" description="MOD_NEWS_PRO_GK5_ARTICLE_FORMAT_TEXT_DESC" filter="raw" />
+                 
+                 <field name="nsp_pre_text" type="textarea"  default="" label="MOD_NEWS_PRO_GK5_PRE_TEXT" description="MOD_NEWS_PRO_GK5_PRE_TEXT_DESC" filter="raw" /> 
+                 <field name="nsp_post_text" type="textarea"  default="" label="MOD_NEWS_PRO_GK5_POST_TEXT" description="MOD_NEWS_PRO_GK5_POST_TEXT_DESC" filter="raw" /> 
             </fieldset>
             
             <fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE">
@@ -141,6 +144,12 @@
                 
                 <field name="jomsocial_user_photo" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_JOMSOCIAL_USERS" description="MOD_NEWS_PRO_GK5_JOMSOCIAL_USERS_DESC" />
                                 
+                <field name="com_solidres_hotel_categories" type="solidresmulticategories" extension="solidresmulticategories" multiple="multiple" class="gk-hidden-field" default="" size="50" label="MOD_NEWS_PRO_GK5_COM_SOLIDRES_HOTEL_CATEGORIES" description="" />
+                	        	  	
+                <field name="com_solidres_hotels" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_COM_SOLIDRES_HOTELS" description="MOD_NEWS_PRO_GK5_COM_SOLIDRES_HOTELS_DESC" />
+                
+                <field name="com_solidres_rooms" type="text" class="gk-hidden-field" default="" size="25" label="MOD_NEWS_PRO_GK5_COM_SOLIDRES_ROOMS" description="MOD_NEWS_PRO_GK5_COM_SOLIDRES_ROOMS_DESC" />
+                
                 <!-- Data sources fields END -->
                 
             	<field name="news_sort_value" type="gkdynamiclist" default="created" label="MOD_NEWS_PRO_GK5_NEWS_SORT_VALUE" description="MOD_NEWS_PRO_GK5_NEWS_SORT_VALUE_DESC"></field>
@@ -271,18 +280,18 @@
            	</fieldset>
            	
            	<fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_COM_HIKASHOP">
-							<field name="hikashop_itemid" type="text" default="9999" size="5" label="MOD_NEWS_PRO_GK5_HIKASHOP_ITEMID" description="MOD_NEWS_PRO_GK5_HIKASHOP_ITEMID_DESC"/>
-  
-							<field name="hikashop_out_of_stock" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_VM_OUT_OF_STOCK" description="MOD_NEWS_PRO_GK5_VM_OUT_OF_STOCK_DESC">
-								<option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
-								<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
-							</field> 
-                  
-							<field name="hikashop_add_to_cart" type="list" default="1" label="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART" description="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART_DESC">
-			                    <option value="2">MOD_NEWS_PRO_GK5_HIKASHOP_ENABLED_WITH_QUANTITY</option>
-			                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
-			                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
-			                </field>           
+				<field name="hikashop_itemid" type="text" default="9999" size="5" label="MOD_NEWS_PRO_GK5_HIKASHOP_ITEMID" description="MOD_NEWS_PRO_GK5_HIKASHOP_ITEMID_DESC"/>
+
+				<field name="hikashop_out_of_stock" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_VM_OUT_OF_STOCK" description="MOD_NEWS_PRO_GK5_VM_OUT_OF_STOCK_DESC">
+					<option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+					<option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+				</field> 
+      
+				<field name="hikashop_add_to_cart" type="list" default="1" label="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART" description="MOD_NEWS_PRO_GK5_VM_ADD_TO_CART_DESC">
+                    <option value="2">MOD_NEWS_PRO_GK5_HIKASHOP_ENABLED_WITH_QUANTITY</option>
+                    <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                    <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                </field>           
 			</fieldset>
            	
            	<fieldset addfieldpath="/modules/mod_news_pro_gk5/admin/elements" name="NSP_DATA_SOURCE_RSS">
@@ -1245,7 +1254,7 @@
                         <option value="Fx.Transitions.Elastic.easeIn">Elastic.easeIn</option>
                         <option value="Fx.Transitions.Elastic.easeOut">Elastic.easeOut</option>
                         <option value="Fx.Transitions.Elastic.easeInOut">Elastic.easeInOut</option>
-                </field>                
+                </field>            
             </fieldset>
 			
             <fieldset name="NSP_EXTERNAL_FILES">

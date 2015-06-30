@@ -1,0 +1,53 @@
+{
+	"data_source": "SOLIDRES_CONTENT_TITLE",
+	"source": "com_solidres",
+	"tab": "Solidres_Content_Additional_Settings",
+	"tabj3" : "NSP_DATA_SOURCE_COM_SOLIDRES",
+	"sources": [
+		{
+			"name": "ALL_COM_SOLIDRES_HOTELS",
+			"value": "com_solidres_all_hotels"
+		},
+		{
+			"name": "COM_SOLIDRES_HOTELS",
+			"value": "com_solidres_hotels"
+		},
+		{
+			"name": "COM_SOLIDRES_HOTEL_CATEGORIES",
+			"value": "com_solidres_hotel_categories"
+		},
+		{
+			"name": "COM_SOLIDRES_ALL_ROOMS",
+			"value": "com_solidres_all_rooms"
+		},
+		{
+			"name": "COM_SOLIDRES_ROOMS",
+			"value": "com_solidres_rooms"
+		}
+	],
+	"supported_options": {
+		"sort_values": {
+			"MOD_NEWS_PRO_GK5_DATE": "created_date",
+			"MOD_NEWS_PRO_GK5_MODIFIED": "modified_date",
+			"MOD_NEWS_PRO_GK5_TITLE": "name",
+			"MOD_NEWS_PRO_GK5_RANDOM": "random",
+			"MOD_NEWS_PRO_GK5_USER_INPUT": "user"
+		},
+		"offset": true,
+		"news_since": true,
+		"news_in": true,
+		"news_featured": true,
+		"only_featured": true,
+		"one_article_per_category": false,
+		"news_unauthorized": false,
+		"time_offset": true 
+	},
+	"supported_elements": {
+		"header": true,
+		"image": true,
+		"text": true,
+		"readmore": true,
+		"info": true,
+		"info2": true
+	}
+}

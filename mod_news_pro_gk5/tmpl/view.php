@@ -34,7 +34,7 @@ class NSP_GK5_View {
 			}
 			
 			$output = htmlspecialchars(html_entity_decode($output));
-			
+
 	        $link = static::itemLink($item, $config);
 			//
 			if($config['news_header_link'] == 1) {
