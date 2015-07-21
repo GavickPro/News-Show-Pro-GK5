@@ -23,7 +23,7 @@ class NSP_GK5_View {
 				$class .= ' has-image';
 			}
 			
-			$output = NSP_GK5_Utils::cutText(htmlspecialchars($item['title']), $config, 'title_limit', '&hellip;');
+			$output = NSP_GK5_Utils::cutText(htmlspecialchars(html_entity_decode(strip_tags($item['title']))), $config, 'title_limit', '&hellip;');
 			$output = str_replace('"', "&quot;", $output);
 			// first word span wrap
 			if($config['news_header_first_word'] == 1) {
@@ -32,8 +32,6 @@ class NSP_GK5_View {
 				$output_temp[0] = '<span>'.$output_temp[0].'</span>';
 				$output = preg_replace('/' . $first_word . '/mi', $output_temp[0], $output, 1);
 			}
-			
-			$output = htmlspecialchars(html_entity_decode($output));
 
 	        $link = static::itemLink($item, $config);
 			//
