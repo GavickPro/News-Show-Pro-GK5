@@ -58,7 +58,7 @@ class NSP_GK5_Portfolio_Grid {
 					$data_url = $this->get_link($i);
 						
 					if($this->parent->config['portal_mode_portfolio_grid_popup'] != 0) {
-						$data_url = $this->get_image($i, true);
+						$data_url = JUri::base() . '/' . $this->get_image($i, true);
 						$data_popup= 'true';
 					}
 					
@@ -71,7 +71,7 @@ class NSP_GK5_Portfolio_Grid {
 						$link_data_attrs = $data_attrs;	
 					}
 					
-					echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'" data-url="'.strip_tags($this->get_image($i)).'" class="image-resource"'.$link_data_attrs.'><img class="helper-image" src="data:image/png;base64,'.$this->generateBlankImage($this->parent->config).'" alt="" />
+					echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'" data-url="'.JUri::base() . '/' . strip_tags($this->get_image($i)).'" class="image-resource"'.$link_data_attrs.'><img class="helper-image" src="data:image/png;base64,'.$this->generateBlankImage($this->parent->config).'" alt="" />
 						</a>';
 					
 					echo '<div class="figcaption" '.$figcaption_data_attrs.'>';
