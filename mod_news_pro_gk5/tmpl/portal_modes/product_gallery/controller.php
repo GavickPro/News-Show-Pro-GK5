@@ -82,9 +82,11 @@ class NSP_GK5_Product_Gallery {
 		// images wrapper
 		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_product_gallery_cols'].'">';
 		// render images
+		$img_iterator = 0;
+		
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			if($this->get_image($i)) {
-				echo '<div class="gkImage show '.(($i+1 <= $this->parent->config['portal_mode_product_gallery_cols']) ? ' active' : ''). '">';
+				echo '<div class="gkImage show '.(($img_iterator = 0;+1 <= $this->parent->config['portal_mode_product_gallery_cols']) ? ' active' : ''). '">';
 				echo '<a href="' . $this->get_link($i) . '"><img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]->title).'" /></a>';
 				echo '<h4><a href="' . $this->get_link($i) . '">' . $this->parent->content[$i]['title'] . '</a></h4>';
 				
@@ -101,6 +103,8 @@ class NSP_GK5_Product_Gallery {
 				if($this->parent->content[$i]['featured'] && $this->parent->config['vm_show_featured_badge']) {
 					echo '<sup class="nspBadge">'.JText::_('MOD_NEWS_PRO_GK5_NSP_FEATURED').'</sup>';
 				}
+
+				$img_iterator++;
 
 				echo '</div>';
 			}		
