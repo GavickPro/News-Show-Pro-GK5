@@ -73,6 +73,11 @@ class NSP_GK5_Product_Gallery_2 {
 		}
 		// main wrapper
 		echo '<div class="gkNspPM gkNspPM-ProductGallery2" data-cols="'.$this->parent->config['portal_mode_product_gallery_2_cols'].'">';
+		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			if($this->get_image($i)) {
@@ -95,6 +100,10 @@ class NSP_GK5_Product_Gallery_2 {
 				}
 				echo '</div>';
 			}		
+		}
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
 		}
 		// closing main wrapper
 		echo '</div>';

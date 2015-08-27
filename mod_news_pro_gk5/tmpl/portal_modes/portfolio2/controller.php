@@ -40,6 +40,10 @@ class NSP_GK5_Portfolio2 {
 		// main wrapper
 		echo '<div class="gkNspPM gkNspPM-Portfolio2" data-cols="'.$this->parent->config['portal_mode_portfolio2_cols'].'" data-popup="'.$this->parent->config['portal_mode_portfolio2_popup'].'" data-rows="'.$this->parent->config['portal_mode_portfolio2_rows'].'">';
 		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		if($this->parent->config['portal_mode_portfolio2_filter'] == 1) {
 			$categories = array();
 			
@@ -81,6 +85,10 @@ class NSP_GK5_Portfolio2 {
 		}
 		// closing images wrapper
 		echo '</div>';
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
+		}
 		// closing main wrapper
 		echo '</div>';
 	}

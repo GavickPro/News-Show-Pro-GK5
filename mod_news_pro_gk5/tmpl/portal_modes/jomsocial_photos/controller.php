@@ -42,6 +42,10 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 			// main wrapper
 			echo '<div class="gkNspPM gkNspPM-JomSocialPhotos'.($this->parent->config['portal_mode_jomsocial_photos_animation'] == 1 ? ' animate' : '').'" data-cols="'.$this->parent->config['portal_mode_jomsocial_photos_amount'].'">';
 			
+			if(trim($this->parent->config['nsp_pre_text'])) {
+				echo $this->parent->config['nsp_pre_text'];
+			}
+			
 			$width = 3000;
 			$new_width = $this->parent->config['portal_mode_jomsocial_photos_total'] * $this->parent->config['portal_mode_jomsocial_photos_width'];
 			
@@ -99,6 +103,11 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 			}
 			// closing main wrappers
 			echo '</div>';
+			
+			if(trim($this->parent->config['nsp_post_text'])) {
+				echo $this->parent->config['nsp_post_text'];
+			}
+			
 			echo '</div>';
 		}
 		// function used to retrieve the item URL

@@ -41,6 +41,11 @@ class NSP_GK5_News_Blocks {
 	function output() {	
 		// main wrapper
 		echo '<div class="gkNspPM gkNspPM-NewsBlocks" data-cols="'.$this->parent->config['portal_mode_news_blocks_cols'].'">';
+		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			$title_parts = explode(' ', trim($this->parent->content[$i]['title']));
@@ -77,6 +82,11 @@ class NSP_GK5_News_Blocks {
 			echo '</figcaption>';
 			echo '</figure>';
 		}
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
+		}
+		
 		// closing main wrapper
 		echo '</div>';
 	}

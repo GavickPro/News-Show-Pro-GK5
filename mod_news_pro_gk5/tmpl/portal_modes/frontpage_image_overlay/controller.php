@@ -41,6 +41,11 @@ class NSP_GK5_Frontpage_Image_Overlay {
 		for($i = 0; $i < count($this->parent->content); $i++) {
 			// output the HTML code
 			echo '<figure class="gkNspPM gkNspPM-FrontpageImageOverlay" data-textcolor="'.$this->parent->config['portal_mode_frontpage_image_overlay_text_color'].'">';
+			
+			if(trim($this->parent->config['nsp_pre_text'])) {
+				echo $this->parent->config['nsp_pre_text'];
+			}
+			
 			//
 			if($this->get_image($i)) {
 				$img_url = strip_tags($this->get_image($i));
@@ -79,6 +84,11 @@ class NSP_GK5_Frontpage_Image_Overlay {
 				
 				echo '</figcaption>';
 			}
+			
+			if(trim($this->parent->config['nsp_post_text'])) {
+				echo $this->parent->config['nsp_post_text'];
+			}
+			
 			echo '</figure>';
 		}
 	}

@@ -39,6 +39,11 @@ class NSP_GK5_Highlights {
 	function output() {	
 		// output the HTML code
 		echo '<ol class="gkNspPM gkNspPM-Highlights">';
+		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		// render blocks
 		for($i = 0; $i < count($this->parent->content); $i++) {
 			echo '<li>';
@@ -49,6 +54,11 @@ class NSP_GK5_Highlights {
 				}
 			echo '</li>';
 		}
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
+		}
+		
 		echo '</ol>';
 		if($this->parent->config['portal_mode_highlights_readmore'] != '') {
 			echo '<a href="'.$this->parent->config['portal_mode_highlights_readmore'].'">'.JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_HIGHLIGHTS_READMORE_VALUE').'</a>';

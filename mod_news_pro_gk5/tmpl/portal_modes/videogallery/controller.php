@@ -42,6 +42,11 @@ class NSP_GK5_VideoGallery {
 		if(count($this->parent->content)) {
 			// output the HTML code
 			echo '<div class="gkNspPM gkNspPM-VideoGallery" data-autoanim="'.$this->parent->config['portal_mode_video_gallery_autoanimation'].'">';
+			
+			if(trim($this->parent->config['nsp_pre_text'])) {
+				echo $this->parent->config['nsp_pre_text'];
+			}
+			
 			// render blocks
 			for($i = 0; $i < count($this->parent->content); $i++) {
 				$title = NSP_GK5_Utils::cutText(strip_tags($this->parent->content[$i]['title']), $this->parent->config, 'portal_mode_video_gallery_title_limit', '&hellip;');
@@ -86,6 +91,11 @@ class NSP_GK5_VideoGallery {
 				}
 			}
 			echo '</div>';
+			
+			if(trim($this->parent->config['nsp_post_text'])) {
+				echo $this->parent->config['nsp_post_text'];
+			}
+			
 			echo '</div>';
 		} else {
 			echo '<strong>Error:</strong> No articles to display';

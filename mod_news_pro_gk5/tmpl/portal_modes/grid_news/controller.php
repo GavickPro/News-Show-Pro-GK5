@@ -38,6 +38,11 @@ class NSP_GK5_Grid_News {
 	function output() {	
 		// main wrapper
 		echo '<div class="gkNspPM gkNspPM-GridNews" data-cols="'.$this->parent->config['portal_mode_grid_news_cols'].'">';
+		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			$this->parent->content[$i]['title'] = explode('__', $this->parent->content[$i]['title']);
@@ -89,6 +94,11 @@ class NSP_GK5_Grid_News {
 		if($this->parent->config['portal_mode_grid_news_url'] != '') {
 			echo '<a href="'.$this->parent->config['portal_mode_grid_news_url'].'">'.$this->parent->config['portal_mode_grid_news_link_text'].'</a>';
 		}
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
+		}
+		
 		// closing main wrapper
 		echo '</div>';
 	}

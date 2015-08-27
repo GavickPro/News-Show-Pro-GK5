@@ -41,6 +41,11 @@ class NSP_GK5_Portfolio {
 		$amount = 0;	
 		// main wrapper
 		echo '<div class="gkNspPM gkNspPM-Portfolio'.(($this->parent->config['portal_mode_portfolio_initial_anim'] == '0') ? ' noInitialAnim' : '').'" data-cols="'.$this->parent->config['portal_mode_portfolio_cols'].'" data-rows="'.$this->parent->config['portal_mode_portfolio_rows'].'">';
+		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		// images wrapper
 		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_portfolio_cols'].' animate_queue">';
 		// JSON data array
@@ -73,6 +78,11 @@ class NSP_GK5_Portfolio {
 				echo '<a href="'.$this->parent->config['portal_mode_portfolio_link_url'].'" class="gkLoadMore border bigbutton" data-text="'.JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_TEXT2').'" data-toload="'.str_replace('"', '\'', json_encode($jsondata)).'" data-max="'.count($jsondata).'">'.JText::_('MOD_NEWS_PRO_GK5_PORTAL_MODE_PORTFOLIO_LINK_TEXT1').'</a>';
 			}
 		}
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
+		}
+		
 		// closing main wrapper
 		echo '</div>';
 	}

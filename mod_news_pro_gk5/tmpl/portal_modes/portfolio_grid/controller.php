@@ -45,6 +45,11 @@ class NSP_GK5_Portfolio_Grid {
 		data-small-tablet-cols="'.$this->parent->config['portal_mode_portfolio_grid_cols_small_tablet'].'"
 		data-mobile-cols="'.$this->parent->config['portal_mode_portfolio_grid_cols_mobile'].'"
 		>';
+		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			if($this->get_image($i)) {
@@ -116,6 +121,10 @@ class NSP_GK5_Portfolio_Grid {
 					}
 				echo '</div>';
 			}
+		}
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
 		}
 		// closing main wrapper
 		echo '</div>';

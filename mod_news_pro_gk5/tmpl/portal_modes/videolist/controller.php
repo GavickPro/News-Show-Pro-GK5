@@ -42,6 +42,11 @@ class NSP_GK5_VideoList {
 		if(count($this->parent->content)) {
 			// output the HTML code
 			echo '<div class="gkNspPM gkNspPM-VideoList">';
+			
+			if(trim($this->parent->config['nsp_pre_text'])) {
+				echo $this->parent->config['nsp_pre_text'];
+			}
+			
 			echo '<div>';
 			// render blocks
 			for($i = 0; $i < count($this->parent->content); $i++) {
@@ -89,6 +94,10 @@ class NSP_GK5_VideoList {
 				
 				echo '<a href="#" class="gkBottomNavNext">&raquo;</a>';
 				echo '</div>';
+			}
+			
+			if(trim($this->parent->config['nsp_post_text'])) {
+				echo $this->parent->config['nsp_post_text'];
 			}
 			
 			echo '</div>';

@@ -79,6 +79,11 @@ class NSP_GK5_Product_Gallery {
 		}	
 		// main wrapper
 		echo '<div class="gkNspPM gkNspPM-ProductGallery'.(($this->parent->config['portal_mode_product_gallery_autoanimation'] == 1) ? ' gkAutoAnimation' : '') . (($pagination) ? ' gkPagination' : '') . '" data-cols="'.$this->parent->config['portal_mode_product_gallery_cols'].'" data-autoanim-time="'.$this->parent->config['portal_mode_product_gallery_autoanimation_time'].'">';
+		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		// images wrapper
 		echo '<div class="gkImagesWrapper gkImagesCols'.$this->parent->config['portal_mode_product_gallery_cols'].'">';
 		// render images
@@ -116,8 +121,10 @@ class NSP_GK5_Product_Gallery {
 			echo '<a href="#prev" class="gkPrevBtn">&laquo;</a>';
 			echo '<a href="#next" class="gkNextBtn">&raquo;</a>';
 		}
-		// IE8 fix
-		echo '<!--[if IE 8]><div class="ie8clear"></div><![endif]-->';
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
+		}
 		// closing main wrapper
 		echo '</div>';
 	}

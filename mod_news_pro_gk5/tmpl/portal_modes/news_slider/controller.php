@@ -42,6 +42,10 @@ class NSP_GK5_News_Slider {
 		// main wrapper
 		echo '<div class="gkNspPM gkNspPM-NewsSlider" data-autoanim="'.$this->parent->config['portal_mode_news_slider_autoanimation_time'].'" style="min-height: '.intval($this->parent->config['img_height'] + 200.0).'px;">';
 		
+		if(trim($this->parent->config['nsp_pre_text'])) {
+			echo $this->parent->config['nsp_pre_text'];
+		}
+		
 		if($this->parent->config['portal_mode_news_slider_label'] != '') {
 			echo '<h2>' . $this->parent->config['portal_mode_news_slider_label'] . '</h2>';
 		}
@@ -134,6 +138,10 @@ class NSP_GK5_News_Slider {
 		}
 		
 		echo '<a href="#" class="gk-data-category-link"'.$to_hide_link.'>'.$this->parent->config['portal_mode_news_slider_category_label'].'</a>';
+		
+		if(trim($this->parent->config['nsp_post_text'])) {
+			echo $this->parent->config['nsp_post_text'];
+		}
 		// closing main wrapper
 		echo '</div>';
 	}
