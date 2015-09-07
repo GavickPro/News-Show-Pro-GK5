@@ -1,0 +1,9 @@
+{
+	"name": "TechNews_Reviews",
+	"full_name": "TECHNEWS_REVIEWS",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

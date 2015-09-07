@@ -97,7 +97,7 @@ class NSP_GK5_com_k2_Model {
 		}
 	}
 	// Method to get articles in standard mode 
-	static function getArticles($categories, $config, $amount) {	
+	static function getArticles($categories, $config, $amount) {			
 		//
 		$sql_where = '';
 		$tag_join = '';

@@ -64,7 +64,7 @@
 .gkNspPM-VideoList .gkItem {
 	cursor: pointer;
 	opacity: 0;
-	padding: 16px 0;
+	padding: 16px;
 	position: relative;
 	top: 50px;
 	-webkit-transition: all .3s ease-out;

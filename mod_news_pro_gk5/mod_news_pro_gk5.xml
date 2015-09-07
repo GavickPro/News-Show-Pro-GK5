@@ -627,6 +627,8 @@
 			    
 			    <field type="text" name="portal_mode_video_list_per_page" default="3" label="NSP_PORTAL_MODE_VIDEO_LIST_PER_PAGE" description="NSP_PORTAL_MODE_VIDEO_LIST_PER_PAGE_DESC" />
 			    
+			    <field type="text" name="portal_mode_video_list_rows" default="1" label="NSP_PORTAL_MODE_VIDEO_LIST_ROWS" description="" />
+			    
 				<field name="portal_mode_video_list_title" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_TITLE" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_VIDEO_LIST_TITLE_DESC">
                     <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                     <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
@@ -846,6 +848,65 @@
                	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                	</field>
+            </fieldset>
+            
+            <fieldset name="NSP_PORTAL_MODE_TECHNEWS_HEADER1">
+                <field name="portal_mode_technews_header1_cols" type="list" default="3" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER1_COLS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER1_COLS_DESC">
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="NSP_PORTAL_MODE_TECHNEWS_HEADER2">                
+                <field name="portal_mode_technews_header2_layout" type="list" default="main_cols" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_LAYOUT" description="">
+                    <option value="main_col_col">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_MAIN_COL_COL</option>
+                    <option value="col_main_col">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_COL_MAIN_COL</option>
+                    <option value="col_col_main">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_COL_COL_MAIN</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="NSP_PORTAL_MODE_TECHNEWS_RATING">
+                <field name="portal_mode_technews_rating_rows" type="list" default="4" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_RATING_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_RATING_ROWS_DESC">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="NSP_PORTAL_MODE_TECHNEWS_REVIEWS">
+                <field name="portal_mode_technews_reviews_items" type="list" default="6" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_REVIEWS_ITEMS" description="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </field>
+                
+                <field name="portal_mode_technews_reviews_intro" type="text" default="" size="" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_REVIEWS_INTRO" description="" />
+                
+                <field name="portal_mode_technews_reviews_btn" type="text" default="Find more" size="" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_REVIEWS_BTN" description="" />
+                
+                <field name="portal_mode_technews_reviews_btn_url" type="text" default="" size="" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_REVIEWS_BTN_URL" description="" />
+                
+                <field name="portal_mode_technews_reviews_autoanim" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_REVIEWS_AUTOANIM" description="">
+        	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+        	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+               </field>
+               
+               <field name="portal_mode_technews_reviews_interval" type="text" default="3000" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_REVIEWS_INTERVAL" description="" />
             </fieldset>
 			
 			<!-- Portal Modes fieldsets END -->

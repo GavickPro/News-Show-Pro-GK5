@@ -47,13 +47,19 @@ class NSP_GK5_VideoList {
 				echo $this->parent->config['nsp_pre_text'];
 			}
 			
+			$rows = 1;
+			
+			if($this->parent->config['portal_mode_video_list_rows'] > 1) {
+				$rows = $this->parent->config['portal_mode_video_list_rows'];
+			}
+			
 			echo '<div>';
 			// render blocks
 			for($i = 0; $i < count($this->parent->content); $i++) {
 				$title = NSP_GK5_Utils::cutText(strip_tags($this->parent->content[$i]['title']), $this->parent->config, 'portal_mode_video_list_title_limit', '&hellip;');
 				//
 				if($i == 0) {
-					echo '<div class="gkItemsPage active" data-cols="'.$this->parent->config['portal_mode_video_list_per_page'].'">';
+					echo '<div class="gkItemsPage active" data-cols="'.ceil($this->parent->config['portal_mode_video_list_per_page'] / $rows).'">';
 				}
 				
 				$info_date = JHTML::_('date', $this->parent->content[$i]['date'], 'M j, Y');
@@ -160,10 +166,19 @@ class NSP_GK5_VideoList {
 	// function used to retrieve the item video
 	function get_video($num) {
 		if($this->mode == 'com_k2' && $this->parent->config['portal_mode_video_list_popup'] == 1) {
-			return str_replace('&', '&amp;', $this->videos[$this->parent->content[$num]['id']]);
-		} else {
-			return '#';
+			if($this->videos[$this->parent->content[$num]['id']] != '#') {
+				return str_replace('&', '&amp;', $this->videos[$this->parent->content[$num]['id']]);
+			} else {
+				$video_matches = array();
+				preg_match('@<iframe.*?src="(.*?)".*?</iframe>@mis', $this->parent->content[$num]['text'], $video_matches);
+				
+				if(count($video_matches)) {
+					return $video_matches[1];
+				}
+			}
 		}
+		
+		return '#';
 	}
 	// function used to retrieve the item URL
 	function get_link($num) {

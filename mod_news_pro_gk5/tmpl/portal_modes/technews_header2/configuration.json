@@ -1,0 +1,9 @@
+{
+	"name": "TechNews_Header2",
+	"full_name": "TECHNEWS_HEADER2",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

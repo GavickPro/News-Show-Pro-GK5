@@ -100,6 +100,14 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('#News_Slider_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'BIKESTORE_SLIDER') {
 					jQuery('#Bikestore_Slider_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'TECHNEWS_HEADER1') {
+					jQuery('#TechNews_Header1_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'TECHNEWS_HEADER2') {
+					jQuery('#TechNews_Header2_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'TECHNEWS_RATING') {
+					jQuery('#TechNews_Rating_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'TECHNEWS_REVIEWS') {
+					jQuery('#TechNews_Reviews_-_Portal_Mode_Settings').parents().eq(2).css('display', 'block');
 				}
 			} else {
 				if($this.configs[portal_mode_value].full_name == 'NEWS_GALLERY') {
@@ -144,6 +152,14 @@ PortalModes.prototype.changeValue = function() {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_SLIDER]').parent().css('display', 'block');
 				} else if($this.configs[portal_mode_value].full_name == 'BIKESTORE_SLIDER') {
 					jQuery('a[href=#attrib-NSP_PORTAL_MODE_BIKESTORE_SLIDER]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'TECHNEWS_HEADER1') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_TECHNEWS_HEADER1]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'TECHNEWS_HEADER2') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_TECHNEWS_HEADER2]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'TECHNEWS_RATING') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_TECHNEWS_RATING]').parent().css('display', 'block');
+				} else if($this.configs[portal_mode_value].full_name == 'TECHNEWS_REVIEWS') {
+					jQuery('a[href=#attrib-NSP_PORTAL_MODE_TECHNEWS_REVIEWS]').parent().css('display', 'block');
 				}
 			}
 			// check the data source value
@@ -204,6 +220,10 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('#Grid_News_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#News_Slider_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 		jQuery('#Bikestore_Slider_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#TechNews_Header1_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#TechNews_Header2_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#TechNews_Rating_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
+		jQuery('#TechNews_Reviews_-_Portal_Mode_Settings').parents().eq(2).css('display', 'none');
 	} else {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_GALLERY]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PRODUCT_GALLERY]').parent().css('display', 'none');
@@ -226,5 +246,11 @@ PortalModes.prototype.hideAllPMTabs = function() {
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_PORTFOLIO_GRID]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_NEWS_SLIDER]').parent().css('display', 'none');
 		jQuery('a[href=#attrib-NSP_PORTAL_MODE_BIKESTORE_SLIDER]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_TECHNEWS_HEADER1]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_TECHNEWS_HEADER2]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_TECHNEWS_RATING]').parent().css('display', 'none');
+		jQuery('a[href=#attrib-NSP_PORTAL_MODE_TECHNEWS_REVIEWS]').parent().css('display', 'none');
 	}
 }
+
+// EOF

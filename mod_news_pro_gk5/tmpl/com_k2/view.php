@@ -221,6 +221,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 	        	$info_featured = '<strong class="is-featured">'.JText::_('MOD_NEWS_PRO_GK5_FEATURED').'</strong>';
 	        }
 	        // 
+	        $news_info = str_replace('%AUTHOR_NAME', $author_name, $news_info);
 	        $news_info = str_replace('%AUTHOR', $info_author, $news_info);
 	        $news_info = str_replace('%DATE', $info_date, $news_info);
 	        $news_info = str_replace('%HITS', $info_hits, $news_info);
