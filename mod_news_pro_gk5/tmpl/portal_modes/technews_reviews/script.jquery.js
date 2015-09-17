@@ -42,7 +42,9 @@ function gkPortalModeTechNewsReviewsInit(module) {
 		});
 	});
 	
-	circles[0].animate(jQuery(jQuery(items[0]).find('.gk-review-sum-value')[0]).attr('data-final'));
+	if(circles[0]) {
+		circles[0].animate(jQuery(jQuery(items[0]).find('.gk-review-sum-value')[0]).attr('data-final'));
+	}
 	
 	if(module.attr('data-autoanim') == '1') {
 		gkPortalModeTechNewsReviewsAutoanim(module);
