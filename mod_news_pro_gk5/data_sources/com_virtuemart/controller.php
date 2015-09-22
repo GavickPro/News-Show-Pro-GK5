@@ -101,12 +101,13 @@ class NSP_GK5_com_virtuemart_Controller {
 			$doc->addScriptDeclaration(
 				$vmLangVar . '
 				vmSiteurl = \''. JURI::root() .'\' ;
+				window.Itemid = \'\';
 				Virtuemart.addtocart_popup = \''.VmConfig::get('addtocart_popup',1).'\' ; 
 				vmCartText = \''.addslashes(vmText::_('COM_VIRTUEMART_CART_PRODUCT_ADDED')).'\' ;
 				vmCartError = \''.addslashes(vmText::_('COM_VIRTUEMART_MINICART_ERROR_JS')).'\' ;
 				loadingImage = \''.JURI::root(TRUE) .'/components/com_virtuemart/assets/images/facebox/loading.gif\' ;
 				closeImage = \''.$closeimage.'\' ; 
-				usefancy = false;
+				usefancy = true;
 				jQuery(document).ready(function() { Virtuemart.product(jQuery("form.product")); });'
 			);
 		}

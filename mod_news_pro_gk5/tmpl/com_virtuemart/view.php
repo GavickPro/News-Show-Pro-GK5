@@ -233,15 +233,24 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 			} else {
 				$addtoCartButton = shopFunctionsF::getAddToCartButton($product->orderable);
 			}
-            $code .= str_replace('addtocart-button-disabled"', 'addtocart-button" type="submit"', $addtoCartButton);
+            $btn = str_replace('addtocart-button-disabled"', 'addtocart-button" type="submit"', $addtoCartButton);
+
+            if(stripos($btn, '<span') !== FALSE) {
+            	$btn = str_replace('title=', 'value=', $btn);
+            	$btn = str_replace('<span', '<input', $btn);
+            	$btn = preg_replace('@>.*?</span>@mis', '/>', $btn);
+            }
+
+            $code .= $btn;
                
             if($product->orderable != 0) { 
 	            $code .= '</div>
-	                    <input type="hidden" class="pname" value="'.$product->product_name.'"/>
+	                    <input type="hidden" name="pname" value="'.$product->product_name.'"/>
 	                    <input type="hidden" name="option" value="com_virtuemart" />
 	                    <input type="hidden" name="view" value="cart" />
 	                    <noscript><input type="hidden" name="task" value="add" /></noscript>
 	                    <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
+	                    <input type="hidden" name="pid" value="'.$product->virtuemart_product_id.'" />
 	                    <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
 	                </form>';   
             } else {
