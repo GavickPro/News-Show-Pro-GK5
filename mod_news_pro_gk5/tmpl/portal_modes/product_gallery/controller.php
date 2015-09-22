@@ -91,7 +91,7 @@ class NSP_GK5_Product_Gallery {
 		
 		for($i = 0; $i < count($this->parent->content); $i++) {			
 			if($this->get_image($i)) {
-				echo '<div class="gkImage show '.(($img_iterator = 0;+1 <= $this->parent->config['portal_mode_product_gallery_cols']) ? ' active' : ''). '">';
+				echo '<div class="gkImage show '.(($img_iterator + 1 <= $this->parent->config['portal_mode_product_gallery_cols']) ? ' active' : ''). '">';
 				echo '<a href="' . $this->get_link($i) . '"><img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]->title).'" /></a>';
 				echo '<h4><a href="' . $this->get_link($i) . '">' . $this->parent->content[$i]['title'] . '</a></h4>';
 				
