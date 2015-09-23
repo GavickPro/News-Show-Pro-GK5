@@ -63,7 +63,12 @@ class NSP_GK5_Portfolio_Grid {
 					$data_url = $this->get_link($i);
 						
 					if($this->parent->config['portal_mode_portfolio_grid_popup'] != 0) {
-						$data_url = JUri::base() . '/' . $this->get_image($i, true);
+						$data_url = $this->get_image($i, true);
+						
+						if(stripos($data_url, JUri::base()) === FALSE) {
+							$data_url = JUri::base() . '/' . $data_url;
+						}
+						
 						$data_popup= 'true';
 					}
 					
@@ -76,7 +81,13 @@ class NSP_GK5_Portfolio_Grid {
 						$link_data_attrs = $data_attrs;	
 					}
 					
-					echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'" data-url="'.JUri::base() . '/' . strip_tags($this->get_image($i)).'" class="image-resource"'.$link_data_attrs.'><img class="helper-image" src="data:image/png;base64,'.$this->generateBlankImage($this->parent->config).'" alt="" />
+					$img_url = $this->get_image($i);
+					
+					if(stripos($img_url, JUri::base()) === FALSE) {
+						$img_url = JUri::base() . '/' . $img_url;
+					}
+					
+					echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'" data-url="'.strip_tags($img_url).'" class="image-resource"'.$link_data_attrs.'><img class="helper-image" src="data:image/png;base64,'.$this->generateBlankImage($this->parent->config).'" alt="" />
 						</a>';
 					
 					echo '<div class="figcaption" '.$figcaption_data_attrs.'>';
