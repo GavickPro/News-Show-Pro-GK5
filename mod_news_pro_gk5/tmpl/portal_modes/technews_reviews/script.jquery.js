@@ -34,7 +34,7 @@ function gkPortalModeTechNewsReviewsInit(module) {
 			items.removeClass('gk-active');
 			items[current].addClass('gk-active');
 			
-			if(ProgressBar) {
+			if(ProgressBar && circles[current]) {
 				var sum = jQuery(items[i]).find('.gk-review-sum-value').first();
 				circles[current].set(0);
 				circles[current].animate(jQuery(sum).attr('data-final'));
