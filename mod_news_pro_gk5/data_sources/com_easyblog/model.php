@@ -262,6 +262,7 @@ class NSP_GK5_com_easyblog_Model {
 			'.$frontpage_con1.'
 		WHERE 
 			content.published = 1
+			AND content.state = 0
                 '. $access_con .'   
 		 		AND ( content.publish_up = '.$db->Quote($nullDate).' OR content.publish_up <= '.$db->Quote($now).' )
 				AND ( content.publish_down = '.$db->Quote($nullDate).' OR content.publish_down >= '.$db->Quote($now).' )
