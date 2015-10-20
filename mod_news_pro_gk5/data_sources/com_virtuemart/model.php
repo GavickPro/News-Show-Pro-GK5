@@ -187,6 +187,8 @@ class NSP_GK5_com_virtuemart_Model {
 			//
 			if ($config['news_sort_value'] == 'created') {
 				$sort_value = 'created_on';
+			} elseif($config['news_sort_value'] == 'ordering') {
+				$sort_value = 'pordering';
 			} elseif($config['news_sort_value'] == 'title') {
 				$sort_value = 'product_name';
 			} else {
