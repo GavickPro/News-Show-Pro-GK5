@@ -50,46 +50,8 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 					$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/default/default'.$config['module_id'].'.png';			
 				}
 			}
-			if($only_url) {
-				return $IMG_SOURCE;
-			} else {
-				//
-				if($IMG_SOURCE != '') {
-					$class = '';
-					
-					if(!$links) {
-						$class = ' t'.$config['news_content_image_pos'].' f'.$config['news_content_image_float']; 
-					}
-					$size = '';
-					$margins = '';
-					// 
-					if(!$links && $config['responsive_images'] == 1) {
-						$class .= ' gkResponsive'; 
-					}
-					//
-					if(!$links) {
-						if($config['img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['img_width'].'px;';
-						if($config['img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['img_height'].'px;';
-						if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
-					} else {
-						if($config['links_img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['links_img_width'].'px;';
-						if($config['links_img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['links_img_height'].'px;';
-						if($config['links_img_margin'] != '') $margins = ' style="margin:'.$config['links_img_margin'].';"';
-					}
-					//
-					if($config['news_image_link'] == 1 || $links) {			
-						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img .'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img .'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
-						} else {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$IMG_LINK.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
-						}
-					} else {
-						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
-					}
-				} else {
-					return '';
-				}
-			}
+			
+			return NSP_GK5_com_content_View::getImageHTML($only_url, $IMG_SOURCE, $links, $config, $IMG_LINK, $full_size_img);
 		} else {
 			return '';
 		}
@@ -243,15 +205,7 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 			$IMG_SOURCE = $images->image_intro;
 		} else {
 			// set image to first in article content
-			if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
-				$imgStartPos = JString::strpos($item['text'], 'src="');
-				if($imgStartPos) {
-					$imgEndPos = JString::strpos($item['text'], '"', $imgStartPos + 5);
-				}	
-				if($imgStartPos > 0) {
-					$IMG_SOURCE = JString::substr($item['text'], ($imgStartPos + 5), ($imgEndPos - ($imgStartPos + 5)));
-				}
-			}
+			$IMG_SOURCE = NSP_GK5_com_content_View::getImageFromText($item['text']);
 		}
 		
 		return $IMG_SOURCE;

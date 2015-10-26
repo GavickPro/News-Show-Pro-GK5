@@ -19,84 +19,43 @@ require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php'
 class NSP_GK5_com_k2_View extends NSP_GK5_View {
 	// article image generator
 	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
-		if($config['news_content_image_pos'] != 'disabled' || $pm || $links) {
-			$IMG_SOURCE = '';
-			$item['title'] = str_replace('"', "&quot;", $item['title']);
-			$uri = JURI::getInstance();
-			$IMG_SOURCE = static::originalImage($config, $item);
-			//
-			$full_size_img = $IMG_SOURCE;
-			//
-			if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
-				// try to override standard image
-				if(strpos($IMG_SOURCE, 'http://') == FALSE) {					
-					
-					$img_file = NSP_GK5_Thumbs::createThumbnail(str_replace(JURI::root() . 'media', 'media', $IMG_SOURCE), $config, true, false, '', $links);
-					
-					if(is_array($img_file)) {
-						$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/'.$img_file[1];
-					} elseif($config['create_thumbs'] == 1) {
-						jimport('joomla.filesystem.file');	
-					 if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS.'default'.DS.'default'.$config['module_id'].'.png')) {
-							$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/default/default'.$config['module_id'].'.png';
-						}
-					} else {
-						$IMG_SOURCE = '';
-					}
-				}	
-			} elseif($config['create_thumbs'] == 1) {
-				jimport('joomla.filesystem.file');
-				
-				if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS.'default'.DS.'default'.$config['module_id'].'.png')) {
-					$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/default/default'.$config['module_id'].'.png';			
-				}
-			}
-			
-			if($only_url) {
-				return $IMG_SOURCE;
-			} else {
-				//
-				if($IMG_SOURCE != '') {
-					$class = '';
-					
-					if(!$links) {
-						$class = ' t'.$config['news_content_image_pos'].' f'.$config['news_content_image_float']; 
-					}
-					
-					$size = '';
-					$margins = '';
-					// 
-					if(!$links && $config['responsive_images'] == 1) {
-						$class .= ' gkResponsive'; 
-					}
-					//
-					if(!$links) {
-						if($config['img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['img_width'].'px;';
-						if($config['img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['img_height'].'px;';
-						if($config['img_margin'] != '') $margins = ' style="margin:'.$config['img_margin'].';"';
-					} else {
-						if($config['links_img_width'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'width:'.$config['links_img_width'].'px;';
-						if($config['links_img_height'] != 0 && !$config['img_keep_aspect_ratio'] && $config['responsive_images'] == 0) $size .= 'height:'.$config['links_img_height'].'px;';
-						if($config['links_img_margin'] != '') $margins = ' style="margin:'.$config['links_img_margin'].';"';
-					}
-					//
-					if($config['news_image_link'] == 1 || $links) {
-						if($config['news_image_modal'] == 1) {
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$full_size_img.'" class="modal nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
-						} else {
-							$link = static::itemLink($item);	
-							return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a></div>' : '<a href="'.$link.'" class="nspImageWrapper'.$class.'"'.$margins.' target="'.$config['open_links_window'].'"><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'"  /></a>';
-						}
-					} else {
-						return ($config['news_content_image_pos'] == 'center' && !$links) ? '<div class="center'.$class.'"><span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" '.$size.' /></span></div>' : '<span class="nspImageWrapper'.$class.'"'.$margins.'><img class="nspImage'.$class.'" src="'.$IMG_SOURCE.'" alt="'.htmlspecialchars($item['title']).'" style="'.$size.'" /></span>';
-					}
-				} else {
-					return '';
-				}
-			}
-		} else {
+		if(!($config['news_content_image_pos'] != 'disabled' || $pm || $links)) {
 			return '';
 		}
+		
+		$IMG_SOURCE = '';
+		$item['title'] = str_replace('"', "&quot;", $item['title']);
+		$uri = JURI::getInstance();
+		$IMG_SOURCE = static::originalImage($config, $item);
+		//
+		$full_size_img = $IMG_SOURCE;
+		//
+		if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
+			// try to override standard image
+			if(strpos($IMG_SOURCE, 'http://') == FALSE) {					
+				
+				$img_file = NSP_GK5_Thumbs::createThumbnail(str_replace(JURI::root() . 'media', 'media', $IMG_SOURCE), $config, true, false, '', $links);
+				
+				if(is_array($img_file)) {
+					$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/'.$img_file[1];
+				} elseif($config['create_thumbs'] == 1) {
+					jimport('joomla.filesystem.file');	
+				 if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS.'default'.DS.'default'.$config['module_id'].'.png')) {
+						$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/default/default'.$config['module_id'].'.png';
+					}
+				} else {
+					$IMG_SOURCE = '';
+				}
+			}	
+		} elseif($config['create_thumbs'] == 1) {
+			jimport('joomla.filesystem.file');
+			
+			if(is_file(JPATH_ROOT.DS.'modules'.DS.'mod_news_pro_gk5'.DS.'cache'.DS.'default'.DS.'default'.$config['module_id'].'.png')) {
+				$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/default/default'.$config['module_id'].'.png';			
+			}
+		}
+		
+		return NSP_GK5_com_k2_View::getImageHTML($only_url, $IMG_SOURCE, $links, $config, $IMG_LINK, $full_size_img);
 	}
 	// article information generator
 	static function info($config, $item, $num = 1) {
@@ -327,15 +286,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 		
 		if($config['k2_image_size'] == 'first') {
 			// set image to first in article content
-			if(preg_match('/\<img.*src=.*?\>/',$item['text'])){
-				$imgStartPos = JString::strpos($item['text'], 'src="');
-				if($imgStartPos) {
-					$imgEndPos = JString::strpos($item['text'], '"', $imgStartPos + 5);
-				}	
-				if($imgStartPos > 0) {
-					$IMG_SOURCE = JString::substr($item['text'], ($imgStartPos + 5), ($imgEndPos - ($imgStartPos + 5)));
-				}
-			}
+			$IMG_SOURCE = NSP_GK5_com_k2_View::getImageFromText($item['text']);	
 		} else {
 			// search for the article featured image
 			if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item['id']).'_'.$config['k2_image_size'].'.jpg')){  
