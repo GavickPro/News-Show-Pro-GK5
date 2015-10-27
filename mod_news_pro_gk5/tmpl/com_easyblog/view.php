@@ -26,10 +26,14 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 		$uri = JURI::getInstance();
 		//
 		if(trim($item['image']) != ''){  
-			$image_path = str_replace('post:', '', $item['image']);
+			$image_path = str_replace(array('user:', 'post:'), '', $item['image']);
 
-			$IMG_SOURCE = 'images/easyblog_articles/' . $image_path;
-        } else {
+			if(stripos($item['image'], 'user:') !== FALSE) {
+				$IMG_SOURCE = 'images/easyblog_images/' . $image_path;
+			} else {
+				$IMG_SOURCE = 'images/easyblog_articles/' . $image_path;
+			}
+	        } else {
 			// set image to first in article content
 			$IMG_SOURCE = NSP_GK5_com_easyblog_View::getImageFromText($item['text']);					
 		}
