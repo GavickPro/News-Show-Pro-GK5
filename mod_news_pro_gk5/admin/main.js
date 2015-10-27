@@ -54,15 +54,11 @@ jQuery(window).load(function() {
 	var link = new jQuery('<a>', { 'class' : 'gkHelpLink', 'href' : 'http://www.gavick.com/news-show-pro-gk5.html', 'target' : '_blank' });
 	jQuery('div.accordion-group').eq(jQuery('div.accordion-group').length-2).find('.accordion-heading').append(link);
 	link.click( function(e) { e.preventDefault(); e.stopPropagation(); });
-	
-	
 	//
 	new DataSources();
 	new PortalModes();
 	new ImageCrop();
 	new ArticleLayout();
-	
-	
 	// option to hide article format related fields
 	var article_format = jQuery('#jform_params_use_own_article_format').val();
 		
@@ -125,7 +121,6 @@ jQuery(window).load(function() {
 	jQuery('.input-times').each(function(i, el){ jQuery(el).parent().find('#jform_params_img_width').after('<span class=\"add-on\">&times;</span>');});
 	jQuery('.input-times').each(function(i, el){ jQuery(el).parent().find('#jform_params_links_img_width').after('<span class=\"add-on\">&times;</span>');});
 	
-	
 	jQuery('#jform_params_img_height-lbl').parents().eq(1).css('display', 'none');
 	jQuery('#jform_params_links_img_height-lbl').parents().eq(1).css('display', 'none');
 	jQuery('.gk-group-layout').each(function(i, elm) {
@@ -137,9 +132,6 @@ jQuery(window).load(function() {
 		el.parent().find('.chzn-done').attr('style', 'display: none!important');
 	});
 	
-	
-	
 	jQuery('#nsp-gk5-checkout').parent().css('margin-left', '10px');
 	jQuery('#gk_about_us').parent().css('margin-left', '10px');
-	
 });
