@@ -64,8 +64,6 @@ ArticleLayout.prototype.changeOrder = function(current) {
 	var unexisting = [false, false, false, false, false];
 	var searched = 0;
 	
-	
-	
 	var elms = jQuery.map(['header', 'image', 'text', 'info', 'info2'], function(item) {
 		return jQuery('#jform_params_news_' + item + '_order');
 	});
@@ -74,7 +72,6 @@ ArticleLayout.prototype.changeOrder = function(current) {
 		item = jQuery(item);;
 		unexisting[item.val() - 1] = true;
 	});
-	
 	
 	for(var i = 0; i < 5; i++) {
 		if(unexisting[i] == false){ searched = i+1;}
