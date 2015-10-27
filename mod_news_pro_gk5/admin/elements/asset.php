@@ -18,15 +18,16 @@ class JFormFieldAsset extends JFormField {
     protected $type = 'Asset';
     protected function getInput() {
         $doc = JFactory::getDocument();
+        $refresher = rand(1000000, 9999999);
         // scripts
-        $doc->addScript(JURI::root().$this->element['path'].'class.articlelayout.js');
-        $doc->addScript(JURI::root().$this->element['path'].'class.configmanager.js');
-        $doc->addScript(JURI::root().$this->element['path'].'class.datasources.js');
-        $doc->addScript(JURI::root().$this->element['path'].'class.portalmodes.js');
-        $doc->addScript(JURI::root().$this->element['path'].'class.imagecrop.js');
-        $doc->addScript(JURI::root().$this->element['path'].'main.js');
+        $doc->addScript(JURI::root().$this->element['path'].'class.articlelayout.js?r=' . $refresher);
+        $doc->addScript(JURI::root().$this->element['path'].'class.configmanager.js?r=' . $refresher);
+        $doc->addScript(JURI::root().$this->element['path'].'class.datasources.js?r=' . $refresher);
+        $doc->addScript(JURI::root().$this->element['path'].'class.portalmodes.js?r=' . $refresher);
+        $doc->addScript(JURI::root().$this->element['path'].'class.imagecrop.js?r=' . $refresher);
+        $doc->addScript(JURI::root().$this->element['path'].'main.js?r=' . $refresher);
   		// stylesheets
-        $doc->addStyleSheet(JURI::root().$this->element['path'].'style.css');        
+        $doc->addStyleSheet(JURI::root().$this->element['path'].'style.css?r=' . $refresher);
         return null;
     }
 }
