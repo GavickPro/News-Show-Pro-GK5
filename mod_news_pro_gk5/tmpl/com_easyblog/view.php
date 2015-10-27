@@ -15,6 +15,36 @@ defined('_JEXEC') or die('Restricted access');
 
 //
 class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
+	// article text generator
+	static function text($config, $item, $readmore) {
+		if($config['news_content_text_pos'] == 'disabled') {
+			return '';
+		}
+		//
+		if($item['text'] === '') {
+			$item['text'] = $item['text_alt'];
+		}
+		//
+		$item['text'] = NSP_GK5_Utils::cutText($item['text'], $config, 'news_limit');
+		$item['text'] = static::textPlugins($item['text'], $config);
+		$link = static::itemLink($item, $config);
+		//
+		if($config['news_text_link'] == 1) {
+			$item['text'] = '<a href="'.$link.'" target="'.$config['open_links_window'].'">'.$item['text'].'</a>';
+		} 
+		
+		$class = ' t'.$config['news_content_text_pos'].' f'.$config['news_content_text_float'];
+		//
+		$output_html = '<p class="nspText'.$class.'">';
+		$output_html .= $item['text'];
+		if($config['news_content_readmore_pos'] == 'after') { 
+			$output_html .= ' ' . $readmore;
+		}
+		$output_html .= '</p>';
+		
+		return $output_html;
+	}
+	
 	// article image generator
 	static function image($config, $item, $only_url = false, $pm = false, $links = false){		
 		if(!($config['news_content_image_pos'] != 'disabled' || $pm || $links)) {
