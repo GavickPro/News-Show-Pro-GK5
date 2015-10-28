@@ -531,15 +531,17 @@ fieldset.panelform select[multiple=multiple] {
 }
 
 .gkFormLine.hasText {
-	background: transparent url(interface.png) no-repeat 5px -229px;
-	border-bottom: 5px solid #fff;
-	border-top: 10px solid #fff;
+	background: transparent url(interface.png) no-repeat 10px -218px;
+	border: 1px solid #ccc!important;
+	border-radius: 3px;
 	color: #444;
 	cursor: pointer;
 	font-size: 11px;
 	font-weight: 700;
-	line-height: 16px;
+	line-height: 40px;
 	padding-left: 28px;
+	width: 100%;
+	height: 40px;
 	margin-left: -25px!important;
 }
 #jform_params_links_img_width,
@@ -551,8 +553,16 @@ fieldset.panelform select[multiple=multiple] {
 	padding: 3px
 }
 
+#attrib-NSP_ARTICLE_LAYOUT div[class="control-group"] {
+	margin-bottom: 1px;
+}
+
+#attrib-NSP_ARTICLE_LAYOUT div.control-group[style] {
+	margin: 10px 0;
+}
+
 .gkFormLine.hasText.open {
-	background-position: 5px -287px
+	background-position: 10px -276px
 }
 
 .gkHelpLink {
@@ -927,7 +937,7 @@ div.switcher-off + select {
 	float: left;
 	min-width: 150px;
 	border-bottom: 0;
-	border-right: 1px solid #fafafa;
+	border-right: 1px solid #eee;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
