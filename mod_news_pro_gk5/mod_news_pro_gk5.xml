@@ -923,7 +923,7 @@
 					<option value="arrows_with_pagination">MOD_NEWS_PRO_GK5_ARROWS_WITH_PAGINATION</option>
 				</field>
 				
-				<field name="open_links_window" type="list" default="_self" label="MOD_NEWS_PRO_GK5_OPEN_LINKS_WINDOW" description="">
+				<field name="open_links_window" type="list" default="_self" label="MOD_NEWS_PRO_GK5_OPEN_LINKS_WINDOW" class="gk-group-pagination" description="">
 					<option value="_self">MOD_NEWS_PRO_GK5_SAME_WINDOW</option>
 					<option value="_blank">MOD_NEWS_PRO_GK5_BLANK_WINDOW</option>
 				</field>
