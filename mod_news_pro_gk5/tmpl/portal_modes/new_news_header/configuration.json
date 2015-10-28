@@ -1,0 +1,9 @@
+{
+	"name": "New_News_Header",
+	"full_name": "NEW_NEWS_HEADER",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

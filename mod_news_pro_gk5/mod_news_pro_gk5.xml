@@ -860,9 +860,18 @@
             
             <fieldset name="NSP_PORTAL_MODE_TECHNEWS_HEADER2">                
                 <field name="portal_mode_technews_header2_layout" type="list" default="main_cols" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_LAYOUT" description="">
-                    <option value="main_col_col">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_MAIN_COL_COL</option>
-                    <option value="col_main_col">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_COL_MAIN_COL</option>
-                    <option value="col_col_main">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_COL_COL_MAIN</option>
+                   <option value="main_col_col">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_MAIN_COL_COL</option>
+                   <option value="col_main_col">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_COL_MAIN_COL</option>
+                   <option value="col_col_main">MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_HEADER2_COL_COL_MAIN</option>
+                </field>
+            </fieldset>
+            
+            <fieldset name="NSP_PORTAL_MODE_NEW_NEWS_HEADER">                
+                <field name="portal_mode_new_news_header_layout" type="list" default="main_2rows_2rows" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_HEADER_LAYOUT" description="">
+                    <option value="main_2rows_2rows">MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_HEADER_MAIN_2ROWS_2ROWS</option>
+                    <option value="4cols_2cols">MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_HEADER_4COLS_2COLS</option>
+                    <option value="4rows">MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_HEADER_4ROWS</option>
+                    
                 </field>
             </fieldset>
             
