@@ -1075,68 +1075,68 @@
 			    
 			    <field name="gk_line_1" type="line" text="MOD_NEWS_PRO_GK5_LINE_ARTICLE_LAYOUT" desc="MOD_NEWS_PRO_GK5_LINE_ARTICLE_LAYOUT_DESC" class="article-format-hide" toggle="layout"  />
 			    <field name="art_padding" type="text" class="text_area last-in-group article-format-hide gk-group-layout" default="0 20px 20px 0" label="MOD_NEWS_PRO_GK5_ART_PADDING" description="MOD_NEWS_PRO_GK5_ART_PADDING_DESC" />
-                <field name="news_header_order" type="list" default="1" label="MOD_NEWS_PRO_GK5_HEAD_ORDER" description="" class="article-format-hide gk-group-layout">
+                <field name="news_header_order" type="radio" default="1" label="MOD_NEWS_PRO_GK5_HEAD_ORDER" description="" class="btn-group article-format-hide gk-group-layout">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                 </field>
-                <field name="news_header_enabled" type="list" class="gk_switch enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_HEADER_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_HEADER_ENABLED_DESC">
+                <field name="news_header_enabled" type="radio" class="btn-group enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_HEADER_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_HEADER_ENABLED_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
-                <field name="news_image_order" type="list" default="3" label="MOD_NEWS_PRO_GK5_IMAGE_ORDER" description="" class="article-format-hide gk-group-layout">
+                <field name="news_image_order" type="radio" default="3" label="MOD_NEWS_PRO_GK5_IMAGE_ORDER" description="" class="btn-group article-format-hide gk-group-layout">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                 </field>
-                <field name="news_image_enabled" type="list" class="gk_switch enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_IMAGE_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_IMAGE_ENABLED_DESC">
+                <field name="news_image_enabled" type="radio" class="btn-group enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_IMAGE_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_IMAGE_ENABLED_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
-                <field name="news_text_order" type="list" default="4" label="MOD_NEWS_PRO_GK5_TEXT_ORDER" description="" class="article-format-hide gk-group-layout">
+                <field name="news_text_order" type="radio" default="4" label="MOD_NEWS_PRO_GK5_TEXT_ORDER" description="" class="btn-group article-format-hide gk-group-layout">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                 </field>
-                <field name="news_text_enabled" type="list" class="gk_switch enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_TEXT_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_TEXT_ENABLED_DESC">
+                <field name="news_text_enabled" type="radio" class="btn-group enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_TEXT_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_TEXT_ENABLED_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
-                <field name="news_info_order" type="list" default="2" label="MOD_NEWS_PRO_GK5_INFO_ORDER" description="" class="article-format-hide gk-group-layout">
+                <field name="news_info_order" type="radio" default="2" label="MOD_NEWS_PRO_GK5_INFO_ORDER" description="" class="btn-group article-format-hide gk-group-layout">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                 </field>
-                <field name="news_info_enabled" type="list" class="gk_switch enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_INFO_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_INFO_ENABLED_DESC">
+                <field name="news_info_enabled" type="radio" class="btn-group enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_INFO_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_INFO_ENABLED_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
-                <field name="news_info2_order" type="list" default="5" label="MOD_NEWS_PRO_GK5_INFO2_ORDER" description="" class="article-format-hide  gk-group-layout">
+                <field name="news_info2_order" type="radio" default="5" label="MOD_NEWS_PRO_GK5_INFO2_ORDER" description="" class="btn-group article-format-hide  gk-group-layout">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                 </field>
-                <field name="news_info2_enabled" type="list" class="gk_switch enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_INFO2_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_INFO2_ENABLED_DESC">
+                <field name="news_info2_enabled" type="radio" class="btn-group enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_INFO2_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_INFO2_ENABLED_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>
 
-            	<field name="news_content_readmore_pos" type="list" default="right" label="MOD_NEWS_PRO_GK5_MORE_POS" description="" class="article-format-hide gk-group-layout">
+            	<field name="news_content_readmore_pos" type="radio" default="right" label="MOD_NEWS_PRO_GK5_MORE_POS" description="" class="btn-group article-format-hide gk-group-layout">
 						<option value="left">MOD_NEWS_PRO_GK5_FLEFT</option>
                         <option value="right">MOD_NEWS_PRO_GK5_FRIGHT</option>
                         <option value="after">MOD_NEWS_PRO_GK5_AFTER</option>
                 </field>
-                <field name="news_readmore_enabled" type="list" class="gk_switch enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_READMORE_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_READMORE_ENABLED_DESC">
+                <field name="news_readmore_enabled" type="radio" class="btn-group enabler article-format-hide gk-group-layout" default="1" label="MOD_NEWS_PRO_GK5_NEWS_READMORE_ENABLED" description="MOD_NEWS_PRO_GK5_NEWS_READMORE_ENABLED_DESC">
                         <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                         <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                 </field>

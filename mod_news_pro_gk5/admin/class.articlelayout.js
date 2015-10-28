@@ -6,7 +6,6 @@ function ArticleLayout() {
 
 ArticleLayout.prototype.init = function() {
 	this.layoutTabs();
-	this.layoutOrder();
 }
 
 ArticleLayout.prototype.layoutTabs = function() {
@@ -45,42 +44,4 @@ ArticleLayout.prototype.layoutTabs = function() {
 			});
 		}
 	});
-}
-
-ArticleLayout.prototype.layoutOrder = function() {
-	var $this = this;
-	
-	jQuery(['header', 'image', 'text', 'info', 'info2']).each(function(i, item) {
-		var el = jQuery('#jform_params_news_' + item + '_order');
-		el.change(function() {
-			$this.changeOrder(el);
-		});
-	});
-	
-	
-}
-
-ArticleLayout.prototype.changeOrder = function(current) {
-	var unexisting = [false, false, false, false, false];
-	var searched = 0;
-	
-	var elms = jQuery.map(['header', 'image', 'text', 'info', 'info2'], function(item) {
-		return jQuery('#jform_params_news_' + item + '_order');
-	});
-	
-	jQuery(elms).each(function(i, item) {
-		item = jQuery(item);;
-		unexisting[item.val() - 1] = true;
-	});
-	
-	for(var i = 0; i < 5; i++) {
-		if(unexisting[i] == false){ searched = i+1;}
-	}
-	
-	jQuery(elms).each(function(i, item) {
-		item = jQuery(item);
-		if((item.selector != current.selector) && (item.val() == current.val())) {			
-			item.val(searched);
-		}
-	});	
 }
