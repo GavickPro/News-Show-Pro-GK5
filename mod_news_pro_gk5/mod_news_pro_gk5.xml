@@ -875,6 +875,30 @@
                 </field>
             </fieldset>
             
+            <fieldset name="NSP_PORTAL_MODE_NEW_NEWS_SLIDER">                
+                <field name="portal_mode_new_news_slider_amount" type="text" default="6" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_SLIDER_AMOUNT" description="" />
+                
+                <field name="portal_mode_new_news_slider_interval" type="text" default="0" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_SLIDER_INTERVAL" description="" />
+                
+                <field name="portal_mode_new_news_slider_item_width" type="text" default="300" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_SLIDER_ITEM_WIDTH" description="" />
+                
+                <field name="portal_mode_new_news_slider_item_width_small_desktop" type="text" default="250" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_SLIDER_ITEM_WIDTH_SMALL_DESKTOP" description="" />
+                
+                <field name="portal_mode_new_news_slider_item_width_tablet" type="text" default="200" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_SLIDER_ITEM_WIDTH_TABLET" description="" />
+                
+                <field name="portal_mode_new_news_slider_item_width_mobile" type="text" default="150" size="5" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_SLIDER_ITEM_WIDTH_MOBILE" description="" />
+                
+                <field name="portal_mode_new_news_slider_arrows" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_SLIDER_ARROWS" description="">
+            	        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+            	        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                
+                <field name="portal_mode_new_news_slider_images" type="list" class="gk_switch" default="1" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_NEW_NEWS_SLIDER_IMAGES" description="">
+                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+            </fieldset>
+            
             <fieldset name="NSP_PORTAL_MODE_TECHNEWS_RATING">
                 <field name="portal_mode_technews_rating_rows" type="list" default="4" label="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_RATING_ROWS" description="MOD_NEWS_PRO_GK5_PORTAL_MODE_TECHNEWS_RATING_ROWS_DESC">
                     <option value="1">1</option>
