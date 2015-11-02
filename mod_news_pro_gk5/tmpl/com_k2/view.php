@@ -24,6 +24,7 @@ class NSP_GK5_com_k2_View extends NSP_GK5_View {
 		}
 		
 		$IMG_SOURCE = '';
+		$IMG_LINK = static::itemLink($item, $config);
 		$item['title'] = str_replace('"', "&quot;", $item['title']);
 		$uri = JURI::getInstance();
 		$IMG_SOURCE = static::originalImage($config, $item);

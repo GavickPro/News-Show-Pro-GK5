@@ -54,6 +54,7 @@ class NSP_GK5_com_easyblog_View extends NSP_GK5_View {
 		$IMG_SOURCE = '';
 		$item['title'] = str_replace('"', "&quot;", $item['title']);
 		$uri = JURI::getInstance();
+		$IMG_LINK = static::itemLink($item, $config);
 		//
 		if(trim($item['image']) != ''){  
 			$image_path = str_replace(array('user:', 'post:'), '', $item['image']);

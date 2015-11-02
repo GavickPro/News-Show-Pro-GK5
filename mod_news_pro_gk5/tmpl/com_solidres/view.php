@@ -29,6 +29,7 @@ class NSP_GK5_com_solidres_View extends NSP_GK5_View {
 		$IMG_SOURCE = static::originalImage($config, $item);
 		//
 		$full_size_img = $IMG_SOURCE;
+		$IMG_LINK = static::itemLink($item, $config);
 		//			
 		if($config['create_thumbs'] == 1 && $IMG_SOURCE != ''){
 			// try to override standard image

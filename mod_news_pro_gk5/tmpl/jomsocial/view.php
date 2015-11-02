@@ -29,6 +29,7 @@ if(file_exists(JPATH_BASE . '/components/com_community/defines.community.php')) 
 			}
 			
 			$IMG_SOURCE = '';
+			$IMG_LINK = static::itemLink($item, $config);
 			$uri = JURI::getInstance();
 			//
 			if(JFile::exists(JPATH_SITE.DS . $item['image'])) {  
