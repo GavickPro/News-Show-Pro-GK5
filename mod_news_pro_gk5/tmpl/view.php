@@ -317,6 +317,7 @@ class NSP_GK5_View {
 			//
 			$img_link = $IMG_LINK;
 			$img_class = 'nspImageWrapper' . $class;
+			$img_output = '';
 			
 			if($size != '') {
 				$size = ' style="'.$size.'"';
@@ -338,7 +339,7 @@ class NSP_GK5_View {
 			}
 			
 			$img_attrs = ' class="nspImage" src="'.$IMG_SOURCE.'"';
-			$img_attrs .= ' alt="'.htmlspecialchars($item['title']).'" '.$size;
+			$img_attrs .= ' alt="" '.$size;
 			
 			if($config['news_image_link'] == 1 || $links) {
 				$img_output .= '<a href="'.$img_link.'" '.$img_link_attrs.'>';
