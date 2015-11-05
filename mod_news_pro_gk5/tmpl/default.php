@@ -77,9 +77,23 @@ if($this->config['links_position'] != 'bottom' && $this->config['news_short_page
 						<?php endif; ?>
 					<?php endfor; ?>
 					</div>
+
+					<?php 
+						if($this->config['articles_link'] == '1') : 
+							$article_bottom_url = $this->config['articles_link_url'];	
+					?>
+					<a href="<?php echo $article_bottom_url; ?>" class="readon-button">
+						<?php if($this->config['articles_link_label'] != '') : ?>
+							<?php echo $this->config['articles_link_label']; ?>
+						<?php else : ?>
+							<?php echo JText::_('MOD_NEWS_PRO_GK5_ARTICLES_LINK_LABEL_DEFAULT'); ?>
+						<?php endif; ?>
+					</a>
+					<?php endif; ?>
 				</div>
 			</div>
 		<?php endif; ?>
+
 		<?php if($this->config['news_short_pages'] > 0 && count($news_list_tab) > 0 ) : ?>
 		<div class="nspLinksWrap<?php echo ' '.$this->config['links_position']; ?>" style="width:<?php echo $links_width-0.1; ?>%;">
 			<div class="nspLinks" style="margin:<?php echo $this->config["links_margin"]; ?>;">

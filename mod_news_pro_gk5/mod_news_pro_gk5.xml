@@ -960,6 +960,15 @@
 					<option value="_self">MOD_NEWS_PRO_GK5_SAME_WINDOW</option>
 					<option value="_blank">MOD_NEWS_PRO_GK5_BLANK_WINDOW</option>
 				</field>
+
+                <field name="articles_link" type="list" default="0" class="gk_switch gk-group-pagination" label="MOD_NEWS_PRO_GK5_ARTICLES_LINK" description="MOD_NEWS_PRO_GK5_ARTICLES_LINK_DESC">
+                          <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
+                          <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
+                </field>
+                  
+                <field name="articles_link_url" type="text" class="gk-group-pagination" default="" label="MOD_NEWS_PRO_GK5_ARTICLES_LINK_URL" description="MOD_NEWS_PRO_GK5_ARTICLES_LINK_URL_DESC" />
+                  
+                <field name="articles_link_label" type="text" class="gk-group-pagination" default="" label="MOD_NEWS_PRO_GK5_ARTICLES_LINK_LABEL" description="MOD_NEWS_PRO_GK5_ARTICLES_LINK_LABEL_DESC" />
 				
 				<field name="gk_line_2" type="line" text="MOD_NEWS_PRO_GK5_LINE_HEADER_LAYOUT" toggle="header" desc="MOD_NEWS_PRO_GK5_LINE_HEADER_LAYOUT_DESC" />
 				<field name="news_content_header_pos" type="list" class="inputbox gk-group-header" default="left" label="MOD_NEWS_PRO_GK5_HEAD_POS" description="">
