@@ -252,7 +252,7 @@ class NSP_GK5_View {
 	}
 	
 	// Get image HTML code
-	static function getImageHTML($only_url, $IMG_SOURCE, $links, $config, $IMG_LINK, $full_size_img) {
+	static function getImageHTML($only_url, $IMG_SOURCE, $links, $config, $IMG_LINK, $full_size_img, $alt_text = '') {
 		if($only_url) {
 			return $IMG_SOURCE;
 		} else {
@@ -339,7 +339,7 @@ class NSP_GK5_View {
 			}
 			
 			$img_attrs = ' class="nspImage" src="'.$IMG_SOURCE.'"';
-			$img_attrs .= ' alt="" '.$size;
+			$img_attrs .= ' alt="'.$alt_text.'" '.$size;
 			
 			if($config['news_image_link'] == 1 || $links) {
 				$img_output .= '<a href="'.$img_link.'" '.$img_link_attrs.'>';

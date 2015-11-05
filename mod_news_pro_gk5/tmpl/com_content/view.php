@@ -50,8 +50,10 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 					$IMG_SOURCE = $uri->root().'modules/mod_news_pro_gk5/cache/default/default'.$config['module_id'].'.png';			
 				}
 			}
+			// Retrieve alt text
+			$alt_text = NSP_GK5_com_content_View::getAltText($config, $item);
 			
-			return NSP_GK5_com_content_View::getImageHTML($only_url, $IMG_SOURCE, $links, $config, $IMG_LINK, $full_size_img);
+			return NSP_GK5_com_content_View::getImageHTML($only_url, $IMG_SOURCE, $links, $config, $IMG_LINK, $full_size_img, $alt_text);
 		} else {
 			return '';
 		}
@@ -209,6 +211,27 @@ class NSP_GK5_com_content_View extends NSP_GK5_View {
 		}
 		
 		return $IMG_SOURCE;
+	}
+	// alt text image
+	static function getAltText($config, $item) {
+		$images = json_decode($item['images']);
+		$alt_text = '';
+		
+		if($config['thumb_image_type'] == 'full' && isset($images)) {
+			if($images->image_fulltext_alt != '') {
+				$alt_text = $images->image_fulltext_alt;
+			} else if($images->image_fulltext_caption != '') {
+				$alt_text = $images->image_fulltext_caption;
+			}
+		} elseif($config['thumb_image_type'] == 'intro' && isset($images)) {
+			if($images->image_intro_alt != '') {
+				$alt_text = $images->image_intro_alt;
+			} else if($images->image_intro_caption != '') {
+				$alt_text = $images->image_intro_caption;
+			}
+		}
+		
+		return $alt_text;
 	}
 }
 
