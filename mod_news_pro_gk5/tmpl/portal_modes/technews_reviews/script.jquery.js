@@ -10,8 +10,8 @@ jQuery(document).ready(function() {
 });
 
 function gkPortalModeTechNewsReviewsInit(module) {
-	var list = jQuery('.gk-sidebar-list li');
-	var items = jQuery('.gk-content-review');
+	var list = module.find('.gk-sidebar-list li');
+	var items = module.find('.gk-content-review');
 	var current = 0;
 	var circles = [];
 	
@@ -53,7 +53,7 @@ function gkPortalModeTechNewsReviewsInit(module) {
 
 function gkPortalModeTechNewsReviewsAutoanim(module) {
 	setTimeout(function() {
-		var list = jQuery('.gk-sidebar-list');
+		var list = module.find('.gk-sidebar-list');
 		
 		if(list.find('.gk-active').next().length) {
 			list.find('.gk-active').next().find('a').trigger('click');
