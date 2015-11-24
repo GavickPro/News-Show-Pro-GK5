@@ -54,6 +54,12 @@ class NSP_GK5_Article_Format {
 		// Basic data
 		$title = NSP_GK5_Utils::cutText($data['title'], $config, 'title_limit');
 		$text = NSP_GK5_Utils::cutText($data['text'], $config, 'news_limit');
+        $item_id = $data['id'];
+            if(stripos($item_id, ':') !== FALSE) {
+            $item_id = explode(':', $item_id);
+            $item_id = $item_id[0];
+        }
+            
 		// URL
 		$url = '';
 		
@@ -77,6 +83,7 @@ class NSP_GK5_Article_Format {
 		} else {
 			$category_url = call_user_func(array($viewClass, 'categoryLink'), $data);
 		}
+		
 		// detect K2
 		$avatar = '';
 		if(isset($data['video'])) {
@@ -110,6 +117,7 @@ class NSP_GK5_Article_Format {
 			}
 			// replace values
 			$to_replace = array(
+                '{ID}',
 				'{TITLE}',
 				'{TEXT}',
 				'{URL}',
@@ -126,6 +134,7 @@ class NSP_GK5_Article_Format {
 			);
 			// values for the replacement
 			$replacement = array(
+                $item_id,
 				$title,
 				$text,
 				$url,
