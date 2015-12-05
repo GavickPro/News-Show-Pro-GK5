@@ -230,6 +230,10 @@
 .nspList > li > .nspImageWrapper {
 	float: left;
 }
+.nspList > li .nspImage {
+	height: auto!important;
+	max-width: 100%;
+}
 .nspLinks ul { 
 	list-style-type: none!important; 
 	padding: 0!important; 

@@ -341,14 +341,20 @@ class NSP_GK5_View {
 			$img_attrs = ' class="nspImage" src="'.$IMG_SOURCE.'"';
 			$img_attrs .= ' alt="'.$alt_text.'" '.$size;
 			
-			if($config['news_image_link'] == 1 || $links) {
+			if(
+				($config['news_image_link'] == 1 && !$links) || 
+				($links && $config['links_image_link'] == 1)
+			) {
 				$img_output .= '<a href="'.$img_link.'" '.$img_link_attrs.'>';
 			} else {
 				$img_output .= '<span '.$img_link_attrs.'>';
 			}
 			$img_output .= '<img '.$img_attrs.' />';
 			
-			if($config['news_image_link'] == 1 || $links) {
+			if(
+				($config['news_image_link'] == 1 && !$links) || 
+				($links && $config['links_image_link'] == 1)
+			) {
 				$img_output .= '</a>';
 			} else {
 				$img_output .= '</span>';
