@@ -16,6 +16,8 @@ function gkPortalModeTechNewsReviewsInit(module) {
 	var circles = [];
 	
 	list.each(function(i, item) {
+		item = jQuery(item);
+		
 		if(ProgressBar && jQuery(items[current]).find('.gk-review-sum-value').length) {
 			circles[i] = new ProgressBar.Circle(jQuery(items[i]).find('.gk-review-sum-value')[0], {
 			    color: '#07c958',
@@ -26,13 +28,13 @@ function gkPortalModeTechNewsReviewsInit(module) {
 			});
 		}
 	
-		jQuery(item).find('a').click(function(e) {
+		item.find('a').click(function(e) {
 			e.preventDefault();
 			list.removeClass('gk-active');
 			item.addClass('gk-active');
 			current = i;
 			items.removeClass('gk-active');
-			items[current].addClass('gk-active');
+			jQuery(items[current]).addClass('gk-active');
 			
 			if(ProgressBar && circles[current]) {
 				var sum = jQuery(items[i]).find('.gk-review-sum-value').first();
