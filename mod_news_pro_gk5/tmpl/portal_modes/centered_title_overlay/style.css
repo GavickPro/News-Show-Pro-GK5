@@ -1,0 +1,140 @@
+/* Portal Mode - Centered Title Overlay */
+
+.gkNspPM-CenteredTitleOverlay {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	float: left;
+	max-width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.gkNspPM-CenteredTitleOverlay img {
+	cursor: pointer;
+	display: block;
+	height: auto;
+	margin: 0;
+	max-width: 100%;
+	-webkit-transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-ms-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+}
+
+.gkNspPM-CenteredTitleOverlay > a {
+	display: block;
+	padding: 0!important;
+}
+
+.gkNspPM-CenteredTitleOverlay:hover img {
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.gkNspPM-CenteredTitleOverlay > figcaption {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.gkNspPM-CenteredTitleOverlay > figcaption > div {
+	display: table;
+	height: 100%;	
+	width: 100%;
+}
+
+.gkNspPM-CenteredTitleOverlay > figcaption > div > div {
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+}
+
+.gkNspPM-CenteredTitleOverlay h3 {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.45);
+	color: #282c2f;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1;
+	margin: 0;
+	padding: 16px 0 9px 0;
+}
+
+.gkNspPM-CenteredTitleOverlay p {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.45);
+	color: #282c2f;
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 2.2;
+	margin: 0;
+	padding: 18px 0 14px 0;
+}
+
+.gkNspPM-CenteredTitleOverlay h3 + p {
+	padding-top: 0;
+}
+
+.gkNspPM-CenteredTitleOverlay a {
+	color: #282c2f!important;
+	display: block;
+	padding: 0 20px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.gkNspPM-CenteredTitleOverlay > figcaption > div > div:hover a, 
+.gkNspPM-CenteredTitleOverlay a:active,
+.gkNspPM-CenteredTitleOverlay a:focus,
+.gkNspPM-CenteredTitleOverlay a:hover {
+	color: #ed6363!important;
+}
+
+.gkNspPM-CenteredTitleOverlay > figcaption > div > div > *:first-child {
+	margin-top: 100%;
+	opacity: 0; filter: alpha(opacity=0);
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+}
+
+.gkNspPM-CenteredTitleOverlay.active > figcaption > div > div > *:first-child {
+	margin-top: 0;
+	opacity: 1; filter: alpha(opacity=100);
+}
+
+/* Mobile devices */
+@media (max-width: 820px) {
+	.gkNspPM-CenteredTitleOverlay h3 {
+		font-size: 16px;
+	}
+	
+	.gkNspPM-CenteredTitleOverlay p {
+		font-size: 11px;
+	}
+}
+
+@media (max-width: 580px) {
+	.gkNspPM-CenteredTitleOverlay,
+	.gkNspPM-CenteredTitleOverlay img {
+		width: 100%;
+	}
+	
+	.gkNspPM-CenteredTitleOverlay h3 {
+		font-size: 24px;
+	}
+	
+	.gkNspPM-CenteredTitleOverlay p {
+		font-size: 13px;
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"data_source": "XML_TITLE",
+	"source": "xml_file",
+	"tab": false,
+	"sources": [
+		{
+			"name": "XML_FILE",
+			"value": "xml_file"
+		}
+	],
+	"supported_options": {
+		"sort_values": false,
+		"offset": true,
+		"news_since": false,
+		"news_in": false,
+		"news_featured": false,
+		"only_featured": false,
+		"one_article_per_category": false,
+		"news_unauthorized": false,
+		"time_offset": true 
+	},
+	"supported_elements": {
+		"header": true,
+		"image": true,
+		"text": true,
+		"readmore": true,
+		"info": true,
+		"info2": true
+	}
+}

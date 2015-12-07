@@ -1,0 +1,20 @@
+Title: {TITLE}<br />
+Text: {TEXT}<br />
+URL: {URL}<br />
+IMAGE SRC: {IMAGE_SRC}<br />
+AUTHOR NAME: {AUTHOR_NAME}<br />
+AUTHOR EMAIL: {AUTHOR_EMAIL}<br />
+AUTHOR URL: {AUTHOR_URL}<br />
+CATEGORY: {CATEGORY}<br />
+CATEGORY URL: {CATEGORY_URL}<br />
+HITS: {HITS}<br />
+DATE: {DATE}<br />
+RATING: {RATING}<br /><br />
+
+K2 Specific fields:<br /><br />
+
+TAGS: {TAGS}<br />
+VIDEO HTML: {VIDEO_HTML}<br />
+CATEGORY IMAGE SRC: {CATEGORY_IMAGE_SRC}<br /><br />
+
+Translation test: {{JACTION_ADMIN}}<br />

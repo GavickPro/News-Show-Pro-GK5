@@ -1,0 +1,57 @@
+{
+	"data_source": "EASYBLOG_CONTENT_TITLE",
+	"source": "com_easyblog",
+	"tab": "Easy_Blog_Additional_Settings",
+	"tabj3" : "NSP_DATA_SOURCE_COM_EASYBLOG",
+	"sources": [
+		{
+			"name": "ALL_COM_EASYBLOG_ARTICLES",
+			"value": "easyblog_all"
+		},
+		{
+			"name": "COM_EASYBLOG_ARTICLES",
+			"value": "easyblog_articles"
+		},
+		{
+			"name": "COM_EASYBLOG_CATEGORIES",
+			"value": "easyblog_categories"
+		},
+		{
+			"name": "COM_EASYBLOG_TAGS",
+			"value": "easyblog_tags"
+		},
+		{
+			"name": "COM_EASYBLOG_AUTHORS",
+			"value": "easyblog_authors"
+		}
+	],
+	"supported_options": {
+		"sort_values": {
+			"MOD_NEWS_PRO_GK5_DATE": "created",
+			"MOD_NEWS_PRO_GK5_PUBLISH_UP": "publish_up",
+            "MOD_NEWS_PRO_GK5_PUBLISH_DOWN": "publish_down",
+            "MOD_NEWS_PRO_GK5_MODIFIED": "modified",
+			"MOD_NEWS_PRO_GK5_TITLE": "title",
+			"MOD_NEWS_PRO_GK5_ORDER": "ordering",
+			"MOD_NEWS_PRO_GK5_RANDOM": "random",
+			"MOD_NEWS_PRO_GK5_HITS": "hits",
+			"MOD_NEWS_PRO_GK5_USER_INPUT": "user"
+		},
+		"offset": true,
+		"news_since": true,
+		"news_in": true,
+		"news_featured": true,
+		"only_featured": true,
+		"one_article_per_category": true,
+		"news_unauthorized": true,
+		"time_offset": true 
+	},
+	"supported_elements": {
+		"header": true,
+		"image": true,
+		"text": true,
+		"readmore": true,
+		"info": true,
+		"info2": true
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"data_source": "JSON_TITLE",
+	"source": "json_file",
+	"tab": false,
+	"sources": [
+		{
+			"name": "JSON_FILE",
+			"value": "json_file"
+		}
+	],
+	"supported_options": {
+		"sort_values": false,
+		"offset": true,
+		"news_since": false,
+		"news_in": false,
+		"news_featured": false,
+		"only_featured": false,
+		"one_article_per_category": false,
+		"news_unauthorized": false,
+		"time_offset": true 
+	},
+	"supported_elements": {
+		"header": true,
+		"image": true,
+		"text": true,
+		"readmore": true,
+		"info": true,
+		"info2": true
+	}
+}

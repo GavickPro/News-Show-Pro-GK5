@@ -1,0 +1,94 @@
+/* Portal Mode - News Gallery */
+
+.gkNspPM-TechNewsRating {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 20px 0;
+	position: relative;
+}
+
+.gkNspPM-TechNewsRating .gkItem {
+	clear: both;
+	margin: 56px 0;
+	overflow: hidden;
+}
+
+.gkNspPM-TechNewsRating .gkItemRating {
+	float: left;
+	width: 25%;	
+}
+
+.gkNspPM-TechNewsRating .gkItemContent {
+	float: left;
+	width: 75%;
+}
+
+.gkNspPM-TechNewsRating .gk-review-sum-value {
+	font-size: 2.6rem;
+	height: 60px;
+	line-height: 61px;
+	width: 60px;
+}
+
+.gkNspPM-TechNewsRating .gk-review-sum-value > span {
+	font-size: 2.6rem;
+	line-height: 61px;
+}
+
+.gkNspPM-TechNewsRating .gkItemTitle {
+	font-size: 1.6rem;
+	line-height: 1;
+	margin: 0 0 10px 0;
+	padding: 0;
+	text-transform: none;
+}
+
+.gkNspPM-TechNewsRating .gkItemTitle > a {
+	color: #555;
+}
+
+.gkNspPM-TechNewsRating .gkItemTitle > a:active,
+.gkNspPM-TechNewsRating .gkItemTitle > a:focus,
+.gkNspPM-TechNewsRating .gkItemTitle > a:hover {
+	color: #151515;
+}
+
+.gkNspPM-TechNewsRating .gkItemAuthor {
+	color: #999;
+	float: left;
+	font-size: 1.1rem;
+	padding: 0;
+	text-transform: none;
+}
+
+/* Mobile devices */
+@media (max-width: 1040px) {
+	.gkNspPM-TechNewsRating .gkItem {
+	    margin: 36px 0;
+	}
+	
+	.gkNspPM-TechNewsRating .gk-review-sum-value {
+	    font-size: 2rem;
+	    height: 50px;
+	    line-height: 50px;
+	    width: 50px;
+	}
+	
+	.gkNspPM-TechNewsRating .gk-review-sum-value > span {
+	    font-size: 2rem;
+	    line-height: 50px;
+	}
+}
+
+@media (max-width: 840px) {
+	.gkNspPM-TechNewsRating .gkItemRating {
+	    width: 15%;
+	}
+}
+
+@media (max-width: 640px) {
+	.gkNspPM-TechNewsRating .gkItemRating {
+	    width: 20%;
+	}
+}

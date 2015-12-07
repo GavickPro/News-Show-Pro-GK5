@@ -1,0 +1,990 @@
+/** * Admin CSS file 
+* @package News Show Pro GK5 
+* @Copyright (C) 2009-2013 Gavick.com 
+* @ All rights reserved 
+* @ Joomla! is Free Software 
+* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html 
+* @version $Revision: GK5 1.0 $ **/ 
+
+#jform_params_about_us-lbl,
+#jform_params___field1-lbl,
+label[id^=jform_params_gk_line_],
+#jform_params_source_name,
+#jform_params_checkout-lbl {
+	display: none;
+}
+
+select[multiple], select[size] {
+	max-height: 150px;
+}
+
+#jform_params_about_us-lbl,
+#jform_params___field1-lbl,
+label[id^=jform_params_gk_line_],
+#jform_params_source_name,
+#jform_params_checkout-lbl {
+	display: none;
+}
+.form-horizontal .controls {
+	display: block!important;
+}
+.switcher-on,
+.switcher-off {
+	width: 94px;
+	height: 27px;
+	background: transparent url('switcher.png') no-repeat 0 0;
+	cursor: pointer;
+	float: left;
+	margin-top: 3px;
+}
+
+.switcher-off {
+	background-position: -94px 0;
+}
+
+span.unit {
+	line-height: 34px;
+}
+
+.controls .close {
+	float: left;
+	opacity: 1;
+}
+input.input-pixels,
+input.input-minutes,
+input.input-ms {
+	display: inline-block!important;
+}
+span.unit.times {
+	display: block;
+	float: left;
+	font-size: 12px;
+	margin-right: 5px;
+}
+
+span.readonly {
+	padding: 20px;
+	font-family: Arial;
+	font-size: 13px !important;
+	font-weight: normal !important;
+	text-align: justify;
+	color: #4d4d4d;
+	line-height: 24px;
+}
+
+span.readonly h1 {
+	clear: both;
+	font-family: Georgia, sans-serif;
+	font-size: 38px;
+	margin: 30px 20px 23px;
+	padding: 0px 0px 24px 10px;
+	color: #333;
+	border-bottom: 1px solid #eee;
+	font-weight: normal;
+}
+
+span.readonly p {
+	margin: 0 26px 10px
+}
+
+span.readonly p a {
+	color: #ef6b09
+}
+
+span.readonly p.homepage {
+	margin-top: 30px
+}
+
+span.readonly p.license {
+	border-top: 1px solid #eee;
+	font-size: 11px;
+	margin: 30px 26px 0;
+	padding: 6px 0;
+} /* lines */
+
+.gkFormLine {
+	clear: both;
+	display: block;
+	height: 21px;
+	margin: 0 -10px!important;
+}
+
+.gkFormLine.hasText {
+	background: transparent url('interface.png') no-repeat 5px -229px;
+	border-top: 10px solid #fff;
+	border-bottom: 5px solid #fff;
+	color: #444;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 16px;
+	padding-left: 28px;
+	cursor: pointer;
+}
+
+.gkFormLine.hasText.open {
+	background-position: 5px -287px
+}
+
+.gkFormLine.hasText span {
+	padding: 3px;
+	background: #fff;
+} /* togglers */
+
+.pane-sliders .panel {
+	border: none !important;
+}
+
+div.control-group > div.controls input {
+	max-width: 200px;
+}
+div.control-group > div.controls input.input-minutes {
+	max-width: 145px;
+}
+div.control-group > div.controls input.input-percents {
+	max-width: 175px;
+}
+div.control-group > div.controls input.input-ms {
+	max-width: 170px
+}
+div.control-group > div.controls select {
+	max-width: 215px
+}
+div.control-group > div.controls #jform_params_img_width,
+div.control-group > div.controls #jform_params_img_height,
+div.control-group > div.controls #jform_params_links_img_width,
+div.control-group > div.controls #jform_params_links_img_height {
+	max-width: 40px;
+}
+div.control-group > div.controls input#jform_params_news_since {
+	max-width: 160px
+}
+.gkHelpLink {
+	float: right !important;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+	margin: 11px 12px 0 10px;
+	background: transparent url('interface.png') repeat-x 0 100%;
+}
+
+.gkHelpLink:hover {
+	background-position: 0 -48px;
+} /* form elements in the container */
+
+#jform_params_k2_tags {
+	height: 150px
+}
+
+.panel fieldset.panelform > ul > li > label {
+	color: #444;
+	font-size: 11px;
+	font-weight: bold;
+	min-height: 24px;
+	line-height: 24px;
+	padding: 0 20px 0 10px;
+	text-align: right;
+	max-width: 30%!important;
+	min-width: 30%!important;
+}
+
+.panel fieldset.panelform > ul > li fieldset {
+	line-height: 28px;
+}
+
+fieldset.panelform input[type=radio] {
+	margin-top: 11px;
+}
+
+fieldset.panelform input {
+	height: 16px;
+	color: #555;
+	line-height: 16px;
+	padding: 4px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+fieldset.panelform input.small {
+	width: 40px;
+}
+
+fieldset.panelform input.tright {
+	text-align: right;
+}
+
+fieldset.panelform input[type=button] {
+	height: 26px;
+	line-height: 26px;
+}
+
+fieldset.panelform select {
+	height: 26px;
+	color: #555;
+	line-height: 24px;
+	padding: 4px;
+	font-size: 11px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+fieldset.panelform select.position {
+	width: 80px!important;
+}
+
+fieldset.panelform textarea {
+	padding: 4px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+fieldset.panelform select[multiple=multiple] {
+	height: 150px;
+} /* lists */
+
+#tools_for_pages_input,
+#google_analytics_input,
+#menu_override_input,
+#suffix_override_input,
+#suffix_override_select,
+#layout_override_input {
+	width: 80px;
+}
+
+.fltrt ul.adminformlist li {
+	overflow: hidden;
+	border-bottom: 1px solid #eee;
+	padding: 1px 10px;
+	margin: 0;
+}
+
+.tools_for_pages_remove_rule,
+.google_analytics_remove_rule,
+.menu_override_remove_rule,
+.suffix_override_remove_rule,
+.module_override_remove_rule,
+.layout_override_remove_rule {
+	float: right;
+}
+
+fieldset.panelform .label {
+	font-size: 11px;
+	font-weight: bold;
+	width: auto;
+	padding: 0 5px;
+	line-height: 34px;
+}
+
+fieldset.panelform .desc {
+	font-size: 11px;
+	font-weight: normal;
+	width: auto;
+	padding: 10px;
+} /* Updates */
+
+#gk_module_updates {
+	margin: 20px -10px 0;
+	border-right: 1px solid #eee
+}
+
+#gk_module_updates li {
+	margin: 0;
+	padding: 0;
+	border: none;
+	line-height: 34px;
+	color: #555;
+	border-top: 1px solid #eee
+}
+
+#gk_module_updates li span strong {
+	padding: 0 12px 0 0
+}
+
+#gk_module_updates li span {
+	display: block;
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	padding: 0 0 0 20px;
+	border-left: 1px solid #eee
+}
+
+span.gk_update_version {
+	width: 110px;
+	background: #fff9f6;
+}
+
+span.gk_update_data {
+	width: 150px;
+	background: #f9f9f9;
+}
+
+span.gk_update_link a {
+	padding: 4px 12px;
+	-moz-border-radius: 26px;
+	background: #d75307;
+	text-transform: uppercase;
+	font: bold 10px Arial, Helvetica, sans-serif;
+	color: #fff;
+	line-height: 34px;
+}
+
+span.gk_update_link a:hover {
+	background: #222;
+	text-decoration: none;
+}
+
+#gk_module_updates p {
+	color: #555
+} 
+
+/* Crop CSS rules */
+
+#simple_crop { 
+	width: 400px; 
+	margin: 0 auto;
+}
+#simple_crop_top_wrap,
+#simple_crop_bottom_wrap,
+#simple_crop_left_wrap,
+#simple_crop_right_wrap { 
+	width: 46px; 
+}
+#simple_crop_top_wrap,
+#simple_crop_bottom_wrap { 
+	margin: 5px 0 5px 140px
+}
+#simple_crop_left_wrap,
+#simple_crop_right_wrap { 
+	float: left; 
+	margin-top: 90px; 
+}
+#simple_crop_left_wrap { 
+	margin-right: 30px; 
+}
+#simple_crop_right_wrap { 
+	margin-left: 10px; 
+}
+#simple_crop_top,
+#simple_crop_bottom,
+#simple_crop_left,
+#simple_crop_right { 
+	font-size: 12px; 
+	width: 24px; 
+}
+#simple_crop_main_wrap { 
+	clear: both; 
+	overflow: hidden; 
+}
+#simple_crop_bg { 
+	width: 202px; 
+	height: 202px; 
+	border: 3px solid #eee; 
+	background: url('cropbg.jpg') no-repeat; 
+	float:left; 
+}
+#simple_crop_crop { 
+	width: 200px; 
+	height: 200px; 
+	border: 1px solid #ddd; 
+	background: #fff; 
+	opacity: 0.5; 
+	filter:alpha(opacity=50); 
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+}
+#paramscrop_rules { 
+	width: 90%; 
+	height: 120px; 
+}
+
+/* Config manager */
+
+#jform_params_config_manager-lbl {
+	display: none;
+}
+
+#config_manager_form {
+	clear: both;
+	color: #555;
+	margin: 16px 0;
+	background: #f9f9f9;
+	padding: 10px 20px;
+	overflow: hidden;
+}
+
+#config_manager_form input[type="text"] {
+	text-align: right;
+}
+
+#config_manager_form label {
+	margin: 11px 0 0 0;
+} 
+
+/* GK5 - new rules */
+
+.gk-json-config,
+.gk-json-config-pm {
+	display: none;
+}
+
+.input-percents,
+.input-pixels,
+.input-minutes,
+.input-ms,
+.input-times {
+	text-align: right;
+}
+
+#config_manager_form {
+	background:#f9f9f9;
+	clear:both;
+	color:#555;
+	margin:16px 0;
+	overflow:hidden;
+	padding:10px 20px;
+	position: absolute;
+	top: 0;
+	right: 20px;
+	max-width: 510px;
+}
+#config_manager_form label {
+	margin: 11px 0 0
+}
+#config_manager_form span {
+	font-size: 12px;
+}
+#gk_module_updates {
+	border-right: 1px solid #eee;
+	margin: 20px -10px 0
+}
+
+#gk_module_updates li {
+	border: none;
+	border-top: 1px solid #eee;
+	color: #555;
+	line-height: 34px;
+	margin: 0;
+	padding: 0
+}
+
+#gk_module_updates li span {
+	border-left: 1px solid #eee;
+	display: block;
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	padding: 0 0 0 20px
+}
+
+#gk_module_updates li span strong {
+	padding: 0 12px 0 0
+}
+
+#gk_module_updates p {
+	color: #555
+}
+
+#jform_params_about_us-lbl,
+#jform_params___field1-lbl,
+label[id^=jform_params_gk_line_],
+#jform_params_source_name,
+#jform_params_checkout-lbl,
+#jform_params_config_manager-lbl,
+.gk-json-config {
+	display: none
+}
+
+#jform_params_k2_tags,
+fieldset.panelform select[multiple=multiple] {
+	height: 150px
+}
+
+#jform_params_simple_crop_editor-lbl {
+	display: block;
+	max-width: 100%!important;
+	text-align: center;
+	width: 100%!important
+}
+
+#paramscrop_rules {
+	height: 120px;
+	width: 90%
+}
+.fltrt ul.adminformlist li {
+	border-bottom: 1px solid #eee;
+	margin: 0;
+	overflow: hidden;
+	padding: 1px 10px
+}
+
+.gkFormLine {
+	clear: both;
+	display: block;
+	height: 21px;
+	margin: 0 -10px!important
+}
+
+.gkFormLine.hasText {
+	background: transparent url(interface.png) no-repeat 10px -218px;
+	border: 1px solid #ccc!important;
+	border-radius: 3px;
+	color: #444;
+	cursor: pointer;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 40px;
+	padding-left: 28px;
+	width: 100%;
+	height: 40px;
+	margin-left: -25px!important;
+}
+#jform_params_links_img_width,
+#jform_params_links_img_height {
+	width: 52px;	
+}
+.gkFormLine.hasText span {
+	background: #fff;
+	padding: 3px
+}
+
+#attrib-NSP_ARTICLE_LAYOUT div[class="control-group"] {
+	margin-bottom: 1px;
+}
+
+#attrib-NSP_ARTICLE_LAYOUT div.control-group[style] {
+	margin: 10px 0;
+}
+
+.gkFormLine.hasText.open {
+	background-position: 10px -276px
+}
+
+.gkHelpLink {
+	background: transparent url(interface.png) repeat-x 0 -70px;
+	cursor: pointer;
+	float: right!important;
+	height: 22px;
+	margin: -31px 12px 0 0;
+	width: 22px
+}
+
+.gkHelpLink:hover {
+	background-position: 0 -48px
+}
+
+.pane-sliders .content {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	margin: 4px auto;
+	width: 99%
+}
+
+.pane-sliders .panel {
+	border: none!important
+}
+ul#nsp-gk5-checkout {
+	margin: 0;
+	list-style: none;
+}
+#nsp-gk5-checkout h3 { background: #fb6239; color: #fff; padding: 4px; font-size: 12px;}
+.pane-toggler span {
+	background: transparent url(interface.png) no-repeat 5px -126px!important
+}
+
+.pane-toggler-down span {
+	background: transparent url(interface.png) no-repeat 5px -176px!important
+}
+
+.panel fieldset.panelform > ul > li > label {
+	color: #444;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 24px;
+	max-width: 30%!important;
+	min-height: 24px;
+	min-width: 30%!important;
+	padding: 0 20px 0 10px;
+	text-align: right
+}
+
+.panel fieldset.panelform > ul > li fieldset {
+	line-height: 28px
+}
+
+.switcher-on,
+.switcher-off {
+	background: transparent url(switcher.png) no-repeat 0 0;
+	cursor: pointer;
+	float: left;
+	height: 27px;
+	margin-top: 3px;
+	width: 94px
+}
+
+.switcher-off {
+	background-position: -94px 0
+}
+
+.tools_for_pages_remove_rule,
+.google_analytics_remove_rule,
+.menu_override_remove_rule,
+.suffix_override_remove_rule,
+.module_override_remove_rule,
+.layout_override_remove_rule {
+	float: right
+}
+
+::-moz-selection, ::selection {
+background:transparent
+}
+
+div.panel > h3 {
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
+	-moz-text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
+	-ms-text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+	-o-box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
+	-o-text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
+	-webkit-text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+	background: transparent;
+	background-image: linear-gradient(tobottom, #FFFFFF, #f9f9f9)!important;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) #d8d8d8;
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
+	cursor: pointer;
+	height: 43px;
+	line-height: 43px;
+	margin-bottom: 5px!important;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.75)
+}
+
+div.panel > h3 a {
+	color: #333;
+	display: block
+}
+
+div.panel h3.pane-toggler-down {
+	border-bottom: 3px solid #ef6b09!important
+}
+
+fieldset.panelform .desc {
+	font-size: 11px;
+	font-weight: 400;
+	padding: 10px;
+	width: auto
+}
+
+fieldset.panelform .label {
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 34px;
+	padding: 0 5px;
+	width: auto
+}
+
+fieldset.panelform input {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	color: #555;
+	height: 16px;
+	line-height: 16px;
+	padding: 4px
+}
+
+fieldset.panelform input.small {
+	width: 40px
+}
+
+fieldset.panelform input.tright,
+#config_manager_form input[type="text"],
+.input-percents,
+.input-pixels,
+.input-minutes,
+.input-ms,
+.input-times {
+	text-align: right
+}
+
+fieldset.panelform input[type=button] {
+	height: 26px;
+	line-height: 26px
+}
+
+fieldset.panelform input[type=radio] {
+	margin-top: 11px
+}
+
+fieldset.panelform select {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	color: #555;
+	font-size: 11px;
+	height: 26px;
+	line-height: 24px;
+	padding: 4px
+}
+
+fieldset.panelform select.position {
+	width: 80px!important
+}
+
+fieldset.panelform textarea {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	padding: 4px
+}
+
+span.gk_update_data {
+	background: #f9f9f9;
+	width: 150px
+}
+
+span.gk_update_link a {
+	-moz-border-radius: 26px;
+	background: #d75307;
+	color: #fff;
+	font: bold 10px Arial, Helvetica, sans-serif;
+	line-height: 34px;
+	padding: 4px 12px;
+	text-transform: uppercase
+}
+
+span.gk_update_link a:hover {
+	background: #222;
+	text-decoration: none
+}
+
+span.gk_update_version {
+	background: #fff9f6;
+	width: 110px
+}
+
+span.readonly {
+	color: #4d4d4d;
+	font-family: Arial;
+	font-size: 13px!important;
+	font-weight: 400!important;
+	line-height: 24px;
+	padding: 20px;
+	text-align: justify
+}
+
+span.readonly h1 {
+	border-bottom: 1px solid #eee;
+	clear: both;
+	color: #333;
+	font-family: Georgia, sans-serif;
+	font-size: 38px;
+	font-weight: 400;
+	margin: 30px 20px 23px;
+	padding: 0 0 24px 10px
+}
+
+span.readonly p {
+	margin: 0 26px 10px
+}
+
+span.readonly p a,
+div.panel > h3 a:hover,
+div.panel h3.pane-toggler-down a {
+	color: #ef6b09
+}
+
+span.readonly p.homepage {
+	margin-top: 30px
+}
+
+span.readonly p.license {
+	border-top: 1px solid #eee;
+	font-size: 11px;
+	margin: 30px 26px 0;
+	padding: 6px 0
+}
+
+span.unit {
+	line-height: 34px
+}
+
+span.unit.times {
+	display: block;
+	float: left;
+	font-size: 12px;
+	margin-right: 5px
+}
+
+select.gk_switch {
+	display: none!important;
+}
+
+/* Color visualisation */
+#jform_params_img_bg,
+#jform_params_portal_mode_centered_title_overlay_text_bg {
+	float: left;
+}
+
+
+/* Social media */
+#gk-social {
+	margin-top: 10px;
+}
+
+#gk-social iframe {
+	margin-right: 5px;	
+	min-width: 120px;
+}
+
+#gk-social > span:first-child {
+	display: inline-block;
+	font-size: 12px;
+	line-height: 1.6;
+	margin-right: 20px;
+	vertical-align: top;	
+}
+
+/* Joomla!3.0 fixes */
+select.chzn-done {
+	display: inline-block !important;
+}
+select.chzn-done + div,
+select#jform_position {
+	display: none!important;
+}
+#jform_position_chzn {
+	display: block!important;
+}
+div#jform_params_com_content_tags_chzn {
+	display: inline-block!important;
+}
+select#jform_params_news_header_order,
+select#jform_params_news_image_order,
+select#jform_params_news_text_order,
+select#jform_params_news_info_order,
+select#jform_params_news_info2_order {
+	display: inline-block!important;
+}
+div#jform_params_news_header_order_chzn,
+div#jform_params_news_image_order_chzn,
+div#jform_params_news_text_order_chzn,
+div#jform_params_news_info_order_chzn,
+div#jform_params_news_info2_order_chzn,
+select#jform_params_com_content_tags,
+div#jform_params_module_mode_chzn,
+div#jform_params_data_source_chzn {
+	display: none!important;
+}
+div.switcher-on + select,
+div.switcher-off + select {
+	display: none!important;
+}
+.form-horizontal .control-label {
+	max-width: 170px;
+}
+#config_manager_delete i.icon-remove {
+	margin: 2px 6px 0 0;
+}
+#simple_crop {
+	position: absolute;
+	right: 20px;
+	top:  200px;
+}
+.input-prepend .add-on {
+	margin-left: -2px;
+	margin-right: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+#nsp-gk5-checkout,
+#gk_about_us {
+	max-width: 750px;
+}
+#moduleOptions > .accordion-group:first-child > .collapse.in {
+	min-height: 300px;
+}
+#moduleOptions .accordion-group {
+	max-width: 1050px;
+	margin: 0 auto 2px;
+}
+
+@media (max-width: 1050px) { 
+	#config_manager_form,
+	#simple_crop {
+		position: relative;
+		top:  auto;
+		right: auto;
+		max-width: 100%;
+	}
+	#moduleOptions > .accordion-group > .collapse.in  {
+		min-height: auto;
+	}
+}
+
+/* Joomla! 3.2.x styles */
+.j32 ul#myTabTabs {
+	width: 20%;
+	float: left;
+	min-width: 150px;
+	border-bottom: 0;
+	border-right: 1px solid #eee;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.j32 ul#myTabTabs > li {
+	width: 90%;
+	margin: 2px 0;
+}
+.j32 ul#myTabTabs > li.separator {
+	margin-bottom: 32px;
+}
+
+.j32 ul#myTabTabs > li > a {
+	color: #666;
+	border: 1px solid #ddd;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.j32 .form-horizontal .control-label {
+	min-width: 200px;
+}
+.j32 ul#myTabTabs > li.active > a {
+	color: #fff;
+	background: #f98817;
+	border-color: #f98817;
+}
+.j32 div#myTabContent {
+	float: right;
+	width: 80%;
+}
+.j32 div#myTabContent > div { margin-left: 35px }
+.j32 #general .span3 { width: 100% }
+.j32 #general .span9 { display: none }
+.j32 #jform_menuselect {
+	clear: both;
+	width: 100%;
+	margin: 0;
+}
+.j32 #config_manager_form {
+	position: relative;
+}
+.j32 > .form-inline-header > .control-group {
+	width: 100%;
+}
+.j32 > .form-inline-header > .control-group > .control-label { width: 10%; float: left; padding: 0!important; line-height: 32px }
+.j32 > .form-inline-header > .control-group > .controls { width: 90%; float: left; padding: 0!important }
+.j32 > .form-inline-header > .control-group > .controls > input { max-width: 99%; width: 99%}

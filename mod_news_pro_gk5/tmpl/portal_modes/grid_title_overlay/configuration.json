@@ -1,0 +1,10 @@
+{
+	"name": "Grid_Title_Overlay",
+	"full_name": "GRID_TITLE_OVERLAY",
+	"support": [
+		"com_content", 
+		"com_k2",
+		"com_easyblog"
+	],
+	"thumbnails": true
+}

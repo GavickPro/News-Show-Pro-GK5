@@ -1,0 +1,294 @@
+/* Portal Mode - VideoList */
+.gkNspPM-VideoList {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	    -ms-box-sizing: border-box;
+			box-sizing: border-box;
+	margin: 0 -19px;
+	position: relative;
+	width: auto;
+}
+
+.gkNspPM-VideoList > div {
+	overflow: hidden;
+	position: relative;
+}
+
+.gkNspPM-VideoList .gkItemsPage {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	width: 100%;
+	z-index: 0;
+}
+
+.gkNspPM-VideoList .gkItemsPage.to-hide,
+.gkNspPM-VideoList .gkItemsPage.active {
+	display: block;
+	opacity: 1;
+}
+
+.gkNspPM-VideoList .gkItemsPage.active {
+	position: relative;
+	z-index: 2;
+}
+
+.gkNspPM-VideoList .gkItemsPage.to-hide {
+	display: block;
+	opacity: 0;
+}
+
+.gkNspPM-VideoList .gkItemsPage figure {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	padding: 0 19px;
+}
+
+.gkNspPM-VideoList .gkItemsPage[data-cols="1"] figure { width: 100%; }
+.gkNspPM-VideoList .gkItemsPage[data-cols="2"] figure { width: 50%; }
+.gkNspPM-VideoList .gkItemsPage[data-cols="3"] figure { width: 33.333333%; }
+.gkNspPM-VideoList .gkItemsPage[data-cols="4"] figure { width: 25%; }
+.gkNspPM-VideoList .gkItemsPage[data-cols="5"] figure { width: 20%; }
+.gkNspPM-VideoList .gkItemsPage[data-cols="6"] figure { width: 16.666666%; }
+
+.gkNspPM-VideoList .gkItem {
+	cursor: pointer;
+	opacity: 0;
+	padding: 16px;
+	position: relative;
+	top: 50px;
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+}
+
+.gkNspPM-VideoList .gkItem.active {
+	opacity: 1;
+	top: 0;
+}
+
+.gkNspPM-VideoList .gkItem .gkImageWrap {
+	position: relative;
+}
+.gkNspPM-VideoList .gkItem.video .gkImageWrap:before {
+	background: rgba(0, 0, 0, 0.25);
+	content: "";
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+}
+.gkNspPM-VideoList .gkItem.video .gkImageWrap:after {
+	color: #fff;
+	content: "\f04b";
+	font-family: FontAwesome;
+	font-size: 24px;
+	left: 50%;
+	line-height: 24px;
+	margin: -12px 0 0 -12px;
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}
+
+.gkNspPM-VideoList .gkItem:hover figcaption {
+	background: #f6f7f9;
+}
+
+.gkNspPM-VideoList h3 {
+	font-size: 16px;
+	font-weight: 400;
+	margin: 0;
+	padding: 16px 0;
+	text-align: center;
+	text-transform: none;
+}
+
+.gkNspPM-VideoList figcaption {
+	padding: 0 16px 16px 16px;
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+}
+
+.gkNspPM-VideoList strong {
+	color: #afafaf;
+	display: block;
+	font-size: 12px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* Bottom navigation */
+.gkNspPM-VideoList .gkBottomNav {
+	border-top: 1px solid #e5e5e5;
+	margin: 32px 19px -24px 19px;
+	padding: 12px 0 0 0;
+	position: relative;
+}
+.gkNspPM-VideoList .gkBottomNavNext,
+.gkNspPM-VideoList .gkBottomNavPrev {
+	border: 1px solid #e5e5e5;
+	cursor: pointer;
+	display: block;
+	float: left;
+	height: 24px;
+	margin: 0;
+	position: relative;
+	text-indent: -9999px;
+	width: 26px;
+}
+.gkNspPM-VideoList .gkBottomNavNext {
+	right: 0;
+	position: absolute;
+	top: 12px;
+}
+.gkNspPM-VideoList .gkBottomNavPrev {
+	left: 0;
+	position: absolute;
+	top: 12px;
+}
+.gkNspPM-VideoList .gkBottomNavNext:after,
+.gkNspPM-VideoList .gkBottomNavPrev:after {
+	color: #949494;
+	content: "\f104";
+	display: block;
+	font-family: FontAwesome;
+	font-size: 16px;
+	left: 10px;
+	line-height: 15px;
+	position: absolute;
+	text-indent: 0;
+	top: 5px;
+}
+.gkNspPM-VideoList .gkBottomNavNext:after {
+	color: #949494;
+	content: '\f105';
+}
+.gkNspPM-VideoList .gkBottomNavPrev:after {
+	color: #949494;
+}
+.gkNspPM-VideoList .gkBottomNavNext:hover:after,
+.gkNspPM-VideoList .gkBottomNavPrev:hover:after { color: #eb1e00; }
+.gkNspPM-VideoList .gkBottomNavPagination {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0 50px;
+	text-align: center;
+	width: 100%;
+}
+.gkNspPM-VideoList .gkBottomNavPagination li {
+	background: #ccc;
+	border: none!important;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	cursor: pointer;
+	display: inline-block;
+	height: 8px;
+	margin: 10px 4px 0 0!important;
+	padding: 0!important;
+	text-indent: -999em;
+	width: 8px;
+}
+.gkNspPM-VideoList .gkBottomNavPagination li:hover,
+.gkNspPM-VideoList .gkBottomNavPagination li.active { background-color: #eb1e00; }
+
+/* Images */
+.gkNspPM-VideoList img,
+.gkNspPM-VideoList .gkImageWrap  {
+	display: block;
+	height: auto;
+	overflow: hidden;
+	width: 100%;
+}
+.gkNspPM-VideoList .gkImageWrap {
+	margin: 0 35px 0 0;	
+}
+.gkNspPM-VideoList .gkImageWrap {
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+}
+.gkNspPM-VideoList .gkImageWrap img {
+	-webkit-transform: scale(1) rotate(0deg);
+	-moz-transform: scale(1) rotate(0deg);
+	-ms-transform: scale(1) rotate(0deg);
+	-o-transform: scale(1) rotate(0deg);
+	transform: scale(1) rotate(0deg);
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-ms-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	transition: all .2s linear;
+}
+
+.gkNspPM-VideoList .gkImageWrap:hover img {
+	-webkit-transform: scale(1.2) rotate(-5deg);
+	-moz-transform: scale(1.2) rotate(-5deg);
+	-ms-transform: scale(1.2) rotate(-5deg);
+	-o-transform: scale(1.2) rotate(-5deg);
+	transform: scale(1.2) rotate(-5deg);
+}
+
+/* Mobile devices */
+@media (max-width: 1280px) {
+	.gkNspPM-VideoList .gkBottomNav {
+		margin: 32px 19px -16px 19px;
+	}
+	.gkNspPM-VideoList .gkItemsPage figure {
+		padding: 0 6px;
+	}
+	.gkNspPM-VideoList {
+		margin: 0 -6px;
+	}
+	.gkNspPM-VideoList figcaption {
+		padding: 0 8px 16px 8px;
+	}
+}
+
+@media (max-width: 1100px) {
+	 .gkNspPM-VideoList h3 {
+	 	font-size: 13px;
+	 }
+	 .gkNspPM-VideoList .gkBottomNav {
+	 	margin: 10px 10px 5px 10px;
+	 	min-height: 36px;
+	 }
+}
+
+@media (max-width: 640px) {
+	 .gkNspPM-VideoList .gkItemsPage figure {
+	 	padding: 0 2px;
+	 }
+	 .gkNspPM-VideoList h3 {
+	 	font-size: 12px;
+	 }
+}
+
+@media (max-width: 480px) {
+	.gkNspPM-VideoList .gkItemsPage[data-cols="1"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="2"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="3"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="4"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="5"] figure,
+	.gkNspPM-VideoList .gkItemsPage[data-cols="6"] figure {
+		width: 100%;
+	}
+}

@@ -1,0 +1,58 @@
+{
+	"data_source": "K2_CONTENT_TITLE",
+	"source": "com_k2",
+	"tab": "K2_Additional_Settings",
+	"tabj3": "NSP_DATA_SOURCE_COM_K2",
+	"sources": [
+		{
+			"name": "ALL_COM_K2_ARTICLES",
+			"value": "k2_all"
+		},
+		{
+			"name": "COM_K2_ARTICLES",
+			"value": "k2_articles"
+		},
+		{
+			"name": "COM_K2_CATEGORIES",
+			"value": "k2_categories"
+		},
+		{
+			"name": "COM_K2_TAGS",
+			"value": "k2_tags"
+		},
+		{
+			"name": "COM_K2_AUTHORS",
+			"value": "k2_authors"
+		}
+	],
+	"supported_options": {
+		"sort_values": {
+			"MOD_NEWS_PRO_GK5_DATE": "created",
+			"MOD_NEWS_PRO_GK5_PUBLISH_UP": "publish_up",
+			"MOD_NEWS_PRO_GK5_PUBLISH_DOWN": "publish_down",
+			"MOD_NEWS_PRO_GK5_MODIFIED": "modified",
+			"MOD_NEWS_PRO_GK5_TITLE": "title",
+			"MOD_NEWS_PRO_GK5_ORDER": "ordering",
+			"MOD_NEWS_PRO_GK5_RANDOM": "random",
+			"MOD_NEWS_PRO_GK5_HITS": "hits",
+			"MOD_NEWS_PRO_GK5_RATING": "rating",
+			"MOD_NEWS_PRO_GK5_USER_INPUT": "user"
+		},
+		"offset": true,
+		"news_since": true,
+		"news_in": true,
+		"news_featured": true,
+		"only_featured": true,
+		"one_article_per_category": true,
+		"news_unauthorized": true,
+		"time_offset": true 
+	},
+	"supported_elements": {
+		"header": true,
+		"image": true,
+		"text": true,
+		"readmore": true,
+		"info": true,
+		"info2": true
+	}
+}

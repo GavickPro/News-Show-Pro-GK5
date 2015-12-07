@@ -1,0 +1,42 @@
+{
+	"data_source": "COM_VIRTUEMART_TITLE",
+	"source": "com_virtuemart",
+	"tab": "NSP_DATA_SOURCE_COM_VIRTUEMART",
+	"tabj3": "NSP_DATA_SOURCE_COM_VIRTUEMART",
+	"sources": [
+		{
+			"name": "COM_VIRTUEMART_PRODUCTS",
+			"value": "com_virtuemart_products"
+		},
+		{
+			"name": "COM_VIRTUEMART_CATEGORIES",
+			"value": "com_virtuemart_categories"
+		}
+	],
+	"supported_options": {
+		"sort_values": {
+			"MOD_NEWS_PRO_GK5_DATE": "created",
+			"MOD_NEWS_PRO_GK5_TITLE": "title",
+			"MOD_NEWS_PRO_GK5_ORDER": "ordering",
+			"MOD_NEWS_PRO_GK5_RANDOM": "random",
+			"MOD_NEWS_PRO_GK5_HITS": "hits",
+			"MOD_NEWS_PRO_GK5_USER_INPUT": "user"
+		},
+		"offset": true,
+		"news_since": true,
+		"news_in": true,
+		"news_featured": true,
+		"only_featured": true,
+		"one_article_per_category": false,
+		"news_unauthorized": true,
+		"time_offset": true 
+	},
+	"supported_elements": {
+		"header": true,
+		"image": true,
+		"text": true,
+		"readmore": true,
+		"info": true,
+		"info2": true
+	}
+}

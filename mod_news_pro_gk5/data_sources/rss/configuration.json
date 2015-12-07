@@ -1,0 +1,31 @@
+{
+	"data_source": "RSS_TITLE",
+	"source": "rss",
+	"tab": "RSS_Additional_Settings",
+	"tabj3": "NSP_DATA_SOURCE_RSS",
+	"sources": [
+		{
+			"name": "RSS_FEED",
+			"value": "rss_feed"
+		}
+	],
+	"supported_options": {
+		"sort_values": false,
+		"offset": true,
+		"news_since": false,
+		"news_in": false,
+		"news_featured": false,
+		"only_featured": false,
+		"one_article_per_category": false,
+		"news_unauthorized": false,
+		"time_offset": false 
+	},
+	"supported_elements": {
+		"header": true,
+		"image": true,
+		"text": true,
+		"readmore": true,
+		"info": true,
+		"info2": true
+	}
+}

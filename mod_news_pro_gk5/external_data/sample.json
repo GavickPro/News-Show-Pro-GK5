@@ -1,0 +1,17 @@
+[
+	{
+		"url": "http://www.gavick.com",
+		"title": "Lorem ipsum",
+		"text": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla.",
+		"date": 0,
+		"date_publish": 0,
+		"author": "Admin",
+		"catname": "Test",
+		"category_url": "",
+		"hits": "100",
+		"email": "blank@gavick.com",
+		"rating_sum": "10",
+		"rating_count": "2",
+		"image": ""
+	}
+]

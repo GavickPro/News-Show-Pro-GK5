@@ -1,0 +1,9 @@
+{
+	"name": "News_Slider",
+	"full_name": "NEWS_SLIDER",
+	"support": [
+		"com_content", 
+		"com_k2"
+	],
+	"thumbnails": true
+}

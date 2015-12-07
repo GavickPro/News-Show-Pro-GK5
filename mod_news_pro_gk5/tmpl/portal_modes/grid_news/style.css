@@ -1,0 +1,230 @@
+/* Portal Mode - News Blocks */
+
+.gkNspPM-GridNews > figure {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	margin: 0;
+	overflow: hidden;
+	position: relative;
+	width: 50%;
+}
+
+.gkNspPM-GridNews[data-cols="1"] > figure { width: 100%; }
+.gkNspPM-GridNews[data-cols="2"] > figure { width: 50%; }
+.gkNspPM-GridNews[data-cols="3"] > figure { width: 33.333333%; }
+.gkNspPM-GridNews[data-cols="4"] > figure { width: 25%; }
+
+.gkNspPM-GridNews figure > a {
+	float: left;
+	overflow: hidden;
+	width: 50%;
+}
+
+.gkNspPM-GridNews figure > a > img {
+	display: block;
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	width: 100%;
+}
+
+.gkNspPM-GridNews figure > a:hover > img {
+	-webkit-transform: rotate(5deg) scale(1.3);
+	-moz-transform: rotate(5deg) scale(1.3);
+	-ms-transform: rotate(5deg) scale(1.3);
+	-o-transform: rotate(5deg) scale(1.3);
+	transform: rotate(5deg) scale(1.3);
+}
+
+.gkNspPM-GridNews figcaption {
+	background: #fff;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: block;
+	height: 100%;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	width: 50%;
+}
+
+.gkNspPM-GridNews figcaption:before {
+	border: 12px solid #fff;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-top-color: transparent;
+	content: "";
+	display: block;
+	left: -24px;
+	position: absolute;
+	top: 65px;
+}
+
+.gkNspPM-GridNews figcaption > div {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	left: 0;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	padding: 0 24px;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+}
+
+.gkNspPM-GridNews h3 {
+	font-size: 22px;
+	font-weight: 400;
+}
+
+.gkNspPM-GridNews time {
+	color: #999;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.gkNspPM-GridNews hr.separator {
+	margin: 25px auto 0 auto!important;
+	padding: 0 0 25px 0!important;
+}
+
+.gkNspPM-GridNews figcaption a {
+	color: #000!important;
+}
+
+.gkNspPM-GridNews figcaption p {
+	color: #444!important;
+	font-size: 14px;
+	margin: 0;
+}
+
+.gkNspPM-GridNews figcaption a:active,
+.gkNspPM-GridNews figcaption a:focus,
+.gkNspPM-GridNews figcaption a:hover {
+	color: #d27244!important;
+}
+
+.gkNspPM-GridNews > a {
+	background: #d27244;
+	color: #fff;
+	float: left;
+	font-size: 14px;
+	font-weight: 600;
+	height: 50px;
+	line-height: 51px;
+	padding: 0 50px;
+	text-transform: uppercase;
+}
+
+.gkNspPM-GridNews > a:active,
+.gkNspPM-GridNews > a:focus,
+.gkNspPM-GridNews > a:hover {
+	background: #000;
+}
+
+/* Inverted blocks */
+.gkNspPM-GridNews figure.inverse > a {
+	float: right;
+}
+
+.gkNspPM-GridNews .inverse figcaption {
+	left: 0;
+	right: auto;
+}
+
+.gkNspPM-GridNews .inverse figcaption:before {
+	border: 12px solid #fff;
+	border-bottom-color: transparent;
+	border-right-color: transparent;
+	border-top-color: transparent;
+	content: "";
+	display: block;
+	left: auto;
+	right: -24px;
+	position: absolute;
+	top: 65px;
+}
+
+/* Mobile devices */
+@media (max-width: 1240px) {
+	.gkNspPM-GridNews figcaption > div {
+		padding: 0 10px;
+	}
+}
+
+@media (max-width: 1040px) {
+	.gkNspPM-GridNews hr.separator {
+		margin: 10px 0 0 0!important;
+		padding: 0 0 10px 0!important;
+		width: 130px;
+	}
+	.gkNspPM-GridNews h3 {
+		font-size: 18px;
+	}
+	.gkNspPM-GridNews time {
+		font-size: 11px;
+	}
+	.gkNspPM-GridNews figcaption p {
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 840px) {
+	.gkNspPM-GridNews figcaption:before,
+	.gkNspPM-GridNews .inverse figcaption:before {
+		top: 32px;
+	}
+	.gkNspPM-GridNews hr.separator {
+		clear: both;
+		display: block;
+		margin: 25px auto!important;
+	}
+	.gkNspPM-GridNews[data-cols="2"] > figure,
+	.gkNspPM-GridNews[data-cols="3"] > figure,
+	.gkNspPM-GridNews[data-cols="4"] > figure {
+		width: 100%;
+	}
+}
+
+@media (max-width: 640px) {
+	.gkNspPM-GridNews[data-cols="2"] > figure,
+	.gkNspPM-GridNews[data-cols="3"] > figure,
+	.gkNspPM-GridNews[data-cols="4"] > figure {
+		width: 100%;
+	}
+	.gkNspPM-GridNews figcaption {
+		clear: both;
+		position: static;
+		width: 100%;
+	}
+	.gkNspPM-GridNews figure a {
+		position: relative;
+		width: 100%;
+		z-index: 1;
+	}
+	.gkNspPM-GridNews figcaption > div {
+		padding: 32px 20px;
+		position: static;
+		-webkit-transform: none;
+		-moz-transform: none;
+		-ms-transform: none;
+		-o-transform: none;
+		transform: none;
+	}
+}
