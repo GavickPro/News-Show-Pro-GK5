@@ -80,12 +80,17 @@ class NSP_GK5_Speakers_List {
 	// function used to retrieve the item URL
 	function get_link($num) {
 		if($this->mode == 'com_content') {
-			return ($this->parent->content[$num]['id'] != 0) ? JRoute::_(ContentHelperRoute::getArticleRoute($this->parent->content[$num]['id'], $this->parent->content[$num]['cid'])) : JRoute::_('index.php?option=com_users&view=login');
+			// load necessary com_content View class
+			if(!class_exists('NSP_GK5_com_content_View')) {
+				require_once(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'com_content/view'));
+			}
+			return NSP_GK5_com_content_View::itemLink($this->parent->content[$num], $this->parent->config);
 		} else if($this->mode == 'com_k2') {
-			//
-			require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
-			//
-			return urldecode(JRoute::_(K2HelperRoute::getItemRoute($this->parent->content[$num]['id'].':'.urlencode($this->parent->content[$num]['alias']), $this->parent->content[$num]['cid'].':'.urlencode($this->parent->content[$num]['cat_alias']))));
+			// load necessary k2 View class
+			if(!class_exists('NSP_GK5_com_k2_View')) {
+				require_once(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'com_k2/view'));
+			}
+			return NSP_GK5_com_k2_View::itemLink($this->parent->content[$num], $this->parent->config);
 		} else if($this->mode == 'com_easyblog') {
 			return urldecode(JRoute::_('index.php?option=com_easyblog&view=entry&id=' . $this->parent->content[$num]['id']));
 		} else {
