@@ -317,6 +317,11 @@ class NSP_GK5_View {
 			//
 			$img_link = $IMG_LINK;
 			$img_class = 'nspImageWrapper' . $class;
+
+			if($links && $config['links_image_position'] == 'right') {
+				$img_class .= ' nspImageWrapperRight';
+			}
+
 			$img_output = '';
 			
 			if($size != '') {

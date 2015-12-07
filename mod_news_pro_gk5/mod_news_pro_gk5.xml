@@ -1183,6 +1183,10 @@
                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>
                </field>
+                <field name="links_image_position" type="radio" default="left" class="btn-group" label="MOD_NEWS_PRO_GK5_LINKS_IMAGE_POSITION" description="">
+                       <option value="left">MOD_NEWS_PRO_GK5_LEFT</option>
+                       <option value="right">MOD_NEWS_PRO_GK5_RIGHT</option>
+               </field>
                <field name="links_image_link" type="list" default="1" class="gk_switch" label="MOD_NEWS_PRO_GK5_LINKS_IMAGE_LINK" description="MOD_NEWS_PRO_GK5_LINKS_IMAGE_LINK_DESC">
                        <option value="0">MOD_NEWS_PRO_GK5_DISABLED</option>
                        <option value="1">MOD_NEWS_PRO_GK5_ENABLED</option>

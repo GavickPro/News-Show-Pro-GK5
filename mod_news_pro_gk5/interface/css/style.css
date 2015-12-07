@@ -230,6 +230,9 @@
 .nspList > li > .nspImageWrapper {
 	float: left;
 }
+.nspList > li > .nspImageWrapperRight {
+	float: right;
+}
 .nspList > li .nspImage {
 	height: auto!important;
 	max-width: 100%;
