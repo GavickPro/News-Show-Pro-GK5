@@ -79,7 +79,7 @@ if($this->config['links_position'] != 'bottom' && $this->config['news_short_page
 					</div>
 
 					<?php 
-						if($this->config['articles_link'] == '1') : 
+						if(isset($this->config['articles_link']) && $this->config['articles_link'] == '1') : 
 							$article_bottom_url = $this->config['articles_link_url'];	
 					?>
 					<a href="<?php echo $article_bottom_url; ?>" class="readon-button">
