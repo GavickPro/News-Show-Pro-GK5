@@ -42,7 +42,7 @@ if($this->config['links_position'] != 'bottom' && $this->config['news_short_page
 							) : ?>
 					<ul class="nspPagination">
 						<?php for($i = 0; $i < ceil(count($news_html_tab) / ($this->config['news_column'] * $this->config['news_rows'])); $i++) : ?>
-						<li><?php echo $i+1; ?></li>
+						<li><a href="#"><?php echo $i+1; ?></a></li>
 						<?php endfor; ?>
 					</ul>
 					<?php endif; ?>
@@ -51,8 +51,8 @@ if($this->config['links_position'] != 'bottom' && $this->config['news_short_page
 								$this->config['top_interface_style'] == 'arrows' || 
 								$this->config['top_interface_style'] == 'arrows_with_pagination'
 							) : ?>
-					<span class="nspPrev"><?php echo JText::_('MOD_NEWS_PRO_GK5_NSP_PREV'); ?></span>
-					<span class="nspNext"><?php echo JText::_('MOD_NEWS_PRO_GK5_NSP_NEXT'); ?></span>
+					<a href="#" class="nspPrev"><?php echo JText::_('MOD_NEWS_PRO_GK5_NSP_PREV'); ?></a>
+					<a href="#" class="nspNext"><?php echo JText::_('MOD_NEWS_PRO_GK5_NSP_NEXT'); ?></a>
 					<?php endif; ?>
 				</div>
 				<?php endif; ?>
