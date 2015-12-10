@@ -49,7 +49,7 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 			}
 		}
 		//
-		return NSP_GK5_com_virtuemart_View::getImageHTML($only_url, $IMG_SOURCE, $links, $config, $IMG_LINK, $full_size_img);
+		return NSP_GK5_com_virtuemart_View::getImageHTML($only_url, $IMG_SOURCE, $links, $config, $IMG_LINK, $full_size_img, '', $item['featured']);
 	}
 	// article information generator
 	static function info($config, $item, $num = 1) {
@@ -243,4 +243,5 @@ class NSP_GK5_com_virtuemart_View extends NSP_GK5_View {
 		return '';
 	}
 }
+
 // EOF

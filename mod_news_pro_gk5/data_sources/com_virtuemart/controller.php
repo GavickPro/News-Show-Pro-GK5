@@ -91,6 +91,10 @@ class NSP_GK5_com_virtuemart_Controller {
 			$closeimage = JURI::root(TRUE) .'/components/com_virtuemart/assets/images/fancybox/fancy_close.png';
 			$vmLangVar = '';
 			
+			if (!class_exists( 'VmConfig' )) {
+				require(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'config.php');
+			}
+
 			if (VmConfig::get ('vmlang_js', 1))  {
 				$vmLangVar .= "vmLang = '&lang=" . substr (VmConfig::$vmlang, 0, 2) . "' ;\n";
 			} else {
