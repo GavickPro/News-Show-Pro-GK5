@@ -100,36 +100,42 @@ var NSP5 = new Class({
 		//
 		if(this.modInterface.top && this.modInterface.top.getElement('.nspPagination')){
 			this.modInterface.top.getElement('.nspPagination').getElements('li').each(function(item,i){
-				item.addEvent($this.hover_anim ? 'mouseenter' : 'click', function(){
+				item.addEvent($this.hover_anim ? 'mouseenter' : 'click', function(e){
+					e.preventDefault();
 					$this.arts_anim(i);
 				});	
 			});
 		}
 		//
 		if(this.modInterface.top && this.modInterface.top.getElement('.nspPrev')){
-			this.modInterface.top.getElement('.nspPrev').addEvent("click", function(){
+			this.modInterface.top.getElement('.nspPrev').addEvent("click", function(e){
+				e.preventDefault();
 				$this.arts_anim('prev');
 			});
 			
-			this.modInterface.top.getElement('.nspNext').addEvent("click", function(){
+			this.modInterface.top.getElement('.nspNext').addEvent("click", function(e){
+				e.preventDefault();
 				$this.arts_anim('next');
 			});
 		}
 		// bottom interface
 		if(this.modInterface.bottom && this.modInterface.bottom.getElement('.nspPagination')){
 			this.modInterface.bottom.getElement('.nspPagination').getElements('li').each(function(item,i){
-				item.addEvent($this.hover_anim ? 'mouseenter' : 'click', function(){	
+				item.addEvent($this.hover_anim ? 'mouseenter' : 'click', function(e){
+					e.preventDefault();	
 					$this.lists_anim(i);
 				});	
 			});
 		}
 		//
 		if(this.modInterface.bottom && this.modInterface.bottom.getElement('.nspPrev')){
-			this.modInterface.bottom.getElement('.nspPrev').addEvent("click", function(){
+			this.modInterface.bottom.getElement('.nspPrev').addEvent("click", function(e){
+				e.preventDefault();
 				$this.lists_anim('prev');
 			});
 			
-			this.modInterface.bottom.getElement('.nspNext').addEvent("click", function(){
+			this.modInterface.bottom.getElement('.nspNext').addEvent("click", function(e){
+				e.preventDefault();
 				$this.lists_anim('next');
 			});
 		}

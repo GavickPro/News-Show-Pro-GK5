@@ -100,7 +100,8 @@ NSP5.prototype = {
 						$this.arts_anim(i);
 					});	
 				}else {
-					jQuery(item).click(function(){
+					jQuery(item).click(function(e){
+						e.preventDefault();
 						$this.arts_anim(i);
 					});	
 				}
@@ -108,11 +109,13 @@ NSP5.prototype = {
 		}
 		//
 		if(this.modInterface.top && this.modInterface.top.find('.nspPrev')){
-			this.modInterface.top.find('.nspPrev').click(function(){
+			this.modInterface.top.find('.nspPrev').click(function(e){
+				e.preventDefault();
 				$this.arts_anim('prev');
 			});
 			
-			this.modInterface.top.find('.nspNext').click(function(){
+			this.modInterface.top.find('.nspNext').click(function(e){
+				e.preventDefault();
 				$this.arts_anim('next');
 			});
 		}
@@ -124,7 +127,8 @@ NSP5.prototype = {
 						$this.lists_anim(i);
 					});	
 				}else {
-					jQuery(item).click(function(){
+					jQuery(item).click(function(e){
+						e.preventDefault();
 						$this.lists_anim(i);
 					});	
 				}
@@ -132,11 +136,13 @@ NSP5.prototype = {
 		}
 		//
 		if(this.modInterface.bottom && this.modInterface.bottom.find('.nspPrev')){
-			this.modInterface.bottom.find('.nspPrev').click(function(){
+			this.modInterface.bottom.find('.nspPrev').click(function(e){
+				e.preventDefault();
 				$this.lists_anim('prev');
 			});
 			
-			this.modInterface.bottom.find('.nspNext').click(function(){
+			this.modInterface.bottom.find('.nspNext').click(function(e){
+				e.preventDefault();
 				$this.lists_anim('next');
 			});
 		}
