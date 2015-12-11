@@ -71,7 +71,7 @@ Advanced Joomla! content module.
 
 * Fixed issue with HTML in the titles
  
-### 1.9.0.0
+### v.1.9.0.0
 
 * Added Solidres support and options to set pre/post text in the module
 * Removed MooTools loading
