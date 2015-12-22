@@ -167,8 +167,10 @@ class NSP_GK5_com_content_Model {
 		
 		if($config['only_featured'] == 0 && $config['news_featured'] == 0) {
 		 	$frontpage_con = ' AND content.featured = 0 ';
+			$featured_join = ''; // get featured ordering
 		} else if($config['only_featured'] == 1) {
 			$frontpage_con = ' AND content.featured = 1';
+			$featured_join = 'LEFT JOIN #__content_frontpage as content_frontpage ON id = content_id'; // get featured ordering
 		}
 		
 		$since_con = '';
@@ -212,8 +214,8 @@ class NSP_GK5_com_content_Model {
 			$order_options = ' (content_rating.rating_sum / content_rating.rating_count) '.$config['news_sort_order'];
 			$rating_join = 'LEFT JOIN #__content_rating AS content_rating ON content_rating.content_id = content.id';
 		} else{ // when sort value is different than random
-			$order_options = ' content.'.$config['news_sort_value'].' '.$config['news_sort_order'].' ';
-		}	
+			$order_options = ' content'.(($featured_join!='')?'_frontpage':'').'.'.$config['news_sort_value'].' '.$config['news_sort_order'].' '; // get featured ordering
+		}
 		// language filters
 		$lang_filter = '';
 		if (JFactory::getApplication()->getLanguageFilter()) {
@@ -239,7 +241,8 @@ class NSP_GK5_com_content_Model {
 		FROM 
 			#__content AS content
 			'.$rating_join.' 
-			'.$tag_join.'
+			'.$tag_join.' 
+			'.$featured_join.'
 		WHERE 
 			content.state = 1
                 '. $access_con .'   
@@ -276,6 +279,7 @@ class NSP_GK5_com_content_Model {
 		if($second_sql_where != '') {
 			$second_sql_where = ' AND ('.$second_sql_where.')';
 		}
+		
 		// second SQL query to get rest of the data and avoid the DISTINCT
 		$second_query_news = '
 		SELECT
@@ -312,6 +316,9 @@ class NSP_GK5_com_content_Model {
 			LEFT JOIN 
 				#__content_rating AS content_rating 
 				ON content_rating.content_id = content.id
+			LEFT JOIN 
+				#__content_frontpage AS content_frontpage 
+				ON content_frontpage.content_id = content.id
 		WHERE 
 			1=1
 			'.$second_sql_where.'
