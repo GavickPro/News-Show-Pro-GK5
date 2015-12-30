@@ -461,7 +461,7 @@ class NSP_GK5_com_k2_Model {
 			if($extra_fields_schema = $db->loadObjectList()) {
 				// generating tables of news data
 				foreach($extra_fields_schema as $item) {					
-					$schema_tab[$item->id] = json_decode($item->value);
+					$schema_tab[$item->id] = $item->name;
 				}
 			}
 			// merge the retrieved data
@@ -469,7 +469,7 @@ class NSP_GK5_com_k2_Model {
 				$extra_fields_data = array();
 				
 				foreach($extra_fields_tab as $extra_field) {					
-					$extra_fields_data[$schema_tab[$extra_field->id][0]->alias] = $extra_field->value;
+					$extra_fields_data[$schema_tab[$extra_field->id]] = $extra_field->value;
 				}
 				
 				$results_tab[$key] = $extra_fields_data;
