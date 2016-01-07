@@ -67,7 +67,9 @@ class NSP_GK5_Grid_News {
 			if($this->parent->config['portal_mode_grid_news_title_length'] > 0) {
 				echo '<h3>';
 				echo '<a href="'.$this->get_link($i).'" title="'.strip_tags($this->parent->content[$i]['title']).'">';
-				echo NSP_GK5_Utils::cutText(strip_tags($this->parent->content[$i]['title']), $this->parent->config, 'portal_mode_grid_news_title_length', '&hellip;');
+				$content = NSP_GK5_Utils::cutText(strip_tags($this->parent->content[$i]['title']), $this->parent->config, 'portal_mode_grid_news_title_length', '&hellip;');
+				$content = static::textPlugins($content, $config);
+				echo $content;
 				echo '</a>';
 				echo '</h3>';
 			}
