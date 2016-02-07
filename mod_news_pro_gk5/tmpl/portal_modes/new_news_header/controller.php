@@ -123,6 +123,10 @@ class NSP_GK5_New_News_Header {
 		} else {
 			// if URL isn't blank - return it!
 			if($url != '') {
+				if(stripos($url, 'http://') === FALSE && stripos($url, 'https://') === FALSE) {
+					$url = JURI::base() . $url;
+				} 
+				
 				return $url;
 			} else {
 				return false;
