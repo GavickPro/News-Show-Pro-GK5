@@ -145,6 +145,11 @@
 	transition: all .25s ease-out;
 }
 
+.gkNspPM-ProductGallery .gkPriceEmpty,
+.gkNspPM-ProductGallery .gkImgOverlayEmpty {
+	display: none!important;
+}
+
 .gkNspPM-ProductGallery .gkAddToCart {
 	bottom: -72px;
 	-webkit-box-sizing: border-box;
@@ -175,7 +180,7 @@
 }
 
 .gkNspPM-ProductGallery .gkAddToCart input.addtocart-button {
-	background: #fff url('images/cart_color.png') no-repeat 5px center;
+	background: #fff url('images/cart_color.png') no-repeat 0 center;
 	border-top: 1px solid #e8e7e7;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -187,6 +192,7 @@
 	margin: 0;
 	padding: 0;
 	text-align: center;
+	text-indent: 10px;
 	text-transform: uppercase;
 	width: 100%;
 }
