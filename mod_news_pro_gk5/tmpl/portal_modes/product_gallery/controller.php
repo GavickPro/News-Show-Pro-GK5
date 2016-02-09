@@ -33,7 +33,7 @@ class NSP_GK5_Product_Gallery {
 			$this->mode = false;
 		}		
 		//
-		if($config['vm_add_to_cart'] == 1 && NSP_GK5_Product_Gallery::$instances == 1) {
+		if(NSP_GK5_Product_Gallery::$instances == 1) {
 			$closeimage = JURI::root(TRUE) .'/components/com_virtuemart/assets/images/fancybox/fancy_close.png';
 			$vmLangVar = '';
 			
@@ -47,12 +47,13 @@ class NSP_GK5_Product_Gallery {
 			$doc->addScriptDeclaration(
 				$vmLangVar . '
 				vmSiteurl = \''. JURI::root() .'\' ;
+				window.Itemid = \'\';
 				Virtuemart.addtocart_popup = \''.VmConfig::get('addtocart_popup',1).'\' ; 
 				vmCartText = \''.addslashes(vmText::_('COM_VIRTUEMART_CART_PRODUCT_ADDED')).'\' ;
 				vmCartError = \''.addslashes(vmText::_('COM_VIRTUEMART_MINICART_ERROR_JS')).'\' ;
 				loadingImage = \''.JURI::root(TRUE) .'/components/com_virtuemart/assets/images/facebox/loading.gif\' ;
 				closeImage = \''.$closeimage.'\' ; 
-				usefancy = false;
+				usefancy = true;
 				jQuery(document).ready(function() { Virtuemart.product(jQuery("form.product")); });'
 			);
 		}
@@ -95,14 +96,14 @@ class NSP_GK5_Product_Gallery {
 				echo '<a href="' . $this->get_link($i) . '"><img src="'.strip_tags($this->get_image($i)).'" alt="'.strip_tags($this->parent->content[$i]->title).'" /></a>';
 				echo '<h4><a href="' . $this->get_link($i) . '">' . $this->parent->content[$i]['title'] . '</a></h4>';
 				
-				$store_output = $this->get_store($this->parent->config, $this->parent->content[$i]['id']);
+				$store_output = $this->get_store($this->parent->config, $this->parent->content[$i]['id'], $i);
 
 				if($this->mode != 'com_virtuemart') {
 					echo '<div class="gkAddToCart"><a class="addtocart-button" href="' . $this->get_link($i) . '">' . JText::_('MOD_NEWS_PRO_GK5_NSP_READMORE') . '</a></div>';
 				} else {
-					echo '<div class="gkPrice">' . $store_output['price'] . '</div>';
+					echo '<div class="gkPrice '.($store_output['price'] == '' ? 'gkPriceEmpty' : '').'">' . $store_output['price'] . '</div>';
 					echo '<div class="gkAddToCart">' . $store_output['cart'] . '</div>';
-					echo '<div class="gkImgOverlay">' . $store_output['price'] . '</div>';
+					echo '<div class="gkImgOverlay '.($store_output['price'] == '' ? 'gkImgOverlayEmpty' : '').'">' . $store_output['price'] . '</div>';
 				}
 
 				if($this->parent->content[$i]['featured'] && $this->parent->config['vm_show_featured_badge']) {
@@ -193,20 +194,26 @@ class NSP_GK5_Product_Gallery {
 	}
 	// store generator
 	// function used to show the store details
-	function get_store($config, $id) {
+	function get_store($config, $id, $num) {
 	    if($this->mode != 'com_virtuemart') {
 	    	return array(
 	    		"price" => '',
 	    		"cart" => ''
 	    	);
 		} else {
-			// if the VM is available
-	        if (!class_exists( 'VmConfig' )) {
-	        	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'config.php');
-	        }
-	        VmConfig::loadConfig();
-	        // Load the language file of com_virtuemart.
+			// Load the language file of com_virtuemart.
 	        JFactory::getLanguage()->load('com_virtuemart');
+	       
+	        // Load path constant
+	        if(!defined('VMPATH_ADMIN')) {
+	        	define('VMPATH_ADMIN', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart');
+	        }
+	        // Load VM configuration if necessary
+	        if (!class_exists( 'VmConfig' )) {
+	        	require(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'config.php');
+	        	VmConfig::loadConfig();
+	        }
+	        
 	        // load necessary classes
 	        if (!class_exists( 'calculationHelper' )) {
 	        	require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'calculationh.php');
@@ -227,7 +234,7 @@ class NSP_GK5_Product_Gallery {
 	        	require(JPATH_COMPONENT_SITE.DS.'helpers'.DS.'cart.php');
 	        }
 	        if (!class_exists( 'VirtueMartModelProduct' )){
-	           JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
+	        	JLoader::import( 'product', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart' . DS . 'models' );
 	        }
 	        // load the base
 	        $productModel = new VirtueMartModelProduct();
@@ -235,20 +242,25 @@ class NSP_GK5_Product_Gallery {
 		    $currency = CurrencyDisplay::getInstance();
 		    
 		    $price = '<strong>'.$currency->createPriceDiv($config['vm_show_price_type'], '', $product->prices, true).'</strong>';
-	        if($config['vm_add_to_cart'] == 1) {
+	       
+	        if($config['vm_add_to_cart'] == 1 && JRequest::getCmd('option') != 'com_virtuemart') {
 	            vmJsApi::jPrice();
+	            vmJsApi::addJScript( 'facebox' );
+				vmJsApi::css( 'facebox' );
 	            vmJsApi::writeJS();
 	        }
-	        $news_price = '<div class="PricebasePriceWithTax">';
+	        $news_price = '';
 	        //
-	        if($config['vm_show_price_type'] != 'none') {
+	        if($config['vm_show_price_type'] != 'none') {	            
 	            if($config['vm_display_type'] == 'text_price') {
-	            	$news_price .=  '<span class="PricebasePriceWithTax">'.JText::_('MOD_NEWS_PRO_GK5_PRODUCT_PRICE').' '.$price.'</span>';
+	            	$news_price .=  '<div class="PricebasePriceWithTax">'.JText::_('MOD_NEWS_PRO_GK5_PRODUCT_PRICE').' '.$price.'</div>';
 	            } else {
-	            	$news_price .= '<span class="PricebasePriceWithTax">'.$price.'</span>';
+	            	$news_price .= '<div class="PricebasePriceWithTax">'.$price.'</div>';
 	            }
-	        } 
-	        $news_price .= '</div>';
+	            
+	            $news_price = str_replace('<strong>', '<span class="PricebasePriceWithTax">', $news_price);
+	            $news_price = str_replace('</strong>', '</span>', $news_price);
+	        }
 	        // display discount
 	        if($config['vm_show_discount_amount'] == 1) {
 	            $disc_amount = $currency->priceDisplay($product->prices['discountAmount'], $currency->getId());
@@ -259,11 +271,32 @@ class NSP_GK5_Product_Gallery {
 	          	$taxAmount = $currency->priceDisplay($product->prices['taxAmount'], $currency->getId());
 	            $news_price.= '<div class="PricetaxAmount">' . JText::_('MOD_NEWS_PRO_GK5_PRODUCT_TAX_AMOUNT'). $taxAmount . '</div>';  
 	        }
-	        $news_cart = '';
+	        // detect empty price
+	        if(count($product->prices) === 0) {
+	        	$news_price = '';
+	        }
 	        // 'Add to cart' button
 	        if($config['vm_add_to_cart'] == 1) {
+	            if(isset($product->customfields) &&count($product->customfields)) {
+	            	foreach($product->customfields as $field) {
+	            		if(
+	            			(isset($field->is_cart_attribute) && $field->is_cart_attribute == 1) ||
+	            			(isset($field->layout_pos) && $field->layout_pos == 'addtocart')
+	            		) {
+	            			$product->orderable = 0;
+	            			break;
+	            		}
+	            	}
+	            }
+	            
 	            $code = '<div class="addtocart-area">';
-	            $code .= '<form method="post" class="product" action="index.php">';
+	            
+	            if($product->orderable != 0) {
+	            	$code .= '<form method="post" class="product" action="index.php">';
+	            } else {
+	            	$code .= '<form method="post" class="product-variant" action="'.$this->get_link($num).'">';
+	            }
+	            
 	            $code .= '<div class="addtocart-bar">';
 	            $code .= '<span class="quantity-box" style="display: none"><input type="text" class="quantity-input" name="quantity[]" value="1" /></span>';
 	            $addtoCartButton = '';
@@ -272,24 +305,37 @@ class NSP_GK5_Product_Gallery {
 				} else {
 					$addtoCartButton = shopFunctionsF::getAddToCartButton($product->orderable);
 				}
-	            $code .= $addtoCartButton;
-	                
-	            $code .= '</div>
-	                    <input type="hidden" class="pname" value="'.$product->product_name.'"/>
-	                    <input type="hidden" name="option" value="com_virtuemart" />
-	                    <input type="hidden" name="view" value="cart" />
-	                    <noscript><input type="hidden" name="task" value="add" /></noscript>
-	                    <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
-	                    <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
-	                </form>';    
+	            $btn = str_replace('addtocart-button-disabled"', 'addtocart-button" type="submit"', $addtoCartButton);
+	
+	            if(stripos($btn, '<span') !== FALSE) {
+	            	$btn = str_replace('title=', 'value=', $btn);
+	            	$btn = str_replace('<span', '<input', $btn);
+	            	$btn = preg_replace('@>.*?</span>@mis', '/>', $btn);
+	            }
+	
+	            $code .= $btn;
+	
+	            if($product->orderable != 0) { 
+		            $code .= '</div>
+		                    <input type="hidden" name="pname" value="'.$product->product_name.'"/>
+		                    <input type="hidden" name="option" value="com_virtuemart" />
+		                    <input type="hidden" name="view" value="cart" />
+		                    <noscript><input type="hidden" name="task" value="add" /></noscript>
+		                    <input type="hidden" name="virtuemart_product_id[]" value="'.$product->virtuemart_product_id.'" />
+		                    <input type="hidden" name="pid" value="'.$product->virtuemart_product_id.'" />
+		                    <input type="hidden" name="virtuemart_category_id[]" value="'.$product->virtuemart_category_id.'" />
+		                </form>';   
+	            } else {
+	            	$code .= '</div></form>';  
+	            } 
 	            $code .= '</div>'; 
-	            $news_cart .= $code;
-			} 
-	  		// results
-	        return array(
-	    		"price" => $news_price,
-	    		"cart" => $news_cart
-	    	);
+			}
+	        
+			// results
+			return array(
+				"price" => $news_price,
+				"cart" => $code
+			);
 		}
 	}
 }
