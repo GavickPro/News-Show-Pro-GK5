@@ -164,6 +164,7 @@ class NSP_GK5_com_content_Model {
 		// if some data are available
 		// when showing only frontpage articles is disabled
 		$frontpage_con = '';
+		$featured_join = '';
 		
 		if($config['only_featured'] == 0 && $config['news_featured'] == 0) {
 		 	$frontpage_con = ' AND content.featured = 0 ';
