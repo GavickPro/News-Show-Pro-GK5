@@ -252,8 +252,7 @@ class NSP_GK5_com_virtuemart_Model {
                 ON 
                 sgroup.virtuemart_shoppergroup_id = psgroup.virtuemart_shoppergroup_id
 		WHERE
-            contentR.product_parent_id = 0
-            AND contentR.published = 1  
+            contentR.published = 1
 			AND '.$sql_where.'
 			'.$frontpage_con.' 
 			'.$since_con.'
@@ -279,7 +278,7 @@ class NSP_GK5_com_virtuemart_Model {
 		}
 		
 		// create the content IDs array
-		foreach($news2 as $item) {
+		foreach($news as $item) {
 			array_push($content_id, $item['id']);
 		}
 		// second query start
