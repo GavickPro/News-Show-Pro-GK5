@@ -5,6 +5,18 @@ Advanced Joomla! content module.
 
 ## Latest changes
 
+### v.1.9.3.2
+
+* Improved VM model
+* Fixed issue with undefined variable $featured_join
+* Fixed issues with Product Gallery portal mode from NSP GK5
+* Fixed issues with Product Gallery portal mode
+* Fixed issue with relative paths in the new news header portal mode
+* Added plugin clearing support for the grid news portal mode.
+* Fixed potential issue with using K2 Extra fields in article formats
+* Fixed issue with ordering while featured only items are retrieved from VM
+* Fixed issues with VirtueMart images
+
 ### v.1.9.3.1
 
 * Fixed issue with pagination links on some templates
