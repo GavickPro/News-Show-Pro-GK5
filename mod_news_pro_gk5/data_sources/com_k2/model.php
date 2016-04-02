@@ -189,7 +189,7 @@ class NSP_GK5_com_k2_Model {
 			JRequest::getCmd('view') == 'item' &&
 			JRequest::getVar('id') != ''
 		) {
-			$id = JRequest::getVar('id');
+			$id = (int) JRequest::getVar('id');
 			// filter the alias from ID
 			if(stripos($id, ':') !== FALSE) {
 				$id = explode(':', $id);
