@@ -5,6 +5,10 @@ Advanced Joomla! content module.
 
 ## Latest changes
 
+### v.1.9.3.3
+
+* Fixed issue with error 1054 while ordering with featured items is enabled
+
 ### v.1.9.3.2
 
 * Improved VM model
