@@ -5,6 +5,10 @@ Advanced Joomla! content module.
 
 ## Latest changes
 
+### v.1.9.3.4
+
+* Security fix - fixed potential SQL Injection
+
 ### v.1.9.3.3
 
 * Fixed issue with error 1054 while ordering with featured items is enabled

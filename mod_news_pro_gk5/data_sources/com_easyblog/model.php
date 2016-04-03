@@ -212,7 +212,7 @@ class NSP_GK5_com_easyblog_Model {
 			JRequest::getCmd('view') == 'entry' &&
 			JRequest::getVar('id') != ''
 		) {
-			$id = JRequest::getVar('id');
+			$id = (int) JRequest::getVar('id');
 			// filter the alias from ID
 			if(stripos($id, ':') !== FALSE) {
 				$id = explode(':', $id);
