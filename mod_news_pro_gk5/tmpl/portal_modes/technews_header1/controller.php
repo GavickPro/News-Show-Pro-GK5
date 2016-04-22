@@ -116,6 +116,11 @@ class NSP_GK5_TechNews_Header1 {
 		} else {
 			// if URL isn't blank - return it!
 			if($url != '') {
+				if(stripos($url, 'http://') === FALSE) {
+					$uri = JUri::getInstance();
+					return $uri->root() . $url;
+				}
+				
 				return $url;
 			} else {
 				return false;
