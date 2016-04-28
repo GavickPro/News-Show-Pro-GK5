@@ -44,10 +44,10 @@ class NSP_GK5_New_News_Slider {
 		
 		// images wrapper
 		echo '<div class="gkListWrapper" data-arrows="'.$this->parent->config['portal_mode_new_news_slider_arrows'].'">';
-		echo '<div class="gkList">';
+		echo '<div class="gkList" data-interval="'.$this->parent->config['portal_mode_new_news_slider_interval'].'">';
 		// render images
 		for($i = 0; $i < count($this->parent->content); $i++) {			
-			echo '<div class="gkItem" data-interval="'.$this->parent->config['portal_mode_new_news_slider_interval'].'">';
+			echo '<div class="gkItem">';
 			echo '<div class="gkItemWrap">';
 			
 			if($this->parent->config['portal_mode_new_news_slider_images'] == '1') {
