@@ -321,8 +321,8 @@ NSP5.prototype = {
 			setTimeout(function() {
 				for(var x = 0; x < $this.config['links_columns_amount']; x++) {
 					var item = $this.links_pages[$this.links_current * $this.config['links_columns_amount'] + x]; 
-					if(item) {
-						jQuery(item.addClass('active'));
+					if(jQuery(item).length) {
+						jQuery(item).addClass('active');
 					}
 				}
 			}, this.config['animation_speed'] * 0.5);
