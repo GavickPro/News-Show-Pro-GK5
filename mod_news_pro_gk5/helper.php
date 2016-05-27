@@ -137,17 +137,17 @@ class NSP_GK5_Helper {
 				$js_path = $uri->root().'templates/'.$template_name.'/html/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js';	
 			}
 			// add stylesheets to document header
-			if($this->config["useCSS"] == 1) {
+			if($this->config["useCSS"] == 1 && $document instanceof JDocumentHtml) {
 				$document->addStyleSheet( $css_path, 'text/css' );
 			}
 			// add script to the document header
-			if($this->config['useScript'] == 1) {
+			if($this->config['useScript'] == 1 && $document instanceof JDocumentHtml) {
 				$document->addScript($js_path);
 			}
 			// init $headData variable
 			$headData = false;
 			// add scripts with automatic mode to document header
-			if($this->config['useScript'] == 2) {
+			if($this->config['useScript'] == 2 && $document instanceof JDocumentHtml) {
 				// getting module head section datas
 				unset($headData);
 				$headData = $document->getHeadData();
@@ -199,17 +199,17 @@ class NSP_GK5_Helper {
 			$document = JFactory::getDocument();
 			$uri = JURI::getInstance();
 			// add stylesheets to document header
-			if($this->config["useCSS"] == 1) {
+			if($this->config["useCSS"] == 1 && $document instanceof JDocumentHtml) {
 				$document->addStyleSheet( $uri->root().'modules/mod_news_pro_gk5/interface/css/style.css', 'text/css' );
 			}
 			// add script to the document header
-			if($this->config['useScript'] == 1) {
+			if($this->config['useScript'] == 1 && $document instanceof JDocumentHtml) {
 				$document->addScript($uri->root().'modules/mod_news_pro_gk5/interface/scripts/engine.'.($this->config['engine_mode']).'.js');
 			}
 			// init $headData variable
 			$headData = false;
 			// add scripts with automatic mode to document header
-			if($this->config['useScript'] == 2) {
+			if($this->config['useScript'] == 2 && $document instanceof JDocumentHtml) {
 				// getting module head section datas
 				unset($headData);
 				$headData = $document->getHeadData();
