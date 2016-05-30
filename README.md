@@ -5,6 +5,16 @@ Advanced Joomla! content module.
 
 ## Latest changes
 
+### v.1.9.3.5
+
+* Added document check in order to avoid issues with AJAX
+* Few small fixes in the article format parser
+* Fixed issue with scrolling list
+* Fixed issue with autoanimation of the new news slider portal mode.
+* Fixed URLs on multilanguage websites in Technews Header2 Portal Mode.
+* Fixed URLs on multilanguage websites in Technews Header1 Portal Mode.
+* Fix for the product_gallery mode - wrong assignment
+
 ### v.1.9.3.4
 
 * Security fix - fixed potential SQL Injection
