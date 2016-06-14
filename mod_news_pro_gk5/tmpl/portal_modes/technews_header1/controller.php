@@ -116,7 +116,7 @@ class NSP_GK5_TechNews_Header1 {
 		} else {
 			// if URL isn't blank - return it!
 			if($url != '') {
-				if(stripos($url, 'http://') === FALSE) {
+				if(stripos($url, 'http://') === FALSE && stripos($url, 'https://') === FALSE) {
 					$uri = JUri::getInstance();
 					return $uri->root() . $url;
 				}
