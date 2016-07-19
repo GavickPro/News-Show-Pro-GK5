@@ -117,6 +117,8 @@ class NSP_GK5_TechNews_Header2 {
 					$uri = JUri::getInstance();
 					return $uri->root() . $url;
 				}
+				
+				return $url;
 			} else {
 				return false;
 			}
