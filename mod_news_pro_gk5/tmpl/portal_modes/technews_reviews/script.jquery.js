@@ -18,7 +18,7 @@ function gkPortalModeTechNewsReviewsInit(module) {
 	list.each(function(i, item) {
 		item = jQuery(item);
 		
-		if(ProgressBar && jQuery(items[current]).find('.gk-review-sum-value').length) {
+		if(ProgressBar && jQuery(items[i]).find('.gk-review-sum-value').length) {
 			circles[i] = new ProgressBar.Circle(jQuery(items[i]).find('.gk-review-sum-value')[0], {
 			    color: '#07c958',
 			    strokeWidth: 4,
