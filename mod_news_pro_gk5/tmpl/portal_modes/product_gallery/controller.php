@@ -31,7 +31,19 @@ class NSP_GK5_Product_Gallery {
 			$this->mode = 'com_virtuemart';
 		} else {
 			$this->mode = false;
-		}		
+		}
+		
+		// Load path constant
+        	if(!defined('VMPATH_ADMIN')) {
+        		define('VMPATH_ADMIN', JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart');
+        	}
+        	
+		// Load VM configuration if necessary
+        	if (!class_exists( 'VmConfig' )) {
+        		require(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'config.php');
+        		VmConfig::loadConfig();
+        	}
+		
 		//
 		if(NSP_GK5_Product_Gallery::$instances == 1) {
 			$closeimage = JURI::root(TRUE) .'/components/com_virtuemart/assets/images/fancybox/fancy_close.png';
