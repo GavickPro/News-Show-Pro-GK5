@@ -51,10 +51,10 @@ DataSources.prototype.changeValue = function() {
 		
 		if(obj.source != data_source_name) {
 			jQuery('#'+obj.tab).parents().eq(2).css('display', 'none');	
-			jQuery('a[href=#attrib-'+obj.tabj3+']').parent().css('display', 'none');
+			jQuery('a[href="#attrib-'+obj.tabj3+'"]').parent().css('display', 'none');
 		} else  {
 			jQuery('#'+obj.tab).parents().eq(2).css('display', 'block');
-			jQuery('a[href=#attrib-'+obj.tabj3+']').parent().css('display', 'block');
+			jQuery('a[href="#attrib-'+obj.tabj3+'"]').parent().css('display', 'block');
 		}
 	});	
 	// hide previously showed field (if exists)
