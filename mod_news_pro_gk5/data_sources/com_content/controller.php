@@ -27,6 +27,11 @@ class NSP_GK5_com_content_Controller {
 		$counter = 0;
 		//
 		for($i = 0; $i < count($content); $i++) {	
+			// Avoid empty items
+			if(!isset($content[$i]['title'])) {
+				continue;
+			}
+		
 			if($i < ($config['news_column'] * $config['news_rows'] * $config['news_full_pages'])) {
 				// GENERATING NEWS CONTENT
 		        if($config['use_own_article_format'] == 1) {
