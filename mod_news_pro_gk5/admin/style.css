@@ -988,3 +988,18 @@ div.switcher-off + select {
 .j32 > .form-inline-header > .control-group > .control-label { width: 10%; float: left; padding: 0!important; line-height: 32px }
 .j32 > .form-inline-header > .control-group > .controls { width: 90%; float: left; padding: 0!important }
 .j32 > .form-inline-header > .control-group > .controls > input { max-width: 99%; width: 99%}
+
+/* J!3.7 fixes */
+.field-calendar,
+select {
+    display: block!important;
+}
+
+select ~ .chzn-container {
+    display: none!important;
+}
+
+#config_manager_load_filename,
+#config_manager_delete_filename {
+    float: left;
+}
