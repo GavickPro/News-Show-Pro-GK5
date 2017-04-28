@@ -5,6 +5,10 @@ Advanced Joomla! content module.
 
 ## Latest changes
 
+### v.1.9.3.7
+
+* Fixes back-end problems in Joomla! 3.7.*
+
 ### v.1.9.3.6
 
 * Fixes for problems with images in the TechNews header I/II portal modes
