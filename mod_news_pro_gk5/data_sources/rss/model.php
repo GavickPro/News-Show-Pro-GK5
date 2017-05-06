@@ -22,9 +22,9 @@ class NSP_GK5_rss_Model {
 			jimport('simplepie.simplepie');
 			// loading file content
 			$rss = new SimplePie();
-			$feed->set_feed_url($config['rss_feed']);
-			$feed->set_cache_location(JPATH_ROOT . DS . 'modules' . DS . 'mod_news_pro_gk5' . DS . 'cache');
-			$feed->set_cache_duration($config['rss_cache_time'] * 60);
+			$rss->set_feed_url($config['rss_feed']);
+			$rss->set_cache_location(JPATH_ROOT . DS . 'modules' . DS . 'mod_news_pro_gk5' . DS . 'cache');
+			$rss->set_cache_duration($config['rss_cache_time'] * 60);
 			$rss->enable_cache();
 			$rss->init();
 			$rss->handle_content_type();
