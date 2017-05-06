@@ -5,6 +5,10 @@ Advanced Joomla! content module.
 
 ## Latest changes
 
+### v.1.9.3.8
+
+* Fixed issue with the RSS feed as a data source
+
 ### v.1.9.3.7
 
 * Fixes back-end problems in Joomla! 3.7.*
