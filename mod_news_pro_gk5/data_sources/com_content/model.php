@@ -155,9 +155,9 @@ class NSP_GK5_com_content_Model {
 		}
 		// check if the timezone offset is set
 		if($config['time_offset'] == 0) {
-			$date = JFactory::getDate(date('Y-m-d H:i:s', strtotime('now')));
+			$date = JFactory::getDate('now', 'UTC');
 		} else {
-			$date = JFactory::getDate($config['time_offset'].' hour '.date('Y-m-d H:i:s', strtotime('now')));
+			$date = JFactory::getDate('now ' . $config['time_offset'].' hour ', 'UTC');
 		}
 		$now  = $date->toSql(true);
 		$nullDate = $db->getNullDate();
