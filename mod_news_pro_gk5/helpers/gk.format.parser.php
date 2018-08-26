@@ -32,6 +32,7 @@ class NSP_GK5_Article_Format {
 			{HITS} - article hits
 			{DATE} - article date (gets format from the information block settings)
 			{RATING} - article rating
+			{READMORE_TEXT} - custom article read more text
 
 			K2 specific variables:
 
@@ -89,6 +90,15 @@ class NSP_GK5_Article_Format {
 		$date = JHTML::_('date', $data['date'], $config['date_format']);
 		$rating = $data['rating_count'] > 0 ? number_format($data['rating_sum'] / $data['rating_count'], 2) : 0;
 
+		// convert the attribs JSON to an array
+		$attribs = json_decode($data['attribs'], true);
+		// get the "alternative_readmore" parameter from the attribs array
+		$readmore_text = $attribs['alternative_readmore'];
+		if (!$readmore_text) {
+			// if no "alternative_readmore" is set, use the default language string: COM_CONTENT_READ_MORE_TITLE
+			$readmore_text = JText::_('COM_CONTENT_READ_MORE_TITLE');
+		}
+
 		//
 		// Get the layout text
 		//
@@ -123,6 +133,7 @@ class NSP_GK5_Article_Format {
 				'{HITS}',
 				'{DATE}',
 				'{RATING}',
+				'{READMORE_TEXT}',
 				'{AVATAR_URL}'
 			);
 			// values for the replacement
@@ -139,6 +150,7 @@ class NSP_GK5_Article_Format {
 				$hits,
 				$date,
 				$rating,
+				$readmore_text,
 				$avatar
 			);
 			// replace values in the format file
