@@ -5,6 +5,10 @@ Advanced Joomla! content module.
 
 ## Latest changes
 
+### v.1.9.3.9
+
+* Added custom readmore text from article to string parser.
+
 ### v.1.9.3.8
 
 * Fixed issue with the RSS feed as a data source
